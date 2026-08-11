@@ -1,8 +1,8 @@
 import { Award } from "lucide-react";
-import CountUp from "react-countup";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 
+import { CountUpNumber } from "./CountUpNumber";
 import { Reveal } from "./Reveal";
 import { STATS } from "./site-data";
 
@@ -29,11 +29,7 @@ export function ImpactBar() {
                 <dt className="sr-only">{stat.label}</dt>
                 <dd>
                   <span className="text-gradient font-display text-4xl font-semibold sm:text-5xl">
-                    {inView ? (
-                      <CountUp end={stat.value} duration={2.4} separator="," suffix={stat.suffix} />
-                    ) : (
-                      `0${stat.suffix}`
-                    )}
+                    <CountUpNumber end={stat.value} suffix={stat.suffix} active={inView} />
                   </span>
                   <span className="mt-2 block text-sm text-muted-foreground">{stat.label}</span>
                 </dd>
