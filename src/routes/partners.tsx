@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 
 import { Button } from "@/components/ui/button";
 import { PageHero } from "@/components/site/PageHero";
+import { PartnersSection } from "@/components/site/PartnersSection";
 import { Reveal } from "@/components/site/Reveal";
 import { SectionHeading } from "@/components/site/SectionHeading";
 
@@ -272,9 +273,7 @@ function PartnersPage() {
         </div>
       </section>
 
-      {/*
       <PartnersSection withHeading={false} />
-      */}
     </>
   );
 }
