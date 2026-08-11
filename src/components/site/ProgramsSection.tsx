@@ -44,7 +44,7 @@ export const PROGRAMS = [
 
 export function ProgramsSection({ withHeading = true }: { withHeading?: boolean }) {
   return (
-    <section className="mx-auto max-w-7xl px-5 py-24 sm:px-8 lg:py-32" id="programs">
+    <section className="mx-auto max-w-7xl px-5 sm:px-8 py-16" id="programs">
       {withHeading ? (
         <SectionHeading
           eyebrow="What we do"
@@ -53,67 +53,41 @@ export function ProgramsSection({ withHeading = true }: { withHeading?: boolean 
         />
       ) : null}
 
-      <div className="relative mt-16">
-        <div
-          className="absolute top-0 bottom-0 left-[27px] hidden w-px bg-gradient-to-b from-transparent via-border to-transparent lg:block"
-          aria-hidden="true"
-        />
-        <ul className="space-y-14">
-          {PROGRAMS.map((program, index) => (
-            <Reveal as="li" key={program.id} className="relative lg:pl-20">
-              <span
-                className="gradient-primary absolute top-8 left-0 hidden size-14 place-items-center rounded-2xl text-primary-foreground shadow-[var(--shadow-glow)] lg:grid"
-                aria-hidden="true"
-              >
-                <program.icon className="size-6" />
-              </span>
-              <motion.article
-                whileHover={{ y: -6 }}
-                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                className="zoom-media grid overflow-hidden rounded-[2rem] bg-card shadow-soft transition-shadow duration-500 hover:shadow-lift md:grid-cols-2"
-              >
-                <div
-                  className={`relative aspect-[4/3] md:aspect-auto ${index % 2 === 1 ? "md:order-2" : ""}`}
-                >
-                  <img
-                    src={program.image}
-                    alt={program.alt}
-                    loading="lazy"
-                    width={1200}
-                    height={900}
-                    className="size-full object-cover"
-                  />
+      <div className="mt-12 space-y-10">
+        {PROGRAMS.map((program, index) => (
+          <Reveal key={program.id}>
+            <div className="lg:flex lg:items-start lg:gap-12">
+              <div className={index % 2 === 0 ? "w-full lg:w-1/2 lg:order-1" : "w-full lg:w-1/2 lg:order-2"}>
+                <img
+                  src={program.image}
+                  alt={program.alt}
+                  loading="lazy"
+                  className="rounded-lg"
+                />
+              </div>
+              <div className={index % 2 === 0 ? "w-full lg:w-1/2 lg:order-2 space-y-4" : "w-full lg:w-1/2 lg:order-1 space-y-4"}>
+                <h3 className="text-2xl font-semibold text-foreground">{program.title}</h3>
+                <p className="text-base text-muted-foreground leading-relaxed">{program.summary}</p>
+                <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
+                  {program.points.map((point) => (
+                    <li key={point} className="flex items-start gap-2">
+                      <span className="flex-shrink-0">•</span>
+                      <span>{point}</span>
+                    </li>
+                  ))}
+                </ul>
+                <div className="mt-6">
+                  <Button asChild variant="outline" className="w-fit">
+                    <Link to="/programs" hash={program.id}>
+                      Learn more
+                      <ArrowUpRight className="ml-2 h-4 w-4" aria-hidden="true" />
+                    </Link>
+                  </Button>
                 </div>
-                <div className="flex flex-col justify-center gap-5 p-8 sm:p-10">
-                  <span className="grid size-12 place-items-center rounded-2xl bg-primary-tint text-primary lg:hidden">
-                    <program.icon className="size-5" aria-hidden="true" />
-                  </span>
-                  <p className="eyebrow text-accent">Program 0{index + 1}</p>
-                  <h3 className="text-2xl font-semibold sm:text-3xl">{program.title}</h3>
-                  <p className="leading-relaxed text-muted-foreground">{program.summary}</p>
-                  <ul className="flex flex-wrap gap-2">
-                    {program.points.map((point) => (
-                      <li
-                        key={point}
-                        className="rounded-full bg-muted px-3.5 py-1.5 text-xs font-medium text-foreground/75"
-                      >
-                        {point}
-                      </li>
-                    ))}
-                  </ul>
-                  <div>
-                    <Button asChild variant="outline">
-                      <Link to="/programs" hash={program.id}>
-                        Learn more
-                        <ArrowUpRight aria-hidden="true" />
-                      </Link>
-                    </Button>
-                  </div>
-                </div>
-              </motion.article>
-            </Reveal>
-          ))}
-        </ul>
+              </div>
+            </div>
+          </Reveal>
+        ))}
       </div>
     </section>
   );

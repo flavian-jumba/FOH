@@ -38,7 +38,7 @@ export const STORIES = [
 
 export function StoriesSection({ withHeading = true }: { withHeading?: boolean }) {
   return (
-    <section className="mx-auto max-w-7xl px-5 py-24 sm:px-8 lg:py-32" id="stories">
+    <section className="mx-auto max-w-7xl px-5 sm:px-8 py-16" id="stories">
       {withHeading ? (
         <SectionHeading
           eyebrow="Impact stories"
@@ -47,40 +47,31 @@ export function StoriesSection({ withHeading = true }: { withHeading?: boolean }
         />
       ) : null}
 
-      <div className="mt-16 space-y-24">
-        {STORIES.map((story, i) => (
+      <div className="mt-12 space-y-10">
+        {STORIES.map((story, index) => (
           <Reveal key={story.name}>
-            <article className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
-              <div
-                className={`zoom-media relative overflow-hidden rounded-[2.5rem] shadow-lift ${
-                  i % 2 === 1 ? "lg:order-2" : ""
-                }`}
-              >
+            <div className="lg:flex lg:items-start lg:gap-12">
+              <div className={index % 2 === 0 ? "w-full lg:w-1/2 lg:order-1" : "w-full lg:w-1/2 lg:order-2"}>
                 <img
                   src={story.image}
                   alt={story.alt}
                   loading="lazy"
-                  width={1200}
-                  height={900}
-                  className="aspect-[4/3] size-full object-cover"
-                />
-                <div
-                  className="gradient-primary pointer-events-none absolute inset-0 opacity-10 mix-blend-multiply"
-                  aria-hidden="true"
+                  className="rounded-lg"
                 />
               </div>
-
-              <div className={i % 2 === 1 ? "lg:order-1" : ""}>
-                <p className="eyebrow text-accent">
+              <div className={index % 2 === 0 ? "w-full lg:w-1/2 lg:order-2 space-y-4" : "w-full lg:w-1/2 lg:order-1 space-y-4"}>
+                <p className="flex items-center gap-2 text-sm text-muted-foreground">
                   {story.name} · {story.place}
                 </p>
-                <Quote className="mt-6 size-8 text-secondary" aria-hidden="true" />
-                <blockquote className="mt-4 font-display text-2xl leading-snug font-medium text-balance sm:text-3xl">
-                  “{story.quote}”
-                </blockquote>
+                <div className="mt-4 flex items-center gap-2">
+                  <Quote className="size-5 text-secondary" aria-hidden="true" />
+                  <blockquote className="text-2xl font-display font-medium leading-snug text-balance sm:text-3xl">
+                    “{story.quote}”
+                  </blockquote>
+                </div>
                 <p className="mt-6 leading-relaxed text-muted-foreground">{story.body}</p>
               </div>
-            </article>
+            </div>
           </Reveal>
         ))}
       </div>
