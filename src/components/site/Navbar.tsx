@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router";
+import { Link, useRouterState } from "@tanstack/react-router";
 import { AnimatePresence, motion } from "framer-motion";
 import { Heart, Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -8,11 +8,14 @@ import { cn } from "@/lib/utils";
 import { NAV_LINKS, ORG } from "./site-data";
 
 export function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
+  const pathname = useRouterState({ select: (state) => state.location.pathname });
+  const [atTop, setAtTop] = useState(true);
+  const overHero = pathname === "/" && atTop;
+  const scrolled = !overHero;
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
+    const onScroll = () => setAtTop(window.scrollY <= 24);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -29,7 +32,7 @@ export function Navbar() {
     <header
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition-all duration-500",
-        scrolled ? "glass shadow-soft text-foreground" : "bg-transparent text-white",
+        overHero ? "bg-transparent text-white" : atTop ? "bg-transparent" : "glass shadow-soft",
       )}
     >
       <nav
