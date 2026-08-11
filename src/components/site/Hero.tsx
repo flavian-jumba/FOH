@@ -76,7 +76,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="glass-dark mx-auto inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-medium tracking-[0.14em] text-white/90 uppercase"
+          className="glass-dark mx-auto inline-flex items-center gap-2 rounded-full border border-[oklch(0.73_0.113_85_/_0.45)] px-4 py-2 text-xs font-medium tracking-[0.14em] text-white/90 uppercase"
         >
           <Award className="size-4 text-[oklch(0.82_0.12_85)]" aria-hidden="true" />
           NGO of the Year — Pride of Kenya 2025
@@ -88,9 +88,11 @@ export function Hero() {
           transition={{ delay: 0.12, duration: 1, ease: [0.16, 1, 0.3, 1] }}
           className="mt-7 text-4xl leading-[1.05] font-semibold text-white sm:text-6xl lg:text-7xl"
         >
-          Restoring Dignity.
-          <span className="block text-[oklch(0.86_0.09_355)]">Empowering Women.</span>
-          Transforming Communities.
+          Restoring{" "}
+          <em className="font-display text-[oklch(0.76_0.132_357)] italic">Dignity.</em>
+          <span className="block">Empowering Women.</span>
+          <span className="block text-[oklch(0.79_0.115_85)]">Transforming Communities.</span>
+
         </motion.h1>
 
         <motion.p
