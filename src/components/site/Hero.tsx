@@ -135,6 +135,13 @@ export function Hero() {
           <span className="scroll-dot block size-1.5 rounded-full bg-white" />
         </span>
       </div>
+
+      <div
+        className="absolute bottom-0 left-0 z-20 h-1 w-full"
+        style={{ backgroundImage: "var(--gradient-royal-rule)" }}
+        aria-hidden="true"
+      />
     </section>
+
   );
 }
