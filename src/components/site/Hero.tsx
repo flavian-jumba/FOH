@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { ArrowRight, Award, Heart } from "lucide-react";
 
-import heroImage from "@/assets/hero.jpg";
+import heroImage from "@/assets/hassan-kibwana-Q3A3En_7HM4-unsplash.jpg";
 import { Button } from "@/components/ui/button";
 import { ORG } from "./site-data";
 
@@ -15,7 +15,7 @@ export function Hero() {
         width={1920}
         height={1280}
         fetchPriority="high"
-        className="absolute inset-0 -z-20 size-full object-cover opacity-45 mix-blend-luminosity"
+        className="absolute inset-0 -z-20 size-full object-cover opacity-55 mix-blend-luminosity"
       />
       <div
         className="absolute inset-0 -z-10"
