@@ -15,16 +15,16 @@ export function Hero() {
         width={1920}
         height={1280}
         fetchPriority="high"
-        className="absolute inset-0 -z-20 size-full object-cover opacity-70 mix-blend-luminosity"
+        className="absolute inset-0 -z-20 size-full object-cover opacity-85"
       />
       <div
         className="absolute inset-0 -z-10"
-        style={{ backgroundImage: "var(--gradient-royal-wash)" }}
+        style={{ backgroundImage: "var(--gradient-royal-wash)", opacity: 0.4 }}
         aria-hidden="true"
       />
       <div
         className="absolute inset-0 -z-10"
-        style={{ backgroundImage: "var(--gradient-royal-base)" }}
+        style={{ backgroundImage: "var(--gradient-royal-base)", opacity: 0.4 }}
         aria-hidden="true"
       />
       <div

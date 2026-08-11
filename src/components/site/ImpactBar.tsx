@@ -11,7 +11,7 @@ export function ImpactBar() {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section aria-labelledby="impact-heading" className="relative z-30 -mt-16 px-5 sm:px-8">
+    <section aria-labelledby="impact-heading" className="relative z-30 mt-6 px-5 sm:px-8">
       <h2 id="impact-heading" className="sr-only">
         Our impact in numbers
       </h2>
