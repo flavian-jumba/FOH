@@ -22,28 +22,34 @@ const floatCards = [
 
 export function Hero() {
   return (
-    <section className="relative isolate flex min-h-dvh items-center overflow-hidden">
+    <section className="relative isolate flex min-h-dvh items-center overflow-hidden bg-primary">
       <img
         src={heroImage}
         alt="Women of the Simply Feminine Network community standing together at golden hour"
         width={1920}
         height={1280}
         fetchPriority="high"
-        className="absolute inset-0 -z-20 size-full object-cover"
+        className="absolute inset-0 -z-20 size-full object-cover opacity-45 mix-blend-luminosity"
       />
       <div
         className="absolute inset-0 -z-10"
-        style={{ backgroundImage: "var(--gradient-veil)" }}
+        style={{ backgroundImage: "var(--gradient-royal-wash)" }}
         aria-hidden="true"
       />
       <div
-        className="float-slow pointer-events-none absolute -top-24 -left-24 -z-10 size-96 rounded-full bg-[oklch(0.72_0.135_360_/_0.35)] blur-3xl"
+        className="absolute inset-0 -z-10"
+        style={{ backgroundImage: "var(--gradient-royal-base)" }}
         aria-hidden="true"
       />
       <div
-        className="float-slow pointer-events-none absolute right-[-10%] bottom-[-10%] -z-10 size-[30rem] rounded-full bg-[oklch(0.55_0.174_306_/_0.4)] blur-3xl [animation-delay:-6s]"
+        className="float-slow pointer-events-none absolute -top-24 -left-24 -z-10 size-96 rounded-full bg-[oklch(0.72_0.135_360_/_0.32)] blur-3xl"
         aria-hidden="true"
       />
+      <div
+        className="float-slow pointer-events-none absolute right-[-10%] bottom-[-10%] -z-10 size-[30rem] rounded-full bg-[oklch(0.73_0.113_85_/_0.22)] blur-3xl [animation-delay:-6s]"
+        aria-hidden="true"
+      />
+
 
       {floatCards.map((card, i) => (
         <motion.div
@@ -70,7 +76,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="glass-dark mx-auto inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-medium tracking-[0.14em] text-white/90 uppercase"
+          className="glass-dark mx-auto inline-flex items-center gap-2 rounded-full border border-[oklch(0.73_0.113_85_/_0.45)] px-4 py-2 text-xs font-medium tracking-[0.14em] text-white/90 uppercase"
         >
           <Award className="size-4 text-[oklch(0.82_0.12_85)]" aria-hidden="true" />
           NGO of the Year — Pride of Kenya 2025
@@ -82,9 +88,11 @@ export function Hero() {
           transition={{ delay: 0.12, duration: 1, ease: [0.16, 1, 0.3, 1] }}
           className="mt-7 text-4xl leading-[1.05] font-semibold text-white sm:text-6xl lg:text-7xl"
         >
-          Restoring Dignity.
-          <span className="block text-[oklch(0.86_0.09_355)]">Empowering Women.</span>
-          Transforming Communities.
+          Restoring{" "}
+          <em className="font-display text-[oklch(0.76_0.132_357)] italic">Dignity.</em>
+          <span className="block">Empowering Women.</span>
+          <span className="block text-[oklch(0.79_0.115_85)]">Transforming Communities.</span>
+
         </motion.h1>
 
         <motion.p
@@ -127,6 +135,13 @@ export function Hero() {
           <span className="scroll-dot block size-1.5 rounded-full bg-white" />
         </span>
       </div>
+
+      <div
+        className="absolute bottom-0 left-0 z-20 h-1 w-full"
+        style={{ backgroundImage: "var(--gradient-royal-rule)" }}
+        aria-hidden="true"
+      />
     </section>
+
   );
 }
