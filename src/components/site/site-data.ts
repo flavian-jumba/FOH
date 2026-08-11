@@ -46,9 +46,9 @@ export const EVENTS = [
     title: "Women's Leadership & Empowerment Summit",
     city: "Berlin, Germany",
     venue: "Schloss Hotel Berlin",
-    date: "2026-06-14T10:00:00+02:00",
-    dateLabel: "14 Jun 2026",
-    day: "14",
+    date: "2027-06-12T10:00:00+02:00",
+    dateLabel: "12 Jun 2027",
+    day: "12",
     month: "Jun",
     blurb:
       "African diaspora leaders, diplomats and international institutions convene to channel global networks into grassroots Kenyan enterprise financing.",
