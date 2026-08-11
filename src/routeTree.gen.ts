@@ -11,9 +11,13 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as DonateRouteImport } from './routes/donate'
 import { Route as EventsRouteImport } from './routes/events'
 import { Route as GalleryRouteImport } from './routes/gallery'
+import { Route as PartnersRouteImport } from './routes/partners'
 import { Route as ProgramsRouteImport } from './routes/programs'
+import { Route as StoriesRouteImport } from './routes/stories'
+import { Route as VolunteerRouteImport } from './routes/volunteer'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -23,6 +27,11 @@ const IndexRoute = IndexRouteImport.update({
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DonateRoute = DonateRouteImport.update({
+  id: '/donate',
+  path: '/donate',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EventsRoute = EventsRouteImport.update({
@@ -35,48 +44,107 @@ const GalleryRoute = GalleryRouteImport.update({
   path: '/gallery',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PartnersRoute = PartnersRouteImport.update({
+  id: '/partners',
+  path: '/partners',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProgramsRoute = ProgramsRouteImport.update({
   id: '/programs',
   path: '/programs',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StoriesRoute = StoriesRouteImport.update({
+  id: '/stories',
+  path: '/stories',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VolunteerRoute = VolunteerRouteImport.update({
+  id: '/volunteer',
+  path: '/volunteer',
   getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/donate': typeof DonateRoute
   '/events': typeof EventsRoute
   '/gallery': typeof GalleryRoute
+  '/partners': typeof PartnersRoute
   '/programs': typeof ProgramsRoute
+  '/stories': typeof StoriesRoute
+  '/volunteer': typeof VolunteerRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/donate': typeof DonateRoute
   '/events': typeof EventsRoute
   '/gallery': typeof GalleryRoute
+  '/partners': typeof PartnersRoute
   '/programs': typeof ProgramsRoute
+  '/stories': typeof StoriesRoute
+  '/volunteer': typeof VolunteerRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/donate': typeof DonateRoute
   '/events': typeof EventsRoute
   '/gallery': typeof GalleryRoute
+  '/partners': typeof PartnersRoute
   '/programs': typeof ProgramsRoute
+  '/stories': typeof StoriesRoute
+  '/volunteer': typeof VolunteerRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/events' | '/gallery' | '/programs'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/donate'
+    | '/events'
+    | '/gallery'
+    | '/partners'
+    | '/programs'
+    | '/stories'
+    | '/volunteer'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/events' | '/gallery' | '/programs'
-  id: '__root__' | '/' | '/about' | '/events' | '/gallery' | '/programs'
+  to:
+    | '/'
+    | '/about'
+    | '/donate'
+    | '/events'
+    | '/gallery'
+    | '/partners'
+    | '/programs'
+    | '/stories'
+    | '/volunteer'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/donate'
+    | '/events'
+    | '/gallery'
+    | '/partners'
+    | '/programs'
+    | '/stories'
+    | '/volunteer'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  DonateRoute: typeof DonateRoute
   EventsRoute: typeof EventsRoute
   GalleryRoute: typeof GalleryRoute
+  PartnersRoute: typeof PartnersRoute
   ProgramsRoute: typeof ProgramsRoute
+  StoriesRoute: typeof StoriesRoute
+  VolunteerRoute: typeof VolunteerRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -95,6 +163,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/donate': {
+      id: '/donate'
+      path: '/donate'
+      fullPath: '/donate'
+      preLoaderRoute: typeof DonateRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/events': {
       id: '/events'
       path: '/events'
@@ -109,11 +184,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof GalleryRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/partners': {
+      id: '/partners'
+      path: '/partners'
+      fullPath: '/partners'
+      preLoaderRoute: typeof PartnersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/programs': {
       id: '/programs'
       path: '/programs'
       fullPath: '/programs'
       preLoaderRoute: typeof ProgramsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/stories': {
+      id: '/stories'
+      path: '/stories'
+      fullPath: '/stories'
+      preLoaderRoute: typeof StoriesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/volunteer': {
+      id: '/volunteer'
+      path: '/volunteer'
+      fullPath: '/volunteer'
+      preLoaderRoute: typeof VolunteerRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -122,20 +218,14 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  DonateRoute: DonateRoute,
   EventsRoute: EventsRoute,
   GalleryRoute: GalleryRoute,
+  PartnersRoute: PartnersRoute,
   ProgramsRoute: ProgramsRoute,
+  StoriesRoute: StoriesRoute,
+  VolunteerRoute: VolunteerRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
