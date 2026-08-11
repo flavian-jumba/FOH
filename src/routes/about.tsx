@@ -6,6 +6,7 @@ import { Reveal } from "@/components/site/Reveal";
 import { SectionHeading } from "@/components/site/SectionHeading";
 import { NewsletterSection } from "@/components/site/NewsletterSection";
 import { ORG } from "@/components/site/site-data";
+import { createFileRoute } from "@tanstack/react-router";
 
 const title = "About Us — Simply Feminine Network";
 const description =
