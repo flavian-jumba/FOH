@@ -82,15 +82,6 @@ export function Hero() {
       </div>
 
       <div
-        className="absolute bottom-8 left-1/2 z-20 -translate-x-1/2 text-white/70"
-        aria-hidden="true"
-      >
-        <span className="flex h-10 w-6 items-start justify-center rounded-full border border-white/40 p-1.5">
-          <span className="scroll-dot block size-1.5 rounded-full bg-white" />
-        </span>
-      </div>
-
-      <div
         className="absolute bottom-0 left-0 z-20 h-1 w-full"
         style={{ backgroundImage: "var(--gradient-royal-rule)" }}
         aria-hidden="true"
