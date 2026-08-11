@@ -37,16 +37,6 @@ export function Hero() {
       />
 
       <div className="relative z-20 mx-auto w-full max-w-5xl px-5 py-32 text-center sm:px-8">
-        <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="glass-dark mx-auto inline-flex items-center gap-2 rounded-full border border-[oklch(0.73_0.113_85_/_0.45)] px-4 py-2 text-xs font-medium tracking-[0.14em] text-white/90 uppercase"
-        >
-          <Award className="size-4 text-[oklch(0.82_0.12_85)]" aria-hidden="true" />
-          NGO of the Year — Pride of Kenya 2025
-        </motion.p>
-
         <motion.h1
           initial={{ opacity: 0, y: 26, filter: "blur(10px)" }}
           animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
