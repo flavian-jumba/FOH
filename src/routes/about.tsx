@@ -108,7 +108,7 @@ function AboutPage() {
             <Reveal as="div" key={value.title} delay={idx * 0.08} className="pt-4">
               <div className="flex items-start gap-4">
                 <div className="flex-shrink-0 flex items-center justify-center w-10 h-10 rounded-full bg-primary/10 text-primary flexibility">
-                  {value.icon}
+                  <value.icon />
                 </div>
                 <div>
                   <h3 className="font-semibold text-lg">{value.title}</h3>
