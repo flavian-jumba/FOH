@@ -62,7 +62,7 @@ export function Navbar() {
               <Link
                 to={link.to}
                 className={cn(
-                  "relative rounded-full px-3.5 py-2 text-sm font-medium transition-colors",
+                  "relative rounded-full px-3.5 py-2 text-base font-semibold font-manrope tracking-[0.01em] transition-colors",
                   scrolled ? "text-foreground/80 hover:text-primary" : "text-white/85 hover:text-white",
                 )}
                 activeProps={{ className: scrolled ? "text-primary" : "text-white" }}
@@ -74,7 +74,7 @@ export function Navbar() {
         </ul>
 
         <div className="flex items-center gap-2">
-          <Button asChild variant="hero" size="sm" className="hidden h-10 px-5 sm:inline-flex text-[oklch(0.79_0.115_85)]">
+          <Button asChild variant="hero" size="sm" className="hidden h-10 px-5 sm:inline-flex text-[oklch(0.79_0.115_85)] font-manrope font-semibold text-base tracking-[0.01em]">
             <Link to="/donate">
               Donate
             </Link>
@@ -115,7 +115,7 @@ export function Navbar() {
                 </li>
               ))}
               <li className="pt-2">
-                <Button asChild variant="hero" className="w-full" size="lg">
+                <Button asChild variant="hero" className="w-full" size="lg" className="font-manrope font-semibold text-base tracking-[0.01em]">
                   <Link to="/donate" onClick={() => setOpen(false)}>
                     Donate now
                   </Link>

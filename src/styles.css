@@ -294,3 +294,7 @@
 @utility marquee-track {
   animation: marquee 38s linear infinite;
 }
+
+@utility font-manrope {
+  font-family: 'Manrope', sans-serif;
+}
