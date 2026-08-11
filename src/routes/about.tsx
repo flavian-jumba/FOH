@@ -1,7 +1,6 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { Flag, Globe2, HeartHandshake, Sparkles } from "lucide-react";
+import { Globe2, HeartHandshake, Sparkles, Flag } from "lucide-react";
 
-import gallery4 from "@/assets/gallery-4.jpg";
+import gallery2 from "@/assets/gallery-2.jpg";
 import { PageHero } from "@/components/site/PageHero";
 import { Reveal } from "@/components/site/Reveal";
 import { SectionHeading } from "@/components/site/SectionHeading";
@@ -67,91 +66,73 @@ function AboutPage() {
         description={`${ORG.name} is a Kenyan non-governmental organization empowering women, improving mental health and restoring dignity to women and children affected by the criminal justice system.`}
       />
 
-      <section className="mx-auto max-w-7xl px-5 pb-8 sm:px-8">
-        <Reveal>
-          <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
-            <div className="zoom-media overflow-hidden rounded-[2.5rem] shadow-lift">
-              <img
-                src={gallery4}
-                alt="Women of the network celebrating together"
-                loading="lazy"
-                width={1200}
-                height={900}
-                className="aspect-[4/3] w-full object-cover"
-              />
-            </div>
-            <div className="space-y-5">
-              <p className="eyebrow text-accent">Our story</p>
-              <h2 className="text-3xl font-semibold sm:text-4xl">
-                From one woman's conviction to a movement on two continents
-              </h2>
-              <p className="leading-relaxed text-muted-foreground">
-                Established in {ORG.founded} by {ORG.founder}, the network began with a simple act:
-                carrying sanitary pads and undergarments into a remand facility where women were
-                serving time alongside their children. What we found was a dignity emergency hiding
-                inside a justice system.
-              </p>
-              <p className="leading-relaxed text-muted-foreground">
-                Today, under CEO {ORG.ceo}, we run prison outreach, menstrual health drives,
-                hospital visits, mental-health circles and the IMARA HER mobile empowerment lab —
-                while our Berlin summits channel diaspora capital straight into grassroots Kenyan
-                enterprise.
-              </p>
-              <dl className="grid gap-4 pt-2 sm:grid-cols-2">
-                <div className="rounded-3xl bg-card p-5 shadow-soft">
-                  <dt className="text-xs tracking-[0.16em] text-muted-foreground uppercase">
-                    Founder
-                  </dt>
-                  <dd className="mt-1 font-display text-lg font-semibold">{ORG.founder}</dd>
-                </div>
-                <div className="rounded-3xl bg-card p-5 shadow-soft">
-                  <dt className="text-xs tracking-[0.16em] text-muted-foreground uppercase">
-                    Chief Executive
-                  </dt>
-                  <dd className="mt-1 font-display text-lg font-semibold">{ORG.ceo}</dd>
-                </div>
-              </dl>
-            </div>
+      <section className="mt-12">
+        <Reveal className="mx-auto max-w-4xl">
+          <img
+            src={gallery2}
+            alt="Women and girls in a community session"
+            className="rounded-xl shadow-lg mb-8"
+          />
+          <div className="space-y-6">
+            <p className="text-lg text-muted-foreground leading-relaxed">
+              Established in {ORG.founded} by {ORG.founder}, the network began with a simple act:
+              carrying sanitary pads and undergarments into a remand facility where women were
+              serving time alongside their children. What we found was a dignity emergency hiding
+              inside a justice system.
+            </p>
+            <p className="text-lg text-muted-foreground leading-relaxed">
+              Today, under CEO {ORG.ceo}, we run prison outreach, menstrual health drives,
+              hospital visits, mental-health circles and the IMARA HER mobile empowerment lab —
+              while our Berlin summits channel diaspora capital straight into grassroots Kenyan
+              enterprise.
+            </p>
+            <dl className="space-y-4 text-lg font-medium">
+              <div className="flex">
+                <dt className="w-20 text-xs font-semibold text-muted-foreground">Founder</dt>
+                <dd>{ORG.founder}</dd>
+              </div>
+              <div className="flex">
+                <dt className="w-20 text-xs font-semibold text-muted-foreground">Chief Executive</dt>
+                <dd>{ORG.ceo}</dd>
+              </div>
+            </dl>
           </div>
         </Reveal>
       </section>
 
-      <section className="mx-auto max-w-7xl px-5 py-24 sm:px-8">
+      <section className="mt-16">
         <SectionHeading eyebrow="What guides us" title="Four commitments we do not trade" />
-        <ul className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {values.map((value, i) => (
-            <Reveal as="li" key={value.title} delay={i * 0.08}>
-              <div className="card-lift h-full rounded-[1.75rem] bg-card p-7 shadow-soft">
-                <span className="gradient-primary grid size-12 place-items-center rounded-2xl text-primary-foreground">
-                  <value.icon className="size-5" aria-hidden="true" />
-                </span>
-                <h3 className="mt-5 text-lg font-semibold">{value.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{value.body}</p>
+        <div className="mt-10 space-y-6 border-t border-primary/10 pt-6">
+          {values.map((value, idx) => (
+            <Reveal as="div" key={value.title} delay={idx * 0.08} className="pt-4">
+              <div className="flex items-start gap-4">
+                <div className="flex-shrink-0 flex items-center justify-center w-10 h-10 rounded-full bg-primary/10 text-primary flexibility">
+                  {value.icon}
+                </div>
+                <div>
+                  <h3 className="font-semibold text-lg">{value.title}</h3>
+                  <p className="text-muted-foreground">{value.body}</p>
+                </div>
               </div>
             </Reveal>
           ))}
-        </ul>
+        </div>
       </section>
 
-      <section
-        className="py-24"
-        style={{ backgroundImage: "var(--gradient-tint)" }}
-        aria-labelledby="journey"
-      >
-        <div className="mx-auto max-w-4xl px-5 sm:px-8">
-          <SectionHeading eyebrow="Journey" title="Five years, one direction" />
-          <ol className="relative mt-14 space-y-8 border-l border-border pl-8">
-            {timeline.map((item, i) => (
-              <Reveal as="li" key={item.year} delay={i * 0.06} className="relative">
-                <span
-                  className="gradient-primary absolute top-2 -left-[41px] size-4 rounded-full ring-4 ring-background"
-                  aria-hidden="true"
-                />
-                <p className="font-display text-2xl font-semibold text-primary">{item.year}</p>
-                <p className="mt-2 leading-relaxed text-muted-foreground">{item.text}</p>
-              </Reveal>
-            ))}
-          </ol>
+      <section className="mt-16" style={{ backgroundImage: "var(--gradient-tint)" }}>
+        <SectionHeading eyebrow="Journey" title="Five years, one direction" />
+        <div className="mt-10 space-y-6">
+          {timeline.map((item, idx) => (
+            <Reveal as="div" key={item.year} delay={idx * 0.06} className="py-4">
+              <div className="flex items-start gap-4">
+                <div className="h-2.5 w-2.5 rounded-full bg-primary" />
+                <div>
+                  <p className="font-display text-xl font-semibold text-primary">{item.year}</p>
+                  <p className="text-muted-foreground leading-relaxed">{item.text}</p>
+                </div>
+              </div>
+            </Reveal>
+          ))}
         </div>
       </section>
 
