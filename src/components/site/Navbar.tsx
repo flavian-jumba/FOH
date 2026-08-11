@@ -74,9 +74,8 @@ export function Navbar() {
         </ul>
 
         <div className="flex items-center gap-2">
-          <Button asChild variant="hero" size="sm" className="hidden h-10 px-5 sm:inline-flex">
+          <Button asChild variant="hero" size="sm" className="hidden h-10 px-5 sm:inline-flex text-[oklch(0.79_0.115_85)]">
             <Link to="/donate">
-              <Heart aria-hidden="true" />
               Donate
             </Link>
           </Button>

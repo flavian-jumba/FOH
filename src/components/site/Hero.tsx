@@ -6,20 +6,6 @@ import heroImage from "@/assets/hero.jpg";
 import { Button } from "@/components/ui/button";
 import { ORG } from "./site-data";
 
-const floatCards = [
-  { label: "Lives impacted", value: "1,000+", className: "left-4 top-[26%] sm:left-10 lg:left-16" },
-  {
-    label: "Sanitary pads distributed",
-    value: "10,000+",
-    className: "right-4 top-[38%] sm:right-10 lg:right-20",
-  },
-  {
-    label: "Prison outreaches",
-    value: "5+",
-    className: "left-8 bottom-[24%] hidden sm:block lg:left-28",
-  },
-];
-
 export function Hero() {
   return (
     <section className="relative isolate flex min-h-dvh items-center overflow-hidden bg-primary">
@@ -49,27 +35,6 @@ export function Hero() {
         className="float-slow pointer-events-none absolute right-[-10%] bottom-[-10%] -z-10 size-[30rem] rounded-full bg-[oklch(0.73_0.113_85_/_0.22)] blur-3xl [animation-delay:-6s]"
         aria-hidden="true"
       />
-
-
-      {floatCards.map((card, i) => (
-        <motion.div
-          key={card.label}
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.9 + i * 0.18, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-          className={`glass-dark pointer-events-none absolute z-10 hidden rounded-3xl px-5 py-4 text-primary-foreground md:block ${card.className}`}
-        >
-          <motion.div
-            animate={{ y: [0, -10, 0] }}
-            transition={{ duration: 7 + i, repeat: Infinity, ease: "easeInOut" }}
-          >
-            <p className="font-display text-2xl font-semibold">{card.value}</p>
-            <p className="mt-1 text-[11px] tracking-[0.16em] text-white/70 uppercase">
-              {card.label}
-            </p>
-          </motion.div>
-        </motion.div>
-      ))}
 
       <div className="relative z-20 mx-auto w-full max-w-5xl px-5 py-32 text-center sm:px-8">
         <motion.p
@@ -112,9 +77,8 @@ export function Hero() {
           transition={{ delay: 0.44, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
           className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row"
         >
-          <Button asChild variant="hero" size="lg" className="w-full sm:w-auto">
+          <Button asChild variant="hero" size="lg" className="w-full sm:w-auto text-[oklch(0.79_0.115_85)]">
             <Link to="/donate">
-              <Heart aria-hidden="true" />
               Donate now
             </Link>
           </Button>
@@ -142,6 +106,5 @@ export function Hero() {
         aria-hidden="true"
       />
     </section>
-
   );
 }
