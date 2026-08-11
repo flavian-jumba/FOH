@@ -113,10 +113,12 @@
   );
   --gradient-royal-base: linear-gradient(
     180deg,
-    oklch(0.4 0.148 305 / 0) 0%,
-    oklch(0.4 0.148 305 / 0.42) 52%,
-    oklch(0.34 0.13 303) 100%
+    oklch(0.26 0.098 302 / 0.75) 0%,
+    oklch(0.3 0.11 303 / 0.35) 38%,
+    oklch(0.34 0.13 303 / 0.6) 72%,
+    oklch(0.26 0.098 302) 100%
   );
+
   --gradient-royal-rule: linear-gradient(
     90deg,
     oklch(0.4 0.148 305) 0%,
