@@ -32,10 +32,8 @@ export const Route = createFileRoute("/")({
 function Index() {
   return (
     <>
-      <h1 className="sr-only">
-        Simply Feminine Network — restoring dignity, empowering women, transforming communities
-      </h1>
       <Hero />
+
       <ImpactBar />
       <ProgramsSection />
       <StoriesSection />
