@@ -11,31 +11,34 @@ export function ImpactBar() {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section aria-labelledby="impact-heading" className="relative z-30 mt-6 px-5 sm:px-8">
+    <section aria-labelledby="impact-heading" className="relative mt-8 px-5 sm:px-8">
       <h2 id="impact-heading" className="sr-only">
         Our impact in numbers
       </h2>
       <Reveal className="mx-auto max-w-6xl">
-        <div ref={ref} className="glass rounded-[2rem] p-6 shadow-lift sm:p-10">
-          <div className="flex flex-wrap items-center justify-center gap-3 rounded-full bg-primary-tint px-5 py-3 text-center">
+        <div ref={ref}>
+          <div className="flex items-center justify-center gap-4 mb-6">
             <Award className="size-4 text-accent" aria-hidden="true" />
-            <p className="text-xs font-semibold tracking-[0.18em] text-primary uppercase">
+            <p className="text-xs font-semibold tracking-[0.18em] text-primary">
               Winner · NGO of the Year — Pride of Kenya Awards
             </p>
           </div>
-          <dl className="mt-8 grid gap-8 sm:grid-cols-3">
-            {STATS.map((stat) => (
-              <div key={stat.label} className="text-center">
+          <div className="grid gap-x-8 gap-y-6 sm:grid-cols-3">
+            {STATS.map((stat, idx) => (
+              <div
+                key={stat.label}
+                className={`text-center border-r-2 border-primary/10 sm:border-r-0 last:sm:border-r-0`}
+              >
                 <dt className="sr-only">{stat.label}</dt>
                 <dd>
-                  <span className="text-gradient font-display text-4xl font-semibold sm:text-5xl">
+                  <span className="block font-display font-semibold text-3xl sm:text-4xl text-gradient">
                     <CountUpNumber end={stat.value} suffix={stat.suffix} active={inView} />
                   </span>
                   <span className="mt-2 block text-sm text-muted-foreground">{stat.label}</span>
                 </dd>
               </div>
             ))}
-          </dl>
+          </div>
         </div>
       </Reveal>
     </section>
