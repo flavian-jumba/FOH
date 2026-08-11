@@ -29,7 +29,7 @@ export function Navbar() {
     <header
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition-all duration-500",
-        scrolled ? "glass shadow-soft" : "bg-transparent",
+        scrolled ? "glass shadow-soft text-foreground" : "bg-transparent text-white",
       )}
     >
       <nav
@@ -42,7 +42,12 @@ export function Navbar() {
           </span>
           <span className="hidden leading-tight sm:block">
             <span className="block font-display text-[15px] font-semibold">{ORG.name}</span>
-            <span className="block text-[11px] tracking-[0.16em] text-muted-foreground uppercase">
+            <span
+              className={cn(
+                "block text-[11px] tracking-[0.16em] uppercase",
+                scrolled ? "text-muted-foreground" : "text-white/70",
+              )}
+            >
               Kenya · Germany
             </span>
           </span>
@@ -53,8 +58,11 @@ export function Navbar() {
             <li key={link.to}>
               <Link
                 to={link.to}
-                className="relative rounded-full px-3.5 py-2 text-sm font-medium text-foreground/80 transition-colors hover:text-primary"
-                activeProps={{ className: "text-primary" }}
+                className={cn(
+                  "relative rounded-full px-3.5 py-2 text-sm font-medium transition-colors",
+                  scrolled ? "text-foreground/80 hover:text-primary" : "text-white/85 hover:text-white",
+                )}
+                activeProps={{ className: scrolled ? "text-primary" : "text-white" }}
               >
                 {link.label}
               </Link>
@@ -72,7 +80,7 @@ export function Navbar() {
           <Button
             variant="ghost"
             size="icon"
-            className="xl:hidden"
+            className={cn("xl:hidden", scrolled ? "" : "text-white hover:bg-white/15 hover:text-white")}
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
