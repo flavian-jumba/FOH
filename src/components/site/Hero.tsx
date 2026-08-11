@@ -22,28 +22,34 @@ const floatCards = [
 
 export function Hero() {
   return (
-    <section className="relative isolate flex min-h-dvh items-center overflow-hidden">
+    <section className="relative isolate flex min-h-dvh items-center overflow-hidden bg-primary">
       <img
         src={heroImage}
         alt="Women of the Simply Feminine Network community standing together at golden hour"
         width={1920}
         height={1280}
         fetchPriority="high"
-        className="absolute inset-0 -z-20 size-full object-cover"
+        className="absolute inset-0 -z-20 size-full object-cover opacity-45 mix-blend-luminosity"
       />
       <div
         className="absolute inset-0 -z-10"
-        style={{ backgroundImage: "var(--gradient-veil)" }}
+        style={{ backgroundImage: "var(--gradient-royal-wash)" }}
         aria-hidden="true"
       />
       <div
-        className="float-slow pointer-events-none absolute -top-24 -left-24 -z-10 size-96 rounded-full bg-[oklch(0.72_0.135_360_/_0.35)] blur-3xl"
+        className="absolute inset-0 -z-10"
+        style={{ backgroundImage: "var(--gradient-royal-base)" }}
         aria-hidden="true"
       />
       <div
-        className="float-slow pointer-events-none absolute right-[-10%] bottom-[-10%] -z-10 size-[30rem] rounded-full bg-[oklch(0.55_0.174_306_/_0.4)] blur-3xl [animation-delay:-6s]"
+        className="float-slow pointer-events-none absolute -top-24 -left-24 -z-10 size-96 rounded-full bg-[oklch(0.72_0.135_360_/_0.32)] blur-3xl"
         aria-hidden="true"
       />
+      <div
+        className="float-slow pointer-events-none absolute right-[-10%] bottom-[-10%] -z-10 size-[30rem] rounded-full bg-[oklch(0.73_0.113_85_/_0.22)] blur-3xl [animation-delay:-6s]"
+        aria-hidden="true"
+      />
+
 
       {floatCards.map((card, i) => (
         <motion.div
