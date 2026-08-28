@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { NAV_LINKS, ORG } from "./site-data";
+import simplyfemininenetworkLogo from "@/assets/simplyfemininenetwork.png";
 
 export function Navbar() {
   const pathname = useRouterState({ select: (state) => state.location.pathname });
@@ -40,7 +41,7 @@ export function Navbar() {
         className="mx-auto flex h-18 max-w-7xl items-center justify-between gap-4 px-5 sm:px-8"
       >
         <Link to="/" className="group flex items-center gap-3" onClick={() => setOpen(false)} scrollReset={true}>
-          <img src="/assets/simplyfemininenetwork.png" alt="Simply Feminine Network Logo" className="h-10 w-auto" />
+          <img src={simplyfemininenetworkLogo} alt="Simply Feminine Network Logo" className="h-10 w-auto" />
           <span className="hidden leading-tight sm:block">
             <span className="block font-display text-[15px] font-semibold">{ORG.name}</span>
             <span
