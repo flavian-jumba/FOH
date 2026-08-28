@@ -56,7 +56,7 @@ export function StoriesSection({ withHeading = true }: { withHeading?: boolean }
                   src={story.image}
                   alt={story.alt}
                   loading="lazy"
-                  className="rounded-lg"
+                  className="rounded-none"
                 />
               </div>
               <div className={index % 2 === 0 ? "w-full lg:w-1/2 lg:order-2 space-y-4" : "w-full lg:w-1/2 lg:order-1 space-y-4"}>

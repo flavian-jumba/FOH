@@ -72,7 +72,7 @@ function AboutPage() {
           <img
             src={gallery2}
             alt="Women and girls in a community session"
-            className="rounded-xl shadow-lg mb-8"
+            className="rounded-none shadow-lg mb-8"
           />
           <div className="space-y-6">
             <p className="text-lg text-muted-foreground leading-relaxed">

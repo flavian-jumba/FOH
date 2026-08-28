@@ -50,7 +50,7 @@ export function EventsSection({ withHeading = true }: { withHeading?: boolean })
         <div className="mt-20 lg:mt-24">
           <Reveal className="mb-12">
             <div className="relative group">
-              <div className="aspect-[16/9] w-full rounded-xl overflow-hidden">
+              <div className="aspect-[16/9] w-full rounded-none overflow-hidden">
                 <img
                   src={images[featuredEvent.id]}
                   alt={`${featuredEvent.title} in ${featuredEvent.city}`}
@@ -189,7 +189,7 @@ export function EventsSection({ withHeading = true }: { withHeading?: boolean })
               <div className="grid gap-8 lg:grid-cols-3">
                 {/* Moment 1 */}
                 <Reveal as="div" key="moment-1" delay={0.05} className="group">
-                  <div className="relative aspect-[4/3] w-full rounded-xl overflow-hidden hover:shadow-lg transition-shadow duration-300">
+                  <div className="relative aspect-[4/3] w-full rounded-none overflow-hidden hover:shadow-lg transition-shadow duration-300">
                     <img
                       src={gallery1}
                       alt="Community outreach in Nairobi"
@@ -207,7 +207,7 @@ export function EventsSection({ withHeading = true }: { withHeading?: boolean })
 
                 {/* Moment 2 */}
                 <Reveal as="div" key="moment-2" delay={0.1} className="group">
-                  <div className="relative aspect-[4/3] w-full rounded-xl overflow-hidden hover:shadow-lg transition-shadow duration-300">
+                  <div className="relative aspect-[4/3] w-full rounded-none overflow-hidden hover:shadow-lg transition-shadow duration-300">
                     <img
                       src={gallery2}
                       alt="Women's leadership forum"
@@ -225,7 +225,7 @@ export function EventsSection({ withHeading = true }: { withHeading?: boolean })
 
                 {/* Moment 3 */}
                 <Reveal as="div" key="moment-3" delay={0.15} className="group">
-                  <div className="relative aspect-[4/3] w-full rounded-xl overflow-hidden hover:shadow-lg transition-shadow duration-300">
+                  <div className="relative aspect-[4/3] w-full rounded-none overflow-hidden hover:shadow-lg transition-shadow duration-300">
                     <img
                       src={gallery3}
                       alt="Building connections that continue beyond the room"
@@ -243,7 +243,7 @@ export function EventsSection({ withHeading = true }: { withHeading?: boolean })
 
                 {/* Moment 4 */}
                 <Reveal as="div" key="moment-4" delay={0.2} className="group">
-                  <div className="relative aspect-[4/3] w-full rounded-xl overflow-hidden hover:shadow-lg transition-shadow duration-300">
+                  <div className="relative aspect-[4/3] w-full rounded-none overflow-hidden hover:shadow-lg transition-shadow duration-300">
                     <img
                       src={gallery4}
                       alt="Advocacy and fundraising event"

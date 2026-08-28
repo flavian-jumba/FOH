@@ -37,7 +37,7 @@ export function GallerySection({ withHeading = true }: { withHeading?: boolean }
       <div className="mt-14 columns-1 gap-5 sm:columns-2 lg:columns-3 [&>*]:mb-5">
         {IMAGES.map((image, i) => (
           <Reveal key={image.caption} delay={(i % 3) * 0.08} className="break-inside-avoid">
-            <figure className="group zoom-media card-lift relative overflow-hidden rounded-[1.75rem] bg-card shadow-soft">
+            <figure className="group zoom-media card-lift relative overflow-hidden rounded-none bg-card shadow-soft">
               <img
                 src={image.src}
                 alt={image.alt}
