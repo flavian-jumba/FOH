@@ -40,9 +40,7 @@ export function Navbar() {
         className="mx-auto flex h-18 max-w-7xl items-center justify-between gap-4 px-5 sm:px-8"
       >
         <Link to="/" className="group flex items-center gap-3" onClick={() => setOpen(false)} scrollReset={true}>
-          <span className="gradient-primary grid size-10 place-items-center rounded-2xl text-sm font-semibold text-primary-foreground shadow-[var(--shadow-glow)] transition-transform duration-300 group-hover:scale-105">
-            SF
-          </span>
+          <img src="/assets/simplyfemininenetwork.png" alt="Simply Feminine Network Logo" className="h-10 w-auto" />
           <span className="hidden leading-tight sm:block">
             <span className="block font-display text-[15px] font-semibold">{ORG.name}</span>
             <span
