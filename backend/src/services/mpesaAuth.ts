@@ -1,4 +1,4 @@
-import { mpesaConfig } from "../config/mpesa.js";
+import { mpesaConfig } from "../config/mpesa.ts";
 
 export async function getMpesaAccessToken(): Promise<string> {
   const { consumerKey, consumerSecret, environment } = mpesaConfig;

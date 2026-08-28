@@ -3,8 +3,10 @@ import donationsRouter from "./routes/donations.ts";
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
+import { validateMpesaConfig } from "./config/mpesa";
 
 dotenv.config();
+validateMpesaConfig();
 
 const app = express();
 const PORT = process.env.PORT || 5000;

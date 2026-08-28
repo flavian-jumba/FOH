@@ -5,6 +5,7 @@ import { PageHero } from "@/components/site/PageHero";
 import { PartnersSection } from "@/components/site/PartnersSection";
 import { Reveal } from "@/components/site/Reveal";
 import { SectionHeading } from "@/components/site/SectionHeading";
+import { ShieldCheck, Calendar, BookOpen, Users } from "lucide-react";
 
 const title = "Partners — Corporate & Institutional Collaboration";
 const description =
@@ -99,21 +100,30 @@ function PartnersPage() {
           </Reveal>
 
           <div className="space-y-12">
-            {tiers.map((tier, index) => (
-              <Reveal as="div" key={tier.title} delay={index * 0.05} className="group">
-                <div className="border-b border-primary/5 pb-8 last:border-b-0 last:pb-0">
-                  <div className="flex items-start gap-6">
-                    <div className="flex-shrink-0 flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-primary text-lg">
-                      {index + 1}
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-semibold text-primary mb-3">{tier.title}</h3>
-                      <p className="text-base text-muted-foreground leading-relaxed">{tier.body}</p>
+            {tiers.map((tier, index) => {
+              const iconMap = [
+                <ShieldCheck className="h-6 w-6 text-primary" key="shield" />,
+                <Calendar className="h-6 w-6 text-primary" key="calendar" />,
+                <BookOpen className="h-6 w-6 text-primary" key="book" />,
+                <Users className="h-6 w-6 text-primary" key="users" />
+              ];
+
+              return (
+                <Reveal as="div" key={tier.title} delay={index * 0.05} className="group">
+                  <div className="border-b border-primary/5 pb-8 last:border-b-0 last:pb-0">
+                    <div className="flex items-start gap-6">
+                      <div className="flex-shrink-0 flex h-10 w-10 items-center justify-center rounded-full bg-primary/10">
+                        {iconMap[index]}
+                      </div>
+                      <div>
+                        <h3 className="text-xl font-semibold text-primary mb-3">{tier.title}</h3>
+                        <p className="text-base text-muted-foreground leading-relaxed">{tier.body}</p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </Reveal>
-            ))}
+                </Reveal>
+              );
+            })}
           </div>
         </div>
       </section>
