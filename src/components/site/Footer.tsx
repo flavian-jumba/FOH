@@ -99,7 +99,7 @@ export function Footer() {
             <p className="mt-5 text-sm text-[oklch(0.86_0.02_300)]">
               Field notes, event invitations and impact reports — once a month.
             </p>
-            <NewsletterForm tone="dark" className="mt-4" />
+            <NewsletterForm className="mt-4" />
             <ul className="mt-6 space-y-3 text-sm">
               <li>
                 <a

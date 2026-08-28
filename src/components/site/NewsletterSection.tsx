@@ -24,7 +24,7 @@ export function NewsletterSection() {
               noise, ever.
             </p>
             <div className="mt-8 flex justify-center">
-              <NewsletterForm tone="dark" />
+              <NewsletterForm />
             </div>
           </div>
         </div>

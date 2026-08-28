@@ -13,7 +13,7 @@ const buttonVariants = cva(
         hero: "gradient-primary text-primary-foreground shadow-[var(--shadow-glow)] hover:scale-[1.04] hover:brightness-110",
         gold: "bg-accent text-accent-foreground shadow-soft hover:scale-[1.04] hover:brightness-105",
         glassOutline:
-          "glass-dark text-primary-foreground hover:scale-[1.04] hover:bg-[oklch(1_0_0_/_0.16)]",
+          "glass text-primary-foreground hover:scale-[1.04] hover:bg-[oklch(1_0_0_/_0.16)]",
         destructive: "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90",
         outline:
           "border border-border bg-card/60 shadow-sm hover:border-primary/40 hover:bg-primary-tint hover:scale-[1.03]",
