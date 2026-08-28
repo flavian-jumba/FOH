@@ -5,21 +5,21 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full text-sm font-medium cursor-pointer transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50 disabled:cursor-not-allowed [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full text-sm font-medium cursor-pointer transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 disabled:cursor-not-allowed [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground shadow hover:bg-primary/90 hover:scale-[1.03]",
-        hero: "gradient-primary text-primary-foreground shadow-[var(--shadow-glow)] hover:scale-[1.04] hover:brightness-110",
-        gold: "bg-accent text-accent-foreground shadow-soft hover:scale-[1.04] hover:brightness-105",
+        default: "bg-primary text-primary-foreground font-medium rounded-md px-6 py-3 hover:bg-primary/90 transition-colors duration-200",
+        hero: "bg-secondary text-primary-foreground font-medium rounded-md px-6 py-3 hover:bg-secondary/90 transition-colors duration-200",
+        gold: "bg-accent text-accent-foreground shadow-sm hover:bg-accent/90 transition-colors duration-200",
         glassOutline:
-          "glass text-primary-foreground hover:scale-[1.04] hover:bg-[oklch(1_0_0_/_0.16)]",
-        destructive: "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90",
+          "glass text-primary-foreground hover:bg-[oklch(1_0_0_/_0.16)] transition-colors duration-200",
+        destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90 transition-colors duration-200",
         outline:
-          "border border-border bg-card/60 shadow-sm hover:border-primary/40 hover:bg-primary-tint hover:scale-[1.03]",
+          "border border-primary bg-transparent text-primary font-medium rounded-md px-6 py-3 hover:bg-primary-tint transition-colors duration-200",
         secondary:
-          "bg-secondary text-secondary-foreground shadow-sm hover:brightness-105 hover:scale-[1.03]",
-        ghost: "hover:bg-primary-tint hover:text-primary",
+          "bg-secondary text-secondary-foreground hover:bg-secondary/90 transition-colors duration-200",
+        ghost: "hover:bg-primary-tint hover:text-primary transition-colors duration-200",
         link: "text-primary underline-offset-4 hover:underline rounded-md",
       },
       size: {

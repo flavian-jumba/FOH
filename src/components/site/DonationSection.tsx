@@ -135,7 +135,7 @@ export function DonationSection({ withHeading = true }: { withHeading?: boolean 
                             onClick={() => setAmount(a)}
                             aria-pressed={amount === a}
                             className={cn(
-                              "h-14 rounded-2xl border text-sm font-semibold transition-all duration-300 hover:scale-[1.03]",
+                              "h-14 rounded-2xl border text-sm font-semibold transition-all duration-300",
                               amount === a
                                 ? "gradient-primary border-transparent text-primary-foreground shadow-[var(--shadow-glow)]"
                                 : "border-border bg-card text-foreground hover:border-primary/40",
@@ -149,7 +149,7 @@ export function DonationSection({ withHeading = true }: { withHeading?: boolean 
                           onClick={() => setAmount("custom")}
                           aria-pressed={amount === "custom"}
                           className={cn(
-                            "h-14 rounded-2xl border text-sm font-semibold transition-all duration-300 hover:scale-[1.03]",
+                            "h-14 rounded-2xl border text-sm font-semibold transition-all duration-300",
                             amount === "custom"
                               ? "gradient-primary border-transparent text-primary-foreground shadow-[var(--shadow-glow)]"
                               : "border-border bg-card text-foreground hover:border-primary/40",
@@ -198,7 +198,7 @@ export function DonationSection({ withHeading = true }: { withHeading?: boolean 
                             onClick={() => setMethod(m.id)}
                             aria-pressed={method === m.id}
                             className={cn(
-                              "flex h-14 items-center justify-center gap-2 rounded-2xl border text-sm font-semibold transition-all duration-300 hover:scale-[1.02]",
+                              "flex h-14 items-center justify-center gap-2 rounded-2xl border text-sm font-semibold transition-all duration-300",
                               method === m.id
                                 ? "border-primary bg-primary-tint text-primary"
                                 : "border-border bg-card hover:border-primary/40",
