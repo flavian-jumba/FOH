@@ -36,7 +36,6 @@ export function Footer() {
         aria-hidden="true"
       />
       <div className="relative mx-auto max-w-7xl px-5 py-20 sm:px-8">
-        <div className="grid gap-14 lg:grid-cols-[1.3fr_1fr_1fr_1.2fr]">
           <div>
             <div className="flex items-center gap-4 mb-4">
               <img src={simplyfemininenetworkLogo} alt="Simply Feminine Network Logo" className="h-10 w-auto" />
@@ -49,8 +48,6 @@ export function Footer() {
               </div>
             </div>
             <div className="mt-6 flex gap-3">
-              {socials.map(({ label, icon: Icon }) => (
-                <a
                   key={label}
                   href="#"
                   aria-label={label}

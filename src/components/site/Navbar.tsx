@@ -73,14 +73,14 @@ export function Navbar() {
         </ul>
 
         <div className="flex items-center gap-3">
-          <Button asChild variant="hero" size="sm" className="hidden h-11 px-5 sm:inline-flex text-[oklch(0.79_0.115_85)] font-manrope font-semibold text-base tracking-[0.01em]">
+          <Button asChild variant="hero" size="lg" className="hidden h-11 px-5 sm:inline-flex text-[oklch(0.79_0.115_85)] font-manrope font-semibold text-base tracking-[0.01em]">
             <Link to="/donate">
               Donate
             </Link>
           </Button>
           <Button
             variant="ghost"
-            size="icon"
+            size="lg"
             className={cn("xl:hidden", scrolled ? "" : "text-white hover:bg-white/15 hover:text-white")}
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
