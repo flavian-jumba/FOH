@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { NAV_LINKS, ORG } from "./site-data";
 import simplyfemininenetworkLogo from "@/assets/simplyfemininenetwork.png";
+import { ThemeSelector } from "./ThemeSelector";
 
 export function Navbar() {
   const pathname = useRouterState({ select: (state) => state.location.pathname });
@@ -78,6 +79,7 @@ export function Navbar() {
               Donate
             </Link>
           </Button>
+          <ThemeSelector />
           <Button
             variant="ghost"
             size="lg"
@@ -113,6 +115,9 @@ export function Navbar() {
                   </Link>
                 </li>
               ))}
+              <li className="pt-2">
+                <ThemeSelector />
+              </li>
               <li className="pt-2">
                 <Button asChild variant="hero" className="w-full" size="lg" className="font-manrope font-semibold text-base tracking-[0.01em]">
                   <Link to="/donate" onClick={() => setOpen(false)}>
