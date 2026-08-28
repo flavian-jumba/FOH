@@ -40,8 +40,8 @@ export function Navbar() {
         aria-label="Primary"
         className="mx-auto flex h-18 max-w-7xl items-center justify-between gap-4 px-5 sm:px-8"
       >
-        <Link to="/" className="group flex items-center gap-3" onClick={() => setOpen(false)} scrollReset={true}>
-          <img src={simplyfemininenetworkLogo} alt="Simply Feminine Network Logo" className="h-10 w-auto" />
+        <Link to="/" className="group flex items-center gap-4" onClick={() => setOpen(false)} scrollReset={true}>
+          <img src={simplyfemininenetworkLogo} alt="Simply Feminine Network Logo" className="h-12 w-auto" />
           <span className="hidden leading-tight sm:block">
             <span className="block font-display text-[15px] font-semibold">{ORG.name}</span>
             <span
@@ -55,7 +55,7 @@ export function Navbar() {
           </span>
         </Link>
 
-        <ul className="hidden items-center gap-1 xl:flex">
+        <ul className="hidden items-center gap-2 xl:flex">
           {NAV_LINKS.map((link) => (
             <li key={link.to}>
               <Link
@@ -72,8 +72,8 @@ export function Navbar() {
           ))}
         </ul>
 
-        <div className="flex items-center gap-2">
-          <Button asChild variant="hero" size="sm" className="hidden h-10 px-5 sm:inline-flex text-[oklch(0.79_0.115_85)] font-manrope font-semibold text-base tracking-[0.01em]">
+        <div className="flex items-center gap-3">
+          <Button asChild variant="hero" size="sm" className="hidden h-11 px-5 sm:inline-flex text-[oklch(0.79_0.115_85)] font-manrope font-semibold text-base tracking-[0.01em]">
             <Link to="/donate">
               Donate
             </Link>
