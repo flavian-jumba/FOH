@@ -14,13 +14,10 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as DonateRouteImport } from './routes/donate'
 import { Route as EventsRouteImport } from './routes/events'
-import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as PartnersRouteImport } from './routes/partners'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as ProgramsRouteImport } from './routes/programs'
-import { Route as StoriesRouteImport } from './routes/stories'
 import { Route as TermsRouteImport } from './routes/terms'
-import { Route as VolunteerRouteImport } from './routes/volunteer'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -47,11 +44,6 @@ const EventsRoute = EventsRouteImport.update({
   path: '/events',
   getParentRoute: () => rootRouteImport,
 } as any)
-const GalleryRoute = GalleryRouteImport.update({
-  id: '/gallery',
-  path: '/gallery',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const PartnersRoute = PartnersRouteImport.update({
   id: '/partners',
   path: '/partners',
@@ -67,19 +59,9 @@ const ProgramsRoute = ProgramsRouteImport.update({
   path: '/programs',
   getParentRoute: () => rootRouteImport,
 } as any)
-const StoriesRoute = StoriesRouteImport.update({
-  id: '/stories',
-  path: '/stories',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
   path: '/terms',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const VolunteerRoute = VolunteerRouteImport.update({
-  id: '/volunteer',
-  path: '/volunteer',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -89,13 +71,10 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/donate': typeof DonateRoute
   '/events': typeof EventsRoute
-  '/gallery': typeof GalleryRoute
   '/partners': typeof PartnersRoute
   '/privacy': typeof PrivacyRoute
   '/programs': typeof ProgramsRoute
-  '/stories': typeof StoriesRoute
   '/terms': typeof TermsRoute
-  '/volunteer': typeof VolunteerRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -103,13 +82,10 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/donate': typeof DonateRoute
   '/events': typeof EventsRoute
-  '/gallery': typeof GalleryRoute
   '/partners': typeof PartnersRoute
   '/privacy': typeof PrivacyRoute
   '/programs': typeof ProgramsRoute
-  '/stories': typeof StoriesRoute
   '/terms': typeof TermsRoute
-  '/volunteer': typeof VolunteerRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -118,13 +94,10 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/donate': typeof DonateRoute
   '/events': typeof EventsRoute
-  '/gallery': typeof GalleryRoute
   '/partners': typeof PartnersRoute
   '/privacy': typeof PrivacyRoute
   '/programs': typeof ProgramsRoute
-  '/stories': typeof StoriesRoute
   '/terms': typeof TermsRoute
-  '/volunteer': typeof VolunteerRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -134,13 +107,10 @@ export interface FileRouteTypes {
     | '/contact'
     | '/donate'
     | '/events'
-    | '/gallery'
     | '/partners'
     | '/privacy'
     | '/programs'
-    | '/stories'
     | '/terms'
-    | '/volunteer'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -148,13 +118,10 @@ export interface FileRouteTypes {
     | '/contact'
     | '/donate'
     | '/events'
-    | '/gallery'
     | '/partners'
     | '/privacy'
     | '/programs'
-    | '/stories'
     | '/terms'
-    | '/volunteer'
   id:
     | '__root__'
     | '/'
@@ -162,13 +129,10 @@ export interface FileRouteTypes {
     | '/contact'
     | '/donate'
     | '/events'
-    | '/gallery'
     | '/partners'
     | '/privacy'
     | '/programs'
-    | '/stories'
     | '/terms'
-    | '/volunteer'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -177,13 +141,10 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   DonateRoute: typeof DonateRoute
   EventsRoute: typeof EventsRoute
-  GalleryRoute: typeof GalleryRoute
   PartnersRoute: typeof PartnersRoute
   PrivacyRoute: typeof PrivacyRoute
   ProgramsRoute: typeof ProgramsRoute
-  StoriesRoute: typeof StoriesRoute
   TermsRoute: typeof TermsRoute
-  VolunteerRoute: typeof VolunteerRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -223,13 +184,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EventsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/gallery': {
-      id: '/gallery'
-      path: '/gallery'
-      fullPath: '/gallery'
-      preLoaderRoute: typeof GalleryRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/partners': {
       id: '/partners'
       path: '/partners'
@@ -251,25 +205,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProgramsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/stories': {
-      id: '/stories'
-      path: '/stories'
-      fullPath: '/stories'
-      preLoaderRoute: typeof StoriesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/terms': {
       id: '/terms'
       path: '/terms'
       fullPath: '/terms'
       preLoaderRoute: typeof TermsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/volunteer': {
-      id: '/volunteer'
-      path: '/volunteer'
-      fullPath: '/volunteer'
-      preLoaderRoute: typeof VolunteerRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -281,13 +221,10 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   DonateRoute: DonateRoute,
   EventsRoute: EventsRoute,
-  GalleryRoute: GalleryRoute,
   PartnersRoute: PartnersRoute,
   PrivacyRoute: PrivacyRoute,
   ProgramsRoute: ProgramsRoute,
-  StoriesRoute: StoriesRoute,
   TermsRoute: TermsRoute,
-  VolunteerRoute: VolunteerRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
