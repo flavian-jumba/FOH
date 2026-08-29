@@ -51,6 +51,11 @@
   --background: oklch(0.986 0.003 67.8);
   --foreground: oklch(0.232 0.027 294);
   --ink: oklch(0.232 0.027 294);
+  --cream: #F5F1E8;
+  --plum: #3D1638;
+  --mist: #EFEAE0;
+  --gradient: linear-gradient(135deg, #6B2C91, #E0669B);
+  --gold: #B8935A;
 
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.232 0.027 294);
@@ -85,6 +90,7 @@
     oklch(0.55 0.174 306) 55%,
     oklch(0.72 0.135 360) 100%
   );
+  --gradient-tint: linear-gradient(135deg, rgba(107, 44, 145, 0.1), rgba(224, 102, 155, 0.1));
 
   /* Luminous Royal hero color story */
   --gradient-royal-wash: linear-gradient(

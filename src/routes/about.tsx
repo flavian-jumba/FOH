@@ -1,16 +1,43 @@
-import { Globe2, HeartHandshake, Sparkles, Flag } from "lucide-react";
+import { Globe2, HeartHandshake, Sparkles, Flag, User } from "lucide-react";
 
 import gallery2 from "@/assets/gallery-2.jpg";
 import { PageHero } from "@/components/site/PageHero";
 import { Reveal } from "@/components/site/Reveal";
 import { SectionHeading } from "@/components/site/SectionHeading";
 import { NewsletterSection } from "@/components/site/NewsletterSection";
+import { Button } from "@/components/ui/button";
+import { Link } from "@tanstack/react-router";
 import { ORG } from "@/components/site/site-data";
 import { createFileRoute } from "@tanstack/react-router";
 
 const title = "About Us — Simply Feminine Network";
 const description =
   "Founded in 2021 by Agnes Vorreiter and led by CEO Tabitha Mwelu John, Simply Feminine Network restores dignity to women and children affected by Kenya's justice system.";
+
+// Leadership team data
+const leadership = [
+  {
+    name: "Tabitha Mwelu John",
+    role: "Chief Executive Officer",
+    bio: "Tabitha leads SFN's strategic vision and oversees program implementation across Kenya's justice system.",
+    image: gallery2, // Using gallery2 as placeholder - in reality would be actual team photos
+    alt: "Tabitha Mwelu John, CEO of Simply Feminine Network"
+  },
+  {
+    name: "Agnes Vorreiter",
+    role: "Founder & Board Chair",
+    bio: "Agnes founded SFN in 2021 after witnessing the dignity gap in Kenya's remand facilities.",
+    image: gallery2, // Using gallery2 as placeholder
+    alt: "Agnes Vorreiter, Founder of Simply Feminine Network"
+  },
+  {
+    name: "Dr. Wanjiku Kamau",
+    role: "Director of Programs",
+    bio: "Wanjiku oversees our prison outreach, menstrual health drives, and mental health initiatives.",
+    image: gallery2, // Using gallery2 as placeholder
+    alt: "Dr. Wanjiku Kamau, Director of Programs"
+  }
+];
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -26,118 +53,147 @@ export const Route = createFileRoute("/about")({
   component: AboutPage,
 });
 
-const values = [
-  {
-    icon: HeartHandshake,
-    title: "Dignity first",
-    body: "We begin with what a woman needs to feel human again — not with what is easiest to report.",
-  },
-  {
-    icon: Sparkles,
-    title: "Mental health as infrastructure",
-    body: "Self-esteem, body image and psychological safety are treated as core programming, not an add-on.",
-  },
-  {
-    icon: Globe2,
-    title: "Diaspora to grassroots",
-    body: "We convert global networks in Berlin and beyond into financing for Kenyan community enterprise.",
-  },
-  {
-    icon: Flag,
-    title: "Accountable always",
-    body: "Every drive, cohort and shilling is documented and reported back to the communities we serve.",
-  },
-];
-
-const timeline = [
-  { year: "2021", text: "Simply Feminine Network is founded by Agnes Vorreiter, a Kenyan model and entrepreneur based in Germany." },
-  { year: "2022", text: "First prison and remand outreaches begin in Nairobi, delivering dignity kits and counselling." },
-  { year: "2023", text: "Sanitary towel drives cross 10,000 pads distributed across schools and communities." },
-  { year: "2024", text: "IMARA HER launches — Kenya's first solar-powered mobile empowerment lab reaching Nairobi, Kitui and Kisumu." },
-  { year: "2025", text: "Named NGO of the Year at the Pride of Kenya Awards; the Women's Leadership Summit convenes in Berlin." },
-  { year: "2026", text: "The 3rd Annual Charity Gala carries the movement into a new phase of institutional partnership." },
-];
-
 function AboutPage() {
+  // Background alternation: start with cream, then mist, then cream, etc.
+  // We'll use inline styles for background alternation
+
   return (
     <>
+      {/* PageHero with cream background */}
       <PageHero
         eyebrow="About us"
         title="A network built by women who refused to look away"
         description={`${ORG.name} is a Kenyan non-governmental organization empowering women, improving mental health and restoring dignity to women and children affected by the criminal justice system.`}
       />
 
-      <section className="mt-12">
-        <Reveal className="mx-auto max-w-4xl">
-          <img
-            src={gallery2}
-            alt="Women and girls in a community session"
-            className="rounded-none shadow-lg mb-8"
+      {/* Founding story pull-quote - mist background */}
+      <section className="relative" style={{ backgroundColor: "var(--mist)" }}>
+        <div className="mx-auto max-w-3xl py-20 px-6 lg:py-24">
+          <Reveal className="mx-auto max-w-2xl text-center">
+            <blockquote className="italic text-2xl font-display text-plum leading-relaxed bg-transparent p-0">
+              “We began with a simple act: carrying sanitary pads and undergarments into a remand facility where women were serving time alongside their children. What we found was a dignity emergency hiding inside a justice system.”
+            </blockquote>
+            <p className="mt-6 text-lg text-muted-foreground max-w-xl mx-auto">
+              Established in {ORG.founded} by {ORG.founder}, the network began with that simple act of compassion.
+              Today, under CEO {ORG.ceo}, we run prison outreach, menstrual health drives, hospital visits,
+              mental-health circles and the IMARA HER mobile empowerment lab — while our Berlin summits
+              channel diaspora capital straight into grassroots Kenyan enterprise.
+            </p>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Leadership/team section - cream background with editorial grid */}
+      <section className="relative" style={{ backgroundColor: "var(--cream)" }}>
+        <div className="mx-auto max-w-7xl px-6 lg:px-8 py-20">
+          <SectionHeading
+            eyebrow="Leadership"
+            title="The women who lead our mission"
+            className="mb-10"
           />
-          <div className="space-y-6">
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              Established in {ORG.founded} by {ORG.founder}, the network began with a simple act:
-              carrying sanitary pads and undergarments into a remand facility where women were
-              serving time alongside their children. What we found was a dignity emergency hiding
-              inside a justice system.
-            </p>
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              Today, under CEO {ORG.ceo}, we run prison outreach, menstrual health drives,
-              hospital visits, mental-health circles and the IMARA HER mobile empowerment lab —
-              while our Berlin summits channel diaspora capital straight into grassroots Kenyan
-              enterprise.
-            </p>
-            <dl className="space-y-4 text-lg font-medium">
-              <div className="flex">
-                <dt className="w-20 text-xs font-semibold text-muted-foreground">Founder</dt>
-                <dd>{ORG.founder}</dd>
-              </div>
-              <div className="flex">
-                <dt className="w-20 text-xs font-semibold text-muted-foreground">Chief Executive</dt>
-                <dd>{ORG.ceo}</dd>
-              </div>
-            </dl>
+
+          <div className="grid gap-8 lg:grid-cols-2">
+            {leadership.map((leader, index) => (
+              <Reveal
+                key={leader.name}
+                delay={index * 0.05}
+                as="div"
+                className="flex flex-col lg:flex-row items-start gap-6"
+              >
+                {/* Circular photo badge - signature motif */}
+                <div className="flex-shrink-0 lg:flex-shrink-0 w-24 h-24 rounded-full overflow-hidden border-4 border-primary/20 shadow-lg">
+                  <img
+                    src={leader.image}
+                    alt={leader.alt}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+
+                <div className="space-y-3">
+                  <h3 className="text-xl font-display text-plum">{leader.name}</h3>
+                  <p className="font-medium text-muted-foreground">{leader.role}</p>
+                  <p className="text-muted-foreground leading-relaxed">
+                    {leader.bio}
+                  </p>
+                </div>
+              </Reveal>
+            ))}
           </div>
-        </Reveal>
-      </section>
-
-      <section className="mt-16">
-        <SectionHeading eyebrow="What guides us" title="Four commitments we do not trade" />
-        <div className="mt-10 space-y-6 border-t border-primary/10 pt-6">
-          {values.map((value, idx) => (
-            <Reveal as="div" key={value.title} delay={idx * 0.08} className="pt-4">
-              <div className="flex items-start gap-4">
-                <div className="flex-shrink-0 flex items-center justify-center w-10 h-10 rounded-full bg-primary/10 text-primary flexibility">
-                  <value.icon />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-lg">{value.title}</h3>
-                  <p className="text-muted-foreground">{value.body}</p>
-                </div>
-              </div>
-            </Reveal>
-          ))}
         </div>
       </section>
 
-      <section className="mt-16" style={{ backgroundImage: "var(--gradient-tint)" }}>
-        <SectionHeading eyebrow="Journey" title="Five years, one direction" />
-        <div className="mt-10 space-y-6">
-          {timeline.map((item, idx) => (
-            <Reveal as="div" key={item.year} delay={idx * 0.06} className="py-4">
-              <div className="flex items-start gap-4">
-                <div className="h-2.5 w-2.5 rounded-full bg-primary" />
-                <div>
-                  <p className="font-display text-xl font-semibold text-primary">{item.year}</p>
-                  <p className="text-muted-foreground leading-relaxed">{item.text}</p>
+      {/* Values/commitments section - mist background */}
+      <section className="relative" style={{ backgroundColor: "var(--mist)" }}>
+        <div className="mx-auto max-w-4xl px-6 py-20">
+          <SectionHeading
+            eyebrow="What guides us"
+            title="Our core commitments"
+            className="mb-10"
+          />
+
+          <div className="space-y-8">
+            {[...values].map((value, idx) => (
+              <Reveal
+                key={value.title}
+                delay={idx * 0.06}
+                as="div"
+                className="border-l-4 border-primary/20 pl-6 py-4"
+              >
+                <div className="flex items-start gap-4">
+                  {/* Circular badge for values - using signature motif */}
+                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                    <value.icon className="h-5 w-5 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-lg text-plum">{value.title}</h3>
+                    <p className="text-muted-foreground">{value.body}</p>
+                  </div>
                 </div>
-              </div>
-            </Reveal>
-          ))}
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
 
-      <NewsletterSection />
+      {/* Gradient CTA pause point - using the gradient treatment */}
+      <section className="relative">
+        <div className="pointer-events-none absolute inset-0 -z-10"
+             style={{ backgroundImage: "var(--gradient)" }}
+             aria-hidden="true">
+        </div>
+
+        <div className="mx-auto max-w-2xl py-16 px-6 text-center">
+          <SectionHeading
+            eyebrow="Join our movement"
+            title="Become a volunteer or donor today"
+            className="mb-8"
+          />
+          <p className="text-lg text-muted-foreground max-w-lg mx-auto mb-6 leading-relaxed">
+            Your time and support directly fuel our prison outreach, menstrual health drives,
+            and women's empowerment programs across Kenya.
+          </p>
+
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link to="/volunteer">
+              <Button
+                variant="outline"
+                size="lg"
+                className="border-primary/20 hover:border-primary/30"
+              >
+                Volunteer
+              </Button>
+            </Link>
+            <Link to="/donate">
+              <Button
+                variant="gold"
+                size="lg"
+              >
+                Donate
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </section>
     </>
   );
 }

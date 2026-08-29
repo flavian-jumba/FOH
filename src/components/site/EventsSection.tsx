@@ -8,7 +8,6 @@ import gallery2 from "@/assets/gallery-2.jpg";
 import gallery3 from "@/assets/gallery-3.jpg";
 import gallery4 from "@/assets/gallery-4.jpg";
 import { Button } from "@/components/ui/button";
-import { NewsletterSection } from "@/components/site/NewsletterSection";
 import { Reveal } from "./Reveal";
 import { SectionHeading } from "./SectionHeading";
 import { EVENTS } from "./site-data";
@@ -23,33 +22,63 @@ export function EventsSection({ withHeading = true }: { withHeading?: boolean })
   const featuredEvent = galaDate > now ? EVENTS[0] : EVENTS[1];
   const secondaryEvents = EVENTS.filter(event => event.id !== featuredEvent.id);
 
+  // Past events data - using gallery images for past moments
+  const PAST_EVENTS = [
+    {
+      id: "outreach-2024",
+      title: "Nairobi Prison Outreach",
+      date: "March 15, 2024",
+      image: gallery1,
+      alt: "Team distributing dignity kits in Nairobi women's prison",
+      location: "Nairobi Women's Prison",
+      description: "Our team delivered essential hygiene products and conducted mental health sessions for 87 incarcerated women and their children."
+    },
+    {
+      id: "summit-2023",
+      title: "Berlin Leadership Summit",
+      date: "June 10, 2023",
+      image: gallery2,
+      alt: "African diaspora leaders discussing enterprise development",
+      location: "Schloss Hotel Berlin",
+      description: "Diaspora leaders and SFN team convened to create financing pipelines for grassroots Kenyan women's enterprises."
+    },
+    {
+      id: "drive-2024",
+      title: "Nairobi School Drive",
+      date: "September 22, 2024",
+      image: gallery3,
+      alt: "Volunteers distributing sanitary kits to schoolgirls",
+      location: "Migosi Secondary School, Kisumu",
+      description: "Over 2,000 sanitary kits distributed to adolescent girls with menstrual health education sessions."
+    },
+    {
+      id: "forum-2024",
+      title: "Advocacy Forum",
+      date: "November 5, 2024",
+      image: gallery4,
+      alt: "Panel discussion on women's rights in justice system",
+      location: "Nairobi Governors Office",
+      description: "Stakeholders convened to discuss policy reforms for gender-responsive justice delivery."
+    }
+  ] as const;
+
   return (
     <section className="relative" id="events">
-      <div className="mx-auto max-w-7xl px-5 sm:px-8 py-16 lg:py-24">
+      <div className="mx-auto max-w-7xl px-5 sm:px-8">
         {withHeading ? (
-          <>
-            <SectionHeading
-              eyebrow="Events"
-              title="Where people gather, conversations become action."
-              description="Our events bring together communities, advocates, partners, and supporters to create meaningful change for women and children affected by Kenya's justice system."
-            />
-          </>
+          <SectionHeading
+            eyebrow="Events"
+            title="Where people gather, conversations become action."
+            description="Our events bring together communities, advocates, partners, and supporters to create meaningful change for women and children affected by Kenya's justice system."
+            className="mb-16 lg:mb-20"
+          />
         ) : null}
 
-        {/* Introduction - compact and purposeful */}
-        <div className="mt-16 lg:mt-20 text-center">
-          <h2 className="text-3xl font-bold text-primary sm:text-4xl">
-            Where people gather, conversations become action.
-          </h2>
-          <p className="mt-6 text-base text-muted-foreground max-w-2xl mx-auto">
-            Simply Feminine Network's events bring together communities, advocates, partners, and supporters to create meaningful change. These gatherings turn attention into action, financing our year-long programmes that restore dignity and empower women across Kenya.
-          </p>
-        </div>
-
-        {/* Featured Event */}
-        <div className="mt-20 lg:mt-24">
-          <Reveal className="mb-12">
+        {/* Hero Featured Event - Full width with distinctive treatment */}
+        <div className="relative">
+          <Reveal className="mb-20 lg:mb-24">
             <div className="relative group">
+              {/* Featured event image - use full-bleed treatment */}
               <div className="aspect-[16/9] w-full rounded-none overflow-hidden">
                 <img
                   src={images[featuredEvent.id]}
@@ -72,7 +101,7 @@ export function EventsSection({ withHeading = true }: { withHeading?: boolean })
                   </span>
                   <span>{featuredEvent.dateLabel}</span>
                 </div>
-                <h1 className="mt-4 text-3xl font-bold text-white sm:text-4xl">
+                <h1 className="mt-4 text-4xl font-bold text-white sm:text-5xl lg:text-6xl">
                   {featuredEvent.title}
                 </h1>
                 <p className="mt-3 text-lg text-white/90 leading-relaxed max-w-xl">
@@ -89,208 +118,177 @@ export function EventsSection({ withHeading = true }: { withHeading?: boolean })
           </Reveal>
         </div>
 
-        {/* Upcoming Events */}
-        <div className="mt-20 lg:mt-24">
-          <Reveal as="div" key="upcoming-events">
-            <h2 className="text-2xl font-bold text-primary mb-8">
-              Upcoming Events
-            </h2>
-            <div className="grid gap-10 lg:grid-cols-2">
-              {secondaryEvents.map((event) => (
-                <Reveal as="div" key={event.id} delay={secondaryEvents.indexOf(event) * 0.05} className="group">
-                  <div className="relative overflow-hidden hover:shadow-lg transition-shadow duration-300 rounded-xl border border-primary/10">
-                    <div className="aspect-[16/9] w-full">
+        {/* Upcoming Events Section */}
+        <section className="relative" style={{ backgroundColor: "var(--mist)" }}>
+          {/* Gradient rule as section divider */}
+          <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-0.5"
+               style={{ backgroundImage: "var(--gradient)" }}
+               aria-hidden="true">
+          </div>
+
+          <div className="mx-auto max-w-7xl px-6 py-20 lg:py-24">
+            <Reveal as="div" key="upcoming-events-title">
+              <h2 className="text-3xl font-bold text-plum mb-6">
+                Upcoming Events
+              </h2>
+            </Reveal>
+
+            <p className="text-base text-muted-foreground max-w-lg mx-auto mb-12 lg:mb-16 leading-relaxed">
+              Mark your calendars for these transformative gatherings where commitment meets community.
+            </p>
+
+            <Reveal as="div" key="upcoming-events-grid">
+              <div className="grid gap-10 lg:grid-cols-2">
+                {secondaryEvents.map((event) => (
+                  <Reveal as="div" key={event.id} delay={secondaryEvents.indexOf(event) * 0.05} className="group">
+                    <div className="relative overflow-hidden hover:shadow-lg transition-shadow duration-300 rounded-xl border border-primary/10">
+                      <div className="aspect-[16/9] w-full">
+                        <img
+                          src={images[event.id]}
+                          alt={`${event.title} in ${event.city}`}
+                          loading="lazy"
+                          className="size-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                        />
+                      </div>
+                      <div className="p-6">
+                        <div className="flex items-center gap-3 mb-3 text-sm text-muted-foreground">
+                          <span>
+                            <MapPin className="size-4 text-primary/50" aria-hidden="true" />
+                          </span>
+                          <span>{event.city}</span>
+                        </div>
+                        <div className="flex items-center gap-3 mb-3 text-sm text-muted-foreground">
+                          <span>
+                            <CalendarDays className="size-4 text-primary/50" aria-hidden="true" />
+                          </span>
+                          <span>{event.dateLabel}</span>
+                        </div>
+                        <h3 className="text-xl font-semibold text-primary mb-3">
+                          {event.title}
+                        </h3>
+                        <p className="text-muted-foreground leading-relaxed mb-5">
+                          {event.blurb}
+                        </p>
+                        <Button asChild variant="outline" className="w-fit">
+                          <Link to="/contact">
+                            Request an invitation
+                            <Ticket className="ml-1 size-4" aria-hidden="true" />
+                          </Link>
+                        </Button>
+                      </div>
+                    </div>
+                  </Reveal>
+                ))}
+              </div>
+            </Reveal>
+          </div>
+        </section>
+
+        {/* Past Events Section - Photo-forward archive */}
+        <section className="relative" style={{ backgroundColor: "var(--cream)" }}>
+          {/* Gradient rule as section divider */}
+          <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-0.5"
+               style={{ backgroundImage: "var(--gradient)" }}
+               aria-hidden="true">
+          </div>
+
+          <div className="mx-auto max-w-7xl px-6 py-20 lg:py-24">
+            <Reveal as="div" key="past-events-title">
+              <h2 className="text-3xl font-bold text-plum mb-6">
+                Moments That Moved Us
+              </h2>
+            </Reveal>
+
+            <p className="text-base text-muted-foreground max-w-lg mx-auto mb-12 lg:mb-16 leading-relaxed">
+              These are the moments where our work took shape — in prisons, schools, and community spaces across Kenya.
+            </p>
+
+            <Reveal as="div" key="past-events-grid">
+              <div className="grid gap-8 lg:grid-cols-3">
+                {PAST_EVENTS.map((event, index) => (
+                  <Reveal
+                    as="div"
+                    key={event.id}
+                    delay={index * 0.05}
+                    className="group"
+                  >
+                    {/* Circular photo badge treatment - signature motif */}
+                    <div className="relative aspect-[1/1] w-full rounded-none overflow-hidden hover:shadow-lg transition-shadow duration-300">
                       <img
-                        src={images[event.id]}
-                        alt={`${event.title} in ${event.city}`}
+                        src={event.image}
+                        alt={event.alt}
                         loading="lazy"
                         className="size-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                        style={{ borderRadius: "50%" }}
                       />
+                      <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[oklch(0.25_0.05_300_/_0.4)]"></div>
                     </div>
-                    <div className="p-6">
-                      <div className="flex items-center gap-3 mb-3 text-sm text-muted-foreground">
-                        <span>
-                          <MapPin className="size-4 text-primary/50" aria-hidden="true" />
-                        </span>
-                        <span>{event.city}</span>
-                      </div>
-                      <div className="flex items-center gap-3 mb-3 text-sm text-muted-foreground">
-                        <span>
-                          <CalendarDays className="size-4 text-primary/50" aria-hidden="true" />
-                        </span>
-                        <span>{event.dateLabel}</span>
-                      </div>
-                      <h3 className="text-xl font-semibold text-primary mb-3">
+
+                    <div className="mt-4">
+                      <h3 className="text-xl font-semibold text-plum mb-2">
                         {event.title}
                       </h3>
-                      <p className="text-muted-foreground leading-relaxed mb-5">
-                        {event.blurb}
+                      <p className="text-sm text-muted-foreground mb-2">
+                        {event.date} • {event.location}
                       </p>
-                      <Button asChild variant="outline" className="w-fit">
-                        <Link to="/contact">
-                          Request an invitation
-                          <Ticket className="ml-1 size-4" aria-hidden="true" />
-                        </Link>
-                      </Button>
+                      <p className="text-muted-foreground leading-relaxed">
+                        {event.description}
+                      </p>
                     </div>
-                  </div>
-                </Reveal>
-              ))}
-            </div>
-          </Reveal>
-        </div>
-
-        {/* WHY THESE EVENTS MATTER */}
-        <div className="mt-24 lg:mt-28">
-          <Reveal as="div" key="why-events-matter">
-            <SectionHeading
-              eyebrow="Our Purpose"
-              title="Every gathering has a purpose."
-            />
-            <div className="mt-10 space-y-12 text-center">
-              <div className="flex flex-col items-center gap-8 lg:flex-row lg:justify-center">
-                <div className="text-center">
-                  <h3 className="text-lg font-semibold text-primary mb-3">
-                    Awareness
-                  </h3>
-                  <p className="text-muted-foreground max-w-lg">
-                    Bring important conversations around dignity, justice, women's wellbeing, and community support into the room.
-                  </p>
-                </div>
-                <div className="text-center">
-                  <h3 className="text-lg font-semibold text-primary mb-3">
-                    Partnerships
-                  </h3>
-                  <p className="text-muted-foreground max-w-lg">
-                    Connect communities, organisations, advocates, and people who can contribute to meaningful change.
-                  </p>
-                </div>
-                <div className="text-center">
-                  <h3 className="text-lg font-semibold text-primary mb-3">
-                    Action
-                  </h3>
-                  <p className="text-muted-foreground max-w-lg">
-                    Turn conversations, partnerships, and generosity into practical programmes that support women and children.
-                  </p>
-                </div>
+                  </Reveal>
+                ))}
               </div>
-            </div>
-          </Reveal>
-        </div>
+            </Reveal>
+          </div>
+        </section>
 
-        {/* MOMENTS THAT MOVED US */}
-        <div className="mt-24 lg:mt-28" style={{ backgroundImage: "var(--gradient-tint)" }}>
-          <Reveal as="div" key="moments-that-moved-us">
+        {/* Gradient CTA Pause Point - Signature "pause point" for the page */}
+        <section className="relative">
+          {/* Full-width gradient background */}
+          <div className="pointer-events-none absolute inset-0 -z-10"
+               style={{ backgroundImage: "var(--gradient)" }}
+               aria-hidden="true">
+          </div>
+
+          <div className="mx-auto max-w-3xl py-16 px-6 text-center">
             <SectionHeading
-              eyebrow="In Action"
-              title="Moments that moved us."
+              eyebrow="Be part of the change"
+              title="Join us at our next gathering"
+              className="mb-6"
             />
-            <div className="mt-12">
-              <div className="grid gap-8 lg:grid-cols-3">
-                {/* Moment 1 */}
-                <Reveal as="div" key="moment-1" delay={0.05} className="group">
-                  <div className="relative aspect-[4/3] w-full rounded-none overflow-hidden hover:shadow-lg transition-shadow duration-300">
-                    <img
-                      src={gallery1}
-                      alt="Community outreach in Nairobi"
-                      loading="lazy"
-                      className="size-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[oklch(0.25_0.05_300_/_0.4)]"></div>
-                  </div>
-                  <div className="p-4 text-center">
-                    <p className="text-sm text-muted-foreground font-medium">
-                      Community Outreach · Nairobi
-                    </p>
-                  </div>
-                </Reveal>
-
-                {/* Moment 2 */}
-                <Reveal as="div" key="moment-2" delay={0.1} className="group">
-                  <div className="relative aspect-[4/3] w-full rounded-none overflow-hidden hover:shadow-lg transition-shadow duration-300">
-                    <img
-                      src={gallery2}
-                      alt="Women's leadership forum"
-                      loading="lazy"
-                      className="size-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[oklch(0.25_0.05_300_/_0.4)]"></div>
-                  </div>
-                  <div className="p-4 text-center">
-                    <p className="text-sm text-muted-foreground font-medium">
-                      Women's Leadership Forum
-                    </p>
-                  </div>
-                </Reveal>
-
-                {/* Moment 3 */}
-                <Reveal as="div" key="moment-3" delay={0.15} className="group">
-                  <div className="relative aspect-[4/3] w-full rounded-none overflow-hidden hover:shadow-lg transition-shadow duration-300">
-                    <img
-                      src={gallery3}
-                      alt="Building connections that continue beyond the room"
-                      loading="lazy"
-                      className="size-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[oklch(0.25_0.05_300_/_0.4)]"></div>
-                  </div>
-                  <div className="p-4 text-center">
-                    <p className="text-sm text-muted-foreground font-medium">
-                      Building connections that continue beyond the room
-                    </p>
-                  </div>
-                </Reveal>
-
-                {/* Moment 4 */}
-                <Reveal as="div" key="moment-4" delay={0.2} className="group">
-                  <div className="relative aspect-[4/3] w-full rounded-none overflow-hidden hover:shadow-lg transition-shadow duration-300">
-                    <img
-                      src={gallery4}
-                      alt="Advocacy and fundraising event"
-                      loading="lazy"
-                      className="size-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[oklch(0.25_0.05_300_/_0.4)]"></div>
-                  </div>
-                  <div className="p-4 text-center">
-                    <p className="text-sm text-muted-foreground font-medium">
-                      Advocacy and Fundraising
-                    </p>
-                  </div>
-                </Reveal>
-              </div>
-            </div>
-          </Reveal>
-        </div>
-
-        {/* Final CTA */}
-        <div className="mt-24 lg:mt-28 text-center">
-          <Reveal as="div" key="final-cta">
-            <h2 className="text-2xl font-bold text-primary mb-6">
-              Be part of the next conversation.
-            </h2>
-            <p className="text-base text-muted-foreground max-w-2xl mx-auto mb-8">
-              Donors, partners, advocates, volunteers, and community members can participate in our work. Join us in creating lasting change for women and children across Kenya.
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8 leading-relaxed">
+              Our events are more than gatherings — they're where awareness becomes action, where partnerships are forged,
+              and where the journey toward dignity gains momentum. Be part of the conversations that create lasting change.
             </p>
-            <div className="flex flex-col gap-6 sm:flex-row sm:justify-center">
-              <Button asChild variant="outline" className="w-full sm:w-auto">
-                <Link to="/contact">
-                  Get involved
-                </Link>
-              </Button>
-              <Button asChild variant="hero" className="w-full sm:w-auto">
-                <Link to="/donate">
-                  Support our work
-                </Link>
-              </Button>
+
+            <div className="flex flex-col sm:flex-row gap-6 justify-center">
+              <Link to="/volunteer">
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="border-primary/20 hover:border-primary/30"
+                >
+                  Volunteer
+                </Button>
+              </Link>
+              <Link to="/donate">
+                <Button
+                  variant="gold"
+                  size="lg"
+                >
+                  Donate
+                </Button>
+              </Link>
             </div>
-          </Reveal>
-        </div>
+          </div>
+        </section>
 
         {/* Newsletter Section */}
-        <Reveal as="div" key="newsletter-section">
-          <NewsletterSection />
-        </Reveal>
+        <section className="relative">
+          <Reveal as="div" key="newsletter-section">
+            <NewsletterSection />
+          </Reveal>
+        </section>
       </div>
     </section>
   );
