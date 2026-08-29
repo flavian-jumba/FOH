@@ -134,14 +134,14 @@ export function PartnersSection({ withHeading = true }: { withHeading?: boolean 
                     {/* First set of logos */}
                     <div className="flex space-x-12">
                       <img src="/assets/partners/ntv-kenya.svg" alt="NTV Kenya" className="h-12 w-auto opacity-60 hover:opacity-100 transition-opacity" />
-                      <img src="/assets/partners/glee-nairobi.png" alt="Glee Hotel Nairobi" className="h-12 w-auto opacity-60 hover:opacity-100 transition-opacity" />
+                      <img src="/assets/partners/glee-nairobi.svg" alt="Glee Hotel Nairobi" className="h-12 w-auto opacity-60 hover:opacity-100 transition-opacity" />
                       <img src="/assets/partners/sarova-stanley.png" alt="Sarova Stanley Nairobi" className="h-12 w-auto opacity-60 hover:opacity-100 transition-opacity" />
                       <img src="/assets/partners/lost-beach-rugby.png" alt="Lost Beach Rugby Festival" className="h-12 w-auto opacity-60 hover:opacity-100 transition-opacity" />
                     </div>
                     {/* Second set of logos for seamless loop */}
                     <div className="flex space-x-12">
                       <img src="/assets/partners/ntv-kenya.svg" alt="NTV Kenya" className="h-12 w-auto opacity-60 hover:opacity-100 transition-opacity" />
-                      <img src="/assets/partners/glee-nairobi.png" alt="Glee Hotel Nairobi" className="h-12 w-auto opacity-60 hover:opacity-100 transition-opacity" />
+                      <img src="/assets/partners/glee-nairobi.svg" alt="Glee Hotel Nairobi" className="h-12 w-auto opacity-60 hover:opacity-100 transition-opacity" />
                       <img src="/assets/partners/sarova-stanley.png" alt="Sarova Stanley Nairobi" className="h-12 w-auto opacity-60 hover:opacity-100 transition-opacity" />
                       <img src="/assets/partners/lost-beach-rugby.png" alt="Lost Beach Rugby Festival" className="h-12 w-auto opacity-60 hover:opacity-100 transition-opacity" />
                     </div>
