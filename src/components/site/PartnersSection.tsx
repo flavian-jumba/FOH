@@ -188,7 +188,7 @@ export function PartnersSection({ withHeading = true }: { withHeading?: boolean 
                       >
                         <Button
                           variant="outline"
-                          size="xs"
+                          size="sm"
                           className={`border-${section.color}/20 hover:border-${section.color}/30 px-4 py-2 text-xs font-medium`}
                         >
                           {partnerName}

@@ -122,7 +122,7 @@ export function StoriesSection({ withHeading = true }: { withHeading?: boolean }
                     <Link to="/volunteer">
                       <Button
                         variant="outline"
-                        size="md"
+                        size="default"
                         className="border-primary/20 hover:border-primary/30"
                       >
                         Get Involved

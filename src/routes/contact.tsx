@@ -44,6 +44,22 @@ type FormValues = z.infer<typeof schema>;
 const fieldClass =
   "mt-2 w-full rounded-2xl border border-border bg-card px-5 py-3.5 text-sm outline-none transition-colors placeholder:text-muted-foreground focus:border-primary/50";
 
+// Form state
+const [sent, setSent] = useState(false);
+const {
+  register,
+  handleSubmit,
+  formState: { errors, isSubmitting },
+  reset,
+} = useForm<FormValues>({ resolver: zodResolver(schema) });
+
+const onSubmit = async (values: FormValues) => {
+  // Simulate API call
+  await new Promise((resolve) => setTimeout(resolve, 1000));
+  setSent(true);
+  reset();
+};
+
 // Contact channels data
 const CONTACT_CHANNELS = [
   {
@@ -71,6 +87,7 @@ const CONTACT_CHANNELS = [
     icon: MapPin,
     label: "Field presence",
     value: "Nairobi · Kitui · Kisumu · Berlin",
+    href: undefined,
     background: "mist"
   }
 ] as const;

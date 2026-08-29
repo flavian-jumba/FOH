@@ -1,4 +1,4 @@
-import { Globe2, HeartHandshake, Sparkles, Flag, User } from "lucide-react";
+import { Globe2, HeartHandshake, Sparkles, Flag, User, Menu, BookOpen, Shield, Users } from "lucide-react";
 
 import gallery2 from "@/assets/gallery-2.jpg";
 import { PageHero } from "@/components/site/PageHero";
@@ -36,6 +36,35 @@ const leadership = [
     bio: "Wanjiku oversees our prison outreach, menstrual health drives, and mental health initiatives.",
     image: gallery2, // Using gallery2 as placeholder
     alt: "Dr. Wanjiku Kamau, Director of Programs"
+  }
+];
+
+// Values/commitments data
+const values = [
+  {
+    title: "Dignity First",
+    icon: Globe2,
+    body: "We believe every woman and child deserves dignity, regardless of their circumstances or past mistakes."
+  },
+  {
+    title: "Mental Health as Infrastructure",
+    icon: HeartHandshake,
+    body: "Self-esteem, body image and psychological safety are treated as core programming, not an add-on."
+  },
+  {
+    title: "Education as Liberation",
+    icon: Sparkles,
+    body: "Access to education and vocational training creates pathways to sustainable livelihoods and independence."
+  },
+  {
+    title: "Accountable Always",
+    icon: Flag,
+    body: "Every drive, cohort and shilling is documented and reported back to the communities we serve."
+  },
+  {
+    title: "Community Led",
+    icon: User,
+    body: "Our programs are designed and implemented with, not for, the women and children we serve."
   }
 ];
 

@@ -40,7 +40,7 @@ export function Navbar() {
         aria-label="Primary"
         className="mx-auto flex h-18 max-w-7xl items-center justify-between gap-4 px-5 sm:px-8"
       >
-        <Link to="/" className="group flex items-center gap-4" onClick={() => setOpen(false)} scrollReset={true}>
+        <Link to="/" className="group flex items-center gap-4" onClick={() => setOpen(false)}>
           <img src={simplyfemininenetworkLogo} alt="Simply Feminine Network Logo" className="h-12 w-auto" />
           <span className="hidden leading-tight sm:block">
             <span className="block font-display text-[15px] font-semibold">{ORG.name}</span>
@@ -114,7 +114,7 @@ export function Navbar() {
                 </li>
               ))}
               <li className="pt-2">
-                <Button asChild variant="hero" className="w-full" size="lg" className="font-manrope font-semibold text-base tracking-[0.01em] bg-(--metallic-gold) hover:bg-(--metallic-gold)/90">
+                <Button asChild variant="hero" className="w-full font-manrope font-semibold text-base tracking-[0.01em] bg-(--metallic-gold) hover:bg-(--metallic-gold)/90" size="lg">
                   <Link to="/donate" onClick={() => setOpen(false)}>
                     Donate now
                   </Link>

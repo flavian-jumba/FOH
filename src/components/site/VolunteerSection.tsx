@@ -1,6 +1,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AnimatePresence, motion } from "framer-motion";
-import { Loader2, PartyPopper, Send } from "lucide-react";
+import { ArrowUpRight, Loader2, PartyPopper, Send } from "lucide-react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -70,6 +70,21 @@ const VOLUNTEER_ROLES = [
 ] as const;
 
 export function VolunteerSection({ withHeading = true }: { withHeading?: boolean }) {
+  const [submitted, setSubmitted] = useState(false);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+    reset,
+  } = useForm<FormValues>({ resolver: zodResolver(schema) });
+
+  const onSubmit = async (values: FormValues) => {
+    await new Promise((r) => setTimeout(r, 900));
+    void values;
+    setSubmitted(true);
+    reset();
+  };
+
   return (
     <>
       {withHeading ? (
