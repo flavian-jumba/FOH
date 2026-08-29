@@ -73,7 +73,7 @@ export function Navbar() {
         </ul>
 
         <div className="flex items-center gap-3">
-          <Button asChild variant="hero" size="lg" className="hidden h-11 px-5 sm:inline-flex text-accent font-manrope font-semibold text-base tracking-[0.01em]">
+          <Button asChild variant="hero" size="lg" className="hidden h-11 px-5 sm:inline-flex text-accent font-manrope font-semibold text-base tracking-[0.01em] bg-(--metallic-gold) hover:bg-(--metallic-gold)/90">
             <Link to="/donate">
               Donate
             </Link>
@@ -114,7 +114,7 @@ export function Navbar() {
                 </li>
               ))}
               <li className="pt-2">
-                <Button asChild variant="hero" className="w-full" size="lg" className="font-manrope font-semibold text-base tracking-[0.01em]">
+                <Button asChild variant="hero" className="w-full" size="lg" className="font-manrope font-semibold text-base tracking-[0.01em] bg-(--metallic-gold) hover:bg-(--metallic-gold)/90">
                   <Link to="/donate" onClick={() => setOpen(false)}>
                     Donate now
                   </Link>

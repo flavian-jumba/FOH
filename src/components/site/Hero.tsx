@@ -66,7 +66,12 @@ export function Hero() {
           transition={{ delay: 0.44, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
           className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row"
         >
-          <Button asChild variant="gold" size="lg" className="w-full sm:w-auto bg-[var(--metallic-gold)] hover:bg-[var(--metallic-gold)]/90">
+          <Button
+            asChild
+            variant="gold"
+            size="lg"
+            className="w-full sm:w-auto bg-(--metallic-gold) hover:bg-(--metallic-gold)/90"
+          >
             <Link to="/donate">Donate now</Link>
           </Button>
           <Button asChild variant="glassOutline" size="lg" className="w-full sm:w-auto">
