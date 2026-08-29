@@ -1,11 +1,31 @@
 import { Award } from "lucide-react";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { CountUpNumber } from "./CountUpNumber";
 import { STATS } from "./site-data";
 
 export function ImpactBar() {
   const ref = useRef<HTMLDivElement>(null);
+  const [isInView, setIsInView] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsInView(true);
+            observer.disconnect();
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+    const currentRef = ref.current;
+    if (currentRef) {
+      observer.observe(currentRef);
+    }
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <section aria-labelledby="impact-heading" className="relative mt-8 px-5 sm:px-8">
@@ -29,7 +49,7 @@ export function ImpactBar() {
                 <dt className="sr-only">{stat.label}</dt>
                 <dd>
                   <span className="block font-display font-semibold text-3xl sm:text-4xl text-gradient">
-                    <CountUpNumber end={stat.value} suffix={stat.suffix} active={true} />
+                    <CountUpNumber end={stat.value} suffix={stat.suffix} active={isInView} />
                   </span>
                   <span className="mt-2 block text-sm text-muted-foreground">{stat.label}</span>
                 </dd>

@@ -15,8 +15,8 @@ export function CountUpNumber({
 
   useEffect(() => {
     if (!active) {
-      // Show the end value immediately when not active
-      setValue(end);
+      // Reset to 0 when not active, ready for next trigger
+      setValue(0);
       return;
     }
     let frame = 0;
