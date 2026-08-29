@@ -14,7 +14,11 @@ export function CountUpNumber({
   const [value, setValue] = useState(0);
 
   useEffect(() => {
-    if (!active) return;
+    if (!active) {
+      // Show the end value immediately when not active
+      setValue(end);
+      return;
+    }
     let frame = 0;
     const start = performance.now();
     const tick = (now: number) => {

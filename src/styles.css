@@ -79,6 +79,12 @@
   --border: oklch(0.915 0.008 305);
   --input: oklch(0.915 0.008 305);
   --ring: oklch(0.55 0.174 306);
+  --gradient-primary: linear-gradient(
+    120deg,
+    oklch(0.4 0.148 305) 0%,
+    oklch(0.55 0.174 306) 55%,
+    oklch(0.72 0.135 360) 100%
+  );
 
   /* Luminous Royal hero color story */
   --gradient-royal-wash: linear-gradient(

@@ -1,14 +1,11 @@
 import { Award } from "lucide-react";
-import { useInView } from "framer-motion";
 import { useRef } from "react";
 
 import { CountUpNumber } from "./CountUpNumber";
-import { Reveal } from "./Reveal";
 import { STATS } from "./site-data";
 
 export function ImpactBar() {
   const ref = useRef<HTMLDivElement>(null);
-  const inView = true;
 
   return (
     <section aria-labelledby="impact-heading" className="relative mt-8 px-5 sm:px-8">
@@ -32,7 +29,7 @@ export function ImpactBar() {
                 <dt className="sr-only">{stat.label}</dt>
                 <dd>
                   <span className="block font-display font-semibold text-3xl sm:text-4xl text-gradient">
-                    <CountUpNumber end={stat.value} suffix={stat.suffix} active={inView} />
+                    <CountUpNumber end={stat.value} suffix={stat.suffix} active={true} />
                   </span>
                   <span className="mt-2 block text-sm text-muted-foreground">{stat.label}</span>
                 </dd>
