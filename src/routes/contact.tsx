@@ -44,22 +44,6 @@ type FormValues = z.infer<typeof schema>;
 const fieldClass =
   "mt-2 w-full rounded-2xl border border-border bg-card px-5 py-3.5 text-sm outline-none transition-colors placeholder:text-muted-foreground focus:border-primary/50";
 
-// Form state
-const [sent, setSent] = useState(false);
-const {
-  register,
-  handleSubmit,
-  formState: { errors, isSubmitting },
-  reset,
-} = useForm<FormValues>({ resolver: zodResolver(schema) });
-
-const onSubmit = async (values: FormValues) => {
-  // Simulate API call
-  await new Promise((resolve) => setTimeout(resolve, 1000));
-  setSent(true);
-  reset();
-};
-
 // Contact channels data
 const CONTACT_CHANNELS = [
   {
@@ -93,6 +77,22 @@ const CONTACT_CHANNELS = [
 ] as const;
 
 function ContactPage() {
+  // Form state
+  const [sent, setSent] = useState(false);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+    reset,
+  } = useForm<FormValues>({ resolver: zodResolver(schema) });
+
+  const onSubmit = async (values: FormValues) => {
+    // Simulate API call
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    setSent(true);
+    reset();
+  };
+
   return (
     <>
       <PageHero
@@ -218,57 +218,57 @@ function ContactPage() {
                             <p className="mt-2 text-xs text-destructive">{errors.email.message}</p>
                           ) : null}
                         </div>
+                        <div>
+                          <label htmlFor="c-subject" className="text-sm font-medium">
+                            Subject
+                          </label>
+                          <input
+                            id="c-subject"
+                            className={fieldClass}
+                            placeholder="Partnership, media, volunteering…"
+                            aria-invalid={!!errors.subject}
+                            {...register("subject")}
+                          />
+                          {errors.subject ? (
+                            <p className="mt-2 text-xs text-destructive">{errors.subject.message}</p>
+                          ) : null}
+                        </div>
+                        <div>
+                          <label htmlFor="c-message" className="text-sm font-medium">
+                            Message
+                          </label>
+                          <textarea
+                            id="c-message"
+                            rows={6}
+                            className={cn(fieldClass, "resize-none")}
+                            placeholder="How would you like to work with us?"
+                            aria-invalid={!!errors.message}
+                            {...register("message")}
+                          />
+                          {errors.message ? (
+                            <p className="mt-2 text-xs text-destructive">{errors.message.message}</p>
+                          ) : null}
+                        </div>
+                        <Button
+                          type="submit"
+                          variant="hero"
+                          size="lg"
+                          className="w-full"
+                          disabled={isSubmitting}
+                        >
+                          {isSubmitting ? (
+                            <>
+                              <Loader2 className="animate-spin" aria-hidden="true" />
+                              Sending…
+                            </>
+                          ) : (
+                            <>
+                              <Send aria-hidden="true" />
+                              Send message
+                            </>
+                          )}
+                        </Button>
                       </div>
-                      <div>
-                        <label htmlFor="c-subject" className="text-sm font-medium">
-                          Subject
-                        </label>
-                        <input
-                          id="c-subject"
-                          className={fieldClass}
-                          placeholder="Partnership, media, volunteering…"
-                          aria-invalid={!!errors.subject}
-                          {...register("subject")}
-                        />
-                        {errors.subject ? (
-                          <p className="mt-2 text-xs text-destructive">{errors.subject.message}</p>
-                        ) : null}
-                      </div>
-                      <div>
-                        <label htmlFor="c-message" className="text-sm font-medium">
-                          Message
-                        </label>
-                        <textarea
-                          id="c-message"
-                          rows={6}
-                          className={cn(fieldClass, "resize-none")}
-                          placeholder="How would you like to work with us?"
-                          aria-invalid={!!errors.message}
-                          {...register("message")}
-                        />
-                        {errors.message ? (
-                          <p className="mt-2 text-xs text-destructive">{errors.message.message}</p>
-                        ) : null}
-                      </div>
-                      <Button
-                        type="submit"
-                        variant="hero"
-                        size="lg"
-                        className="w-full"
-                        disabled={isSubmitting}
-                      >
-                        {isSubmitting ? (
-                          <>
-                            <Loader2 className="animate-spin" aria-hidden="true" />
-                            Sending…
-                          </>
-                        ) : (
-                          <>
-                            <Send aria-hidden="true" />
-                            Send message
-                          </>
-                        )}
-                      </Button>
                     </motion.form>
                   )}
                 </AnimatePresence>
