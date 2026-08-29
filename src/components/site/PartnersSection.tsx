@@ -104,12 +104,53 @@ export function PartnersSection({ withHeading = true }: { withHeading?: boolean 
   return (
     <>
       {withHeading ? (
-        <SectionHeading
-          eyebrow="Partners"
-          title="Trusted by institutions on two continents"
-          description="Corporate CSR teams, county governments, diaspora networks and development partners who fund and carry this work with us."
-          className="mb-16 lg:mb-20"
-        />
+        <>
+          <SectionHeading
+            eyebrow="Partners"
+            title="Trusted by institutions on two continents"
+            description="Corporate CSR teams, county governments, diaspora networks and development partners who fund and carry this work with us."
+            className="mb-16 lg:mb-20"
+          />
+
+          {/* Partners & Collaborators Marquee */}
+          <section className="relative">
+            <div className="pointer-events-none absolute inset-0 -z-10 h-0.5"
+                 style={{ backgroundImage: "var(--gradient)" }}
+                 aria-hidden="true">
+            </div>
+
+            <div className="mx-auto max-w-7xl px-6 py-12">
+              <div className="space-y-6">
+                <p className="text-xs font-manrope text-primary/70 uppercase tracking-wider">
+                  PARTNERS & COLLABORATORS
+                </p>
+                <h2 className="text-3xl font-display text-plum md:text-4xl">
+                  Those who move the work forward.
+                </h2>
+
+                {/* Logo Marquee */}
+                <div className="relative overflow-hidden marquee-track">
+                  <div className="flex space-x-12">
+                    {/* First set of logos */}
+                    <div className="flex space-x-12">
+                      <img src="/assets/partners/ntv-kenya.svg" alt="NTV Kenya" className="h-12 w-auto opacity-60 hover:opacity-100 transition-opacity" />
+                      <img src="/assets/partners/glee-nairobi.png" alt="Glee Hotel Nairobi" className="h-12 w-auto opacity-60 hover:opacity-100 transition-opacity" />
+                      <img src="/assets/partners/sarova-stanley.png" alt="Sarova Stanley Nairobi" className="h-12 w-auto opacity-60 hover:opacity-100 transition-opacity" />
+                      <img src="/assets/partners/lost-beach-rugby.png" alt="Lost Beach Rugby Festival" className="h-12 w-auto opacity-60 hover:opacity-100 transition-opacity" />
+                    </div>
+                    {/* Second set of logos for seamless loop */}
+                    <div className="flex space-x-12">
+                      <img src="/assets/partners/ntv-kenya.svg" alt="NTV Kenya" className="h-12 w-auto opacity-60 hover:opacity-100 transition-opacity" />
+                      <img src="/assets/partners/glee-nairobi.png" alt="Glee Hotel Nairobi" className="h-12 w-auto opacity-60 hover:opacity-100 transition-opacity" />
+                      <img src="/assets/partners/sarova-stanley.png" alt="Sarova Stanley Nairobi" className="h-12 w-auto opacity-60 hover:opacity-100 transition-opacity" />
+                      <img src="/assets/partners/lost-beach-rugby.png" alt="Lost Beach Rugby Festival" className="h-12 w-auto opacity-60 hover:opacity-100 transition-opacity" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </>
       ) : null}
 
       {/* Partners sections by type */}
