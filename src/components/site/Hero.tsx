@@ -44,17 +44,16 @@ export function Hero() {
           className="mt-7 text-4xl leading-[1.05] font-semibold text-white sm:text-6xl lg:text-7xl"
         >
           Restoring{" "}
-          <em className="font-display text-[oklch(0.76_0.132_357)] italic">Dignity.</em>
+          <em className="font-display text-white italic">Dignity.</em>
           <span className="block">Empowering Women.</span>
-          <span className="block text-[oklch(0.79_0.115_85)]">Transforming Communities.</span>
-
+          <span className="block text-accent">Transforming Communities.</span>
         </motion.h1>
 
         <motion.p
           initial={{ opacity: 0, y: 22 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-          className="mx-auto mt-7 max-w-2xl text-base leading-relaxed text-white/85 sm:text-lg"
+          className="mx-auto mt-7 max-w-2xl text-base leading-relaxed text-white sm:text-lg"
         >
           {ORG.name} walks with women and children affected by Kenya's criminal justice system —
           delivering dignity kits, mental-health support, mentorship and economic opportunity from
@@ -67,10 +66,8 @@ export function Hero() {
           transition={{ delay: 0.44, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
           className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row"
         >
-          <Button asChild variant="hero" size="lg" className="w-full sm:w-auto text-[oklch(0.79_0.115_85)]">
-            <Link to="/donate">
-              Donate now
-            </Link>
+          <Button asChild variant="gold" size="lg" className="w-full sm:w-auto">
+            <Link to="/donate">Donate now</Link>
           </Button>
           <Button asChild variant="glassOutline" size="lg" className="w-full sm:w-auto">
             <Link to="/programs">
