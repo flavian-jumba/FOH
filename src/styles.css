@@ -68,6 +68,7 @@
 
   --accent: oklch(0.63 0.18 80); /* #C59D4A */
   --accent-foreground: oklch(0.232 0.027 294);
+  --metallic-gold: #D4AF37;
 
   --muted: oklch(0.962 0.007 310);
   --muted-foreground: oklch(0.493 0.032 285);
