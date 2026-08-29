@@ -8,14 +8,14 @@ import { STATS } from "./site-data";
 
 export function ImpactBar() {
   const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-100px" });
+  const inView = true;
 
   return (
     <section aria-labelledby="impact-heading" className="relative mt-8 px-5 sm:px-8">
       <h2 id="impact-heading" className="sr-only">
         Our impact in numbers
       </h2>
-      <Reveal className="mx-auto max-w-6xl">
+      <div className="mx-auto max-w-6xl">
         <div ref={ref}>
           <div className="flex items-center justify-center gap-4 mb-6">
             <Award className="size-4 text-accent" aria-hidden="true" />
@@ -40,7 +40,7 @@ export function ImpactBar() {
             ))}
           </div>
         </div>
-      </Reveal>
+      </div>
     </section>
   );
 }
