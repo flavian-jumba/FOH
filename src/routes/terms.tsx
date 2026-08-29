@@ -5,7 +5,7 @@ import { ORG } from "@/components/site/site-data";
 
 const title = "Terms of Use — Simply Feminine Network";
 const description =
-  "The terms governing use of the Simply Feminine Network website, donations, volunteer applications, event participation and content.";
+  "The terms governing use of the Simply Feminine Network website, donations, event participation and content.";
 
 export const Route = createFileRoute("/terms")({
   head: () => ({

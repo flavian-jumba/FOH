@@ -7,9 +7,7 @@ import { ORG } from "./site-data";
 
 const quickLinks = [
   { label: "About us", to: "/about" },
-  { label: "Impact stories", to: "/stories" },
   { label: "Events", to: "/events" },
-  { label: "Gallery", to: "/gallery" },
   { label: "Partners", to: "/partners" },
 ] as const;
 
@@ -18,7 +16,6 @@ const programLinks = [
   { label: "Sanitary towel drives", to: "/programs" },
   { label: "Mentorship & leadership", to: "/programs" },
   { label: "IMARA HER project", to: "/programs" },
-  { label: "Volunteer with us", to: "/volunteer" },
 ] as const;
 
 const socials = [

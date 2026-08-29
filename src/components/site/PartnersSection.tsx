@@ -5,10 +5,10 @@ import { Reveal } from "./Reveal";
 import { ArrowUpRight } from "lucide-react";
 import { ShieldCheck, MapPin, Users, Globe, HeartHandshake, DollarSign, Building2, Calendar } from "lucide-react";
 
-import prideOfKenya from "@/assets/gallery-1.jpg";
-import schlossHotel from "@/assets/gallery-3.jpg";
-import kituiCounty from "@/assets/gallery-4.jpg";
-import kisumuWomensTrust from "@/assets/gallery-2.jpg";
+import prideOfKenya from "@/assets/program-dignity.jpg";
+import schlossHotel from "@/assets/program-justice.jpg";
+import kituiCounty from "@/assets/program-mentorship.jpg";
+import kisumuWomensTrust from "@/assets/event-gala.jpg";
 import diasporaLeadersForum from "@/assets/story-1.jpg";
 import dignityKitsCoalition from "@/assets/program-dignity.jpg";
 import imaraHer from "@/assets/program-mentorship.jpg";
@@ -263,15 +263,6 @@ export function PartnersSection({ withHeading = true }: { withHeading?: boolean 
             </p>
 
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
-              <Link to="/volunteer">
-                <Button
-                  variant="outline"
-                  size="lg"
-                  className="border-primary/20 hover:border-primary/30"
-                >
-                  Volunteer
-                </Button>
-              </Link>
               <Link to="/donate">
                 <Button
                   variant="gold"

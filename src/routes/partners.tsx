@@ -77,8 +77,8 @@ function PartnersPage() {
             <div className="hidden lg:block">
               <div className="relative aspect-[16/9] w-full rounded-xl overflow-hidden hover:shadow-lg transition-shadow duration-300">
                 <img
-                  src="/assets/gallery-2.jpg"
-                  alt="Women in a community workshop setting"
+                  src="/assets/event-summit.jpg"
+                  alt="Women's Leadership Summit in Berlin"
                   loading="lazy"
                   className="size-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
                 />
@@ -141,7 +141,7 @@ function PartnersPage() {
           <div className="flex flex-wrap items-center justify-center gap-8">
             <Reveal as="div" key="partner-pride-of-kenya" delay={0.05}>
               <img
-                src="/assets/gallery-1.jpg"
+                src="/assets/program-dignity.jpg"
                 alt="Pride of Kenya partnership"
                 loading="lazy"
                 className="h-12 w-auto opacity-75 hover:opacity-100 transition-opacity duration-300"
@@ -149,7 +149,7 @@ function PartnersPage() {
             </Reveal>
             <Reveal as="div" key="partner-schloss-hotel" delay={0.1}>
               <img
-                src="/assets/gallery-3.jpg"
+                src="/assets/event-summit.jpg"
                 alt="Schloss Hotel Berlin partnership"
                 loading="lazy"
                 className="h-12 w-auto opacity-75 hover:opacity-100 transition-opacity duration-300"
@@ -157,7 +157,7 @@ function PartnersPage() {
             </Reveal>
             <Reveal as="div" key="partner-kitui-county" delay={0.15}>
               <img
-                src="/assets/gallery-4.jpg"
+                src="/assets/program-mentorship.jpg"
                 alt="Kitui County partnership"
                 loading="lazy"
                 className="h-12 w-auto opacity-75 hover:opacity-100 transition-opacity duration-300"
@@ -165,7 +165,7 @@ function PartnersPage() {
             </Reveal>
             <Reveal as="div" key="partner-kisumu-womens-trust" delay={0.2}>
               <img
-                src="/assets/gallery-2.jpg"
+                src="/assets/event-gala.jpg"
                 alt="Kisumu Women's Trust partnership"
                 loading="lazy"
                 className="h-12 w-auto opacity-75 hover:opacity-100 transition-opacity duration-300"
@@ -225,8 +225,8 @@ function PartnersPage() {
           <div className="grid gap-8 lg:grid-cols-3">
             <div className="relative aspect-[4/3] w-full rounded-xl overflow-hidden hover:shadow-lg transition-shadow duration-300 group">
               <img
-                src="/assets/gallery-1.jpg"
-                alt="Community partners working together on outreach planning"
+                src="/assets/event-summit.jpg"
+                alt="Berlin Leadership Summit bringing together diaspora leaders"
                 loading="lazy"
                 className="size-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
               />
@@ -235,8 +235,8 @@ function PartnersPage() {
 
             <div className="relative aspect-[4/3] w-full rounded-xl overflow-hidden hover:shadow-lg transition-shadow duration-300 group">
               <img
-                src="/assets/gallery-2.jpg"
-                alt="Women's organisation leaders in strategic meeting"
+                src="/assets/program-dignity.jpg"
+                alt="Volunteers packing dignity kits for women and girls in need"
                 loading="lazy"
                 className="size-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
               />
@@ -245,12 +245,12 @@ function PartnersPage() {
 
             <div className="relative aspect-[4/3] w-full rounded-xl overflow-hidden hover:shadow-lg transition-shadow duration-300 group">
               <img
-                src="/assets/gallery-3.jpg"
-                alt="Corporate team volunteering at community workshop"
+                src="/assets/event-gala.jpg"
+                alt="Annual charity gala raising support for women's empowerment programs"
                 loading="lazy"
                 className="size-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[oklch(0.25_0.05_300_/.4)]"></div>
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[oklch(0.25_0.05_300_/_0.4)]"></div>
             </div>
           </div>
         </div>

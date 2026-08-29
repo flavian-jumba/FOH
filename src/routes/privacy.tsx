@@ -5,7 +5,7 @@ import { ORG } from "@/components/site/site-data";
 
 const title = "Privacy Policy — Simply Feminine Network";
 const description =
-  "How Simply Feminine Network collects, uses, protects and retains the personal data of donors, volunteers, partners and programme beneficiaries.";
+  "How Simply Feminine Network collects, uses, protects and retains the personal data of donors, partners and programme beneficiaries.";
 
 export const Route = createFileRoute("/privacy")({
   head: () => ({
@@ -31,21 +31,21 @@ function PrivacyPage() {
         {
           heading: "Information we collect",
           body: [
-            "We collect the details you choose to give us: your name, email address, phone number and any message you submit through our volunteer, contact or newsletter forms.",
+            "We collect the details you choose to give us: your name, email address, phone number and any message you submit through our contact or newsletter forms.",
             "For donations we record the amount and the payment channel selected. This site's checkout is a demonstration and does not capture card numbers or M-Pesa credentials.",
           ],
         },
         {
           heading: "How we use your information",
           body: [
-            "To respond to enquiries, coordinate volunteer placements, acknowledge donations, issue receipts and send programme updates you have asked to receive.",
+            "To respond to enquiries, acknowledge donations, issue receipts and send programme updates you have asked to receive.",
             "We never sell, rent or trade your personal data. We share it only with service providers who help us operate, and only to the extent required.",
           ],
         },
         {
           heading: "Beneficiary dignity and consent",
           body: [
-            "Photographs, names and stories of programme participants are published only with informed, written and revocable consent. Participants may withdraw consent at any time and we will remove the material.",
+            "Photographs, names and testimonials of programme participants are published only with informed, written and revocable consent. Participants may withdraw consent at any time and we will remove the material.",
           ],
         },
         {

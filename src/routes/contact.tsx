@@ -98,7 +98,7 @@ function ContactPage() {
       <PageHero
         eyebrow="Contact"
         title="Let's talk about what we can build together"
-        description="Corporate CSR teams, development institutions, media and volunteers — our management team responds within three working days."
+        description="Corporate CSR teams, development institutions, media — our management team responds within three working days."
       />
 
       {/* Contact details section */}
@@ -114,7 +114,7 @@ function ContactPage() {
             <SectionHeading
               eyebrow="Get in touch"
               title="Reach our team"
-              description="We're here to answer your questions about partnerships, volunteering, media inquiries, and support."
+              description="We're here to answer your questions about partnerships, media inquiries, and support."
               className="mb-12"
             />
           </Reveal>
@@ -225,7 +225,7 @@ function ContactPage() {
                           <input
                             id="c-subject"
                             className={fieldClass}
-                            placeholder="Partnership, media, volunteering…"
+                            placeholder="Partnership, media…"
                             aria-invalid={!!errors.subject}
                             {...register("subject")}
                           />
@@ -293,21 +293,12 @@ function ContactPage() {
             className="mb-6"
           />
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8 leading-relaxed">
-            Whether you're reaching out about partnership opportunities, media inquiries, volunteering,
+            Whether you're reaching out about partnership opportunities, media inquiries,
             or simply to learn more about our work, your message helps us expand our reach and impact
             for women and children across Kenya.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
-            <Link to="/volunteer">
-              <Button
-                variant="outline"
-                size="lg"
-                className="border-primary/20 hover:border-primary/30"
-              >
-                Volunteer
-              </Button>
-            </Link>
             <Link to="/donate">
               <Button
                 variant="gold"

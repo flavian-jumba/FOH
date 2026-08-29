@@ -3,10 +3,10 @@ import { CalendarDays, MapPin, Ticket } from "lucide-react";
 
 import galaImage from "@/assets/event-gala.jpg";
 import summitImage from "@/assets/event-summit.jpg";
-import gallery1 from "@/assets/gallery-1.jpg";
-import gallery2 from "@/assets/gallery-2.jpg";
-import gallery3 from "@/assets/gallery-3.jpg";
-import gallery4 from "@/assets/gallery-4.jpg";
+import dignityImage from "@/assets/program-dignity.jpg";
+import justiceImage from "@/assets/program-justice.jpg";
+import mentorshipImage from "@/assets/program-mentorship.jpg";
+import story1Image from "@/assets/story-1.jpg";
 import { Button } from "@/components/ui/button";
 import { Reveal } from "./Reveal";
 import { SectionHeading } from "./SectionHeading";
@@ -23,13 +23,13 @@ export function EventsSection({ withHeading = true }: { withHeading?: boolean })
   const featuredEvent = galaDate > now ? EVENTS[0] : EVENTS[1];
   const secondaryEvents = EVENTS.filter(event => event.id !== featuredEvent.id);
 
-  // Past events data - using gallery images for past moments
+  // Past events data - using program and story images for past moments
   const PAST_EVENTS = [
     {
       id: "outreach-2024",
       title: "Nairobi Prison Outreach",
       date: "March 15, 2024",
-      image: gallery1,
+      image: dignityImage,
       alt: "Team distributing dignity kits in Nairobi women's prison",
       location: "Nairobi Women's Prison",
       description: "Our team delivered essential hygiene products and conducted mental health sessions for 87 incarcerated women and their children."
@@ -38,7 +38,7 @@ export function EventsSection({ withHeading = true }: { withHeading?: boolean })
       id: "summit-2023",
       title: "Berlin Leadership Summit",
       date: "June 10, 2023",
-      image: gallery2,
+      image: summitImage,
       alt: "African diaspora leaders discussing enterprise development",
       location: "Schloss Hotel Berlin",
       description: "Diaspora leaders and SFN team convened to create financing pipelines for grassroots Kenyan women's enterprises."
@@ -47,7 +47,7 @@ export function EventsSection({ withHeading = true }: { withHeading?: boolean })
       id: "drive-2024",
       title: "Nairobi School Drive",
       date: "September 22, 2024",
-      image: gallery3,
+      image: mentorshipImage,
       alt: "Volunteers distributing sanitary kits to schoolgirls",
       location: "Migosi Secondary School, Kisumu",
       description: "Over 2,000 sanitary kits distributed to adolescent girls with menstrual health education sessions."
@@ -56,7 +56,7 @@ export function EventsSection({ withHeading = true }: { withHeading?: boolean })
       id: "forum-2024",
       title: "Advocacy Forum",
       date: "November 5, 2024",
-      image: gallery4,
+      image: story1Image,
       alt: "Panel discussion on women's rights in justice system",
       location: "Nairobi Governors Office",
       description: "Stakeholders convened to discuss policy reforms for gender-responsive justice delivery."
@@ -263,15 +263,6 @@ export function EventsSection({ withHeading = true }: { withHeading?: boolean })
             </p>
 
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
-              <Link to="/volunteer">
-                <Button
-                  variant="outline"
-                  size="lg"
-                  className="border-primary/20 hover:border-primary/30"
-                >
-                  Volunteer
-                </Button>
-              </Link>
               <Link to="/donate">
                 <Button
                   variant="gold"

@@ -1,6 +1,4 @@
 import { Globe2, HeartHandshake, Sparkles, Flag, User, Menu, BookOpen, Shield, Users } from "lucide-react";
-
-import gallery2 from "@/assets/gallery-2.jpg";
 import { PageHero } from "@/components/site/PageHero";
 import { Reveal } from "@/components/site/Reveal";
 import { SectionHeading } from "@/components/site/SectionHeading";
@@ -20,21 +18,21 @@ const leadership = [
     name: "Tabitha Mwelu John",
     role: "Chief Executive Officer",
     bio: "Tabitha leads SFN's strategic vision and oversees program implementation across Kenya's justice system.",
-    image: gallery2, // Using gallery2 as placeholder - in reality would be actual team photos
+    image: "/assets/default-leader.jpg", // Placeholder - in reality would be actual team photos
     alt: "Tabitha Mwelu John, CEO of Simply Feminine Network"
   },
   {
     name: "Agnes Vorreiter",
     role: "Founder & Board Chair",
     bio: "Agnes founded SFN in 2021 after witnessing the dignity gap in Kenya's remand facilities.",
-    image: gallery2, // Using gallery2 as placeholder
+    image: "/assets/default-leader.jpg", // Placeholder
     alt: "Agnes Vorreiter, Founder of Simply Feminine Network"
   },
   {
     name: "Dr. Wanjiku Kamau",
     role: "Director of Programs",
     bio: "Wanjiku oversees our prison outreach, menstrual health drives, and mental health initiatives.",
-    image: gallery2, // Using gallery2 as placeholder
+    image: "/assets/default-leader.jpg", // Placeholder
     alt: "Dr. Wanjiku Kamau, Director of Programs"
   }
 ];
@@ -194,24 +192,15 @@ function AboutPage() {
         <div className="mx-auto max-w-2xl py-16 px-6 text-center">
           <SectionHeading
             eyebrow="Join our movement"
-            title="Become a volunteer or donor today"
+            title="Become a donor today"
             className="mb-8"
           />
           <p className="text-lg text-muted-foreground max-w-lg mx-auto mb-6 leading-relaxed">
-            Your time and support directly fuel our prison outreach, menstrual health drives,
+            Your support directly fuels our prison outreach, menstrual health drives,
             and women's empowerment programs across Kenya.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/volunteer">
-              <Button
-                variant="outline"
-                size="lg"
-                className="border-primary/20 hover:border-primary/30"
-              >
-                Volunteer
-              </Button>
-            </Link>
             <Link to="/donate">
               <Button
                 variant="gold"

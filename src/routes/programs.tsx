@@ -189,15 +189,6 @@ function ProgramsPage() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
-              <Link to="/volunteer">
-                <Button
-                  variant="outline"
-                  size="lg"
-                  className="border-primary/20 hover:border-primary/30"
-                >
-                  Volunteer
-                </Button>
-              </Link>
               <Link to="/donate">
                 <Button
                   variant="gold"
