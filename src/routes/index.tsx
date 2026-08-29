@@ -5,9 +5,6 @@ import { ImpactBar } from "@/components/site/ImpactBar";
 import { ProgramsSection } from "@/components/site/ProgramsSection";
 import { EventsSection } from "@/components/site/EventsSection";
 import { DonationSection } from "@/components/site/DonationSection";
-import { StoriesSection } from "@/components/site/StoriesSection";
-import { GallerySection } from "@/components/site/GallerySection";
-import { VolunteerSection } from "@/components/site/VolunteerSection";
 import { PartnersSection } from "@/components/site/PartnersSection";
 import { NewsletterSection } from "@/components/site/NewsletterSection";
 
@@ -36,11 +33,8 @@ function Index() {
 
       <ImpactBar />
       <ProgramsSection />
-      <StoriesSection />
       <DonationSection />
       <EventsSection />
-      <GallerySection />
-      <VolunteerSection />
       <PartnersSection />
       <NewsletterSection />
     </>
