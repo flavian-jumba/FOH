@@ -7,6 +7,7 @@ import { Reveal } from "./Reveal";
 import { SectionHeading } from "./SectionHeading";
 import { Button } from "@/components/ui/button";
 import { Link } from "@tanstack/react-router";
+import { NewsletterSection } from "@/components/site/NewsletterSection";
 
 export const STORIES = [
   {
@@ -81,7 +82,7 @@ export function StoriesSection({ withHeading = true }: { withHeading?: boolean }
                     ? "lg:col-start-1 lg:row-start-1"
                     : "lg:col-start-2 lg:row-start-1"}
                 >
-                  <div className="w-[200px] h-[200px] rounded-full overflow-hidden border-4 border-primary/20 shadow-lg flex items-center justify-center">
+                  <div className="w-50 h-50 rounded-full overflow-hidden border-4 border-primary/20 shadow-lg flex items-center justify-center">
                     <img
                       src={story.image}
                       alt={story.alt}

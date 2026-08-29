@@ -11,6 +11,7 @@ import { Button } from "@/components/ui/button";
 import { Reveal } from "./Reveal";
 import { SectionHeading } from "./SectionHeading";
 import { EVENTS } from "./site-data";
+import { NewsletterSection } from "@/components/site/NewsletterSection";
 
 const images: Record<string, string> = { gala: galaImage, summit: summitImage };
 
