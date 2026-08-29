@@ -1,1 +1,2 @@
 - [Fix NewsletterSection import](.claude/projects/-home-antonypeter-Projects-simplyfemininenetwork/memory/fix-newsletter-section-import.md) — Fixed missing import causing runtime error
+- [Fix ArrowUpRight import](.claude/projects/-home-antonypeter-Projects-simplyfemininenetwork/memory/fix-arrowupright-import.md) — Reverted incorrect direct ESM icon import in ProgramsSection.tsx that caused build failure
