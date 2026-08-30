@@ -236,7 +236,7 @@ function PartnersPage() {
             <div className="relative aspect-[4/3] w-full rounded-xl overflow-hidden hover:shadow-lg transition-shadow duration-300 group">
               <img
                 src="/assets/program-dignity.jpg"
-                alt="Volunteers packing dignity kits for women and girls in need"
+                alt="Dignity kits packing for women and girls in need"
                 loading="lazy"
                 className="size-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
               />

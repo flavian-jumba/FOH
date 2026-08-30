@@ -30,7 +30,7 @@ const PROGRAMS = [
     title: "Sanitary Towel Drives",
     icon: HeartHandshake,
     image: dignityImage,
-    alt: "Volunteers packing dignity kits with sanitary products",
+    alt: "Dignity kits with sanitary products ready for distribution",
     problem: "Over 65% of Kenyan girls miss school during menstruation due to lack of access to sanitary products, trading their education and health for a natural biological process, while women in incarceration face similar challenges with even fewer resources.",
     solution: "We manufacture and distribute comprehensive dignity kits containing sanitary pads, undergarments, and hygiene essentials, coupled with menstrual health education that breaks stigma and empowers women and girls to manage their health with confidence.",
     outcome: "Girls stay in school throughout their menstrual cycles, women maintain health and dignity during incarceration, and communities develop sustainable solutions to period poverty through our education initiatives.",
@@ -187,17 +187,6 @@ function ProgramsPage() {
               Your support ensures that dignity is not just restored, but sustained for the women and girls
               we serve across Kenya.
             </p>
-
-            <div className="flex flex-col sm:flex-row gap-6 justify-center">
-              <Link to="/donate">
-                <Button
-                  variant="gold"
-                  size="lg"
-                >
-                  Donate
-                </Button>
-              </Link>
-            </div>
           </div>
         </section>
       </div>

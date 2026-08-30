@@ -298,17 +298,7 @@ function ContactPage() {
             for women and children across Kenya.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-6 justify-center">
-            <Link to="/donate">
-              <Button
-                variant="gold"
-                size="lg"
-              >
-                Donate
-              </Button>
-            </Link>
-          </div>
-        </div>
+                  </div>
       </section>
     </>
   );

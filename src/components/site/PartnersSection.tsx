@@ -262,17 +262,7 @@ export function PartnersSection({ withHeading = true }: { withHeading?: boolean 
               Whether you represent a corporation, government agency, or civil society organization, we welcome the opportunity to explore collaboration.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-6 justify-center">
-              <Link to="/donate">
-                <Button
-                  variant="gold"
-                  size="lg"
-                >
-                  Donate
-                </Button>
-              </Link>
-            </div>
-          </div>
+                      </div>
         </section>
       </div>
     </>

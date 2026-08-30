@@ -48,7 +48,7 @@ export function EventsSection({ withHeading = true }: { withHeading?: boolean })
       title: "Nairobi School Drive",
       date: "September 22, 2024",
       image: mentorshipImage,
-      alt: "Volunteers distributing sanitary kits to schoolgirls",
+      alt: "Sanitary kits distribution to schoolgirls",
       location: "Migosi Secondary School, Kisumu",
       description: "Over 2,000 sanitary kits distributed to adolescent girls with menstrual health education sessions."
     },
@@ -262,17 +262,7 @@ export function EventsSection({ withHeading = true }: { withHeading?: boolean })
               and where the journey toward dignity gains momentum. Be part of the conversations that create lasting change.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-6 justify-center">
-              <Link to="/donate">
-                <Button
-                  variant="gold"
-                  size="lg"
-                >
-                  Donate
-                </Button>
-              </Link>
-            </div>
-          </div>
+                      </div>
         </section>
 
         {/* Newsletter Section */}

@@ -4,7 +4,6 @@ import { Hero } from "@/components/site/Hero";
 import { ImpactBar } from "@/components/site/ImpactBar";
 import { ProgramsSection } from "@/components/site/ProgramsSection";
 import { EventsSection } from "@/components/site/EventsSection";
-import { DonationSection } from "@/components/site/DonationSection";
 import { PartnersSection } from "@/components/site/PartnersSection";
 import { NewsletterSection } from "@/components/site/NewsletterSection";
 
@@ -33,7 +32,6 @@ function Index() {
 
       <ImpactBar />
       <ProgramsSection />
-      <DonationSection />
       <EventsSection />
       <PartnersSection />
       <NewsletterSection />

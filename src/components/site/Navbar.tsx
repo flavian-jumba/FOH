@@ -73,11 +73,6 @@ export function Navbar() {
         </ul>
 
         <div className="flex items-center gap-3">
-          <Button asChild variant="hero" size="lg" className="hidden h-11 px-5 sm:inline-flex text-accent font-manrope font-semibold text-base tracking-[0.01em] bg-(--metallic-gold) hover:bg-(--metallic-gold)/90">
-            <Link to="/donate">
-              Donate
-            </Link>
-          </Button>
           <Button
             variant="ghost"
             size="lg"
@@ -113,13 +108,6 @@ export function Navbar() {
                   </Link>
                 </li>
               ))}
-              <li className="pt-2">
-                <Button asChild variant="hero" className="w-full font-manrope font-semibold text-base tracking-[0.01em] bg-(--metallic-gold) hover:bg-(--metallic-gold)/90" size="lg">
-                  <Link to="/donate" onClick={() => setOpen(false)}>
-                    Donate now
-                  </Link>
-                </Button>
-              </li>
             </ul>
           </motion.div>
         ) : null}

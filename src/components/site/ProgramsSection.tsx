@@ -25,7 +25,7 @@ export const PROGRAMS = [
     title: "Sanitary Towel Drives",
     icon: HeartHandshake,
     image: dignityImage,
-    alt: "Volunteers packing dignity kits with sanitary products",
+    alt: "Dignity kits with sanitary products ready for distribution",
     summary:
       "Over 10,000 sanitary pads and undergarments delivered so that no woman or girl trades her dignity, her health or her school day for a period.",
     points: ["School & community drives", "Menstrual health education", "Undergarment provision"],
