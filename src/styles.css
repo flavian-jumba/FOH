@@ -5,8 +5,7 @@
 
 /*
  * Simply Feminine Network — design system.
- * Brand: deep purple (#5B2A86), rose (#E87EA1), gold (#C8A24D).
- * Headings: Playfair Display. Body: Inter.
+ * Based on exact design specification provided.
  */
 
 @theme inline {
@@ -48,85 +47,98 @@
 :root {
   --radius: 1.25rem;
 
-  --background: oklch(0.986 0.003 67.8);
-  --foreground: oklch(0.232 0.027 294);
-  --ink: oklch(0.232 0.027 294);
-  --cream: #F5F1E8;
-  --plum: #3D1638;
-  --mist: #EFEAE0;
-  --gradient: linear-gradient(135deg, #6B2C91, #E0669B);
-  --gold: #B8935A;
+  /* Design tokens from specification */
+  --maroon-deep: #4A0E24;
+  --near-black: #17090E;
+  --maroon-section: #3E0F22;
+  --cream: #FBF1E8;
+  --gold: #C9A76B;
+  --rose: #E7A9BC;
+  --ink: #1F1B1D;
+  --gray-body: #6E6660;
+  --gray-body-dark: #C9BFBB;
+  --white: #FFFFFF;
 
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.232 0.027 294);
+  --background: var(--cream);
+  --foreground: var(--gray-body);
+  --ink: var(--ink);
 
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.232 0.027 294);
+  --card: var(--white);
+  --card-foreground: var(--gray-body);
 
-  --primary: oklch(0.28 0.17 300); /* #5A2C6B */
-  --primary-foreground: oklch(0.99 0.005 60); /* #FFFFFF */
-  --primary-soft: oklch(0.55 0.174 306);
-  --primary-tint: oklch(0.954 0.015 312);
+  --popover: var(--white);
+  --popover-foreground: var(--gray-body);
 
-  --secondary: oklch(0.72 0.135 360);
-  --secondary-foreground: oklch(0.232 0.027 294);
+  /* Primary color --maroon-deep */
+  --primary: var(--maroon-deep);
+  --primary-foreground: var(--white);
+  --primary-soft: color-mix(in oklab, var(--primary) 20%, var(--background));
+  --primary-tint: color-mix(in oklab, var(--primary) 10%, var(--background));
 
-  --accent: oklch(0.63 0.18 80); /* #C59D4A */
-  --accent-foreground: oklch(0.232 0.027 294);
-  --metallic-gold: #D4AF37;
+  /* Secondary colors */
+  --secondary: var(--rose);
+  --secondary-foreground: var(--white);
 
-  --muted: oklch(0.962 0.007 310);
-  --muted-foreground: oklch(0.493 0.032 285);
+  /* Accent color --gold */
+  --accent: var(--gold);
+  --accent-foreground: var(--near-black);
+  --metallic-gold: var(--gold);
 
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.99 0.003 300);
+  --muted: color-mix(in oklab, var(--gray-body) 10%, transparent);
+  --muted-foreground: var(--gray-body);
 
-  --border: oklch(0.915 0.008 305);
-  --input: oklch(0.915 0.008 305);
-  --ring: oklch(0.55 0.174 306);
+  /* Destructive (errors) */
+  --destructive: #DC2626;
+  --destructive-foreground: var(--white);
+
+  --border: color-mix(in oklab, var(--border) 10%, transparent);
+  --input: color-mix(in oklab, var(--border) 10%, transparent);
+  --ring: color-mix(in oklab, var(--ring) 20%, transparent);
+
+  /* Gradients */
   --gradient-primary: linear-gradient(
     120deg,
-    oklch(0.4 0.148 305) 0%,
-    oklch(0.55 0.174 306) 55%,
-    oklch(0.72 0.135 360) 100%
+    color-mix(in oklab, var(--primary) 80%, transparent) 0%,
+    color-mix(in oklab, var(--primary) 60%, transparent) 55%,
+    color-mix(in oklab, var(--accent) 60%, transparent) 100%
   );
   --gradient-tint: linear-gradient(135deg, rgba(107, 44, 145, 0.1), rgba(224, 102, 155, 0.1));
 
-  /* Luminous Royal hero color story */
+  /* Hero section gradients - using spec colors */
   --gradient-royal-wash: linear-gradient(
     35deg,
-    oklch(0.28 0.17 300) 0%, /* Updated to use --primary */
-    oklch(0.28 0.17 300 / 0.8) 55%,
-    oklch(0.72 0.135 360 / 0.32) 100%
+    var(--near-black) 0%,
+    var(--near-black) / 0.8 55%,
+    var(--maroon-section) / 0.32 100%
   );
   --gradient-royal-base: linear-gradient(
     180deg,
-    oklch(0.21 0.10 300 / 0.75) 0%, /* Darker version of primary */
-    oklch(0.24 0.12 300 / 0.35) 38%,
-    oklch(0.26 0.14 300 / 0.6) 72%,
-    oklch(0.21 0.10 300) 100%
+    var(--near-black) / 0.75 0%,
+    var(--near-black) / 0.35 38%,
+    var(--near-black) / 0.6 72%,
+    var(--near-black) 100%
   );
   --gradient-royal-rule: linear-gradient(
     90deg,
-    oklch(0.28 0.17 300) 0%, /* Updated to use --primary */
-    oklch(0.63 0.18 80) 50%, /* Updated to use --accent */
-    oklch(0.72 0.135 360) 100%
+    var(--near-black) 0%,
+    var(--gold) 50%,
+    var(--maroon-section) 100%
   );
 
-  --shadow-soft: 0 2px 8px oklch(0.28 0.17 300 / 0.05),
-    0 16px 40px -18px oklch(0.28 0.17 300 / 0.18);
-  --shadow-lift: 0 4px 14px oklch(0.28 0.17 300 / 0.08),
-    0 32px 64px -28px oklch(0.28 0.17 300 / 0.3);
-  --shadow-glow: 0 18px 40px -14px oklch(0.55 0.174 306 / 0.55);
+  --shadow-soft: 0 2px 8px color-mix(in oklab, var(--near-black) 5%),
+    0 16px 40px -18px color-mix(in oklab, var(--near-black) 18%);
+  --shadow-lift: 0 4px 14px color-mix(in oklab, var(--near-black) 8%),
+    0 32px 64px -28px color-mix(in oklab, var(--near-black) 30%);
+  --shadow-glow: 0 18px 40px -14px color-mix(in oklab, var(--accent) 55%);
 
-  --sidebar: oklch(0.99 0.005 300);
-  --sidebar-foreground: oklch(0.232 0.027 294);
-  --sidebar-primary: oklch(0.28 0.17 300); /* Updated to use --primary */
-  --sidebar-primary-foreground: oklch(0.99 0.005 60); /* Updated to use --primary-foreground */
-  --sidebar-accent: oklch(0.954 0.015 312);
-  --sidebar-accent-foreground: oklch(0.28 0.17 300); /* Updated to use --primary */
-  --sidebar-border: oklch(0.915 0.008 305);
-  --sidebar-ring: oklch(0.55 0.174 306);
+  --sidebar: var(--white);
+  --sidebar-foreground: var(--gray-body);
+  --sidebar-primary: var(--maroon-deep);
+  --sidebar-primary-foreground: var(--white);
+  --sidebar-accent: var(--gold);
+  --sidebar-accent-foreground: var(--maroon-deep);
+  --sidebar-border: color-mix(in oklab, var(--border) 10%, transparent);
+  --sidebar-ring: color-mix(in oklab, var(--ring) 20%, transparent);
 }
 
 @layer base {
@@ -157,7 +169,7 @@
   }
 
   ::selection {
-    background: oklch(0.72 0.135 360 / 0.35);
+    background: color-mix(in oklab, var(--accent) 35%);
   }
 
   :focus-visible {
@@ -209,6 +221,7 @@
   font-weight: 600;
   letter-spacing: 0.22em;
   text-transform: uppercase;
+  color: var(--gold);
 }
 
 @utility card-lift {
@@ -279,4 +292,3 @@
 @utility font-manrope {
   font-family: 'Manrope', sans-serif;
 }
-

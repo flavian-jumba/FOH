@@ -33,21 +33,22 @@ export function Navbar() {
     <header
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition-all duration-500",
-        overHero ? "bg-transparent text-white" : atTop ? "bg-transparent" : "glass shadow-soft",
+        overHero ? "bg-transparent" : "bg-[color:#17090E]", // Solid --near-black when scrolled or not on hero
+        !overHero && "shadow-soft" // Add shadow when scrolled
       )}
     >
       <nav
         aria-label="Primary"
-        className="mx-auto flex h-18 max-w-7xl items-center justify-between gap-4 px-5 sm:px-8"
+        className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-5 sm:px-8"
       >
         <Link to="/" className="group flex items-center gap-4" onClick={() => setOpen(false)}>
-          <img src={simplyfemininenetworkLogo} alt="Simply Feminine Network Logo" className="h-12 w-auto" />
+          <img src={simplyfemininenetworkLogo} alt="Simply Feminine Network Logo" className="h-10 w-auto" />
           <span className="hidden leading-tight sm:block">
             <span className="block font-display text-[15px] font-semibold">{ORG.name}</span>
             <span
               className={cn(
                 "block text-[11px] tracking-[0.16em] uppercase",
-                scrolled ? "text-muted-foreground" : "text-white/70",
+                overHero ? "text-[color:#FFFFFF]/70" : "text-[color:#C9BFBB]/70",
               )}
             >
               Kenya · Germany
@@ -62,9 +63,9 @@ export function Navbar() {
                 to={link.to}
                 className={cn(
                   "relative rounded-full px-3.5 py-2 text-base font-semibold font-manrope tracking-[0.01em] transition-colors",
-                  scrolled ? "text-foreground/80 hover:text-primary" : "text-white/85 hover:text-white",
+                  overHero ? "text-[color:#FFFFFF]/80 hover:text-[color:#FFFFFF]" : "text-[color:#C9BFBB]/80 hover:text-[color:#FFFFFF]",
                 )}
-                activeProps={{ className: scrolled ? "text-primary" : "text-white" }}
+                activeProps={{ className: "text-[color:#FFFFFF]" }}
               >
                 {link.label}
               </Link>
@@ -73,16 +74,12 @@ export function Navbar() {
         </ul>
 
         <div className="flex items-center gap-3">
-          <Button
-            variant="ghost"
-            size="lg"
-            className={cn("xl:hidden", scrolled ? "" : "text-white hover:bg-white/15 hover:text-white")}
-            aria-label={open ? "Close menu" : "Open menu"}
-            aria-expanded={open}
-            onClick={() => setOpen((v) => !v)}
+          <Link
+            to="/partners"
+            className="flex items-center justify-center px-6 py-3 text-sm font-manrope uppercase tracking-wider bg-[color:#4A0E24] text-[color:#FFFFFF] rounded-md hover:bg-[color:#3E0F22] transition-colors"
           >
-            {open ? <X /> : <Menu />}
-          </Button>
+            PARTNER WITH US
+          </Link>
         </div>
       </nav>
 
@@ -101,8 +98,8 @@ export function Navbar() {
                   <Link
                     to={link.to}
                     onClick={() => setOpen(false)}
-                    className="block rounded-2xl px-4 py-3 font-display text-lg font-medium transition-colors hover:bg-primary-tint hover:text-primary"
-                    activeProps={{ className: "text-primary bg-primary-tint" }}
+                    className="block rounded-2xl px-4 py-3 font-display text-lg font-medium transition-colors hover:bg-[color:#4A0E24]/20 hover:text-[color:#FFFFFF]"
+                    activeProps={{ className: "text-[color:#FFFFFF] bg-[color:#4A0E24]/20" }}
                   >
                     {link.label}
                   </Link>

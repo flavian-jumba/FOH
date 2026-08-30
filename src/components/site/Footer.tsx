@@ -1,144 +1,113 @@
 import { Link } from "@tanstack/react-router";
-import { Facebook, Instagram, Linkedin, Mail, Phone, Youtube } from "lucide-react";
+import { Instagram, Linkedin, Facebook } from "lucide-react";
 
 import simplyfemininenetworkLogo from "@/assets/simplyfemininenetwork.png";
-import { NewsletterForm } from "./NewsletterForm";
 import { ORG } from "./site-data";
-
-const quickLinks = [
-  { label: "About us", to: "/about" },
-  { label: "Events", to: "/events" },
-  { label: "Partners", to: "/partners" },
-] as const;
-
-const programLinks = [
-  { label: "Justice system outreach", to: "/programs" },
-  { label: "Sanitary towel drives", to: "/programs" },
-  { label: "Mentorship & leadership", to: "/programs" },
-  { label: "IMARA HER project", to: "/programs" },
-] as const;
-
-const socials = [
-  { label: "Instagram", icon: Instagram },
-  { label: "Facebook", icon: Facebook },
-  { label: "LinkedIn", icon: Linkedin },
-  { label: "YouTube", icon: Youtube },
-] as const;
 
 export function Footer() {
   return (
-    <footer className="relative mt-24 overflow-hidden bg-[oklch(0.24_0.06_300)] text-[oklch(0.96_0.01_300)]">
-      <div
-        className="gradient-primary pointer-events-none absolute -top-40 -right-32 size-[28rem] rounded-full opacity-30 blur-3xl"
-        aria-hidden="true"
-      />
-      <div className="relative mx-auto max-w-7xl px-5 py-20 sm:px-8">
-        <div className="grid gap-14 lg:grid-cols-[1.3fr_1fr_1fr_1.2fr]">
-          <div>
-            <div className="flex items-center gap-4 mb-4">
+    <footer className="bg-[color:#17090E] text-[color:#FFFFFF]">
+      <div className="mx-auto max-w-7xl px-6 py-12">
+        <div className="grid gap-8 md:grid-cols-3">
+          {/* Column 1: logo, tagline, award, social links */}
+          <div className="space-y-4">
+            <div className="flex items-center gap-3">
               <img src={simplyfemininenetworkLogo} alt="Simply Feminine Network Logo" className="h-10 w-auto" />
               <div>
-                <p className="font-display text-2xl font-semibold">{ORG.name}</p>
-                <p className="mt-2 max-w-sm text-sm leading-relaxed text-[oklch(0.86_0.02_300)]">
-                  A Kenyan non-governmental organization restoring dignity to women and children
-                  affected by the criminal justice system — and building the leadership that changes it.
+                <p className="font-display text-[1.125rem] font-semibold">{ORG.name}</p>
+                <p className="mt-1 text-[color:#C9BFBB] text-[0.875rem]">
+                  Women of Purpose — Giving Back with Grace.
                 </p>
               </div>
             </div>
-            <div className="mt-6 flex gap-3">
-              {socials.map(({ label, icon: Icon }) => (
-                <a
-                  key={label}
-                  href="#"
-                  aria-label={label}
-                  className="grid size-11 place-items-center rounded-full border border-white/15 bg-white/5 transition-all duration-300 hover:scale-105 hover:bg-white/15"
-                >
-                  <Icon className="size-4" aria-hidden="true" />
-                </a>
-              ))}
+            <p className="text-[color:#C9BFBB] text-[0.875rem]">
+              🏆 NGO OF THE YEAR — PRIDE OF KENYA AWARDS 2025
+            </p>
+            <div className="flex space-x-4">
+              <a href="#" className="text-[color:#C9BFBB] hover:text-[color:#FFFFFF] transition-colors">
+                <Instagram className="h-5 w-5" aria-hidden="true" />
+              </a>
+              <a href="#" className="text-[color:#C9BFBB] hover:text-[color:#FFFFFF] transition-colors">
+                <Linkedin className="h-5 w-5" aria-hidden="true" />
+              </a>
+              <a href="#" className="text-[color:#C9BFBB] hover:text-[color:#FFFFFF] transition-colors">
+                <Facebook className="h-5 w-5" aria-hidden="true" />
+              </a>
             </div>
           </div>
 
-          <nav aria-label="Quick links">
-            <h2 className="eyebrow text-[oklch(0.8_0.06_330)]">Quick links</h2>
-            <ul className="mt-5 space-y-3 text-sm">
-              {quickLinks.map((l) => (
-                <li key={l.label}>
-                  <Link
-                    to={l.to}
-                    className="text-[oklch(0.88_0.02_300)] transition-colors hover:text-white"
-                  >
-                    {l.label}
-                  </Link>
-                </li>
-              ))}
+          {/* Column 2: NAVIGATE */}
+          <div className="space-y-4">
+            <h3 className="text-[color:#C9A76B] text-[0.875rem] font-manrope uppercase tracking-wider">
+              NAVIGATE
+            </h3>
+            <ul className="space-y-2 text-[color:#FFFFFF] text-[0.875rem]">
+              <Link to="/about" className="hover:text-[color:#C9A76B] transition-colors">
+                About
+              </Link>
+              <Link to="/mission" className="hover:text-[color:#C9A76B] transition-colors">
+                Mission
+              </Link>
+              <Link to="/programs" className="hover:text-[color:#C9A76B] transition-colors">
+                Projects
+              </Link>
+              <Link to="/events" className="hover:text-[color:#C9A76B] transition-colors">
+                Events
+              </Link>
+              <Link to="/community" className="hover:text-[color:#C9A76B] transition-colors">
+                Community
+              </Link>
+              <Link to="/partners" className="hover:text-[color:#C9A76B] transition-colors">
+                Partners
+              </Link>
+              <Link to="/contact" className="hover:text-[color:#C9A76B] transition-colors">
+                Contact
+              </Link>
             </ul>
-          </nav>
+          </div>
 
-          <nav aria-label="Programs">
-            <h2 className="eyebrow text-[oklch(0.8_0.06_330)]">Programs</h2>
-            <ul className="mt-5 space-y-3 text-sm">
-              {programLinks.map((l) => (
-                <li key={l.label}>
-                  <Link
-                    to={l.to}
-                    className="text-[oklch(0.88_0.02_300)] transition-colors hover:text-white"
-                  >
-                    {l.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
-
-          <div>
-            <h2 className="eyebrow text-[oklch(0.8_0.06_330)]">Stay close</h2>
-            <p className="mt-5 text-sm text-[oklch(0.86_0.02_300)]">
-              Field notes, event invitations and impact reports — once a month.
-            </p>
-            <NewsletterForm className="mt-4" />
-            <ul className="mt-6 space-y-3 text-sm">
+          {/* Column 3: CONTACT */}
+          <div className="space-y-4">
+            <h3 className="text-[color:#C9A76B] text-[0.875rem] font-manrope uppercase tracking-wider">
+              CONTACT
+            </h3>
+            <ul className="space-y-2 text-[color:#FFFFFF] text-[0.875rem]">
               <li>
-                <a
-                  className="inline-flex items-center gap-2 text-[oklch(0.88_0.02_300)] transition-colors hover:text-white"
-                  href={`mailto:${ORG.email}`}
-                >
-                  <Mail className="size-4" aria-hidden="true" />
-                  {ORG.email}
-                </a>
+                <span className="inline-flex items-center gap-2">
+                  <span className="text-[color:#C9A76B] font-manrope">EMAIL</span>
+                  <span className="ml-2">{ORG.email}</span>
+                </span>
               </li>
               <li>
-                <a
-                  className="inline-flex items-center gap-2 text-[oklch(0.88_0.02_300)] transition-colors hover:text-white"
-                  href={`tel:${ORG.phoneKe.replace(/\s/g, "")}`}
-                >
-                  <Phone className="size-4" aria-hidden="true" />
-                  {ORG.phoneKe} · Kenya
-                </a>
+                <span className="inline-flex items-center gap-2">
+                  <span className="text-[color:#C9A76B] font-manrope">KENYA</span>
+                  <span className="ml-2">{ORG.phoneKe}</span>
+                </span>
               </li>
               <li>
-                <a
-                  className="inline-flex items-center gap-2 text-[oklch(0.88_0.02_300)] transition-colors hover:text-white"
-                  href={`tel:${ORG.phoneDe.replace(/\s/g, "")}`}
-                >
-                  <Phone className="size-4" aria-hidden="true" />
-                  {ORG.phoneDe} · Germany
-                </a>
+                <span className="inline-flex items-center gap-2">
+                  <span className="text-[color:#C9A76B] font-manrope">GERMANY</span>
+                  <span className="ml-2">{ORG.phoneDe}</span>
+                </span>
               </li>
             </ul>
           </div>
         </div>
 
-        <div className="mt-16 flex flex-col gap-4 border-t border-white/10 pt-8 text-xs text-[oklch(0.78_0.02_300)] sm:flex-row sm:items-center sm:justify-between">
+        {/* Bottom bar */}
+        <div className="mt-12 flex items-center justify-between text-[color:#C9BFBB] text-[0.75rem] border-t border-[color:#C9BFBB]/20 pt-8">
           <p>
-            © {new Date().getFullYear()} {ORG.name}. All rights reserved.
+            © 2025 Simply Feminine Network. Founded by Tabitha Mwelu John. All rights reserved.
           </p>
-          <div className="flex gap-6">
-            <Link to="/privacy" className="transition-colors hover:text-white">
+          <div className="flex space-x-4">
+            <Link to="/privacy" className="hover:text-[color:#FFFFFF] transition-colors">
               Privacy Policy
             </Link>
-            <Link to="/terms" className="transition-colors hover:text-white">
-              Terms
+            <Link to="/terms" className="hover:text-[color:#FFFFFF] transition-colors">
+              Terms of Use
+            </Link>
+            <Link to="/cookies" className="hover:text-[color:#FFFFFF] transition-colors">
+              Cookie Policy
             </Link>
           </div>
         </div>

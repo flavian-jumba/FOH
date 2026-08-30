@@ -12,8 +12,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
-import { Navbar } from "@/components/site/Navbar";
-import { Footer } from "@/components/site/Footer";
+import { MainLayout } from "@/components/layout/MainLayout";
 import { useLenis } from "@/components/site/useLenis";
 
 function NotFoundComponent() {
@@ -79,14 +78,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Simply Feminine Network — Restoring Dignity to Women in Kenya" },
+      { title: "Simply Feminine Network — Women of Purpose — Giving Back with Grace" },
       {
         name: "description",
         content:
-          "Simply Feminine Network is a Kenyan NGO empowering women, advancing mental health and restoring dignity to women and children affected by the criminal justice system.",
+          "Simply Feminine Network is an award-winning women-led NGO committed to women's health, ending gender-based violence, mentorship, and community empowerment — in Kenya and across the world.",
       },
       { name: "author", content: "Simply Feminine Network" },
-      { name: "theme-color", content: "#5B2A86" },
+      { name: "theme-color", content: "#4A0E24" },
       { property: "og:site_name", content: "Simply Feminine Network" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -114,7 +113,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           telephone: "+254769054165",
           areaServed: ["Kenya", "Germany"],
           description:
-            "Kenyan NGO empowering women, improving mental health and restoring dignity to women and children affected by the criminal justice system.",
+            "Award-winning women-led NGO committed to women's health, ending gender-based violence, mentorship, and community empowerment — in Kenya and across the world.",
         }),
       },
     ],
@@ -152,22 +151,7 @@ function RootComponent() {
       >
         Skip to content
       </a>
-      <Navbar />
-      <main id="main">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={pathname}
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-          >
-            {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-            <Outlet />
-          </motion.div>
-        </AnimatePresence>
-      </main>
-      <Footer />
+      <MainLayout />
     </QueryClientProvider>
   );
 }
