@@ -1,146 +1,99 @@
 import { Link } from "@tanstack/react-router";
-import { motion } from "framer-motion";
-import { PillTag } from "@/components/ui/pill-tag";
-import { NumberedRow } from "@/components/ui/numbered-row";
+
+import dignityImage from "@/assets/program-dignity.jpg";
+import justiceImage from "@/assets/program-justice.jpg";
+import mentorshipImage from "@/assets/program-mentorship.jpg";
+import { Reveal } from "./Reveal";
+
+const PROJECTS = [
+  {
+    id: "imara-her",
+    eyebrow: "Flagship Initiative",
+    title: "IMARA HER Project &",
+    titleItalic: "Mobile Lab",
+    body: "SFN's cornerstone community project. Vocational training, sanitary dignity products, and reproductive health services delivered to girls and women in rural Kenya — with a dedicated mobile clinic travelling to the most underserved interior communities.",
+    image: dignityImage,
+    alt: "Dignity kits with sanitary products prepared for distribution in rural Kenya",
+    cta: "Explore the impact",
+    solid: true,
+  },
+  {
+    id: "empower-her-berlin",
+    eyebrow: "International Relations",
+    title: "Empower HER",
+    titleItalic: "Berlin Chapter",
+    body: "SFN's international wing in Germany. Convening African diaspora women and European leaders under the theme 'Leadership, Empowerment, Healing and Global Collaboration' — a reciprocal flow of talent, capital, and mentorship.",
+    image: justiceImage,
+    alt: "African diaspora women and European leaders in conversation at a summit",
+    cta: "View programme details",
+    solid: false,
+  },
+  {
+    id: "leadership-academy",
+    eyebrow: "Professional Growth",
+    title: "SFN Leadership",
+    titleItalic: "Academy",
+    body: "A transformative programme equipping women with executive presence, strategic thinking, and the tools to lead — unapologetically and on their own terms.",
+    image: mentorshipImage,
+    alt: "Young women in a leadership and mentorship workshop",
+    cta: "Join the academy",
+    solid: false,
+  },
+] as const;
 
 export function ProjectsProgrammes() {
   return (
-    <section className="relative bg-[color:#FBF1E8]">
-      <div className="relative z-20 mx-auto max-w-7xl px-5 sm:px-8 py-20">
-        <div className="flex gap-12">
-          {/* Left column */}
-          <div className="flex-1 space-y-6">
-            {/* Eyebrow */}
-            <motion.div
-              initial={{ opacity: 0, y: 22 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.12, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+    <section className="relative bg-[color:#FBF1E8] font-karla text-[color:#1F1B1D]">
+      <div className="mx-auto max-w-7xl px-5 py-24 sm:px-8 lg:px-16 lg:py-32">
+        <Reveal className="mb-24 max-w-2xl">
+          <span className="mb-6 block text-[0.7rem] font-bold tracking-[0.4em] text-[color:#C8A24D] uppercase">
+            Active Initiatives
+          </span>
+          <h2 className="font-cormorant text-5xl leading-[0.95] font-light lg:text-6xl">
+            Projects &amp; <span className="italic">Programmes</span>
+          </h2>
+        </Reveal>
+
+        <div className="space-y-32 lg:space-y-48">
+          {PROJECTS.map((project, index) => (
+            <div
+              key={project.id}
+              className={`flex flex-col items-center gap-12 lg:gap-20 ${
+                index % 2 === 0 ? "lg:flex-row-reverse" : "lg:flex-row"
+              }`}
             >
-              <div className="text-[color:#C9A76B] text-xs font-manrope uppercase tracking-wider">
-                — ACTIVE INITIATIVES —
-              </div>
-            </motion.div>
+              <Reveal className="w-full lg:w-1/2">
+                <img
+                  src={project.image}
+                  alt={project.alt}
+                  loading="lazy"
+                  className="aspect-[4/3] w-full object-cover object-center"
+                />
+              </Reveal>
 
-            {/* H2: "Projects &" / "Programmes" */}
-            <motion.h2
-              initial={{ opacity: 0, y: 22 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.24, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-              className="mt-2 text-2 text-4xl font-display leading-none text-[color:#1F1B1D]"
-            >
-              <div className="block">Projects &</div>
-              <div className="block mt-2">
-                <span className="text-[color:#4A0E24] font-display italic">Programmes</span>
-              </div>
-            </motion.h2>
-
-            {/* Paragraph */}
-            <motion.p
-              initial={{ opacity: 0, y: 22 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.36, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-              className="text-base text-[color:#6E6660] leading-relaxed"
-            >
-              From a mobile health lab in rural Kenya to a luxury empowerment summit in Berlin — SFN's work is as diverse as the women it serves.
-            </motion.p>
-
-            {/* Outline button: "GET INVOLVED" */}
-            <motion.div
-              initial={{ opacity: 0, y: 22 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.48, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-              className="mt-6"
-            >
-              <Link
-                to="/programs"
-                className="inline-flex items-center justify-center px-6 py-3 text-sm font-manrope uppercase tracking-wider border border-[color:#4A0E24] bg-transparent text-[color:#4A0E24] rounded-md hover:bg-[color:#4A0E24]/10 transition-colors"
-              >
-                GET INVOLVED
-              </Link>
-            </motion.div>
-          </div>
-
-          {/* Right column: 4 numbered rows */}
-          <div className="flex-1 space-y-6">
-            {/* Row 1: IMARA HER Project */}
-            <motion.div
-              initial={{ opacity: 0, y: 22 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.12, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-            >
-              <NumberedRow index={1}>
-                <div className="flex items-start space-x-2">
-                  <PillTag variant="pink">FLAGSHIP INITIATIVE</PillTag>
-                  <span className="ml-2">IMARA HER Project</span>
-                </div>
-              </NumberedRow>
-              <p className="mt-2 text-[color:#6E6660] text-sm leading-relaxed pl-8">
-                SFN's cornerstone community project. Delivers vocational training, sanitary dignity products, and reproductive health services to girls and women in rural Kenya.
-              </p>
-            </motion.div>
-
-            {/* Divider line */}
-            <div className="h-0.5 bg-[color:#6E6660]/20 my-6"></div>
-
-            {/* Row 2: IMARA HER Mobile Lab */}
-            <motion.div
-              initial={{ opacity: 0, y: 22 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.24, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-            >
-              <NumberedRow index={2}>
-                <div className="flex items-start space-x-2">
-                  <PillTag variant="lavender">MOBILE HEALTH</PillTag>
-                  <span className="ml-2">IMARA HER Mobile Lab</span>
-                </div>
-              </NumberedRow>
-              <p className="mt-2 text-[color:#6E6660] text-sm leading-relaxed pl-8">
-                A dedicated mobile clinic travelling to Kenya's most underserved interior communities, providing reproductive health services and psychosocial support on the ground.
-              </p>
-            </motion.div>
-
-            {/* Divider line */}
-            <div className="h-0.5 bg-[color:#6E6660]/20 my-6"></div>
-
-            {/* Row 3: Empower HER Berlin */}
-            <motion.div
-              initial={{ opacity: 0, y: 22 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.36, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-            >
-              <NumberedRow index={3}>
-                <div className="flex items-start space-x-2">
-                  <PillTag variant="gold-outline">
-                    GLOBAL CHAPTER 🇩🇪
-                  </PillTag>
-                  <span className="ml-2">Empower HER Berlin</span>
-                </div>
-              </NumberedRow>
-              <p className="mt-2 text-[color:#6E6660] text-sm leading-relaxed pl-8">
-                SFN's international wing in Germany. Convenes African diaspora women and European leaders under the theme 'Leadership, Empowerment, Healing and Global Collaboration.'
-              </p>
-            </motion.div>
-
-            {/* Divider line */}
-            <div className="h-0.5 bg-[color:#6E6660]/20 my-6"></div>
-
-            {/* Row 4: Leadership Academy */}
-            <motion.div
-              initial={{ opacity: 0, y: 22 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.48, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-            >
-              <NumberedRow index={4}>
-                <div className="flex items-start space-x-2">
-                  <PillTag variant="maroon">PROFESSIONAL GROWTH</PillTag>
-                  <span className="ml-2">Leadership Academy</span>
-                </div>
-              </NumberedRow>
-              <p className="mt-2 text-[color:#6E6660] text-sm leading-relaxed pl-8">
-                A transformative programme equipping women with executive presence, strategic thinking, and the tools to lead — unapologetically and on their own terms.
-              </p>
-            </motion.div>
-          </div>
+              <Reveal delay={0.08} className="w-full lg:w-1/2">
+                <span className="mb-6 block text-[0.7rem] font-bold tracking-[0.3em] text-[color:#C8A24D] uppercase">
+                  {project.eyebrow}
+                </span>
+                <h3 className="mb-8 font-cormorant text-4xl leading-tight font-light lg:text-5xl">
+                  {project.title}
+                  <br />
+                  <span className="italic">{project.titleItalic}</span>
+                </h3>
+                <p className="mb-10 text-lg leading-relaxed text-[color:#1F1B1D]/70">{project.body}</p>
+                <Link
+                  to="/programs"
+                  className={`inline-block px-10 py-4 text-xs font-bold tracking-widest uppercase transition-all hover:-translate-y-1 ${
+                    project.solid
+                      ? "bg-[color:#4A0E24] text-[color:#FBF1E8] hover:bg-[color:#17090E]"
+                      : "border border-[color:#4A0E24] text-[color:#4A0E24] hover:bg-[color:#4A0E24] hover:text-[color:#FBF1E8]"
+                  }`}
+                >
+                  {project.cta}
+                </Link>
+              </Reveal>
+            </div>
+          ))}
         </div>
       </div>
     </section>
