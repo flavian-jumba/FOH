@@ -1,7 +1,5 @@
-import { Image } from "next/image";
 import { motion } from "framer-motion";
 import { LeftBorderBlock } from "@/components/ui/left-border-block";
-import { PillTag } from "@/components/ui/pill-tag";
 
 export function OurStory() {
   return (
@@ -12,12 +10,10 @@ export function OurStory() {
           {/* Left column: image collage */}
           <div className="relative">
             {/* Main portrait photo */}
-            <Image
+            <img
               src="/assets/story-main.jpg"
               alt="Woman in a blazer, thumbs up gesture"
               className="rounded-none w-full h-[400px] object-cover"
-              width={800}
-              height={400}
               style={{ objectPosition: "center" }}
             />
 
@@ -27,12 +23,10 @@ export function OurStory() {
             </div>
 
             {/* Second smaller photo overlapping bottom-right */}
-            <Image
+            <img
               src="/assets/story-secondary.jpg"
               alt="Second supporting image"
               className="absolute bottom-4 right-4 w-[100px] h-[100px] rounded-md object-cover object-top-left border-2 border-[color:#FBF1E8]"
-              width={100}
-              height={100}
             />
           </div>
 

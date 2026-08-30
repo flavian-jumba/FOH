@@ -146,7 +146,7 @@ export function FourPillars() {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

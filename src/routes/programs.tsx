@@ -14,7 +14,7 @@ export const Route = createFileRoute("/programs")({
       { property: "og:description", content: description },
       { property: "og:url", content: "/programs" },
     ],
-    links: [{ rel: "canonical", href: "/programs" ]),
+    links: [{ rel: "canonical", href: "/programs" }],
   }),
   component: ProgramsPage,
 });

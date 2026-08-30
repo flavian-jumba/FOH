@@ -91,7 +91,7 @@ export function Testimonials() {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
 
         {/* Carousel dot indicators below */}
         <motion.div

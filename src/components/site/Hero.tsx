@@ -23,9 +23,9 @@ export function Hero() {
           <div className="inline-flex items-center px-3 py-1 rounded-full text-xs font-manrope uppercase tracking-wider border border-[color:#17090E] bg-transparent text-[color:#FFFFFF]">
             PRIDE OF KENYA AWARDS 2025
           </div>
-          {/* Solid maroon pill: "🏆 NGO OF THE YEAR" */}
+          {/* Solid maroon pill: " NGO OF THE YEAR" */}
           <div className="inline-flex items-center px-3 py-1 rounded-full text-xs font-manrope uppercase tracking-wider bg-[color:#4A0E24] text-[color:#FFFFFF]">
-            🏆 NGO OF THE YEAR
+            NGO OF THE YEAR
           </div>
         </div>
 

@@ -14,7 +14,7 @@ export const Route = createFileRoute("/community")({
       { property: "og:description", content: description },
       { property: "og:url", content: "/community" },
     ],
-    links: [{ rel: "canonical", href: "/community" ]),
+    links: [{ rel: "canonical", href: "/community" }],
   }),
   component: CommunityPage,
 });
