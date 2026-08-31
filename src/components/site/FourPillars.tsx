@@ -1,67 +1,126 @@
-import { Reveal } from "./Reveal";
-
-const PILLARS = [
-  {
-    numeral: "I.",
-    title: "Women's Health",
-    kicker: "Endometriosis Awareness",
-    body: "Education, advocacy, and amplifying voices around Endometriosis — a condition affecting 1 in 10 women globally that remains critically under-discussed across Africa.",
-  },
-  {
-    numeral: "II.",
-    title: "Ending GBV",
-    kicker: "Awareness, Support & Policy",
-    body: "Fighting Gender-Based Violence through awareness campaigns, survivor support, and policy-level advocacy that demands accountability and lasting systemic change.",
-  },
-  {
-    numeral: "III.",
-    title: "Mentorship",
-    kicker: "Leadership Development",
-    body: "Structured mentorship programmes and capacity-building initiatives that equip girls and women entrepreneurs with the skills, confidence, and networks to lead.",
-  },
-  {
-    numeral: "IV.",
-    title: "Community",
-    kicker: "Social Empowerment",
-    body: "Restoring the dignity of the girl-child through targeted social support, sanitary dignity programmes, and community-led grassroots interventions.",
-  },
-] as const;
+import { motion } from "framer-motion";
 
 export function FourPillars() {
   return (
-    <section className="relative overflow-hidden bg-[color:#17090E] font-karla text-[color:#FBF1E8]">
-      <div
-        className="pointer-events-none absolute inset-0 bg-[url('/assets/pillars-bg.jpg')] bg-cover bg-center opacity-[0.12]"
-        aria-hidden="true"
-      />
+    <section
+      id="pillars"
+      className="section-pad relative overflow-hidden"
+      style={{
+        background:
+          "linear-gradient(160deg, var(--burgundy) 0%, color-mix(in oklab, var(--burgundy) 82%, var(--charcoal)) 55%, var(--charcoal) 100%)",
+      }}
+    >
+      {/* Tinted photo background */}
+      <div className="absolute inset-0 -z-20">
+        <div className="inset-0 bg-[url('/assets/pillars-bg.jpg')] bg-cover bg-center" />
+        <div className="inset-0 bg-[color:#3E0F22]/60" />
+      </div>
 
-      <div className="relative mx-auto max-w-7xl px-5 py-24 sm:px-8 lg:px-16 lg:py-32">
-        <Reveal className="mb-20 flex flex-col justify-between gap-8 md:flex-row md:items-end">
-          <h2 className="font-cormorant text-5xl font-light lg:text-6xl">
-            Advocacy <span className="text-[color:#C8A24D] italic">Pillars</span>
-          </h2>
-          <div className="mx-12 hidden h-px flex-grow bg-[color:#C8A24D]/20 md:block" />
-          <p className="text-xs tracking-[0.25em] uppercase opacity-60">Core Framework 2025</p>
-        </Reveal>
-
-        <div className="grid gap-px bg-[color:#C8A24D]/15 md:grid-cols-2 lg:grid-cols-4">
-          {PILLARS.map((pillar, index) => (
-            <Reveal
-              key={pillar.title}
-              delay={index * 0.06}
-              className="group bg-[color:#17090E] px-8 py-14 transition-colors duration-500 hover:bg-[color:#3E0F22]"
+      <div className="shell">
+        <motion.div
+          initial={{ opacity: 0, y: 22 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.12, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+          className="mb-4 text-center"
+        >
+          <div>
+            <motion.div
+              initial={{ opacity: 0, y: 22 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.24, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+              className="text-[color:#C9A76B] text-xs font-manrope uppercase tracking-wider"
             >
-              <span className="mb-8 block font-cormorant text-5xl text-[color:#C8A24D] transition-transform duration-500 group-hover:translate-x-2">
-                {pillar.numeral}
-              </span>
-              <h3 className="mb-2 font-cormorant text-2xl">{pillar.title}</h3>
-              <p className="mb-4 text-[0.7rem] tracking-[0.2em] text-[color:#C8A24D]/80 uppercase">
-                {pillar.kicker}
-              </p>
-              <p className="text-sm leading-relaxed text-[color:#FBF1E8]/60">{pillar.body}</p>
-            </Reveal>
+              — WHAT WE STAND FOR —
+            </motion.div>
+
+            <motion.h2
+              initial={{ opacity: 0, y: 22 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.36, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+              className="mt-6 max-w-xl font-display text-4xl leading-[1.08] font-semibold text-cream lg:text-[3.4rem]"
+            >
+              Advocacy <span className="italic-accent">Pillars</span>
+            </motion.h2>
+
+            <motion.p
+              initial={{ opacity: 0, y: 22 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.48, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+              className="max-w-md text-sm leading-relaxed text-cream/65"
+            >
+              Four commitments that shape every programme, partnership, and pound we deploy — from
+              rural clinics in Kenya to policy rooms in Europe.
+            </motion.p>
+          </div>
+        </motion.div>
+
+        <motion.ul
+          initial={{ opacity: 0, y: 22 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+          className="mt-16 grid gap-px sm:grid-cols-2 lg:grid-cols-4"
+        >
+          {[
+            {
+              num: "01",
+              icon: "♥",
+              title: "Women's Health",
+              sub: "Endometriosis Awareness",
+              copy: "Education, advocacy, and amplifying voices around Endometriosis — a condition affecting 1 in 10 women globally that remains critically under-discussed across Africa.",
+            },
+            {
+              num: "02",
+              icon: "◈",
+              title: "Ending GBV",
+              sub: "Awareness, Support & Policy",
+              copy: "Fighting Gender-Based Violence through awareness campaigns, survivor support, and policy-level advocacy that demands accountability and lasting systemic change.",
+            },
+            {
+              num: "03",
+              icon: "◆",
+              title: "Mentorship",
+              sub: "Leadership Development",
+              copy: "Structured mentorship programmes and capacity-building initiatives that equip girls and women entrepreneurs with the skills, confidence, and networks to lead.",
+            },
+            {
+              num: "04",
+              icon: "◇",
+              title: "Community",
+              sub: "Social Empowerment",
+              copy: "Restoring the dignity of the girl-child through targeted social support, sanitary dignity programmes, and community-led grassroots interventions.",
+            },
+          ].map((p, i) => (
+            <motion.li
+              key={p.num}
+              initial={{ opacity: 0, y: 22 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.72 + i * 0.12, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+              as="li"
+            >
+              <div
+                className="group h-full p-8 transition-colors duration-500 lg:p-9"
+                style={{
+                  backgroundColor: "color-mix(in oklab, var(--cream) 5%, transparent)",
+                  border: "1px solid color-mix(in oklab, var(--cream) 10%, transparent)",
+                }}
+              >
+                <div className="flex items-center justify-between">
+                  <span className="text-2xl text-gold">{p.icon}</span>
+                  <span className="font-display text-sm font-semibold tracking-[0.2em] text-gold">{p.num}</span>
+                </div>
+                <h3 className="mt-8 font-display text-2xl font-semibold text-cream">{p.title}</h3>
+                <p className="mt-2 text-[0.68rem] font-semibold tracking-[0.22em] text-rose-light uppercase">
+                  {p.sub}
+                </p>
+                <span
+                  className="mt-6 block h-px w-10 transition-all duration-500 group-hover:w-20"
+                  style={{ backgroundColor: "var(--gold)" }}
+                />
+                <p className="mt-6 text-sm leading-relaxed text-cream/65">{p.copy}</p>
+              </div>
+            </motion.li>
           ))}
-        </div>
+        </motion.ul>
       </div>
     </section>
   );

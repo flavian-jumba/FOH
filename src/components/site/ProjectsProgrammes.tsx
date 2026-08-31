@@ -1,99 +1,150 @@
-import { Link } from "@tanstack/react-router";
+import { motion } from "framer-motion";
+import dignity from "@/assets/program-dignity.jpg";
+import berlin from "@/assets/program-berlin.jpg";
+import mentorship from "@/assets/program-mentorship.jpg";
 
-import dignityImage from "@/assets/program-dignity.jpg";
-import justiceImage from "@/assets/program-justice.jpg";
-import mentorshipImage from "@/assets/program-mentorship.jpg";
-import { Reveal } from "./Reveal";
-
-const PROJECTS = [
+const projects = [
   {
-    id: "imara-her",
-    eyebrow: "Flagship Initiative",
-    title: "IMARA HER Project &",
-    titleItalic: "Mobile Lab",
-    body: "SFN's cornerstone community project. Vocational training, sanitary dignity products, and reproductive health services delivered to girls and women in rural Kenya — with a dedicated mobile clinic travelling to the most underserved interior communities.",
-    image: dignityImage,
+    num: "01",
+    img: dignity,
     alt: "Dignity kits with sanitary products prepared for distribution in rural Kenya",
-    cta: "Explore the impact",
-    solid: true,
+    tag: "Flagship Initiative",
+    title: "IMARA HER Project & Mobile Lab",
+    copy: "SFN's cornerstone community project. Vocational training, sanitary dignity products, and reproductive health services delivered to girls and women in rural Kenya — with a dedicated mobile clinic travelling to the most underserved interior communities.",
   },
   {
-    id: "empower-her-berlin",
-    eyebrow: "International Relations",
-    title: "Empower HER",
-    titleItalic: "Berlin Chapter",
-    body: "SFN's international wing in Germany. Convening African diaspora women and European leaders under the theme 'Leadership, Empowerment, Healing and Global Collaboration' — a reciprocal flow of talent, capital, and mentorship.",
-    image: justiceImage,
+    num: "02",
+    img: berlin,
     alt: "African diaspora women and European leaders in conversation at a summit",
-    cta: "View programme details",
-    solid: false,
+    tag: "International Relations",
+    title: "Empower HER Berlin Chapter",
+    copy: "SFN's international wing in Germany. Convening African diaspora women and European leaders under the theme 'Leadership, Empowerment, Healing and Global Collaboration' — a reciprocal flow of talent, capital, and mentorship.",
   },
   {
-    id: "leadership-academy",
-    eyebrow: "Professional Growth",
-    title: "SFN Leadership",
-    titleItalic: "Academy",
-    body: "A transformative programme equipping women with executive presence, strategic thinking, and the tools to lead — unapologetically and on their own terms.",
-    image: mentorshipImage,
+    num: "03",
+    img: mentorship,
     alt: "Young women in a leadership and mentorship workshop",
-    cta: "Join the academy",
-    solid: false,
+    tag: "Professional Growth",
+    title: "SFN Leadership Academy",
+    copy: "A transformative programme equipping women with executive presence, strategic thinking, and the tools to lead — unapologetically and on their own terms.",
   },
-] as const;
+];
 
 export function ProjectsProgrammes() {
   return (
-    <section className="relative bg-[color:#FBF1E8] font-karla text-[color:#1F1B1D]">
-      <div className="mx-auto max-w-7xl px-5 py-24 sm:px-8 lg:px-16 lg:py-32">
-        <Reveal className="mb-24 max-w-2xl">
-          <span className="mb-6 block text-[0.7rem] font-bold tracking-[0.4em] text-[color:#C8A24D] uppercase">
-            Active Initiatives
-          </span>
-          <h2 className="font-cormorant text-5xl leading-[0.95] font-light lg:text-6xl">
-            Projects &amp; <span className="italic">Programmes</span>
-          </h2>
-        </Reveal>
-
-        <div className="space-y-32 lg:space-y-48">
-          {PROJECTS.map((project, index) => (
-            <div
-              key={project.id}
-              className={`flex flex-col items-center gap-12 lg:gap-20 ${
-                index % 2 === 0 ? "lg:flex-row-reverse" : "lg:flex-row"
-              }`}
+    <section id="projects" className="section-pad bg-cream">
+      <div className="relative z-20 mx-auto max-w-7xl px-5 sm:px-8 py-20">
+        <div className="shell">
+          <div className="grid gap-10 lg:grid-cols-12 lg:gap-20">
+            <motion.div
+              initial={{ opacity: 0, y: 22 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.12, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+              className="lg:col-span-5"
             >
-              <Reveal className="w-full lg:w-1/2">
-                <img
-                  src={project.image}
-                  alt={project.alt}
-                  loading="lazy"
-                  className="aspect-[4/3] w-full object-cover object-center"
-                />
-              </Reveal>
+              <motion.div
+                initial={{ opacity: 0, y: 22 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.24, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+                className="mb-4"
+              >
+                <div className="text-[color:#C9A76B] text-xs font-manrope uppercase tracking-wider">
+                  — ACTIVE INITIATIVES —
+                </div>
+              </motion.div>
 
-              <Reveal delay={0.08} className="w-full lg:w-1/2">
-                <span className="mb-6 block text-[0.7rem] font-bold tracking-[0.3em] text-[color:#C8A24D] uppercase">
-                  {project.eyebrow}
+              <motion.h2
+                initial={{ opacity: 0, y: 22 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.36, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+                className="mt-2 font-display text-4xl leading-[1.08] font-semibold text-charcoal lg:text-[3.4rem]"
+              >
+                Projects &<br />
+                <span className="italic font-light" style={{ color: "var(--burgundy)" }}>
+                  Programmes
                 </span>
-                <h3 className="mb-8 font-cormorant text-4xl leading-tight font-light lg:text-5xl">
-                  {project.title}
-                  <br />
-                  <span className="italic">{project.titleItalic}</span>
-                </h3>
-                <p className="mb-10 text-lg leading-relaxed text-[color:#1F1B1D]/70">{project.body}</p>
+              </motion.h2>
+
+              <motion.p
+                initial={{ opacity: 0, y: 22 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.48, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+                className="mt-7 text-base leading-relaxed"
+                style={{ color: "var(--muted-foreground)" }}
+              >
+                Three flagship programmes carrying SFN's work from the interior of rural Kenya to the
+                diplomatic halls of Berlin — each one measurable, each one women-led.
+              </motion.p>
+
+              <motion.div
+                initial={{ opacity: 0, y: 22 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+                className="mt-10"
+              >
                 <Link
                   to="/programs"
-                  className={`inline-block px-10 py-4 text-xs font-bold tracking-widest uppercase transition-all hover:-translate-y-1 ${
-                    project.solid
-                      ? "bg-[color:#4A0E24] text-[color:#FBF1E8] hover:bg-[color:#17090E]"
-                      : "border border-[color:#4A0E24] text-[color:#4A0E24] hover:bg-[color:#4A0E24] hover:text-[color:#FBF1E8]"
-                  }`}
+                  className="btn-base btn-outline-dark"
                 >
-                  {project.cta}
+                  Get Involved
                 </Link>
-              </Reveal>
-            </div>
-          ))}
+              </motion.div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 22 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.12, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+              className="lg:col-span-7"
+            >
+              <motion.ul
+                initial={{ opacity: 0, y: 22 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.24, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+                className="space-y-px"
+              >
+                {projects.map((p, i) => (
+                  <motion.li
+                    key={p.num}
+                    initial={{ opacity: 0, y: 22 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.36 + i * 0.12, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+                    as="li"
+                  >
+                    <article className="hairline group grid gap-6 py-8 sm:grid-cols-[10rem_1fr] sm:gap-8">
+                      <div className="overflow-hidden">
+                        <img
+                          src={p.img}
+                          alt={p.alt}
+                          width={1200}
+                          height={1504}
+                          loading="lazy"
+                          className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                          style={{ aspectRatio: "4 / 5" }}
+                        />
+                      </div>
+                      <div>
+                        <div className="flex items-center gap-4">
+                          <span className="font-display text-sm font-semibold tracking-[0.2em] text-gold/60">
+                            {p.num}
+                          </span>
+                          <span className="text-[0.62rem] font-semibold tracking-[0.26em] uppercase" style={{ color: "var(--rose)" }}>
+                            {p.tag}
+                          </span>
+                        </div>
+                        <h3 className="mt-3 font-display text-2xl leading-tight font-semibold text-charcoal lg:text-[1.75rem]">
+                          {p.title}
+                        </h3>
+                        <p className="mt-4 text-sm leading-relaxed" style={{ color: "var(--muted-foreground)" }}>
+                          {p.copy}
+                        </p>
+                      </div>
+                    </article>
+                  </motion.li>
+                ))}
+              </motion.ul>
+            </motion.div>
+          </div>
         </div>
       </div>
     </section>

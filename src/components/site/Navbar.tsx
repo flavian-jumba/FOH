@@ -1,6 +1,4 @@
 import { Link, useRouterState } from "@tanstack/react-router";
-import { AnimatePresence, motion } from "framer-motion";
-import { Heart, Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 
 import { Button } from "@/components/ui/button";
@@ -31,41 +29,38 @@ export function Navbar() {
 
   return (
     <header
-      className={cn(
-        "fixed inset-x-0 top-0 z-50 transition-all duration-500",
-        overHero ? "bg-transparent" : "bg-[color:#17090E]", // Solid --near-black when scrolled or not on hero
-        !overHero && "shadow-soft" // Add shadow when scrolled
-      )}
+      className="fixed inset-x-0 top-0 z-50 transition-all duration-500"
+      style={{
+        backgroundColor: scrolled || open ? "color-mix(in oklab, var(--charcoal) 92%, transparent)" : "transparent",
+        backdropFilter: scrolled || open ? "blur(14px)" : "none",
+        borderBottom: scrolled || open ? "1px solid color-mix(in oklab, var(--cream) 12%, transparent)" : "1px solid transparent",
+      }}
     >
-      <nav
-        aria-label="Primary"
-        className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-5 sm:px-8"
-      >
-        <Link to="/" className="group flex items-center gap-4" onClick={() => setOpen(false)}>
-          <img src={simplyfemininenetworkLogo} alt="Simply Feminine Network Logo" className="h-10 w-auto" />
-          <span className="hidden leading-tight sm:block">
-            <span className="block font-display text-[15px] font-semibold">{ORG.name}</span>
-            <span
-              className={cn(
-                "block text-[11px] tracking-[0.16em] uppercase",
-                overHero ? "text-[color:#FFFFFF]/70" : "text-[color:#C9BFBB]/70",
-              )}
-            >
-              Kenya · Germany
+      <nav className="shell flex h-16 items-center justify-between">
+        <Link to="/" className="flex items-center gap-3" onClick={() => setOpen(false)}>
+          <img
+            src={simplyfemininenetworkLogo}
+            alt="Simply Feminine Network"
+            width={56}
+            height={56}
+            className="h-11 w-11 rounded-full object-cover"
+          />
+          <span className="hidden sm:block">
+            <span className="block font-display text-[0.95rem] font-semibold leading-none tracking-[0.18em] text-cream uppercase">
+              Simply Feminine
+            </span>
+            <span className="mt-1 block text-[0.6rem] font-medium leading-none tracking-[0.42em] text-gold uppercase">
+              Network
             </span>
           </span>
         </Link>
 
-        <ul className="hidden items-center gap-2 xl:flex">
+        <ul className="hidden items-center gap-9 lg:flex">
           {NAV_LINKS.map((link) => (
             <li key={link.to}>
               <Link
                 to={link.to}
-                className={cn(
-                  "relative rounded-full px-3.5 py-2 text-base font-semibold font-manrope tracking-[0.01em] transition-colors",
-                  overHero ? "text-[color:#FFFFFF]/80 hover:text-[color:#FFFFFF]" : "text-[color:#C9BFBB]/80 hover:text-[color:#FFFFFF]",
-                )}
-                activeProps={{ className: "text-[color:#FFFFFF]" }}
+                className="text-[0.875rem] font-medium tracking-[0.05em] uppercase"
               >
                 {link.label}
               </Link>
@@ -73,42 +68,60 @@ export function Navbar() {
           ))}
         </ul>
 
-        <div className="flex items-center gap-3">
-          <Link
-            to="/partners"
-            className="flex items-center justify-center px-6 py-3 text-sm font-manrope uppercase tracking-wider bg-[color:#4A0E24] text-[color:#FFFFFF] rounded-md hover:bg-[color:#3E0F22] transition-colors"
-          >
-            PARTNER WITH US
-          </Link>
-        </div>
+        <Link
+          to="/partners"
+          className="btn-base btn-primary hidden lg:inline-flex"
+          onClick={() => setOpen(false)}
+        >
+          Partner With Us
+        </Link>
+
+        <button
+          type="button"
+          aria-label="Toggle menu"
+          aria-expanded={open}
+          onClick={() => setOpen((v) => !v)}
+          className="flex h-10 w-10 flex-col items-center justify-center gap-[5px] lg:hidden"
+        >
+          <span
+            className="block h-px w-6 bg-cream transition-transform duration-300"
+            style={open ? { transform: "translateY(6px) rotate(45deg)" } : undefined}
+          />
+          <span className="block h-px w-6 bg-cream transition-opacity duration-300" style={open ? { opacity: 0 } : undefined} />
+          <span
+            className="block h-px w-6 bg-cream transition-transform duration-300"
+            style={open ? { transform: "translateY(-6px) rotate(-45deg)" } : undefined}
+          />
+        </button>
       </nav>
 
-      <AnimatePresence>
-        {open ? (
-          <motion.div
-            initial={{ opacity: 0, y: -12 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -12 }}
-            transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
-            className="glass border-t border-border/60 xl:hidden"
-          >
-            <ul className="mx-auto grid max-w-7xl gap-1 px-5 py-5 sm:px-8">
-              {NAV_LINKS.map((link) => (
-                <li key={link.to}>
-                  <Link
-                    to={link.to}
-                    onClick={() => setOpen(false)}
-                    className="block rounded-2xl px-4 py-3 font-display text-lg font-medium transition-colors hover:bg-[color:#4A0E24]/20 hover:text-[color:#FFFFFF]"
-                    activeProps={{ className: "text-[color:#FFFFFF] bg-[color:#4A0E24]/20" }}
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </motion.div>
-        ) : null}
-      </AnimatePresence>
+      <div
+        className="overflow-hidden transition-[max-height] duration-500 lg:hidden"
+        style={{ maxHeight: open ? "26rem" : 0 }}
+      >
+        <ul className="shell flex flex-col gap-1 pb-8">
+          {NAV_LINKS.map((link) => (
+            <li key={link.to}>
+              <Link
+                to={link.to}
+                onClick={() => setOpen(false)}
+                className="block py-3.5 text-[0.875rem] font-medium tracking-[0.05em] uppercase"
+              >
+                {link.label}
+              </Link>
+            </li>
+          ))}
+          <li className="pt-5">
+            <Link
+              to="/partners"
+              onClick={() => setOpen(false)}
+              className="btn-base btn-primary"
+            >
+              Partner With Us
+            </Link>
+          </li>
+        </ul>
+      </div>
     </header>
   );
 }

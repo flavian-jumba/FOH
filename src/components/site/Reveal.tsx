@@ -33,3 +33,12 @@ export function Reveal({ children, delay = 0, className, as = "div" }: RevealPro
     </MotionTag>
   );
 }
+
+export function Eyebrow({ children, tone = "gold" }: { children: ReactNode; tone?: "gold" | "rose" }) {
+  return (
+    <span className="eyebrow" style={tone === "rose" ? { color: "var(--rose-light)" } : undefined}>
+      <span className="rule-gold" style={tone === "rose" ? { background: "var(--rose-light)" } : undefined} />
+      {children}
+    </span>
+  );
+}
