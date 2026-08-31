@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Eyebrow, Reveal } from "./Reveal";
 import { Link } from "@tanstack/react-router";
+import { motion } from "framer-motion";
 
 const tiers = [
   {
