@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "@tanstack/react-router";
 import dignity from "@/assets/program-dignity.jpg";
 import berlin from "@/assets/program-berlin.jpg";
 import mentorship from "@/assets/program-mentorship.jpg";
