@@ -2,12 +2,14 @@
 @source "../src";
 @import "tw-animate-css";
 
+@custom-variant dark (&:is(.dark *));
 
 /*
  * Simply Feminine Network — design system.
- * Based on exact design specification provided.
+ * Migrated to Lovable design system with production compatibility.
  */
 
+/* Main Design Tokens (Lovable Reference) */
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -16,14 +18,31 @@
   --radius-2xl: calc(var(--radius) + 8px);
   --radius-3xl: calc(var(--radius) + 12px);
   --radius-4xl: calc(var(--radius) + 16px);
-  --font-display: "Playfair Display", ui-serif, Georgia, serif;
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  --font-display: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Figtree", ui-sans-serif, system-ui, sans-serif;
+
+  /* Brand palette */
+  --color-burgundy: var(--burgundy);
+  --color-burgundy-light: var(--burgundy-light);
+  --color-rose: var(--rose);
+  --color-rose-light: var(--rose-light);
+  --color-cream: var(--cream);
+  --color-warm-white: var(--warm-white);
+  --color-charcoal: var(--charcoal);
+  --color-gold: var(--gold);
+
+  /* Semantic */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
   --color-popover: var(--popover);
   --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
   --color-accent: var(--accent);
@@ -33,7 +52,9 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  --color-ink: var(--ink);
+  --color-ring-offset-background: var(--background);
+
+  /* Production compatibility tokens */
   --color-sidebar: var(--sidebar);
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar-primary: var(--sidebar-primary);
@@ -42,95 +63,52 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  --color-ink: var(--ink);
 }
 
+/* :root variables */
 :root {
-  --radius: 1.25rem;
+  --radius: 0.25rem;
 
-  /* Design tokens from specification */
-  --maroon-deep: #4A0E24;
-  --near-black: #17090E;
-  --maroon-section: #3E0F22;
-  --cream: #FBF1E8;
-  --gold: #C9A76B;
-  --rose: #E7A9BC;
-  --ink: #1F1B1D;
-  --gray-body: #6E6660;
-  --gray-body-dark: #C9BFBB;
-  --white: #FFFFFF;
+  /* Lovable brand palette (OKLCH) */
+  --burgundy: oklch(0.313 0.114 6);
+  --burgundy-light: oklch(0.384 0.135 8.3);
+  --rose: oklch(0.643 0.105 13.5);
+  --rose-light: oklch(0.794 0.076 10.6);
+  --cream: oklch(0.977 0.011 63.4);
+  --warm-white: oklch(0.972 0.01 72.7);
+  --charcoal: oklch(0.202 0.014 1.7);
 
+  /* Gold requirement: #D4AF37 */
+  --gold: #D4AF37;
+
+  /* Semantic mappings */
   --background: var(--cream);
-  --foreground: var(--gray-body);
-  --ink: var(--ink);
+  --foreground: var(--charcoal);
+  --card: var(--cream);
+  --card-foreground: var(--charcoal);
+  --popover: var(--cream);
+  --popover-foreground: var(--charcoal);
 
-  --card: var(--white);
-  --card-foreground: var(--gray-body);
+  --primary: var(--burgundy);
+  --primary-foreground: var(--cream);
+  --secondary: var(--warm-white);
+  --secondary-foreground: var(--charcoal);
+  --muted: oklch(0.94 0.008 60);
+  --muted-foreground: oklch(0.488 0.022 1.1);
+  --accent: var(--rose-light);
+  --accent-foreground: var(--charcoal);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.984 0.003 247.858);
+  --border: oklch(0.895 0.012 40);
+  --input: oklch(0.895 0.012 40);
+  --ring: var(--rose);
 
-  --popover: var(--white);
-  --popover-foreground: var(--gray-body);
+  /* Shadows */
+  --shadow-soft: 0 18px 50px -28px color-mix(in oklab, var(--burgundy) 45%, transparent);
+  --shadow-lift: 0 30px 70px -32px color-mix(in oklab, var(--burgundy) 55%, transparent);
 
-  /* Primary color --maroon-deep */
-  --primary: var(--maroon-deep);
-  --primary-foreground: var(--white);
-  --primary-soft: color-mix(in oklab, var(--primary) 20%, var(--background));
-  --primary-tint: color-mix(in oklab, var(--primary) 10%, var(--background));
-
-  /* Secondary colors */
-  --secondary: var(--rose);
-  --secondary-foreground: var(--white);
-
-  /* Accent color --gold */
-  --accent: var(--gold);
-  --accent-foreground: var(--near-black);
-  --metallic-gold: var(--gold);
-
-  --muted: color-mix(in oklab, var(--gray-body) 10%, transparent);
-  --muted-foreground: var(--gray-body);
-
-  /* Destructive (errors) */
-  --destructive: #DC2626;
-  --destructive-foreground: var(--white);
-
-  --border: color-mix(in oklab, var(--border) 10%, transparent);
-  --input: color-mix(in oklab, var(--border) 10%, transparent);
-  --ring: color-mix(in oklab, var(--ring) 20%, transparent);
-
-  /* Gradients */
-  --gradient-primary: linear-gradient(
-    120deg,
-    color-mix(in oklab, var(--primary) 80%, transparent) 0%,
-    color-mix(in oklab, var(--primary) 60%, transparent) 55%,
-    color-mix(in oklab, var(--accent) 60%, transparent) 100%
-  );
-  --gradient-tint: linear-gradient(135deg, rgba(107, 44, 145, 0.1), rgba(224, 102, 155, 0.1));
-
-  /* Hero section gradients - using spec colors */
-  --gradient-royal-wash: linear-gradient(
-    35deg,
-    var(--near-black) 0%,
-    var(--near-black) / 0.8 55%,
-    var(--maroon-section) / 0.32 100%
-  );
-  --gradient-royal-base: linear-gradient(
-    180deg,
-    var(--near-black) / 0.75 0%,
-    var(--near-black) / 0.35 38%,
-    var(--near-black) / 0.6 72%,
-    var(--near-black) 100%
-  );
-  --gradient-royal-rule: linear-gradient(
-    90deg,
-    var(--near-black) 0%,
-    var(--gold) 50%,
-    var(--maroon-section) 100%
-  );
-
-  --shadow-soft: 0 2px 8px color-mix(in oklab, var(--near-black) 5%),
-    0 16px 40px -18px color-mix(in oklab, var(--near-black) 18%);
-  --shadow-lift: 0 4px 14px color-mix(in oklab, var(--near-black) 8%),
-    0 32px 64px -28px color-mix(in oklab, var(--near-black) 30%);
-  --shadow-glow: 0 18px 40px -14px color-mix(in oklab, var(--accent) 55%);
-
+  /* Production compatibility tokens */
   --sidebar: var(--white);
   --sidebar-foreground: var(--gray-body);
   --sidebar-primary: var(--maroon-deep);
@@ -139,6 +117,17 @@
   --sidebar-accent-foreground: var(--maroon-deep);
   --sidebar-border: color-mix(in oklab, var(--border) 10%, transparent);
   --sidebar-ring: color-mix(in oklab, var(--ring) 20%, transparent);
+
+  /* Legacy production tokens for compatibility */
+  --maroon-deep: #4A0E24;
+  --near-black: #17090E;
+  --maroon-section: #3E0F22;
+  --cream: #FBF1E8;
+  --rose: #E7A9BC;
+  --ink: #1F1B1D;
+  --gray-body: #6E6660;
+  --gray-body-dark: #C9BFBB;
+  --white: #FFFFFF;
 }
 
 @layer base {
@@ -148,47 +137,156 @@
 
   html {
     scroll-behavior: smooth;
-    -webkit-text-size-adjust: 100%;
   }
 
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
-    font-feature-settings: "cv02", "cv03", "cv11";
     -webkit-font-smoothing: antialiased;
   }
 
   h1,
   h2,
   h3,
-  h4 {
+  h4,
+  h5 {
     font-family: var(--font-display);
-    letter-spacing: -0.015em;
-    text-wrap: balance;
-  }
-
-  ::selection {
-    background: color-mix(in oklab, var(--accent) 35%);
-  }
-
-  :focus-visible {
-    outline: 2px solid var(--color-ring);
-    outline-offset: 3px;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    html {
-      scroll-behavior: auto;
-    }
-    *,
-    *::before,
-    *::after {
-      animation-duration: 0.001ms !important;
-      transition-duration: 0.001ms !important;
-    }
+    letter-spacing: -0.02em;
   }
 }
+
+/* ---------- Buttons ---------- */
+
+@utility btn-base {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.95rem 1.9rem;
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  border: 1px solid transparent;
+  transition:
+    background-color 0.35s ease,
+    color 0.35s ease,
+    border-color 0.35s ease,
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+}
+
+@utility btn-primary {
+  background-color: var(--burgundy);
+  color: var(--cream);
+  box-shadow: var(--shadow-soft);
+
+  &:hover {
+    background-color: var(--burgundy-light);
+    box-shadow: var(--shadow-lift);
+  }
+}
+
+@utility btn-outline {
+  background-color: transparent;
+  color: var(--cream);
+  border-color: color-mix(in oklab, var(--cream) 55%, transparent);
+
+  &:hover {
+    background-color: var(--cream);
+    color: var(--burgundy);
+    border-color: var(--cream);
+  }
+}
+
+@utility btn-outline-dark {
+  background-color: transparent;
+  color: var(--burgundy);
+  border-color: color-mix(in oklab, var(--burgundy) 40%, transparent);
+
+  &:hover {
+    background-color: var(--burgundy);
+    color: var(--cream);
+    border-color: var(--burgundy);
+  }
+}
+
+/* ---------- Editorial helpers ---------- */
+
+@utility eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.85rem;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+@utility rule-gold {
+  display: block;
+  width: 2.5rem;
+  height: 1px;
+  background-color: var(--gold);
+}
+
+@utility italic-accent {
+  font-style: italic;
+  font-weight: 300;
+  color: var(--rose-light);
+}
+
+@utility section-pad {
+  padding-top: 6.5rem;
+  padding-bottom: 6.5rem;
+
+  @media (min-width: 1024px) {
+    padding-top: 9rem;
+    padding-bottom: 9rem;
+  }
+}
+
+@utility shell {
+  width: 100%;
+  max-width: 84rem;
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+
+  @media (min-width: 1024px) {
+    padding-inline: 3rem;
+  }
+}
+
+@utility hairline {
+  border-top: 1px solid color-mix(in oklab, var(--charcoal) 12%, transparent);
+}
+
+@utility hairline-light {
+  border-top: 1px solid color-mix(in oklab, var(--cream) 14%, transparent);
+}
+
+@utility reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  animation: sfn-reveal 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes sfn-reveal {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---------- Production Compatibility Utilities ---------- */
+/* Keep these for existing component compatibility */
 
 @utility gradient-primary {
   background-image: var(--gradient-primary);
@@ -206,7 +304,6 @@
   backdrop-filter: blur(20px) saturate(160%);
   border: 1px solid color-mix(in oklab, var(--color-card) 70%, transparent);
 }
-
 
 @utility shadow-soft {
   box-shadow: var(--shadow-soft);

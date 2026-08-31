@@ -1,0 +1,294 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+
+/*
+ * Simply Feminine Network — design system.
+ * Based on exact design specification provided.
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --font-display: "Playfair Display", ui-serif, Georgia, serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ink: var(--ink);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root {
+  --radius: 1.25rem;
+
+  /* Design tokens from specification */
+  --maroon-deep: #4A0E24;
+  --near-black: #17090E;
+  --maroon-section: #3E0F22;
+  --cream: #FBF1E8;
+  --gold: #C9A76B;
+  --rose: #E7A9BC;
+  --ink: #1F1B1D;
+  --gray-body: #6E6660;
+  --gray-body-dark: #C9BFBB;
+  --white: #FFFFFF;
+
+  --background: var(--cream);
+  --foreground: var(--gray-body);
+  --ink: var(--ink);
+
+  --card: var(--white);
+  --card-foreground: var(--gray-body);
+
+  --popover: var(--white);
+  --popover-foreground: var(--gray-body);
+
+  /* Primary color --maroon-deep */
+  --primary: var(--maroon-deep);
+  --primary-foreground: var(--white);
+  --primary-soft: color-mix(in oklab, var(--primary) 20%, var(--background));
+  --primary-tint: color-mix(in oklab, var(--primary) 10%, var(--background));
+
+  /* Secondary colors */
+  --secondary: var(--rose);
+  --secondary-foreground: var(--white);
+
+  /* Accent color --gold */
+  --accent: var(--gold);
+  --accent-foreground: var(--near-black);
+  --metallic-gold: var(--gold);
+
+  --muted: color-mix(in oklab, var(--gray-body) 10%, transparent);
+  --muted-foreground: var(--gray-body);
+
+  /* Destructive (errors) */
+  --destructive: #DC2626;
+  --destructive-foreground: var(--white);
+
+  --border: color-mix(in oklab, var(--border) 10%, transparent);
+  --input: color-mix(in oklab, var(--border) 10%, transparent);
+  --ring: color-mix(in oklab, var(--ring) 20%, transparent);
+
+  /* Gradients */
+  --gradient-primary: linear-gradient(
+    120deg,
+    color-mix(in oklab, var(--primary) 80%, transparent) 0%,
+    color-mix(in oklab, var(--primary) 60%, transparent) 55%,
+    color-mix(in oklab, var(--accent) 60%, transparent) 100%
+  );
+  --gradient-tint: linear-gradient(135deg, rgba(107, 44, 145, 0.1), rgba(224, 102, 155, 0.1));
+
+  /* Hero section gradients - using spec colors */
+  --gradient-royal-wash: linear-gradient(
+    35deg,
+    var(--near-black) 0%,
+    var(--near-black) / 0.8 55%,
+    var(--maroon-section) / 0.32 100%
+  );
+  --gradient-royal-base: linear-gradient(
+    180deg,
+    var(--near-black) / 0.75 0%,
+    var(--near-black) / 0.35 38%,
+    var(--near-black) / 0.6 72%,
+    var(--near-black) 100%
+  );
+  --gradient-royal-rule: linear-gradient(
+    90deg,
+    var(--near-black) 0%,
+    var(--gold) 50%,
+    var(--maroon-section) 100%
+  );
+
+  --shadow-soft: 0 2px 8px color-mix(in oklab, var(--near-black) 5%),
+    0 16px 40px -18px color-mix(in oklab, var(--near-black) 18%);
+  --shadow-lift: 0 4px 14px color-mix(in oklab, var(--near-black) 8%),
+    0 32px 64px -28px color-mix(in oklab, var(--near-black) 30%);
+  --shadow-glow: 0 18px 40px -14px color-mix(in oklab, var(--accent) 55%);
+
+  --sidebar: var(--white);
+  --sidebar-foreground: var(--gray-body);
+  --sidebar-primary: var(--maroon-deep);
+  --sidebar-primary-foreground: var(--white);
+  --sidebar-accent: var(--gold);
+  --sidebar-accent-foreground: var(--maroon-deep);
+  --sidebar-border: color-mix(in oklab, var(--border) 10%, transparent);
+  --sidebar-ring: color-mix(in oklab, var(--ring) 20%, transparent);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-feature-settings: "cv02", "cv03", "cv11";
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.015em;
+    text-wrap: balance;
+  }
+
+  ::selection {
+    background: color-mix(in oklab, var(--accent) 35%);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-ring);
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+}
+
+@utility gradient-primary {
+  background-image: var(--gradient-primary);
+}
+
+@utility text-gradient {
+  background-image: var(--gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility glass {
+  background: color-mix(in oklab, var(--color-card) 65%, transparent);
+  backdrop-filter: blur(20px) saturate(160%);
+  border: 1px solid color-mix(in oklab, var(--color-card) 70%, transparent);
+}
+
+
+@utility shadow-soft {
+  box-shadow: var(--shadow-soft);
+}
+
+@utility shadow-lift {
+  box-shadow: var(--shadow-lift);
+}
+
+@utility eyebrow {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+@utility card-lift {
+  transition:
+    transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  &:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-lift);
+  }
+}
+
+@utility zoom-media {
+  overflow: hidden;
+  & img {
+    transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  &:hover img {
+    transform: scale(1.06);
+  }
+}
+
+@keyframes float-slow {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(0, -26px, 0) scale(1.04);
+  }
+}
+
+@utility float-slow {
+  animation: float-slow 12s ease-in-out infinite;
+}
+
+@keyframes scroll-dot {
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  35% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(14px);
+    opacity: 0;
+  }
+}
+
+@utility scroll-dot {
+  animation: scroll-dot 1.8s ease-in-out infinite;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@utility marquee-track {
+  animation: marquee 38s linear infinite;
+}
+
+@utility font-manrope {
+  font-family: 'Manrope', sans-serif;
+}

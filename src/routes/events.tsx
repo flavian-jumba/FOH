@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { SignatureEvents } from "@/components/site/SignatureEvents";
+import { EventsSection } from "@/components/site/EventsSection";
 
 const title = "Events — Simply Feminine Network";
 const description =
@@ -22,7 +22,7 @@ export const Route = createFileRoute("/events")({
 function EventsPage() {
   return (
     <>
-      <SignatureEvents />
+      <EventsSection />
     </>
   );
 }

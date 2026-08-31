@@ -10,8 +10,26 @@ import story1Image from "@/assets/story-1.jpg";
 import { Button } from "@/components/ui/button";
 import { Reveal } from "./Reveal";
 import { SectionHeading } from "./SectionHeading";
-import { EVENTS } from "./site-data";
 import { NewsletterSection } from "@/components/site/NewsletterSection";
+
+const EVENTS = [
+  {
+    id: "gala",
+    date: "December 14, 2024",
+    city: "Nairobi",
+    dateLabel: "Dec 14, 2024",
+    title: "Annual Charity Gala",
+    blurb: "Join us for an evening of elegance and purpose as we raise funds to support our women's health and empowerment initiatives across Kenya."
+  },
+  {
+    id: "summit",
+    date: "June 10, 2025",
+    city: "Nairobi",
+    dateLabel: "Jun 10, 2025",
+    title: "African Women Leadership Summit",
+    blurb: "A gathering of change-makers to discuss strategies for advancing gender equality and women's leadership in Africa."
+  }
+] as const;
 
 const images: Record<string, string> = { gala: galaImage, summit: summitImage };
 
@@ -64,7 +82,25 @@ export function EventsSection({ withHeading = true }: { withHeading?: boolean })
   ] as const;
 
   return (
-    <section className="relative" id="events">
+    <section className="section-pad relative isolate overflow-hidden" id="events" style={{ backgroundColor: "var(--charcoal)" }}>
+      {/* Background image and overlay like Lovable */}
+      <img
+        src="/assets/events-bg.jpg"
+        alt=""
+        aria-hidden="true"
+        width={1920}
+        height={1088}
+        loading="lazy"
+        className="absolute inset-0 -z-20 h-full w-full object-cover opacity-25"
+      />
+      <div
+        className="absolute inset-0 -z-10"
+        style={{
+          background:
+            "linear-gradient(180deg, var(--charcoal) 0%, color-mix(in oklab, var(--charcoal) 78%, transparent) 45%, var(--charcoal) 100%)",
+        }}
+      />
+
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         {withHeading ? (
           <SectionHeading
@@ -96,7 +132,7 @@ export function EventsSection({ withHeading = true }: { withHeading?: boolean })
                   </span>
                   <span>{featuredEvent.city}</span>
                 </div>
-                <div className="mt-2 flex items-center gap-3 text-sm text-muted-foreground">
+                <div className="flex items-center gap-3 text-sm text-muted-foreground">
                   <span>
                     <CalendarDays className="size-4 text-primary/50" aria-hidden="true" />
                   </span>
@@ -261,8 +297,7 @@ export function EventsSection({ withHeading = true }: { withHeading?: boolean })
               Our events are more than gatherings — they're where awareness becomes action, where partnerships are forged,
               and where the journey toward dignity gains momentum. Be part of the conversations that create lasting change.
             </p>
-
-                      </div>
+          </div>
         </section>
 
         {/* Newsletter Section */}

@@ -4,7 +4,7 @@ import { Hero } from "@/components/site/Hero";
 import { OurStory } from "@/components/site/OurStory";
 import { FourPillars } from "@/components/site/FourPillars";
 import { ProjectsProgrammes } from "@/components/site/ProjectsProgrammes";
-import { SignatureEvents } from "@/components/site/SignatureEvents";
+import { EventsSection } from "@/components/site/EventsSection";
 import { Testimonials } from "@/components/site/Testimonials";
 import { PartnersCollaborators } from "@/components/site/PartnersCollaborators";
 import { SponsorshipTiers } from "@/components/site/SponsorshipTiers";
@@ -35,7 +35,7 @@ function Index() {
       <OurStory />
       <FourPillars />
       <ProjectsProgrammes />
-      <SignatureEvents />
+      <EventsSection />
       <Testimonials />
       <PartnersCollaborators />
       <SponsorshipTiers />
