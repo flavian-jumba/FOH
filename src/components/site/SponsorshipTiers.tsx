@@ -7,7 +7,6 @@ const tiers = [
   {
     name: "Title Partner",
     dot: "var(--gold)",
-    amount: "KES 5M+",
     benefits: [
       "Naming rights on the SFN Grand Ball",
       "Keynote platform & stage recognition",
@@ -18,7 +17,6 @@ const tiers = [
   {
     name: "Platinum Partner",
     dot: "var(--gold)",
-    amount: "KES 2.5M",
     benefits: [
       "Premium branding across all events",
       "Panel or fireside participation",
@@ -29,7 +27,6 @@ const tiers = [
   {
     name: "Gold Partner",
     dot: "var(--rose)",
-    amount: "KES 1M",
     benefits: [
       "Branding across gala collateral",
       "Programme-level recognition",
@@ -40,7 +37,6 @@ const tiers = [
   {
     name: "Community Partner",
     dot: "var(--rose)",
-    amount: "In-kind",
     benefits: [
       "Recognition on SFN platforms",
       "Volunteer & field engagement",
@@ -108,12 +104,6 @@ export function SponsorshipTiers() {
                             >
                               {t.name}
                             </h3>
-                            <span
-                              className="text-[0.68rem] font-semibold tracking-[0.22em] uppercase"
-                              style={{ color: "var(--gold)" }}
-                            >
-                              {t.amount}
-                            </span>
                           </div>
 
                           <div

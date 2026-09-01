@@ -1,54 +1,40 @@
 import { Link } from "@tanstack/react-router";
-import { motion } from "framer-motion";
+import { motion, useInView, useMotionValue, useTransform, animate } from "framer-motion";
 import heroBg from "@/assets/hero-bg.jpg";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, type ReactElement } from "react";
 import { STATS } from "./site-data";
 
-export function Hero() {
-  const [isInViewport, setIsInViewport] = useState(false);
-
-  // Animation stats
-  const [animatedStats, setAnimatedStats] = useState({
-    ngoYear: "NGO OF THE YEAR 2025",
-    chapters: "0+",
-    pillars: "0+",
-    wards: "0+",
-  });
+// Smooth counter component for animated numbers
+function SmoothCounter({ target, suffix = "", duration = 2 }: { target: number; suffix?: string; duration?: number }): ReactElement {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.5 });
+  const motionValue = useMotionValue(0);
+  const displayValue = useTransform(motionValue, (value) => Math.floor(value));
 
   useEffect(() => {
-    // Check if element is in viewport for counter animation
-    const checkViewport = () => {
-      const heroElement = document.getElementById("top");
-      if (heroElement) {
-        const rect = heroElement.getBoundingClientRect();
-        const viewportHeight = window.innerHeight;
-        setIsInViewport(rect.top < viewportHeight && rect.bottom >= 0);
-      }
-    };
+    if (isInView) {
+      // Respect prefers-reduced-motion
+      const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const animationDuration = prefersReducedMotion ? 0 : duration;
 
-    window.addEventListener("scroll", checkViewport);
-    window.addEventListener("resize", checkViewport);
-    checkViewport(); // Initial check
+      const controls = animate(motionValue, target, {
+        duration: animationDuration,
+        ease: [0.25, 0.46, 0.45, 0.94], // smooth cubic easing
+      });
 
-    return () => {
-      window.removeEventListener("scroll", checkViewport);
-      window.removeEventListener("resize", checkViewport);
-    };
-  }, []);
-
-  useEffect(() => {
-    if (isInViewport) {
-      // Animate counters when in viewport
-      setTimeout(() => {
-        setAnimatedStats((prev) => ({
-          ...prev,
-          chapters: "2+",
-          pillars: "4+",
-          wards: "1K+",
-        }));
-      }, 300); // Delay to let hero section settle
+      return () => controls.stop();
     }
-  }, [isInViewport]);
+  }, [isInView, target, motionValue, duration]);
+
+  return (
+    <span ref={ref}>
+      <motion.span>{displayValue}</motion.span>
+      {suffix}
+    </span>
+  );
+}
+
+export function Hero() {
 
   return (
     <section id="top" className="relative isolate flex min-h-[100svh] items-end overflow-hidden">
@@ -160,7 +146,7 @@ export function Hero() {
               transition={{ delay: 0.68, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
               className="block font-display text-[3.5rem] font-semibold text-rose-light lg:text-4xl"
             >
-              {animatedStats.chapters}
+              <SmoothCounter target={2} suffix="+" duration={1.5} />
             </motion.dt>
             <motion.dd
               initial={{ opacity: 0, y: 22 }}
@@ -186,7 +172,7 @@ export function Hero() {
               transition={{ delay: 0.74, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
               className="block font-display text-[3.5rem] font-semibold text-rose-light lg:text-4xl"
             >
-              {animatedStats.pillars}
+              <SmoothCounter target={4} suffix="+" duration={1.5} />
             </motion.dt>
             <motion.dd
               initial={{ opacity: 0, y: 22 }}
@@ -212,7 +198,7 @@ export function Hero() {
               transition={{ delay: 0.8, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
               className="block font-display text-[3.5rem] font-semibold text-rose-light lg:text-4xl"
             >
-              {animatedStats.wards}
+              <SmoothCounter target={1000} suffix="+" duration={1.5} />
             </motion.dt>
             <motion.dd
               initial={{ opacity: 0, y: 22 }}

@@ -1,307 +1,143 @@
 import { Link } from "@tanstack/react-router";
-import { CalendarDays, MapPin, Ticket } from "lucide-react";
+import { motion } from "framer-motion";
 
-import galaImage from "@/assets/event-gala.jpg";
-import summitImage from "@/assets/event-summit.jpg";
-import dignityImage from "@/assets/program-dignity.jpg";
-import justiceImage from "@/assets/program-justice.jpg";
-import mentorshipImage from "@/assets/program-mentorship.jpg";
-import story1Image from "@/assets/story-1.jpg";
-import { Button } from "@/components/ui/button";
-import { Reveal } from "./Reveal";
-import { SectionHeading } from "./SectionHeading";
+import { Reveal, Eyebrow } from "./Reveal";
 import { NewsletterSection } from "@/components/site/NewsletterSection";
 
-const EVENTS = [
+const SIGNATURE_EVENTS = [
   {
-    id: "gala",
-    date: "December 14, 2024",
+    id: "grand-ball",
+    location: "Kenyatta International Convention Centre",
     city: "Nairobi",
-    dateLabel: "Dec 14, 2024",
-    title: "Annual Charity Gala",
-    blurb:
-      "Join us for an evening of elegance and purpose as we raise funds to support our women's health and empowerment initiatives across Kenya.",
+    type: "Invitation Only",
+    typeColor: "var(--rose)",
+    title: "SFN Grand Ball",
+    description:
+      "SFN's flagship charity ball at the Kenyatta International Convention Centre — a curated gathering of diplomats, corporate leaders, and changemakers.",
+    date: "TBC 2026",
+    cta: "Request Invitation",
   },
   {
-    id: "summit",
-    date: "June 10, 2025",
+    id: "gala-night",
+    location: "Serena Hotel",
     city: "Nairobi",
-    dateLabel: "Jun 10, 2025",
-    title: "African Women Leadership Summit",
-    blurb:
-      "A gathering of change-makers to discuss strategies for advancing gender equality and women's leadership in Africa.",
-  },
-] as const;
-
-const images: Record<string, string> = { gala: galaImage, summit: summitImage };
-
-const PAST_EVENTS = [
-  {
-    id: "outreach-2024",
-    title: "Nairobi Prison Outreach",
-    date: "March 15, 2024",
-    image: dignityImage,
-    alt: "Team distributing dignity kits in Nairobi women's prison",
-    location: "Nairobi Women's Prison",
+    type: "Invitation Only",
+    typeColor: "var(--rose)",
+    title: "Nairobi Charity Gala Night",
     description:
-      "Our team delivered essential hygiene products and conducted mental health sessions for 87 incarcerated women and their children.",
+      "An elegant evening of philanthropy and recognition supporting the IMARA HER Mobile Lab and girl-child empowerment initiatives across rural Kenya.",
+    date: "TBC 2026",
+    cta: "Register Interest",
   },
   {
-    id: "summit-2023",
-    title: "Berlin Leadership Summit",
-    date: "June 10, 2023",
-    image: summitImage,
-    alt: "African diaspora leaders discussing enterprise development",
-    location: "Schloss Hotel Berlin",
+    id: "networking-dinner",
+    location: "Schlosshotel Berlin",
+    city: "Berlin",
+    type: "International Summit",
+    typeColor: "var(--gold)",
+    title: "Empower HER Networking Dinner",
     description:
-      "Diaspora leaders and SFN team convened to create financing pipelines for grassroots Kenyan women's enterprises.",
-  },
-  {
-    id: "drive-2024",
-    title: "Nairobi School Drive",
-    date: "September 22, 2024",
-    image: mentorshipImage,
-    alt: "Sanitary kits distribution to schoolgirls",
-    location: "Migosi Secondary School, Kisumu",
-    description:
-      "Over 2,000 sanitary kits distributed to adolescent girls with menstrual health education sessions.",
-  },
-  {
-    id: "forum-2024",
-    title: "Advocacy Forum",
-    date: "November 5, 2024",
-    image: story1Image,
-    alt: "Panel discussion on women's rights in justice system",
-    location: "Nairobi Governors Office",
-    description:
-      "Stakeholders convened to discuss policy reforms for gender-responsive justice delivery.",
+      "A luxury women's networking and empowerment dinner in Berlin, convening African and European women leaders under H.E. Ambassador Stella Mokaya Orina.",
+    date: "TBC 2026",
+    cta: "Request Invitation",
   },
 ] as const;
 
 export function EventsSection({ withHeading = true }: { withHeading?: boolean }) {
-  // Determine which event is featured (gala if it's sooner, otherwise summit)
-  const now = new Date();
-  const galaDate = new Date(EVENTS[0].date);
-  const summitDate = new Date(EVENTS[1].date);
-  const featuredEvent = galaDate > now ? EVENTS[0] : EVENTS[1];
-  const secondaryEvents = EVENTS.filter((event) => event.id !== featuredEvent.id);
-
   return (
     <section
-      className="relative isolate overflow-hidden"
+      className="relative isolate overflow-hidden py-20 lg:py-28"
       id="events"
       style={{ backgroundColor: "var(--charcoal)" }}
     >
-      {/* Background image and overlay */}
-      <div
-        className="pointer-events-none absolute inset-0 -z-20"
-        aria-hidden="true"
-      >
-        <img
-          src="/assets/events-bg.jpg"
-          alt=""
-          width={1920}
-          height={1088}
-          loading="lazy"
-          className="h-full w-full object-cover opacity-20"
-        />
-      </div>
-      <div
-        className="absolute inset-0 -z-10"
-        style={{
-          background:
-            "linear-gradient(180deg, var(--charcoal) 0%, color-mix(in oklab, var(--charctal) 78%, transparent) 45%, var(--charcoal) 100%)",
-        }}
-      />
-
-      <div className="mx-auto max-w-7xl px-5 sm:px-8">
+      <div className="mx-auto max-w-6xl px-5 sm:px-8">
+        {/* Section Header */}
         {withHeading ? (
-          <SectionHeading
-            eyebrow="Events"
-            title="Where people gather, conversations become action."
-            description="Our events bring together communities, advocates, partners, and supporters to create meaningful change for women and children affected by Kenya's justice system."
-            className="mb-16 lg:mb-20"
-          />
+          <Reveal className="mb-16 lg:mb-20">
+            <div>
+              <Eyebrow>Calendar of Impact</Eyebrow>
+              <h2 className="mt-4 font-display text-4xl leading-[1.08] font-semibold text-cream lg:text-[3.2rem]">
+                Signature
+                <br />
+                <span className="italic font-light" style={{ color: "var(--rose-light)" }}>
+                  Events
+                </span>
+              </h2>
+            </div>
+          </Reveal>
         ) : null}
 
-        {/* Hero Featured Event */}
-        <Reveal className="mb-20 lg:mb-24">
-          <div className="relative group">
-            <div className="aspect-[16/9] w-full rounded-none overflow-hidden">
-              <img
-                src={images[featuredEvent.id]}
-                alt={`${featuredEvent.title} in ${featuredEvent.city}`}
-                loading="lazy"
-                className="size-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[oklch(0.25_0.05_300_/_0.6)]"></div>
-            </div>
-            <div className="absolute bottom-0 left-0 right-0 p-8">
-              <div className="flex items-center gap-3 text-sm text-muted-foreground">
-                <span>
-                  <MapPin className="size-4 text-primary/50" aria-hidden="true" />
-                </span>
-                <span>{featuredEvent.city}</span>
-              </div>
-              <div className="flex items-center gap-3 text-sm text-muted-foreground">
-                <span>
-                  <CalendarDays className="size-4 text-primary/50" aria-hidden="true" />
-                </span>
-                <span>{featuredEvent.dateLabel}</span>
-              </div>
-              <h1 className="mt-4 text-5xl font-bold text-white sm:text-6xl lg:text-7xl">
-                {featuredEvent.title}
-              </h1>
-              <p className="mt-3 text-lg text-white/90 leading-relaxed max-w-xl">
-                {featuredEvent.blurb}
-              </p>
-              <Button asChild variant="hero" className="mt-6">
-                <Link to="/contact">
-                  Request an invitation
-                  <Ticket className="ml-2 size-4" aria-hidden="true" />
-                </Link>
-              </Button>
-            </div>
-          </div>
-        </Reveal>
+        {/* Event Cards */}
+        <div className="space-y-0">
+          {SIGNATURE_EVENTS.map((event, idx) => (
+            <Reveal key={event.id} delay={idx * 50}>
+              <div
+                className="hairline py-8 lg:py-10 flex flex-col gap-6 lg:grid lg:grid-cols-12 lg:gap-8 lg:items-center"
+                style={{
+                  borderTopColor: "color-mix(in oklab, var(--cream) 12%, transparent)",
+                  borderTopWidth: "1px",
+                }}
+              >
+                {/* Left Column - Date/Location Info */}
+                <div className="lg:col-span-3 flex flex-col gap-1">
+                  <div className="text-sm font-semibold tracking-[0.1em] uppercase text-cream/60">
+                    {event.date}
+                  </div>
+                  <div className="text-sm font-medium tracking-[0.05em] uppercase text-cream/80">
+                    {event.location}
+                  </div>
+                </div>
 
-        {/* Upcoming Events */}
-        <section className="relative" style={{ backgroundColor: "var(--mist)" }}>
-          <div
-            className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-0.5"
-            style={{ backgroundImage: "var(--gradient)" }}
-            aria-hidden="true"
-          ></div>
-
-          <div className="mx-auto max-w-7xl px-6 py-20 lg:py-24">
-            <Reveal as="div" key="upcoming-events-title">
-              <h2 className="text-3xl font-bold text-plum mb-6">Upcoming Events</h2>
-            </Reveal>
-
-            <p className="text-base text-muted-foreground max-w-lg mx-auto mb-12 lg:mb-16 leading-relaxed">
-              Mark your calendars for these transformative gatherings where commitment meets community.
-            </p>
-
-            <Reveal as="div" key="upcoming-events-grid">
-              <div className="grid gap-12 lg:grid-cols-2">
-                {secondaryEvents.map((event) => (
-                  <Reveal
-                    as="div"
-                    key={event.id}
-                    delay={secondaryEvents.indexOf(event) * 0.05}
-                    className="group"
+                {/* Middle Column - Badge and Content */}
+                <div className="lg:col-span-5 flex flex-col gap-3">
+                  {/* Type Badge */}
+                  <div
+                    className="w-fit text-[0.65rem] font-semibold tracking-[0.18em] uppercase px-3 py-1.5"
+                    style={{
+                      color: event.typeColor,
+                      border: `1px solid ${event.typeColor}`,
+                      opacity: 0.7,
+                    }}
                   >
-                    <div className="relative overflow-hidden hover:shadow-lg transition-shadow duration-300 rounded-xl border border-primary/10">
-                      <div className="aspect-[16/9] w-full">
-                        <img
-                          src={images[event.id]}
-                          alt={`${event.title} in ${event.city}`}
-                          loading="lazy"
-                          className="size-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
-                        />
-                      </div>
-                      <div className="p-6">
-                        <div className="flex items-center gap-3 mb-3 text-sm text-muted-foreground">
-                          <span>
-                            <MapPin className="size-4 text-primary/50" aria-hidden="true" />
-                          </span>
-                          <span>{event.city}</span>
-                        </div>
-                        <div className="flex items-center gap-3 mb-3 text-sm text-muted-foreground">
-                          <span>
-                            <CalendarDays className="size-4 text-primary/50" aria-hidden="true" />
-                          </span>
-                          <span>{event.dateLabel}</span>
-                        </div>
-                        <h3 className="text-xl font-semibold text-primary mb-3">{event.title}</h3>
-                        <p className="text-muted-foreground leading-relaxed mb-5">{event.blurb}</p>
-                        <Button asChild variant="hero" className="w-fit">
-                          <Link to="/contact">
-                            Request an invitation
-                            <Ticket className="ml-1 size-4" aria-hidden="true" />
-                          </Link>
-                        </Button>
-                      </div>
-                    </div>
-                  </Reveal>
-                ))}
+                    {event.type}
+                  </div>
+
+                  {/* Title */}
+                  <h3 className="font-display text-2xl font-semibold text-cream lg:text-[1.8rem] leading-[1.1]">
+                    {event.title}
+                  </h3>
+
+                  {/* Description */}
+                  <p className="text-sm leading-relaxed text-cream/70 max-w-md">
+                    {event.description}
+                  </p>
+                </div>
+
+                {/* Right Column - CTA Button */}
+                <div className="lg:col-span-4 flex justify-start lg:justify-end">
+                  <motion.button
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    onClick={() => window.location.href = "/contact"}
+                    className="px-6 py-3 text-sm font-semibold tracking-[0.1em] uppercase transition-all duration-300"
+                    style={{
+                      color: "var(--charcoal)",
+                      backgroundColor: "var(--cream)",
+                      border: "1px solid var(--cream)",
+                    }}
+                  >
+                    {event.cta}
+                  </motion.button>
+                </div>
               </div>
             </Reveal>
-          </div>
-        </section>
+          ))}
+        </div>
+      </div>
 
-        {/* Past Events */}
-        <section className="relative" style={{ backgroundColor: "var(--cream)" }}>
-          <div
-            className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-0.5"
-            style={{ backgroundImage: "var(--gradient)" }}
-            aria-hidden="true"
-          ></div>
-
-          <div className="mx-auto max-w-7xl px-6 py-20 lg:py-24">
-            <Reveal as="div" key="past-events-title">
-              <h2 className="text-3xl font-bold text-plum mb-6">Moments That Moved Us</h2>
-            </Reveal>
-
-            <p className="text-base text-muted-foreground max-w-lg mx-auto mb-12 lg:mb-16 leading-relaxed">
-              These are the moments where our work took shape — in prisons, schools, and community spaces across Kenya.
-            </p>
-
-            <Reveal as="div" key="past-events-grid">
-              <div className="grid gap-10 lg:grid-cols-3">
-                {PAST_EVENTS.map((event, index) => (
-                  <Reveal as="div" key={event.id} delay={index * 0.05} className="group">
-                    <div className="relative aspect-[1/1] w-full rounded-none overflow-hidden hover:shadow-lg transition-shadow duration-300">
-                      <img
-                        src={event.image}
-                        alt={event.alt}
-                        loading="lazy"
-                        className="size-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
-                        style={{ borderRadius: "50%" }}
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[oklch(0.25_0.05_300_/_0.4)]"></div>
-                    </div>
-
-                    <div className="mt-4">
-                      <h3 className="text-xl font-semibold text-plum mb-2">{event.title}</h3>
-                      <p className="text-sm text-muted-foreground mb-2">
-                        {event.date} • {event.location}
-                      </p>
-                      <p className="text-muted-foreground leading-relaxed">{event.description}</p>
-                    </div>
-                  </Reveal>
-                ))}
-              </div>
-            </Reveal>
-          </div>
-        </section>
-
-        {/* Gradient CTA Pause Point */}
-        <section className="relative">
-          <div
-            className="pointer-events-none absolute inset-0 -z-10"
-            style={{ backgroundImage: "var(--gradient)" }}
-            aria-hidden="true"
-          ></div>
-
-          <div className="mx-auto max-w-3xl py-16 px-6 text-center">
-            <SectionHeading
-              eyebrow="Be part of the change"
-              title="Join us at our next gathering"
-              className="mb-6"
-            />
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8 leading-relaxed">
-              Our events are more than gatherings — they're where awareness becomes action, where partnerships are forged, and where the journey toward dignity gains momentum. Be part of the conversations that create lasting change.
-            </p>
-          </div>
-        </section>
-
-        {/* Newsletter Section */}
-        <section className="relative">
-          <Reveal as="div" key="newsletter-section">
-            <NewsletterSection />
-          </Reveal>
-        </section>
+      {/* Newsletter Section at Bottom */}
+      <div className="mt-20 lg:mt-28 border-t-2" style={{ borderTopColor: "color-mix(in oklab, var(--cream) 12%, transparent)" }}>
+        <NewsletterSection />
       </div>
     </section>
   );

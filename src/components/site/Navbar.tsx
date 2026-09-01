@@ -13,6 +13,16 @@ export function Navbar() {
   const scrolled = !overHero;
   const [open, setOpen] = useState(false);
 
+  const handleLogoClick = () => {
+    setOpen(false);
+    // If not on homepage, navigate to home
+    if (pathname !== "/") {
+      return; // Let the Link component handle navigation
+    }
+    // If on homepage, smooth scroll to top
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   useEffect(() => {
     const onScroll = () => setAtTop(window.scrollY <= 24);
     onScroll();
@@ -43,7 +53,7 @@ export function Navbar() {
       }}
     >
       <nav className="shell flex h-14 items-center justify-between">
-        <Link to="/" className="flex items-center gap-2" onClick={() => setOpen(false)}>
+        <Link to="/" className="flex items-center gap-2" onClick={handleLogoClick}>
           <img
             src={simplyfemininenetworkLogo}
             alt="Simply Feminine Network"
@@ -52,7 +62,7 @@ export function Navbar() {
             className="h-9 w-9 rounded-full object-cover"
           />
           <span className="hidden sm:block">
-            <span className="block font-display text-[0.8rem] font-semibold leading-none tracking-[0.18em] text-white uppercase">
+            <span className="block font-display text-[0.8rem] font-semibold leading-none tracking-[0.18em] text-cream uppercase">
               Simply Feminine
             </span>
             <span className="mt-0.5 block text-[0.55rem] font-medium leading-none tracking-[0.42em] text-gold uppercase">
@@ -66,7 +76,7 @@ export function Navbar() {
             <li key={link.to}>
               <Link
                 to={link.to}
-                className="text-[0.8rem] font-medium tracking-[0.05em] uppercase text-white transition-colors hover:text-white/80"
+                className="text-[0.8rem] font-medium tracking-[0.05em] uppercase text-cream transition-colors hover:text-white"
               >
                 {link.label}
               </Link>
@@ -114,7 +124,7 @@ export function Navbar() {
               <Link
                 to={link.to}
                 onClick={() => setOpen(false)}
-                className="block py-2.5 text-[0.8rem] font-medium tracking-[0.05em] uppercase text-white"
+                className="block py-2.5 text-[0.8rem] font-medium tracking-[0.05em] uppercase text-cream"
               >
                 {link.label}
               </Link>
