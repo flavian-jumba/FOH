@@ -27,7 +27,9 @@ export function OurStory() {
               className="absolute right-0 -bottom-8 hidden w-56 p-6 lg:block"
               style={{ backgroundColor: "var(--charcoal)" }}
             >
-              <p className="text-[0.6rem] font-semibold tracking-[0.3em] text-gold uppercase">Accolade</p>
+              <p className="text-[0.6rem] font-semibold tracking-[0.3em] text-gold uppercase">
+                Accolade
+              </p>
               <p className="mt-2 font-display text-lg leading-snug font-semibold text-cream">
                 NGO of the Year 2025
               </p>
@@ -110,7 +112,9 @@ export function OurStory() {
               <LeftBorderBlock borderColor="maroon">
                 <div className="flex items-start space-x-2">
                   <span className="text-[color:#4A0E24] font-semibold">Purpose</span>
-                  <span className="text-[color:#6E6660]">Every initiative is anchored in a clear, measurable impact for women and girls.</span>
+                  <span className="text-[color:#6E6660]">
+                    Every initiative is anchored in a clear, measurable impact for women and girls.
+                  </span>
                 </div>
               </LeftBorderBlock>
             </motion.div>
@@ -125,7 +129,9 @@ export function OurStory() {
               <LeftBorderBlock borderColor="maroon">
                 <div className="flex items-start space-x-2">
                   <span className="text-[color:#4A0E24] font-semibold">Grace</span>
-                  <span className="text-[color:#6E6660]">We serve with dignity, warmth, and the quiet power of a united sisterhood.</span>
+                  <span className="text-[color:#6E6660]">
+                    We serve with dignity, warmth, and the quiet power of a united sisterhood.
+                  </span>
                 </div>
               </LeftBorderBlock>
             </motion.div>
@@ -140,7 +146,9 @@ export function OurStory() {
               <LeftBorderBlock borderColor="maroon">
                 <div className="flex items-start space-x-2">
                   <span className="text-[color:#4A0E24] font-semibold">Action</span>
-                  <span className="text-[color:#6E6660]">From mobile labs to global summits — we don't just advocate. We do.</span>
+                  <span className="text-[color:#6E6660]">
+                    From mobile labs to global summits — we don't just advocate. We do.
+                  </span>
                 </div>
               </LeftBorderBlock>
             </motion.div>

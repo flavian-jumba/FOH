@@ -6,13 +6,10 @@ interface PillTagProps {
   className?: string;
 }
 
-export function PillTag({
-  variant = "lavender",
-  children,
-  className,
-}: PillTagProps) {
+export function PillTag({ variant = "lavender", children, className }: PillTagProps) {
   // Base styles for all pill tags
-  const baseClasses = "inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-manrope uppercase tracking-wider";
+  const baseClasses =
+    "inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-manrope uppercase tracking-wider";
 
   // Variant-specific styles
   const variantClasses = {
@@ -22,9 +19,5 @@ export function PillTag({
     "gold-outline": "border border-[color:#C9A76B] text-[color:#C9A76B] bg-transparent", // Gold outline
   }[variant];
 
-  return (
-    <span className={`${baseClasses} ${variantClasses} ${className}`}>
-      {children}
-    </span>
-  );
+  return <span className={`${baseClasses} ${variantClasses} ${className}`}>{children}</span>;
 }

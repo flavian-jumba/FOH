@@ -35,7 +35,8 @@ export function Testimonials() {
           <div className="max-w-2xl">
             <Eyebrow>Voices of Our Community</Eyebrow>
             <h2 className="mt-6 font-display text-4xl leading-[1.08] font-semibold text-charcoal lg:text-[3.4rem]">
-              What Our <span className="italic font-light" style={{ color: "var(--burgundy)" }}>
+              What Our{" "}
+              <span className="italic font-light" style={{ color: "var(--burgundy)" }}>
                 Members Say
               </span>
             </h2>
@@ -81,7 +82,9 @@ export function Testimonials() {
                     <span
                       className="flex h-11 w-11 items-center justify-center rounded-full text-[0.7rem] font-semibold tracking-[0.1em]"
                       style={{
-                        backgroundColor: isActive ? "var(--rose-light)" : "color-mix(in oklab, var(--burgundy) 10%, transparent)",
+                        backgroundColor: isActive
+                          ? "var(--rose-light)"
+                          : "color-mix(in oklab, var(--burgundy) 10%, transparent)",
                         color: isActive ? "var(--burgundy)" : "var(--burgundy)",
                       }}
                     >

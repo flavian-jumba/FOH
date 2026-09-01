@@ -76,7 +76,12 @@ export function PartnersCollaborators() {
                 type="button"
                 onClick={() => setActive(c.key)}
                 className="relative cursor-pointer pb-4 text-[0.68rem] font-semibold tracking-[0.22em] uppercase transition-colors"
-                style={{ color: active === c.key ? "var(--gold)" : "color-mix(in oklab, var(--cream) 55%, transparent)" }}
+                style={{
+                  color:
+                    active === c.key
+                      ? "var(--gold)"
+                      : "color-mix(in oklab, var(--cream) 55%, transparent)",
+                }}
               >
                 {c.label}
                 <span
@@ -107,7 +112,9 @@ export function PartnersCollaborators() {
                 >
                   {p.initials}
                 </span>
-                <h3 className="mt-6 font-display text-lg leading-snug font-semibold text-cream">{p.name}</h3>
+                <h3 className="mt-6 font-display text-lg leading-snug font-semibold text-cream">
+                  {p.name}
+                </h3>
                 <span
                   className="mt-4 inline-flex px-2.5 py-1 text-[0.56rem] font-semibold tracking-[0.24em] uppercase"
                   style={{
@@ -132,10 +139,7 @@ export function PartnersCollaborators() {
               Interested in a partnership that puts women's health, dignity, and leadership at the
               centre of your impact strategy?
             </p>
-            <Link
-              to="/partners"
-              className="btn-base btn-outline self-start"
-            >
+            <Link to="/partners" className="btn-base btn-outline self-start">
               Become a Partner
             </Link>
           </div>

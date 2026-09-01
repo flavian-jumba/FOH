@@ -38,9 +38,7 @@ export function Footer() {
                 </span>
               </span>
             </Link>
-            <p className="mt-7 max-w-sm text-sm leading-relaxed text-cream/60">
-              {ORG.tagline}
-            </p>
+            <p className="mt-7 max-w-sm text-sm leading-relaxed text-cream/60">{ORG.tagline}</p>
           </div>
 
           {/* Column 2: Explore Links */}
@@ -50,17 +48,29 @@ export function Footer() {
             </h3>
             <ul className="mt-6 space-y-3">
               <li>
-                <Link to="/about" className="text-sm text-cream/70 transition-colors hover:text-cream" onClick={() => setOpen(false)}>
+                <Link
+                  to="/about"
+                  className="text-sm text-cream/70 transition-colors hover:text-cream"
+                  onClick={() => setOpen(false)}
+                >
                   Our Story
                 </Link>
               </li>
               <li>
-                <Link to="/mission" className="text-sm text-cream/70 transition-colors hover:text-cream" onClick={() => setOpen(false)}>
+                <Link
+                  to="/mission"
+                  className="text-sm text-cream/70 transition-colors hover:text-cream"
+                  onClick={() => setOpen(false)}
+                >
                   Pillars
                 </Link>
               </li>
               <li>
-                <Link to="/programs" className="text-sm text-cream/70 transition-colors hover:text-cream" onClick={() => setOpen(false)}>
+                <Link
+                  to="/programs"
+                  className="text-sm text-cream/70 transition-colors hover:text-cream"
+                  onClick={() => setOpen(false)}
+                >
                   Projects
                 </Link>
               </li>
@@ -74,17 +84,29 @@ export function Footer() {
             </h3>
             <ul className="mt-6 space-y-3">
               <li>
-                <Link to="/events" className="text-sm text-cream/70 transition-colors hover:text-cream" onClick={() => setOpen(false)}>
+                <Link
+                  to="/events"
+                  className="text-sm text-cream/70 transition-colors hover:text-cream"
+                  onClick={() => setOpen(false)}
+                >
                   Events
                 </Link>
               </li>
               <li>
-                <Link to="/partners" className="text-sm text-cream/70 transition-colors hover:text-cream" onClick={() => setOpen(false)}>
+                <Link
+                  to="/partners"
+                  className="text-sm text-cream/70 transition-colors hover:text-cream"
+                  onClick={() => setOpen(false)}
+                >
                   Partners
                 </Link>
               </li>
               <li>
-                <Link to="/contact" className="text-sm text-cream/70 transition-colors hover:text-cream" onClick={() => setOpen(false)}>
+                <Link
+                  to="/contact"
+                  className="text-sm text-cream/70 transition-colors hover:text-cream"
+                  onClick={() => setOpen(false)}
+                >
                   Contact
                 </Link>
               </li>

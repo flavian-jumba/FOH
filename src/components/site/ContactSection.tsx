@@ -23,7 +23,10 @@ export function ContactSection() {
               something lasting
             </span>
           </h2>
-          <p className="mt-7 max-w-md text-base leading-relaxed" style={{ color: "var(--muted-foreground)" }}>
+          <p
+            className="mt-7 max-w-md text-base leading-relaxed"
+            style={{ color: "var(--muted-foreground)" }}
+          >
             Whether you are a corporate partner, a donor, or a woman ready to join the network, we
             would love to hear from you.
           </p>
@@ -31,7 +34,10 @@ export function ContactSection() {
           <ul className="mt-12">
             {details.map((d) => (
               <li key={d.label} className="hairline py-5">
-                <span className="block text-[0.62rem] font-semibold tracking-[0.28em] uppercase" style={{ color: "var(--gold)" }}>
+                <span
+                  className="block text-[0.62rem] font-semibold tracking-[0.28em] uppercase"
+                  style={{ color: "var(--gold)" }}
+                >
                   {d.label}
                 </span>
                 <span className="mt-2 block font-display text-lg text-charcoal">{d.value}</span>
@@ -51,7 +57,10 @@ export function ContactSection() {
           >
             <div className="grid gap-6 sm:grid-cols-2">
               <label className="block">
-                <span className="block text-[0.62rem] font-semibold tracking-[0.24em] uppercase" style={{ color: "var(--muted-foreground)" }}>
+                <span
+                  className="block text-[0.62rem] font-semibold tracking-[0.24em] uppercase"
+                  style={{ color: "var(--muted-foreground)" }}
+                >
                   Full name
                 </span>
                 <input
@@ -63,7 +72,10 @@ export function ContactSection() {
                 />
               </label>
               <label className="block">
-                <span className="block text-[0.62rem] font-semibold tracking-[0.24em] uppercase" style={{ color: "var(--muted-foreground)" }}>
+                <span
+                  className="block text-[0.62rem] font-semibold tracking-[0.24em] uppercase"
+                  style={{ color: "var(--muted-foreground)" }}
+                >
                   Organisation
                 </span>
                 <input
@@ -77,7 +89,10 @@ export function ContactSection() {
             </div>
 
             <label className="block">
-              <span className="block text-[0.62rem] font-semibold tracking-[0.24em] uppercase" style={{ color: "var(--muted-foreground)" }}>
+              <span
+                className="block text-[0.62rem] font-semibold tracking-[0.24em] uppercase"
+                style={{ color: "var(--muted-foreground)" }}
+              >
                 Email
               </span>
               <input
@@ -90,7 +105,10 @@ export function ContactSection() {
             </label>
 
             <label className="block">
-              <span className="block text-[0.62rem] font-semibold tracking-[0.24em] uppercase" style={{ color: "var(--muted-foreground)" }}>
+              <span
+                className="block text-[0.62rem] font-semibold tracking-[0.24em] uppercase"
+                style={{ color: "var(--muted-foreground)" }}
+              >
                 Phone
               </span>
               <input
@@ -103,7 +121,10 @@ export function ContactSection() {
             </label>
 
             <label className="mt-6 block">
-              <span className="block text-[0.62rem] font-semibold tracking-[0.24em] uppercase" style={{ color: "var(--muted-foreground)" }}>
+              <span
+                className="block text-[0.62rem] font-semibold tracking-[0.24em] uppercase"
+                style={{ color: "var(--muted-foreground)" }}
+              >
                 How can we partner?
               </span>
               <textarea

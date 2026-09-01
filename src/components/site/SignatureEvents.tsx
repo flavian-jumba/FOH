@@ -42,10 +42,12 @@ export function SignatureEvents() {
           <span className="mb-4 block text-[0.7rem] font-bold tracking-[0.5em] text-[color:#C8A24D] uppercase">
             Calendar of Impact
           </span>
-          <h2 className="font-cormorant text-5xl font-light italic lg:text-6xl">Signature Events</h2>
+          <h2 className="font-cormorant text-5xl font-light italic lg:text-6xl">
+            Signature Events
+          </h2>
           <p className="mx-auto mt-6 max-w-xl text-sm leading-relaxed text-[color:#FBF1E8]/60">
-            SFN's flagship charity balls are invitation-only and not sold to the public. Attendance is
-            reserved for verified diplomats, corporate leaders, and strategic partners.
+            SFN's flagship charity balls are invitation-only and not sold to the public. Attendance
+            is reserved for verified diplomats, corporate leaders, and strategic partners.
           </p>
         </Reveal>
 

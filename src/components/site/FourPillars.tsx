@@ -106,7 +106,9 @@ export function FourPillars() {
               >
                 <div className="flex items-center justify-between">
                   <span className="text-2xl text-gold">{p.icon}</span>
-                  <span className="font-display text-sm font-semibold tracking-[0.2em] text-gold">{p.num}</span>
+                  <span className="font-display text-sm font-semibold tracking-[0.2em] text-gold">
+                    {p.num}
+                  </span>
                 </div>
                 <h3 className="mt-8 font-display text-2xl font-semibold text-cream">{p.title}</h3>
                 <p className="mt-2 text-[0.68rem] font-semibold tracking-[0.22em] text-rose-light uppercase">

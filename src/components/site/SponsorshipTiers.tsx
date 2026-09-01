@@ -8,25 +8,45 @@ const tiers = [
     name: "Title Partner",
     dot: "var(--gold)",
     amount: "KES 5M+",
-    benefits: ["Naming rights on the SFN Grand Ball", "Keynote platform & stage recognition", "Dedicated impact report", "Head table for twelve guests"],
+    benefits: [
+      "Naming rights on the SFN Grand Ball",
+      "Keynote platform & stage recognition",
+      "Dedicated impact report",
+      "Head table for twelve guests",
+    ],
   },
   {
     name: "Platinum Partner",
     dot: "var(--gold)",
     amount: "KES 2.5M",
-    benefits: ["Premium branding across all events", "Panel or fireside participation", "Quarterly impact briefings", "Head table for eight guests"],
+    benefits: [
+      "Premium branding across all events",
+      "Panel or fireside participation",
+      "Quarterly impact briefings",
+      "Head table for eight guests",
+    ],
   },
   {
     name: "Gold Partner",
     dot: "var(--rose)",
     amount: "KES 1M",
-    benefits: ["Branding across gala collateral", "Programme-level recognition", "Bi-annual impact summary", "Table for six guests"],
+    benefits: [
+      "Branding across gala collateral",
+      "Programme-level recognition",
+      "Bi-annual impact summary",
+      "Table for six guests",
+    ],
   },
   {
     name: "Community Partner",
     dot: "var(--rose)",
     amount: "In-kind",
-    benefits: ["Recognition on SFN platforms", "Volunteer & field engagement", "Annual impact newsletter", "Two invitations per event"],
+    benefits: [
+      "Recognition on SFN platforms",
+      "Volunteer & field engagement",
+      "Annual impact newsletter",
+      "Two invitations per event",
+    ],
   },
 ];
 
@@ -46,7 +66,10 @@ export function SponsorshipTiers() {
                 Tiers
               </span>
             </h2>
-            <p className="mt-7 text-base leading-relaxed" style={{ color: "var(--muted-foreground)" }}>
+            <p
+              className="mt-7 text-base leading-relaxed"
+              style={{ color: "var(--muted-foreground)" }}
+            >
               Every tier is structured around measurable outcomes — dignity kits delivered, clinics
               reached, women mentored — and reported back to you in full.
             </p>
@@ -85,14 +108,20 @@ export function SponsorshipTiers() {
                             >
                               {t.name}
                             </h3>
-                            <span className="text-[0.68rem] font-semibold tracking-[0.22em] uppercase" style={{ color: "var(--gold)" }}>
+                            <span
+                              className="text-[0.68rem] font-semibold tracking-[0.22em] uppercase"
+                              style={{ color: "var(--gold)" }}
+                            >
                               {t.amount}
                             </span>
                           </div>
 
                           <div
                             className="grid overflow-hidden transition-all duration-500"
-                            style={{ gridTemplateRows: isActive ? "1fr" : "0fr", opacity: isActive ? 1 : 0 }}
+                            style={{
+                              gridTemplateRows: isActive ? "1fr" : "0fr",
+                              opacity: isActive ? 1 : 0,
+                            }}
                           >
                             <ul className="min-h-0 space-y-2 pt-5 pl-6">
                               {t.benefits.map((b) => (
@@ -101,7 +130,10 @@ export function SponsorshipTiers() {
                                   className="flex items-start gap-3 text-sm leading-relaxed"
                                   style={{ color: "var(--muted-foreground)" }}
                                 >
-                                  <span className="mt-2 h-px w-3 shrink-0" style={{ backgroundColor: "var(--gold)" }} />
+                                  <span
+                                    className="mt-2 h-px w-3 shrink-0"
+                                    style={{ backgroundColor: "var(--gold)" }}
+                                  />
                                   {b}
                                 </li>
                               ))}

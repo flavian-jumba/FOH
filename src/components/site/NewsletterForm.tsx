@@ -4,11 +4,7 @@ import { useState, type FormEvent } from "react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
-export function NewsletterForm({
-  className,
-}: {
-  className?: string;
-}) {
+export function NewsletterForm({ className }: { className?: string }) {
   const [email, setEmail] = useState("");
   const [done, setDone] = useState(false);
 
@@ -26,7 +22,7 @@ export function NewsletterForm({
           "bg-primary-tint text-primary",
           className,
         )}
-      role="status"
+        role="status"
       >
         <Check className="size-4" aria-hidden="true" />
         You're on the list. Karibu.

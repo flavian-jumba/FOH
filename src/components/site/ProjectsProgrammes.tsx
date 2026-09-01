@@ -73,8 +73,8 @@ export function ProjectsProgrammes() {
                 className="mt-7 text-base leading-relaxed"
                 style={{ color: "var(--muted-foreground)" }}
               >
-                Three flagship programmes carrying SFN's work from the interior of rural Kenya to the
-                diplomatic halls of Berlin — each one measurable, each one women-led.
+                Three flagship programmes carrying SFN's work from the interior of rural Kenya to
+                the diplomatic halls of Berlin — each one measurable, each one women-led.
               </motion.p>
 
               <motion.div
@@ -83,10 +83,7 @@ export function ProjectsProgrammes() {
                 transition={{ delay: 0.6, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
                 className="mt-10"
               >
-                <Link
-                  to="/programs"
-                  className="btn-base btn-outline-dark"
-                >
+                <Link to="/programs" className="btn-base btn-outline-dark">
                   Get Involved
                 </Link>
               </motion.div>
@@ -129,14 +126,20 @@ export function ProjectsProgrammes() {
                           <span className="font-display text-sm font-semibold tracking-[0.2em] text-gold/60">
                             {p.num}
                           </span>
-                          <span className="text-[0.62rem] font-semibold tracking-[0.26em] uppercase" style={{ color: "var(--rose)" }}>
+                          <span
+                            className="text-[0.62rem] font-semibold tracking-[0.26em] uppercase"
+                            style={{ color: "var(--rose)" }}
+                          >
                             {p.tag}
                           </span>
                         </div>
                         <h3 className="mt-3 font-display text-2xl leading-tight font-semibold text-charcoal lg:text-[1.75rem]">
                           {p.title}
                         </h3>
-                        <p className="mt-4 text-sm leading-relaxed" style={{ color: "var(--muted-foreground)" }}>
+                        <p
+                          className="mt-4 text-sm leading-relaxed"
+                          style={{ color: "var(--muted-foreground)" }}
+                        >
                           {p.copy}
                         </p>
                       </div>

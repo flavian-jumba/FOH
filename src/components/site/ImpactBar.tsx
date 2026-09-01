@@ -18,7 +18,7 @@ export function ImpactBar() {
           }
         });
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
     const currentRef = ref.current;
     if (currentRef) {

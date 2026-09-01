@@ -9,8 +9,7 @@ const alertVariants = cva(
     variants: {
       variant: {
         default: "bg-background text-foreground",
-        destructive:
-          "border-destructive/50 text-destructive [&>svg]:text-destructive",
+        destructive: "border-destructive/50 text-destructive [&>svg]:text-destructive",
       },
     },
     defaultVariants: {
@@ -19,14 +18,13 @@ const alertVariants = cva(
   },
 );
 
-type AlertVariantProps = React.ComponentPropsWithoutRef<'div'> & {
+type AlertVariantProps = React.ComponentPropsWithoutRef<"div"> & {
   variant?: VariantProps<typeof alertVariants>["variant"];
 };
 
-export const alertVariant = React.forwardRef<
-  HTMLDivElement,
-  AlertVariantProps
->(({ className, variant = "default", ...props }, ref) => (
-  <div className={cn(alertVariants({ variant, className }))} ref={ref} {...props} />
-));
+export const alertVariant = React.forwardRef<HTMLDivElement, AlertVariantProps>(
+  ({ className, variant = "default", ...props }, ref) => (
+    <div className={cn(alertVariants({ variant, className }))} ref={ref} {...props} />
+  ),
+);
 alertVariant.displayName = "AlertVariant";

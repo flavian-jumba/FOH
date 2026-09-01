@@ -1,8 +1,55 @@
 import { Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import heroBg from "@/assets/hero-bg.jpg";
+import { useEffect, useState } from "react";
+import { STATS } from "./site-data";
 
 export function Hero() {
+  const [isInViewport, setIsInViewport] = useState(false);
+
+  // Animation stats
+  const [animatedStats, setAnimatedStats] = useState({
+    ngoYear: "NGO OF THE YEAR 2025",
+    chapters: "0+",
+    pillars: "0+",
+    wards: "0+",
+  });
+
+  useEffect(() => {
+    // Check if element is in viewport for counter animation
+    const checkViewport = () => {
+      const heroElement = document.getElementById("top");
+      if (heroElement) {
+        const rect = heroElement.getBoundingClientRect();
+        const viewportHeight = window.innerHeight;
+        setIsInViewport(rect.top < viewportHeight && rect.bottom >= 0);
+      }
+    };
+
+    window.addEventListener("scroll", checkViewport);
+    window.addEventListener("resize", checkViewport);
+    checkViewport(); // Initial check
+
+    return () => {
+      window.removeEventListener("scroll", checkViewport);
+      window.removeEventListener("resize", checkViewport);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (isInViewport) {
+      // Animate counters when in viewport
+      setTimeout(() => {
+        setAnimatedStats((prev) => ({
+          ...prev,
+          chapters: "2+",
+          pillars: "4+",
+          wards: "1K+",
+        }));
+      }, 300); // Delay to let hero section settle
+    }
+  }, [isInViewport]);
+
   return (
     <section id="top" className="relative isolate flex min-h-[100svh] items-end overflow-hidden">
       <img
@@ -27,13 +74,13 @@ export function Hero() {
         }}
       />
 
-      <div className="shell w-full pt-36 pb-16 lg:pb-24">
+      <div className="shell w-full pt-32 pb-12 lg:pb-20">
         <div className="max-w-3xl">
           <motion.h1
             initial={{ opacity: 0, y: 26, filter: "blur(10px)" }}
             animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             transition={{ delay: 0.12, duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            className="mt-5 font-display text-[2.7rem] leading-[1.03] font-semibold text-cream sm:text-6xl lg:text-[4.6rem]"
+            className="mt-5 font-display text-[2.5rem] leading-[1.03] font-semibold text-cream sm:text-5xl lg:text-[4.2rem]"
           >
             Women of Purpose.
             <br />
@@ -44,7 +91,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 22 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-            className="mt-7 max-w-2xl text-base leading-relaxed text-cream/80 lg:text-lg"
+            className="mt-6 max-w-2xl text-base leading-relaxed text-cream/80 lg:text-lg"
           >
             Simply Feminine Network is an award-winning women-led NGO committed to women's health,
             ending gender-based violence, mentorship, and community empowerment — in Kenya and
@@ -55,28 +102,23 @@ export function Hero() {
             initial={{ opacity: 0, y: 22 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.44, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-            className="mt-10 flex flex-wrap gap-4"
+            className="mt-8 flex flex-wrap gap-4"
           >
-            <Link
-              to="/programs"
-              className="btn-base btn-primary"
-            >
+            <Link to="/programs" className="btn-base btn-primary px-6 py-3 text-sm">
               Explore Our Work
             </Link>
-            <Link
-              to="/partners"
-              className="btn-base btn-outline"
-            >
+            <Link to="/partners" className="btn-base btn-outline px-6 py-3 text-sm">
               Partner With SFN
             </Link>
           </motion.div>
         </div>
 
-        <motion.dl
+        {/* Stats row - perfectly aligned horizontal row */}
+        <motion.div
           initial={{ opacity: 0, y: 22 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.56, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-          className="hairline-light mt-16 grid grid-cols-1 gap-px sm:grid-cols-3"
+          className="hairline-light mt-14 flex flex-col items-start gap-6 sm:flex-row sm:items-center sm:justify-between"
         >
           {/* NGO / OF THE YEAR 2025 */}
           <motion.div
@@ -84,13 +126,13 @@ export function Hero() {
             initial={{ opacity: 0, y: 22 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-            className="py-7 sm:pr-10"
+            className="text-center sm:text-left"
           >
             <motion.dt
               initial={{ opacity: 0, y: 22 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.62, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-              className="font-display text-4xl font-semibold text-rose-light lg:text-5xl"
+              className="block font-display text-[3.5rem] font-semibold text-rose-light lg:text-4xl"
             >
               NGO
             </motion.dt>
@@ -98,7 +140,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 22 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.64, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-              className="mt-2 text-[0.66rem] font-semibold tracking-[0.26em] text-cream/60 uppercase"
+              className="mt-1 text-[0.8rem] font-semibold tracking-[0.26em] text-cream/60 uppercase"
             >
               OF THE YEAR 2025
             </motion.dd>
@@ -110,21 +152,21 @@ export function Hero() {
             initial={{ opacity: 0, y: 22 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.66, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-            className="py-7 sm:pr-10"
+            className="text-center sm:text-left"
           >
             <motion.dt
               initial={{ opacity: 0, y: 22 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.68, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-              className="font-display text-4xl font-semibold text-rose-light lg:text-5xl"
+              className="block font-display text-[3.5rem] font-semibold text-rose-light lg:text-4xl"
             >
-              2+
+              {animatedStats.chapters}
             </motion.dt>
             <motion.dd
               initial={{ opacity: 0, y: 22 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.7, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-              className="mt-2 text-[0.66rem] font-semibold tracking-[0.26em] text-cream/60 uppercase"
+              className="mt-1 text-[0.8rem] font-semibold tracking-[0.26em] text-cream/60 uppercase"
             >
               ACTIVE GLOBAL CHAPTERS
             </motion.dd>
@@ -136,21 +178,21 @@ export function Hero() {
             initial={{ opacity: 0, y: 22 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.72, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-            className="py-7 sm:pr-10"
+            className="text-center sm:text-left"
           >
             <motion.dt
               initial={{ opacity: 0, y: 22 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.74, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-              className="font-display text-4xl font-semibold text-rose-light lg:text-5xl"
+              className="block font-display text-[3.5rem] font-semibold text-rose-light lg:text-4xl"
             >
-              4+
+              {animatedStats.pillars}
             </motion.dt>
             <motion.dd
               initial={{ opacity: 0, y: 22 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.76, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-              className="mt-2 text-[0.66rem] font-semibold tracking-[0.26em] text-cream/60 uppercase"
+              className="mt-1 text-[0.8rem] font-semibold tracking-[0.26em] text-cream/60 uppercase"
             >
               CORE ADVOCACY PILLARS
             </motion.dd>
@@ -162,26 +204,26 @@ export function Hero() {
             initial={{ opacity: 0, y: 22 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.78, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-            className="py-7 sm:pr-10"
+            className="text-center sm:text-left"
           >
             <motion.dt
               initial={{ opacity: 0, y: 22 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-              className="font-display text-4xl font-semibold text-rose-light lg:text-5xl"
+              className="block font-display text-[3.5rem] font-semibold text-rose-light lg:text-4xl"
             >
-              1K+
+              {animatedStats.wards}
             </motion.dt>
             <motion.dd
               initial={{ opacity: 0, y: 22 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.82, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-              className="mt-2 text-[0.66rem] font-semibold tracking-[0.26em] text-cream/60 uppercase"
+              className="mt-1 text-[0.8rem] font-semibold tracking-[0.26em] text-cream/60 uppercase"
             >
               PAEDIATRIC WARD SUPPORTED
             </motion.dd>
           </motion.div>
-        </motion.dl>
+        </motion.div>
       </div>
     </section>
   );

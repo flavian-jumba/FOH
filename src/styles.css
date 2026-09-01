@@ -80,7 +80,7 @@
   --charcoal: oklch(0.202 0.014 1.7);
 
   /* Gold requirement: #D4AF37 */
-  --gold: #D4AF37;
+  --gold: #d4af37;
 
   /* Semantic mappings */
   --background: var(--cream);
@@ -119,15 +119,15 @@
   --sidebar-ring: color-mix(in oklab, var(--ring) 20%, transparent);
 
   /* Legacy production tokens for compatibility */
-  --maroon-deep: #4A0E24;
-  --near-black: #17090E;
-  --maroon-section: #3E0F22;
-  --cream: #FBF1E8;
-  --rose: #E7A9BC;
-  --ink: #1F1B1D;
-  --gray-body: #6E6660;
-  --gray-body-dark: #C9BFBB;
-  --white: #FFFFFF;
+  --maroon-deep: #4a0e24;
+  --near-black: #17090e;
+  --maroon-section: #3e0f22;
+  --cream: #fbf1e8;
+  --rose: #e7a9bc;
+  --ink: #1f1b1d;
+  --gray-body: #6e6660;
+  --gray-body-dark: #c9bfbb;
+  --white: #ffffff;
 }
 
 @layer base {
@@ -387,5 +387,5 @@
 }
 
 @utility font-manrope {
-  font-family: 'Manrope', sans-serif;
+  font-family: "Manrope", sans-serif;
 }

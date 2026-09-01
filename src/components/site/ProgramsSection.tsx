@@ -57,7 +57,11 @@ export function ProgramsSection({ withHeading = true }: { withHeading?: boolean 
         {PROGRAMS.map((program, index) => (
           <Reveal key={program.id}>
             <div className="lg:flex lg:items-start lg:gap-12">
-              <div className={index % 2 === 0 ? "w-full lg:w-1/2 lg:order-1" : "w-full lg:w-1/2 lg:order-2"}>
+              <div
+                className={
+                  index % 2 === 0 ? "w-full lg:w-1/2 lg:order-1" : "w-full lg:w-1/2 lg:order-2"
+                }
+              >
                 <img
                   src={program.image}
                   alt={program.alt}
@@ -65,7 +69,13 @@ export function ProgramsSection({ withHeading = true }: { withHeading?: boolean 
                   className="rounded-none"
                 />
               </div>
-              <div className={index % 2 === 0 ? "w-full lg:w-1/2 lg:order-2 space-y-4" : "w-full lg:w-1/2 lg:order-1 space-y-4"}>
+              <div
+                className={
+                  index % 2 === 0
+                    ? "w-full lg:w-1/2 lg:order-2 space-y-4"
+                    : "w-full lg:w-1/2 lg:order-1 space-y-4"
+                }
+              >
                 <h3 className="text-2xl font-semibold text-foreground">{program.title}</h3>
                 <p className="text-base text-muted-foreground leading-relaxed">{program.summary}</p>
                 <ul className="mt-4 space-y-2 text-sm text-muted-foreground">

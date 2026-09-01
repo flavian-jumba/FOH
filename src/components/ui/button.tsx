@@ -9,12 +9,14 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground font-medium rounded-md px-6 py-3 hover:bg-primary/90 transition-colors duration-200",
+        default:
+          "bg-primary text-primary-foreground font-medium rounded-md px-6 py-3 hover:bg-primary/90 transition-colors duration-200",
         hero: "bg-secondary text-primary-foreground font-medium rounded-md px-6 py-3 hover:bg-secondary/90 transition-colors duration-200",
         gold: "bg-(--metallic-gold) text-primary-foreground shadow-sm hover:bg-(--metallic-gold)/90 transition-colors duration-200",
         glassOutline:
           "glass text-primary-foreground hover:bg-[oklch(1_0_0_/_0.16)] transition-colors duration-200",
-        destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90 transition-colors duration-200",
+        destructive:
+          "bg-destructive text-destructive-foreground hover:bg-destructive/90 transition-colors duration-200",
         outline:
           "border border-primary bg-transparent text-primary font-medium rounded-md px-6 py-3 hover:bg-primary-tint transition-colors duration-200",
         secondary:
@@ -35,7 +37,6 @@ const buttonVariants = cva(
     },
   },
 );
-
 
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>, VariantProps<typeof buttonVariants> {
