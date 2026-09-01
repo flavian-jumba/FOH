@@ -62,36 +62,28 @@ export function FourPillars() {
         >
           {[
             {
-              num: "01",
-              icon: "♥",
               title: "Women's Health",
               sub: "Endometriosis Awareness",
               copy: "Education, advocacy, and amplifying voices around Endometriosis — a condition affecting 1 in 10 women globally that remains critically under-discussed across Africa.",
             },
             {
-              num: "02",
-              icon: "◈",
               title: "Ending GBV",
               sub: "Awareness, Support & Policy",
               copy: "Fighting Gender-Based Violence through awareness campaigns, survivor support, and policy-level advocacy that demands accountability and lasting systemic change.",
             },
             {
-              num: "03",
-              icon: "◆",
               title: "Mentorship",
               sub: "Leadership Development",
               copy: "Structured mentorship programmes and capacity-building initiatives that equip girls and women entrepreneurs with the skills, confidence, and networks to lead.",
             },
             {
-              num: "04",
-              icon: "◇",
               title: "Community",
               sub: "Social Empowerment",
               copy: "Restoring the dignity of the girl-child through targeted social support, sanitary dignity programmes, and community-led grassroots interventions.",
             },
           ].map((p, i) => (
             <motion.li
-              key={p.num}
+              key={p.title}
               initial={{ opacity: 0, y: 22 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.72 + i * 0.12, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
@@ -104,13 +96,7 @@ export function FourPillars() {
                   border: "1px solid color-mix(in oklab, var(--cream) 10%, transparent)",
                 }}
               >
-                <div className="flex items-center justify-between">
-                  <span className="text-2xl text-gold">{p.icon}</span>
-                  <span className="font-display text-sm font-semibold tracking-[0.2em] text-gold">
-                    {p.num}
-                  </span>
-                </div>
-                <h3 className="mt-8 font-display text-2xl font-semibold text-cream">{p.title}</h3>
+                <h3 className="font-display text-2xl font-semibold text-cream">{p.title}</h3>
                 <p className="mt-2 text-[0.68rem] font-semibold tracking-[0.22em] text-rose-light uppercase">
                   {p.sub}
                 </p>
