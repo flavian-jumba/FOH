@@ -139,10 +139,6 @@ export function EventsSection({ withHeading = true }: { withHeading?: boolean })
         </div>
       </div>
 
-      {/* Newsletter Section at Bottom */}
-      <div className="mt-20 lg:mt-28 border-t-2" style={{ borderTopColor: "color-mix(in oklab, var(--cream) 12%, transparent)" }}>
-        <NewsletterSection />
-      </div>
     </section>
   );
 }
