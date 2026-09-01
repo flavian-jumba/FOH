@@ -48,9 +48,16 @@ export function EventsSection({ withHeading = true }: { withHeading?: boolean })
     <section
       className="relative isolate overflow-hidden py-20 lg:py-28"
       id="events"
-      style={{ backgroundColor: "var(--charcoal)" }}
+      style={{
+        backgroundColor: "var(--charcoal)",
+        backgroundImage:
+          "linear-gradient(180deg, rgba(25, 10, 14, 0.72), rgba(25, 10, 14, 0.84)), url('https://images.unsplash.com/photo-1653821355736-0c2598d0a63e?w=1600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8Z2FsYSUyMGV2ZW50c3xlbnwwfHwwfHx8MA%3D%3D')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
     >
-      <div className="mx-auto max-w-6xl px-5 sm:px-8">
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top,_rgba(203,160,100,0.12),_transparent_45%)]" />
+      <div className="mx-auto max-w-6xl px-5 sm:px-8 relative z-10">
         {/* Section Header */}
         {withHeading ? (
           <Reveal className="mb-16 lg:mb-20">
@@ -79,36 +86,33 @@ export function EventsSection({ withHeading = true }: { withHeading?: boolean })
                 }}
               >
                 {/* Left Column - Date/Location Info */}
-                <div className="lg:col-span-3 flex flex-col gap-1">
-                  <div className="text-sm font-semibold tracking-[0.1em] uppercase text-cream/60">
+                <div className="lg:col-span-3 flex flex-col gap-1.5">
+                  <div className="text-sm font-medium tracking-[0.12em] uppercase text-cream/70">
                     {event.date}
                   </div>
-                  <div className="text-sm font-medium tracking-[0.05em] uppercase text-cream/80">
+                  <div className="text-[0.72rem] font-medium tracking-[0.08em] uppercase text-cream/75">
                     {event.location}
                   </div>
                 </div>
 
                 {/* Middle Column - Badge and Content */}
                 <div className="lg:col-span-5 flex flex-col gap-3">
-                  {/* Type Badge */}
                   <div
-                    className="w-fit text-[0.65rem] font-semibold tracking-[0.18em] uppercase px-3 py-1.5"
+                    className="w-fit rounded-full border px-3 py-1.5 text-[0.62rem] font-semibold tracking-[0.18em] uppercase backdrop-blur-sm"
                     style={{
                       color: event.typeColor,
-                      border: `1px solid ${event.typeColor}`,
-                      opacity: 0.7,
+                      borderColor: event.typeColor,
+                      backgroundColor: "rgba(255,255,255,0.02)",
                     }}
                   >
                     {event.type}
                   </div>
 
-                  {/* Title */}
-                  <h3 className="font-display text-2xl font-semibold text-cream lg:text-[1.8rem] leading-[1.1]">
+                  <h3 className="font-display text-2xl font-semibold text-cream lg:text-[1.8rem] leading-[1.1] tracking-[-0.02em]">
                     {event.title}
                   </h3>
 
-                  {/* Description */}
-                  <p className="text-sm leading-relaxed text-cream/70 max-w-md">
+                  <p className="max-w-md text-sm leading-relaxed text-cream/72">
                     {event.description}
                   </p>
                 </div>
@@ -118,12 +122,12 @@ export function EventsSection({ withHeading = true }: { withHeading?: boolean })
                   <motion.button
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    onClick={() => window.location.href = "/contact"}
-                    className="px-6 py-3 text-sm font-semibold tracking-[0.1em] uppercase transition-all duration-300"
+                    onClick={() => (window.location.href = "/contact")}
+                    className="rounded-sm px-6 py-3 text-[0.7rem] font-semibold tracking-[0.14em] uppercase transition-all duration-300 shadow-[0_0_0_1px_rgba(255,255,255,0.1)]"
                     style={{
                       color: "var(--charcoal)",
-                      backgroundColor: "var(--cream)",
-                      border: "1px solid var(--cream)",
+                      backgroundColor: "rgba(245, 240, 232, 0.96)",
+                      border: "1px solid rgba(245, 240, 232, 0.9)",
                     }}
                   >
                     {event.cta}
