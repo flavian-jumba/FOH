@@ -52,7 +52,7 @@ export function Navbar() {
             className="h-9 w-9 rounded-full object-cover"
           />
           <span className="hidden sm:block">
-            <span className="block font-display text-[0.8rem] font-semibold leading-none tracking-[0.18em] text-cream uppercase">
+            <span className="block font-display text-[0.8rem] font-semibold leading-none tracking-[0.18em] text-white uppercase">
               Simply Feminine
             </span>
             <span className="mt-0.5 block text-[0.55rem] font-medium leading-none tracking-[0.42em] text-gold uppercase">
@@ -66,7 +66,7 @@ export function Navbar() {
             <li key={link.to}>
               <Link
                 to={link.to}
-                className="text-[0.8rem] font-medium tracking-[0.05em] uppercase transition-colors hover:text-cream/80"
+                className="text-[0.8rem] font-medium tracking-[0.05em] uppercase text-white transition-colors hover:text-white/80"
               >
                 {link.label}
               </Link>
@@ -90,15 +90,15 @@ export function Navbar() {
           className="flex h-9 w-9 flex-col items-center justify-center gap-[3px] lg:hidden"
         >
           <span
-            className="block h-px w-5 bg-cream transition-transform duration-300"
+            className="block h-px w-5 bg-white transition-transform duration-300"
             style={open ? { transform: "translateY(4px) rotate(45deg)" } : undefined}
           />
           <span
-            className="block h-px w-5 bg-cream transition-opacity duration-300"
+            className="block h-px w-5 bg-white transition-opacity duration-300"
             style={open ? { opacity: 0 } : undefined}
           />
           <span
-            className="block h-px w-5 bg-cream transition-transform duration-300"
+            className="block h-px w-5 bg-white transition-transform duration-300"
             style={open ? { transform: "translateY(-4px) rotate(-45deg)" } : undefined}
           />
         </button>
@@ -114,7 +114,7 @@ export function Navbar() {
               <Link
                 to={link.to}
                 onClick={() => setOpen(false)}
-                className="block py-2.5 text-[0.8rem] font-medium tracking-[0.05em] uppercase"
+                className="block py-2.5 text-[0.8rem] font-medium tracking-[0.05em] uppercase text-white"
               >
                 {link.label}
               </Link>

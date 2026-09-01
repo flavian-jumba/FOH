@@ -215,7 +215,7 @@ export function EventsSection({ withHeading = true }: { withHeading?: boolean })
                         </div>
                         <h3 className="text-xl font-semibold text-primary mb-3">{event.title}</h3>
                         <p className="text-muted-foreground leading-relaxed mb-5">{event.blurb}</p>
-                        <Button asChild variant="outline" className="w-fit">
+                        <Button asChild variant="hero" className="w-fit">
                           <Link to="/contact">
                             Request an invitation
                             <Ticket className="ml-1 size-4" aria-hidden="true" />
