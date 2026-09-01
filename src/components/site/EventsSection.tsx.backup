@@ -35,49 +35,6 @@ const EVENTS = [
 
 const images: Record<string, string> = { gala: galaImage, summit: summitImage };
 
-const PAST_EVENTS = [
-  {
-    id: "outreach-2024",
-    title: "Nairobi Prison Outreach",
-    date: "March 15, 2024",
-    image: dignityImage,
-    alt: "Team distributing dignity kits in Nairobi women's prison",
-    location: "Nairobi Women's Prison",
-    description:
-      "Our team delivered essential hygiene products and conducted mental health sessions for 87 incarcerated women and their children.",
-  },
-  {
-    id: "summit-2023",
-    title: "Berlin Leadership Summit",
-    date: "June 10, 2023",
-    image: summitImage,
-    alt: "African diaspora leaders discussing enterprise development",
-    location: "Schloss Hotel Berlin",
-    description:
-      "Diaspora leaders and SFN team convened to create financing pipelines for grassroots Kenyan women's enterprises.",
-  },
-  {
-    id: "drive-2024",
-    title: "Nairobi School Drive",
-    date: "September 22, 2024",
-    image: mentorshipImage,
-    alt: "Sanitary kits distribution to schoolgirls",
-    location: "Migosi Secondary School, Kisumu",
-    description:
-      "Over 2,000 sanitary kits distributed to adolescent girls with menstrual health education sessions.",
-  },
-  {
-    id: "forum-2024",
-    title: "Advocacy Forum",
-    date: "November 5, 2024",
-    image: story1Image,
-    alt: "Panel discussion on women's rights in justice system",
-    location: "Nairobi Governors Office",
-    description:
-      "Stakeholders convened to discuss policy reforms for gender-responsive justice delivery.",
-  },
-] as const;
-
 export function EventsSection({ withHeading = true }: { withHeading?: boolean }) {
   // Determine which event is featured (gala if it's sooner, otherwise summit)
   const now = new Date();
@@ -86,31 +43,71 @@ export function EventsSection({ withHeading = true }: { withHeading?: boolean })
   const featuredEvent = galaDate > now ? EVENTS[0] : EVENTS[1];
   const secondaryEvents = EVENTS.filter((event) => event.id !== featuredEvent.id);
 
+  // Past events data - using program and story images for past moments
+  const PAST_EVENTS = [
+    {
+      id: "outreach-2024",
+      title: "Nairobi Prison Outreach",
+      date: "March 15, 2024",
+      image: dignityImage,
+      alt: "Team distributing dignity kits in Nairobi women's prison",
+      location: "Nairobi Women's Prison",
+      description:
+        "Our team delivered essential hygiene products and conducted mental health sessions for 87 incarcerated women and their children.",
+    },
+    {
+      id: "summit-2023",
+      title: "Berlin Leadership Summit",
+      date: "June 10, 2023",
+      image: summitImage,
+      alt: "African diaspora leaders discussing enterprise development",
+      location: "Schloss Hotel Berlin",
+      description:
+        "Diaspora leaders and SFN team convened to create financing pipelines for grassroots Kenyan women's enterprises.",
+    },
+    {
+      id: "drive-2024",
+      title: "Nairobi School Drive",
+      date: "September 22, 2024",
+      image: mentorshipImage,
+      alt: "Sanitary kits distribution to schoolgirls",
+      location: "Migosi Secondary School, Kisumu",
+      description:
+        "Over 2,000 sanitary kits distributed to adolescent girls with menstrual health education sessions.",
+    },
+    {
+      id: "forum-2024",
+      title: "Advocacy Forum",
+      date: "November 5, 2024",
+      image: story1Image,
+      alt: "Panel discussion on women's rights in justice system",
+      location: "Nairobi Governors Office",
+      description:
+        "Stakeholders convened to discuss policy reforms for gender-responsive justice delivery.",
+    },
+  ] as const;
+
   return (
     <section
-      className="relative isolate overflow-hidden"
+      className="section-pad relative isolate overflow-hidden"
       id="events"
       style={{ backgroundColor: "var(--charcoal)" }}
     >
-      {/* Background image and overlay */}
-      <div
-        className="pointer-events-none absolute inset-0 -z-20"
+      {/* Background image and overlay like Lovable */}
+      <img
+        src="/assets/events-bg.jpg"
+        alt=""
         aria-hidden="true"
-      >
-        <img
-          src="/assets/events-bg.jpg"
-          alt=""
-          width={1920}
-          height={1088}
-          loading="lazy"
-          className="h-full w-full object-cover opacity-20"
-        />
-      </div>
+        width={1920}
+        height={1088}
+        loading="lazy"
+        className="absolute inset-0 -z-20 h-full w-full object-cover opacity-25"
+      />
       <div
         className="absolute inset-0 -z-10"
         style={{
           background:
-            "linear-gradient(180deg, var(--charcoal) 0%, color-mix(in oklab, var(--charctal) 78%, transparent) 45%, var(--charcoal) 100%)",
+            "linear-gradient(180deg, var(--charcoal) 0%, color-mix(in oklab, var(--charcoal) 78%, transparent) 45%, var(--charcoal) 100%)",
         }}
       />
 
@@ -124,49 +121,53 @@ export function EventsSection({ withHeading = true }: { withHeading?: boolean })
           />
         ) : null}
 
-        {/* Hero Featured Event */}
-        <Reveal className="mb-20 lg:mb-24">
-          <div className="relative group">
-            <div className="aspect-[16/9] w-full rounded-none overflow-hidden">
-              <img
-                src={images[featuredEvent.id]}
-                alt={`${featuredEvent.title} in ${featuredEvent.city}`}
-                loading="lazy"
-                className="size-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[oklch(0.25_0.05_300_/_0.6)]"></div>
-            </div>
-            <div className="absolute bottom-0 left-0 right-0 p-8">
-              <div className="flex items-center gap-3 text-sm text-muted-foreground">
-                <span>
-                  <MapPin className="size-4 text-primary/50" aria-hidden="true" />
-                </span>
-                <span>{featuredEvent.city}</span>
+        {/* Hero Featured Event - Full width with distinctive treatment */}
+        <div className="relative">
+          <Reveal className="mb-20 lg:mb-24">
+            <div className="relative group">
+              {/* Featured event image - use full-bleed treatment */}
+              <div className="aspect-[16/9] w-full rounded-none overflow-hidden">
+                <img
+                  src={images[featuredEvent.id]}
+                  alt={`${featuredEvent.title} in ${featuredEvent.city}`}
+                  loading="lazy"
+                  className="size-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[oklch(0.25_0.05_300_/_0.6)]"></div>
               </div>
-              <div className="flex items-center gap-3 text-sm text-muted-foreground">
-                <span>
-                  <CalendarDays className="size-4 text-primary/50" aria-hidden="true" />
-                </span>
-                <span>{featuredEvent.dateLabel}</span>
+              <div className="absolute bottom-0 left-0 right-0 p-8">
+                <div className="flex items-center gap-3 text-sm text-muted-foreground">
+                  <span>
+                    <MapPin className="size-4 text-primary/50" aria-hidden="true" />
+                  </span>
+                  <span>{featuredEvent.city}</span>
+                </div>
+                <div className="flex items-center gap-3 text-sm text-muted-foreground">
+                  <span>
+                    <CalendarDays className="size-4 text-primary/50" aria-hidden="true" />
+                  </span>
+                  <span>{featuredEvent.dateLabel}</span>
+                </div>
+                <h1 className="mt-4 text-4xl font-bold text-white sm:text-5xl lg:text-6xl">
+                  {featuredEvent.title}
+                </h1>
+                <p className="mt-3 text-lg text-white/90 leading-relaxed max-w-xl">
+                  {featuredEvent.blurb}
+                </p>
+                <Button asChild variant="hero" className="mt-6">
+                  <Link to="/contact">
+                    Request an invitation
+                    <Ticket className="ml-2 size-4" aria-hidden="true" />
+                  </Link>
+                </Button>
               </div>
-              <h1 className="mt-4 text-5xl font-bold text-white sm:text-6xl lg:text-7xl">
-                {featuredEvent.title}
-              </h1>
-              <p className="mt-3 text-lg text-white/90 leading-relaxed max-w-xl">
-                {featuredEvent.blurb}
-              </p>
-              <Button asChild variant="hero" className="mt-6">
-                <Link to="/contact">
-                  Request an invitation
-                  <Ticket className="ml-2 size-4" aria-hidden="true" />
-                </Link>
-              </Button>
             </div>
-          </div>
-        </Reveal>
+          </Reveal>
+        </div>
 
-        {/* Upcoming Events */}
+        {/* Upcoming Events Section */}
         <section className="relative" style={{ backgroundColor: "var(--mist)" }}>
+          {/* Gradient rule as section divider */}
           <div
             className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-0.5"
             style={{ backgroundImage: "var(--gradient)" }}
@@ -179,11 +180,12 @@ export function EventsSection({ withHeading = true }: { withHeading?: boolean })
             </Reveal>
 
             <p className="text-base text-muted-foreground max-w-lg mx-auto mb-12 lg:mb-16 leading-relaxed">
-              Mark your calendars for these transformative gatherings where commitment meets community.
+              Mark your calendars for these transformative gatherings where commitment meets
+              community.
             </p>
 
             <Reveal as="div" key="upcoming-events-grid">
-              <div className="grid gap-12 lg:grid-cols-2">
+              <div className="grid gap-10 lg:grid-cols-2">
                 {secondaryEvents.map((event) => (
                   <Reveal
                     as="div"
@@ -230,8 +232,9 @@ export function EventsSection({ withHeading = true }: { withHeading?: boolean })
           </div>
         </section>
 
-        {/* Past Events */}
+        {/* Past Events Section - Photo-forward archive */}
         <section className="relative" style={{ backgroundColor: "var(--cream)" }}>
+          {/* Gradient rule as section divider */}
           <div
             className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-0.5"
             style={{ backgroundImage: "var(--gradient)" }}
@@ -244,13 +247,15 @@ export function EventsSection({ withHeading = true }: { withHeading?: boolean })
             </Reveal>
 
             <p className="text-base text-muted-foreground max-w-lg mx-auto mb-12 lg:mb-16 leading-relaxed">
-              These are the moments where our work took shape — in prisons, schools, and community spaces across Kenya.
+              These are the moments where our work took shape — in prisons, schools, and community
+              spaces across Kenya.
             </p>
 
             <Reveal as="div" key="past-events-grid">
-              <div className="grid gap-10 lg:grid-cols-3">
+              <div className="grid gap-8 lg:grid-cols-3">
                 {PAST_EVENTS.map((event, index) => (
                   <Reveal as="div" key={event.id} delay={index * 0.05} className="group">
+                    {/* Circular photo badge treatment - signature motif */}
                     <div className="relative aspect-[1/1] w-full rounded-none overflow-hidden hover:shadow-lg transition-shadow duration-300">
                       <img
                         src={event.image}
@@ -276,8 +281,9 @@ export function EventsSection({ withHeading = true }: { withHeading?: boolean })
           </div>
         </section>
 
-        {/* Gradient CTA Pause Point */}
+        {/* Gradient CTA Pause Point - Signature "pause point" for the page */}
         <section className="relative">
+          {/* Full-width gradient background */}
           <div
             className="pointer-events-none absolute inset-0 -z-10"
             style={{ backgroundImage: "var(--gradient)" }}
@@ -291,7 +297,9 @@ export function EventsSection({ withHeading = true }: { withHeading?: boolean })
               className="mb-6"
             />
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8 leading-relaxed">
-              Our events are more than gatherings — they're where awareness becomes action, where partnerships are forged, and where the journey toward dignity gains momentum. Be part of the conversations that create lasting change.
+              Our events are more than gatherings — they're where awareness becomes action, where
+              partnerships are forged, and where the journey toward dignity gains momentum. Be part
+              of the conversations that create lasting change.
             </p>
           </div>
         </section>

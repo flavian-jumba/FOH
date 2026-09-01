@@ -11,7 +11,7 @@ const buttonVariants = cva(
       variant: {
         default:
           "bg-primary text-primary-foreground font-medium rounded-md px-6 py-3 hover:bg-primary/90 transition-colors duration-200",
-        hero: "bg-secondary text-primary-foreground font-medium rounded-md px-6 py-3 hover:bg-secondary/90 transition-colors duration-200",
+        hero: "bg-primary text-primary-foreground font-medium rounded-md px-6 py-3 hover:bg-white hover:text-primary transition-colors duration-200",
         gold: "bg-(--metallic-gold) text-primary-foreground shadow-sm hover:bg-(--metallic-gold)/90 transition-colors duration-200",
         glassOutline:
           "glass text-primary-foreground hover:bg-[oklch(1_0_0_/_0.16)] transition-colors duration-200",
