@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Instagram, Linkedin, Facebook } from "lucide-react";
+import { Instagram, Linkedin, Music2 } from "lucide-react";
 import { useEffect, useState } from "react";
 
 import simplyfemininenetworkLogo from "@/assets/simplyfemininenetwork.png";
@@ -14,6 +14,24 @@ export function Footer() {
       document.body.style.overflow = "";
     };
   }, [open]);
+
+  const socialLinks = [
+    {
+      label: "Instagram",
+      href: "https://www.instagram.com/simplyfemininenetwork/",
+      icon: Instagram,
+    },
+    {
+      label: "TikTok",
+      href: "https://www.tiktok.com/@simplyfemininenetwork",
+      icon: Music2,
+    },
+    {
+      label: "LinkedIn",
+      href: "https://www.linkedin.com/in/agnes-vorreiter/",
+      icon: Linkedin,
+    },
+  ];
 
   return (
     <footer style={{ backgroundColor: "var(--charcoal)" }}>
@@ -123,28 +141,19 @@ export function Footer() {
               <br />
               Nairobi, Kenya
             </p>
-            <div className="mt-4 flex space-x-3">
-              <a
-                href="#"
-                className="text-sm text-cream/70 transition-colors hover:text-cream"
-                aria-label="Instagram"
-              >
-                <Instagram className="h-5 w-5" aria-hidden="true" />
-              </a>
-              <a
-                href="#"
-                className="text-sm text-cream/70 transition-colors hover:text-cream"
-                aria-label="LinkedIn"
-              >
-                <Linkedin className="h-5 w-5" aria-hidden="true" />
-              </a>
-              <a
-                href="#"
-                className="text-sm text-cream/70 transition-colors hover:text-cream"
-                aria-label="Facebook"
-              >
-                <Facebook className="h-5 w-5" aria-hidden="true" />
-              </a>
+            <div className="mt-5 flex items-center gap-3">
+              {socialLinks.map(({ label, href, icon: Icon }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-cream/75 transition-all duration-300 hover:border-gold/60 hover:bg-white/10 hover:text-cream"
+                  aria-label={label}
+                >
+                  <Icon className="h-4 w-4" aria-hidden="true" />
+                </a>
+              ))}
             </div>
             <Link
               to="/partners"
@@ -160,9 +169,15 @@ export function Footer() {
           <p className="text-[0.7rem] tracking-[0.14em] text-cream/45 uppercase">
             &copy; {new Date().getFullYear()} Simply Feminine Network
           </p>
-          <p className="text-[0.7rem] tracking-[0.14em] text-cream/45 uppercase">
-            Dignity · Leadership · Legacy
-          </p>
+          <div className="flex flex-wrap items-center gap-4 text-[0.7rem] tracking-[0.14em] text-cream/45 uppercase">
+            <Link to="/privacy" className="transition-colors hover:text-cream">
+              Privacy
+            </Link>
+            <Link to="/terms" className="transition-colors hover:text-cream">
+              Terms
+            </Link>
+            <p>Dignity · Leadership · Legacy</p>
+          </div>
         </div>
       </div>
     </footer>
