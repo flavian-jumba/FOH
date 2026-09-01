@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { PartnersCollaborators } from "@/components/site/PartnersCollaborators";
+import { PartnersSection } from "@/components/site/PartnersSection";
 
 const title = "Partners & Collaborators — Simply Feminine Network";
 const description =
@@ -22,7 +22,7 @@ export const Route = createFileRoute("/partners")({
 function PartnersPage() {
   return (
     <>
-      <PartnersCollaborators />
+      <PartnersSection />
     </>
   );
 }

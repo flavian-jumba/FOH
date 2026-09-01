@@ -1,54 +1,119 @@
-import { useState } from "react";
 import { Eyebrow, Reveal } from "./Reveal";
 import { Link } from "@tanstack/react-router";
 
-const categories = [
-  {
-    key: "berlin",
-    label: "Empower HER Berlin",
-    items: [
-      { name: "Embassy of Kenya, Berlin", initials: "EK", tag: "Diplomatic" },
-      { name: "Schlosshotel Berlin", initials: "SB", tag: "Venue" },
-      { name: "African Diaspora Council", initials: "AD", tag: "Network" },
-      { name: "Empower HER e.V.", initials: "EH", tag: "Chapter" },
-    ],
-  },
-  {
-    key: "kenya",
-    label: "Kenya Partners",
-    items: [
-      { name: "Ministry of Health, Kenya", initials: "MH", tag: "Government" },
-      { name: "Kenyatta National Hospital", initials: "KN", tag: "Health" },
-      { name: "County Women Networks", initials: "CW", tag: "Grassroots" },
-      { name: "IMARA HER Mobile Lab", initials: "IM", tag: "Programme" },
-    ],
-  },
-  {
-    key: "venue",
-    label: "Ven Partners",
-    items: [
-      { name: "KICC Nairobi", initials: "KI", tag: "Venue" },
-      { name: "Nairobi Serena Hotel", initials: "NS", tag: "Venue" },
-      { name: "Villa Rosa Kempinski", initials: "VR", tag: "Hospitality" },
-      { name: "Sarova Stanley", initials: "SS", tag: "Hospitality" },
-    ],
-  },
-  {
-    key: "community",
-    label: "Community & Sports",
-    items: [
-      { name: "Girl Child Dignity Drive", initials: "GC", tag: "Community" },
-      { name: "SFN Wellness Runs", initials: "WR", tag: "Sports" },
-      { name: "Endometriosis Kenya", initials: "EN", tag: "Advocacy" },
-      { name: "Youth Mentorship Circle", initials: "YM", tag: "Mentorship" },
-    ],
-  },
-];
+const partnerLogos = [
+  { name: "Nairobi Serena Hotel", kind: "serena" },
+  { name: "Glee Hotel, Nairobi", kind: "glee" },
+  { name: "KICC", kind: "kicc" },
+  { name: "Sanitary Haven Foundation", kind: "sanitary" },
+  { name: "Shadow Children’s Home", kind: "shadow" },
+  { name: "Safari Edition Wines", kind: "safari" },
+  { name: "Afrossy Fashion Designs", kind: "afrossy" },
+  { name: "Pamoja School of Etiquette & Modelling Kenya", kind: "pamoja" },
+  { name: "Pride of Kenya Awards", kind: "poka" },
+] as const;
+
+function TextWordmark({
+  title,
+  subtitle,
+  accent = "var(--gold)",
+  uppercase = true,
+}: {
+  title: string;
+  subtitle?: string;
+  accent?: string;
+  uppercase?: boolean;
+}) {
+  return (
+    <div className="flex w-full items-center justify-center text-center">
+      <div>
+        <div
+          className="font-display text-[1.35rem] font-semibold tracking-[0.14em]"
+          style={{
+            color: "var(--cream)",
+            letterSpacing: uppercase ? "0.18em" : "0.04em",
+            textTransform: uppercase ? "uppercase" : "none",
+          }}
+        >
+          {title}
+        </div>
+        {subtitle ? (
+          <div
+            className="mt-2 text-[0.62rem] font-medium tracking-[0.28em] uppercase"
+            style={{ color: accent }}
+          >
+            {subtitle}
+          </div>
+        ) : null}
+      </div>
+    </div>
+  );
+}
+
+function LogoTile({ name, kind }: { name: string; kind: string }) {
+  const renderLogo = () => {
+    if (kind === "glee") {
+      return (
+        <img
+          src="/assets/partners/glee-nairobi.svg"
+          alt={name}
+          className="h-auto max-h-[90px] w-full max-w-[220px] object-contain"
+        />
+      );
+    }
+
+    if (kind === "serena") {
+      return <TextWordmark title="Nairobi Serena" subtitle="Hotel" accent="var(--rose-light)" />;
+    }
+
+    if (kind === "kicc") {
+      return <TextWordmark title="KICC" subtitle="Kenyatta International Convention Centre" accent="var(--gold)" />;
+    }
+
+    if (kind === "sanitary") {
+      return <TextWordmark title="Sanitary Haven" subtitle="Foundation" accent="var(--rose-light)" />;
+    }
+
+    if (kind === "shadow") {
+      return <TextWordmark title="Shadow" subtitle="Children's Home" accent="var(--rose-light)" />;
+    }
+
+    if (kind === "safari") {
+      return <TextWordmark title="Safari Edition" subtitle="Wines" accent="var(--gold)" />;
+    }
+
+    if (kind === "afrossy") {
+      return <TextWordmark title="Afrossy" subtitle="Fashion Designs" accent="var(--gold)" uppercase={false} />;
+    }
+
+    if (kind === "pamoja") {
+      return <TextWordmark title="Pamoja" subtitle="Etiquette & Modelling Kenya" accent="var(--gold)" uppercase={false} />;
+    }
+
+    if (kind === "poka") {
+      return <TextWordmark title="Pride of Kenya" subtitle="Awards" accent="var(--gold)" uppercase={false} />;
+    }
+
+    return <TextWordmark title={name} />;
+  };
+
+  return (
+    <li className="h-full">
+      <Reveal>
+        <div
+          className="flex min-h-[190px] items-center justify-center border border-white/10 p-6 transition-colors duration-500 md:min-h-[220px]"
+          style={{
+            backgroundColor: "color-mix(in oklab, var(--cream) 3%, transparent)",
+          }}
+        >
+          <div className="w-full max-w-[260px]">{renderLogo()}</div>
+        </div>
+      </Reveal>
+    </li>
+  );
+}
 
 export function PartnersCollaborators() {
-  const [active, setActive] = useState(categories[0]!.key);
-  const current = categories.find((c) => c.key === active) ?? categories[0]!;
-
   return (
     <section id="partners" className="section-pad" style={{ backgroundColor: "var(--charcoal)" }}>
       <div className="shell">
@@ -59,73 +124,17 @@ export function PartnersCollaborators() {
               Partners & <span className="italic-accent">Collaborators</span>
             </h2>
             <p className="mt-6 text-sm leading-relaxed text-cream/65">
-              From Nairobi to Berlin, SFN is backed by diplomats, media houses, luxury venues, and
-              grassroots organisations who share our vision.
+              From Nairobi to Berlin, SFN is backed by hospitality leaders, community partners, and
+              mission-aligned collaborators who share our vision for dignity, leadership, and
+              impact.
             </p>
           </div>
         </Reveal>
 
-        <Reveal delay={80}>
-          <div
-            className="mt-12 flex flex-wrap gap-x-8 gap-y-3"
-            style={{ borderBottom: "1px solid color-mix(in oklab, var(--cream) 14%, transparent)" }}
-          >
-            {categories.map((c) => (
-              <button
-                key={c.key}
-                type="button"
-                onClick={() => setActive(c.key)}
-                className="relative cursor-pointer pb-4 text-[0.68rem] font-semibold tracking-[0.22em] uppercase transition-colors"
-                style={{
-                  color:
-                    active === c.key
-                      ? "var(--gold)"
-                      : "color-mix(in oklab, var(--cream) 55%, transparent)",
-                }}
-              >
-                {c.label}
-                <span
-                  className="absolute -bottom-px left-0 h-px transition-all duration-400"
-                  style={{ width: active === c.key ? "100%" : 0, backgroundColor: "var(--gold)" }}
-                />
-              </button>
-            ))}
-          </div>
-        </Reveal>
-
-        <ul className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {current.items.map((p, i) => (
-            <Reveal as="li" key={p.name} delay={i * 70}>
-              <div
-                className="group h-full p-7 transition-colors duration-500"
-                style={{
-                  border: "1px solid color-mix(in oklab, var(--cream) 12%, transparent)",
-                  backgroundColor: "color-mix(in oklab, var(--cream) 4%, transparent)",
-                }}
-              >
-                <span
-                  className="flex h-14 w-14 items-center justify-center font-display text-sm font-semibold tracking-[0.1em]"
-                  style={{
-                    backgroundColor: "color-mix(in oklab, var(--rose-light) 14%, transparent)",
-                    color: "var(--rose-light)",
-                  }}
-                >
-                  {p.initials}
-                </span>
-                <h3 className="mt-6 font-display text-lg leading-snug font-semibold text-cream">
-                  {p.name}
-                </h3>
-                <span
-                  className="mt-4 inline-flex px-2.5 py-1 text-[0.56rem] font-semibold tracking-[0.24em] uppercase"
-                  style={{
-                    color: "var(--gold)",
-                    backgroundColor: "color-mix(in oklab, var(--gold) 18%, transparent)",
-                    border: "1px solid color-mix(in oklab, var(--gold) 30%, transparent)",
-                  }}
-                >
-                  {p.tag}
-                </span>
-              </div>
+        <ul className="mt-12 grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
+          {partnerLogos.map((partner, index) => (
+            <Reveal as="li" key={partner.name} delay={index * 60}>
+              <LogoTile name={partner.name} kind={partner.kind} />
             </Reveal>
           ))}
         </ul>

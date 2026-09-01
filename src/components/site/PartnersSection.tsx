@@ -1,323 +1,138 @@
+import { useState } from "react";
 import { SectionHeading } from "./SectionHeading";
 import { Button } from "@/components/ui/button";
 import { Link } from "@tanstack/react-router";
 import { Reveal } from "./Reveal";
-import { ArrowUpRight } from "lucide-react";
-import {
-  ShieldCheck,
-  MapPin,
-  Users,
-  Globe,
-  HeartHandshake,
-  DollarSign,
-  Building2,
-  Calendar,
-} from "lucide-react";
 
-import prideOfKenya from "@/assets/program-dignity.jpg";
-import schlossHotel from "@/assets/program-justice.jpg";
-import kituiCounty from "@/assets/program-mentorship.jpg";
-import kisumuWomensTrust from "@/assets/event-gala.jpg";
-import diasporaLeadersForum from "@/assets/story-1.jpg";
-import dignityKitsCoalition from "@/assets/program-dignity.jpg";
-import imaraHer from "@/assets/program-mentorship.jpg";
-import nairobiDiasporaCouncil from "@/assets/story-2.jpg";
-
-// Partners data grouped by type with spotlight partners
+// Partners data grouped by partnership type
 const PARTNERS_BY_TYPE = [
   {
-    type: "Corporate CSR Partners",
-    icon: Building2,
-    color: "primary",
-    background: "cream",
-    spotlight: [
-      {
-        name: "Schloss Hotel Berlin",
-        logo: schlossHotel,
-        partnership:
-          "Providing venue and accommodations for our annual Women's Leadership Summit in Berlin, enabling crucial diaspora engagement.",
-        url: "https://schloss-hotel-berlin.de",
-      },
-      {
-        name: "Pride of Kenya Awards",
-        logo: prideOfKenya,
-        partnership:
-          "Recognizing our work through their prestigious NGO of the Year award, amplifying our mission across Kenya and beyond.",
-        url: "https://prideofkenya.co.ke",
-      },
-    ],
+    id: "hospitality",
+    type: "Hospitality & Venues",
+    categoryBadge: "VENUE",
     partners: [
-      "Schloss Hotel Berlin",
-      "Pride of Kenya Awards",
-      "Diaspora Leaders Forum",
-      "Dignity Kits Coalition",
-      "IMARA HER",
-      "Nairobi Diaspora Council",
+      { name: "Nairobi Serena Hotel", abbreviation: "NS", url: "https://serena.co.ke" },
+      { name: "Glee Hotel Nairobi", abbreviation: "GH", url: "https://gleoholels.com" },
+      { name: "KICC", abbreviation: "KC", url: "https://kicc.co.ke" },
     ],
   },
   {
-    type: "County Government Partners",
-    icon: MapPin,
-    color: "primary",
-    background: "mist",
-    spotlight: [
-      {
-        name: "Kitui County Government",
-        logo: kituiCounty,
-        partnership:
-          "Collaborating on outreach programs that bring our IMARA HER mobile lab and sanitary towel drives to rural communities.",
-        url: "https://kitui.go.ke",
-      },
-      {
-        name: "Kisumu Women's Trust",
-        logo: kisumuWomensTrust,
-        partnership:
-          "Grassroots partnership delivering menstrual health education and economic empowerment initiatives at the community level.",
-        url: "https://kisumuwomenstrust.org",
-      },
-    ],
+    id: "empowerment",
+    type: "Empowerment Programs",
+    categoryBadge: "PROGRAMS",
     partners: [
-      "Kitui County Government",
-      "Kisumu Women's Trust",
-      "Nairobi County Health Department",
-      "Machakos County Social Services",
+      { name: "Sanitary Haven Foundation", abbreviation: "SHF", url: "#" },
+      { name: "Shadow Children's Home", abbreviation: "SCH", url: "#" },
+      { name: "Pamoja School of Etiquette & Modelling Kenya", abbreviation: "PSE", url: "#" },
     ],
   },
   {
-    type: "Diaspora & Development Partners",
-    icon: Globe,
-    color: "primary",
-    background: "cream",
-    spotlight: [
-      {
-        name: "Diaspora Leaders Forum",
-        logo: diasporaLeadersForum,
-        partnership:
-          "Connecting European-based African professionals with grassroots Kenyan enterprises through our Berlin summits.",
-        url: "https://diaspora-leaders-forum.org",
-      },
-      {
-        name: "Nairobi Diaspora Council",
-        logo: nairobiDiasporaCouncil,
-        partnership:
-          "Facilitating remittances and skills transfer from the Kenyan diaspora in Europe to support local women's initiatives.",
-        url: "https://nairobidiaspora.org",
-      },
-    ],
+    id: "community",
+    type: "Community & Culture",
+    categoryBadge: "CHAPTER",
     partners: [
-      "Diaspora Leaders Forum",
-      "Nairobi Diaspora Council",
-      "German Development Agency (GIZ)",
-      "European Union Kenya Office",
-      "UN Women Kenya",
-      "African Diaspora Network",
+      { name: "Pride of Kenya Awards", abbreviation: "POK", url: "https://prideofkenya.co.ke" },
+      { name: "Safari Edition Wines", abbreviation: "SEW", url: "#" },
+      { name: "Afrossy Fashion Designs", abbreviation: "AFD", url: "#" },
+    ],
+  },
+  {
+    id: "diaspora",
+    type: "Diaspora & Networks",
+    categoryBadge: "NETWORK",
+    partners: [
+      { name: "Diaspora Leaders Forum", abbreviation: "DLF", url: "#" },
+      { name: "UN Women Kenya", abbreviation: "UNW", url: "#" },
     ],
   },
 ] as const;
 
 export function PartnersSection({ withHeading = true }: { withHeading?: boolean }) {
+  const [activeTab, setActiveTab] = useState(PARTNERS_BY_TYPE[0].id);
+
+  const activeSection = PARTNERS_BY_TYPE.find((section) => section.id === activeTab);
+
   return (
-    <>
-      {withHeading ? (
-        <>
+    <section className="bg-charcoal">
+      {withHeading && (
+        <div className="mx-auto max-w-7xl px-6 py-16 lg:py-20">
           <SectionHeading
-            eyebrow="Partners"
+            eyebrow="Partners & Collaborators"
             title="Trusted by institutions on two continents"
             description="Corporate CSR teams, county governments, diaspora networks and development partners who fund and carry this work with us."
-            className="mb-16 lg:mb-20"
+            className="text-center"
           />
+        </div>
+      )}
 
-          {/* Partners & Collaborators Marquee */}
-          <section className="relative">
-            <div
-              className="pointer-events-none absolute inset-0 -z-10 h-0.5"
-              style={{ backgroundImage: "var(--gradient)" }}
-              aria-hidden="true"
-            ></div>
+      <div className="mx-auto max-w-7xl px-6 pb-16 lg:pb-20">
+        {/* Tab Navigation */}
+        <div className="flex flex-wrap gap-3 mb-12 border-b border-white/10 pb-6">
+          {PARTNERS_BY_TYPE.map((section) => (
+            <button
+              key={section.id}
+              onClick={() => setActiveTab(section.id)}
+              className={`px-4 py-2 text-sm font-medium uppercase tracking-wider transition-all duration-300 ${
+                activeTab === section.id
+                  ? "text-gold border-b-2 border-gold pb-3"
+                  : "text-white/60 hover:text-white/80"
+              }`}
+            >
+              {section.type}
+            </button>
+          ))}
+        </div>
 
-            <div className="mx-auto max-w-7xl px-6 py-12">
-              <div className="space-y-6">
-                <p className="text-xs font-manrope text-primary/70 uppercase tracking-wider">
-                  PARTNERS & COLLABORATORS
-                </p>
-                <h2 className="text-3xl font-display text-plum md:text-4xl">
-                  Those who move the work forward.
-                </h2>
-
-                {/* Logo Marquee */}
-                <div className="relative overflow-hidden marquee-track">
-                  <div className="flex space-x-12">
-                    {/* First set of logos */}
-                    <div className="flex space-x-12">
-                      <img
-                        src="/assets/partners/ntv-kenya.svg"
-                        alt="NTV Kenya"
-                        className="h-12 w-auto opacity-60 hover:opacity-100 transition-opacity"
-                      />
-                      <img
-                        src="/assets/partners/glee-nairobi.svg"
-                        alt="Glee Hotel Nairobi"
-                        className="h-12 w-auto opacity-60 hover:opacity-100 transition-opacity"
-                      />
-                      <img
-                        src="/assets/partners/sarova-stanley.png"
-                        alt="Sarova Stanley Nairobi"
-                        className="h-12 w-auto opacity-60 hover:opacity-100 transition-opacity"
-                      />
-                      <img
-                        src="/assets/partners/lost-beach-rugby.png"
-                        alt="Lost Beach Rugby Festival"
-                        className="h-12 w-auto opacity-60 hover:opacity-100 transition-opacity"
-                      />
+        {/* Partner Cards Grid */}
+        {activeSection && (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {activeSection.partners.map((partner, index) => (
+              <Reveal key={partner.name} delay={index * 0.05}>
+                <Link to={partner.url} target="_blank" rel="noopener noreferrer" className="h-full">
+                  <div className="h-full flex flex-col items-start gap-4 border border-white/10 p-6 rounded-lg bg-white/2 hover:bg-white/5 hover:border-white/20 transition-all duration-300 group cursor-pointer">
+                    {/* Abbreviation Badge */}
+                    <div className="w-12 h-12 rounded bg-gold/10 border border-gold/30 flex items-center justify-center group-hover:bg-gold/20 group-hover:border-gold/50 transition-all duration-300">
+                      <span className="text-xs font-bold text-gold uppercase">
+                        {partner.abbreviation}
+                      </span>
                     </div>
-                    {/* Second set of logos for seamless loop */}
-                    <div className="flex space-x-12">
-                      <img
-                        src="/assets/partners/ntv-kenya.svg"
-                        alt="NTV Kenya"
-                        className="h-12 w-auto opacity-60 hover:opacity-100 transition-opacity"
-                      />
-                      <img
-                        src="/assets/partners/glee-nairobi.svg"
-                        alt="Glee Hotel Nairobi"
-                        className="h-12 w-auto opacity-60 hover:opacity-100 transition-opacity"
-                      />
-                      <img
-                        src="/assets/partners/sarova-stanley.png"
-                        alt="Sarova Stanley Nairobi"
-                        className="h-12 w-auto opacity-60 hover:opacity-100 transition-opacity"
-                      />
-                      <img
-                        src="/assets/partners/lost-beach-rugby.png"
-                        alt="Lost Beach Rugby Festival"
-                        className="h-12 w-auto opacity-60 hover:opacity-100 transition-opacity"
-                      />
+
+                    {/* Partner Name */}
+                    <div className="flex-1">
+                      <h3 className="text-sm font-medium text-white group-hover:text-gold transition-colors duration-300">
+                        {partner.name}
+                      </h3>
+                    </div>
+
+                    {/* Category Badge */}
+                    <div className="text-xs font-semibold uppercase tracking-wider text-gold/70 border border-gold/30 px-2 py-1 rounded">
+                      {activeSection.categoryBadge}
                     </div>
                   </div>
-                </div>
-              </div>
-            </div>
-          </section>
-        </>
-      ) : null}
-
-      {/* Partners sections by type */}
-      <div className="space-y-0">
-        {PARTNERS_BY_TYPE.map((section, sectionIndex) => (
-          <section
-            key={section.type}
-            className="relative"
-            style={{ backgroundColor: `var(--${section.background})` }}
-          >
-            {/* Gradient rule as section separator (except for first section) */}
-            {sectionIndex > 0 && (
-              <div
-                className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-0.5"
-                style={{ backgroundImage: "var(--gradient)" }}
-                aria-hidden="true"
-              ></div>
-            )}
-
-            <div className="mx-auto max-w-7xl px-6 py-20 lg:py-24">
-              <SectionHeading
-                eyebrow={section.type}
-                title="Our valued collaborators"
-                className="mb-12 text-center"
-              />
-
-              {/* Spotlight Partners */}
-              <Reveal as="div" key={`spotlight-${sectionIndex}`} delay={sectionIndex * 0.05}>
-                <div className="grid gap-8 lg:grid-cols-[45%_45%] lg:justify-center">
-                  {section.spotlight.map((partner, idx) => (
-                    <div
-                      key={partner.name}
-                      className={`flex flex-col lg:flex-row items-start gap-8 border-l-4 border-${section.color}/20 pl-6 py-6`}
-                    >
-                      {/* Circular logo badge */}
-                      <div className="flex-shrink-0 lg:flex-shrink-0 w-16 h-16 rounded-full overflow-hidden border-4 border-${section.color}/20 shadow-lg flex items-center justify-center">
-                        <img
-                          src={partner.logo}
-                          alt={partner.name}
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-
-                      <div className="space-y-3">
-                        <h3 className="text-xl font-display text-${section.color}">
-                          {partner.name}
-                        </h3>
-                        <p className="text-base text-muted-foreground leading-relaxed">
-                          {partner.partnership}
-                        </p>
-                        <Link to={partner.url} target="_blank" rel="noopener noreferrer">
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            className={`border-${section.color}/20 hover:border-${section.color}/30 text-${section.color}`}
-                          >
-                            Visit Website
-                            <ArrowUpRight className="ml-2 h-4 w-4" aria-hidden="true" />
-                          </Button>
-                        </Link>
-                      </div>
-                    </div>
-                  ))}
-                </div>
+                </Link>
               </Reveal>
-
-              {/* All Partners List */}
-              <Reveal
-                as="div"
-                key={`all-partners-${sectionIndex}`}
-                delay={sectionIndex * 0.05 + 0.1}
-              >
-                <div className="mt-16">
-                  <h3 className="text-lg font-semibold text-${section.color} mb-6">
-                    Complete Partner Network
-                  </h3>
-                  <div className="flex flex-wrap gap-4 justify-center">
-                    {section.partners.map((partnerName, idx) => (
-                      <Reveal key={partnerName} delay={idx * 0.02} as="div">
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          className={`border-${section.color}/20 hover:border-${section.color}/30 px-4 py-2 text-xs font-medium`}
-                        >
-                          {partnerName}
-                        </Button>
-                      </Reveal>
-                    ))}
-                  </div>
-                </div>
-              </Reveal>
-            </div>
-          </section>
-        ))}
-
-        {/* Gradient CTA pause point - signature "pause point" for the page */}
-        <section className="relative">
-          {/* Full-width gradient background */}
-          <div
-            className="pointer-events-none absolute inset-0 -z-10"
-            style={{ backgroundImage: "var(--gradient)" }}
-            aria-hidden="true"
-          ></div>
-
-          <div className="mx-auto max-w-3xl py-16 px-6 text-center">
-            <SectionHeading
-              eyebrow="Join our network"
-              title="Become a partner today"
-              className="mb-6"
-            />
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8 leading-relaxed">
-              Our partnership model is built on shared values, mutual respect, and a commitment to
-              creating measurable impact that lasts. Whether you represent a corporation, government
-              agency, or civil society organization, we welcome the opportunity to explore
-              collaboration.
-            </p>
+            ))}
           </div>
-        </section>
+        )}
       </div>
-    </>
+
+      {/* CTA Section */}
+      <div className="mx-auto max-w-3xl px-6 py-12 text-center border-t border-white/10">
+        <SectionHeading
+          eyebrow="Join our network"
+          title="Become a partner today"
+          className="mb-6"
+        />
+        <p className="text-sm text-white/60 mb-8 leading-relaxed">
+          Our partnership model is built on shared values, mutual respect, and a commitment to
+          creating measurable impact that lasts.
+        </p>
+        <Button
+          className="bg-gold text-charcoal hover:bg-gold/90"
+        >
+          Explore Partnerships
+        </Button>
+      </div>
+    </section>
   );
 }
