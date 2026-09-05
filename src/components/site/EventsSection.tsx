@@ -1,45 +1,37 @@
-import { Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 
 import { Reveal, Eyebrow } from "./Reveal";
-import { NewsletterSection } from "@/components/site/NewsletterSection";
 
-const SIGNATURE_EVENTS = [
+const WAYS_TO_SUPPORT = [
   {
-    id: "grand-ball",
-    location: "Kenyatta International Convention Centre",
-    city: "Nairobi",
-    type: "Invitation Only",
+    id: "education",
+    location: "15 teenage mothers need school fees",
+    type: "Education",
     typeColor: "var(--rose)",
-    title: "SFN Grand Ball",
+    title: "Help a young mother complete her education",
     description:
-      "SFN's flagship charity ball at the Kenyatta International Convention Centre — a curated gathering of diplomats, corporate leaders, and changemakers.",
-    date: "TBC 2026",
-    cta: "Request Invitation",
+      "Your support can help teenage mothers return to learning and move toward vocational and economic opportunities.",
+    cta: "Support education",
   },
   {
-    id: "gala-night",
-    location: "Serena Hotel",
-    city: "Nairobi",
-    type: "Invitation Only",
+    id: "poultry",
+    location: "Poultry farm setup",
+    type: "Sustainable Income",
     typeColor: "var(--rose)",
-    title: "Nairobi Charity Gala Night",
+    title: "Invest in skills and sustainable income",
     description:
-      "An elegant evening of philanthropy and recognition supporting the IMARA HER Mobile Lab and girl-child empowerment initiatives across rural Kenya.",
-    date: "TBC 2026",
-    cta: "Register Interest",
+      "A poultry farm can create sustainable income and practical skills for young women.",
+    cta: "Support agribusiness",
   },
   {
-    id: "networking-dinner",
-    location: "Schlosshotel Berlin",
-    city: "Berlin",
-    type: "International Summit",
+    id: "partnership",
+    location: "Funding, training, networks & mentorship",
+    type: "Partnership",
     typeColor: "var(--gold)",
-    title: "Empower HER Networking Dinner",
+    title: "Help FOH reach further",
     description:
-      "A luxury women's networking and empowerment dinner in Berlin, convening African and European women leaders under H.E. Ambassador Stella Mokaya Orina.",
-    date: "TBC 2026",
-    cta: "Request Invitation",
+      "Partners and mentors can help scale opportunity for girls, young women and their communities.",
+    cta: "Partner with FOH",
   },
 ] as const;
 
@@ -47,7 +39,7 @@ export function EventsSection({ withHeading = true }: { withHeading?: boolean })
   return (
     <section
       className="relative isolate overflow-hidden py-20 lg:py-28"
-      id="events"
+      id="support"
       style={{
         backgroundColor: "var(--charcoal)",
         backgroundImage:
@@ -62,12 +54,12 @@ export function EventsSection({ withHeading = true }: { withHeading?: boolean })
         {withHeading ? (
           <Reveal className="mb-16 lg:mb-20">
             <div>
-              <Eyebrow>Calendar of Impact</Eyebrow>
+              <Eyebrow>Sow Seeds of Hope</Eyebrow>
               <h2 className="mt-4 font-display text-4xl leading-[1.08] font-semibold text-cream lg:text-[3.2rem]">
-                Signature
+                Support that creates
                 <br />
                 <span className="italic font-light" style={{ color: "var(--rose-light)" }}>
-                  Events
+                  opportunity
                 </span>
               </h2>
             </div>
@@ -76,7 +68,7 @@ export function EventsSection({ withHeading = true }: { withHeading?: boolean })
 
         {/* Event Cards */}
         <div className="space-y-0">
-          {SIGNATURE_EVENTS.map((event, idx) => (
+          {WAYS_TO_SUPPORT.map((event, idx) => (
             <Reveal key={event.id} delay={idx * 50}>
               <div
                 className="hairline py-8 lg:py-10 flex flex-col gap-6 lg:grid lg:grid-cols-12 lg:gap-8 lg:items-center"
@@ -85,11 +77,8 @@ export function EventsSection({ withHeading = true }: { withHeading?: boolean })
                   borderTopWidth: "1px",
                 }}
               >
-                {/* Left Column - Date/Location Info */}
+                {/* Left Column - Support need */}
                 <div className="lg:col-span-3 flex flex-col gap-1.5">
-                  <div className="text-sm font-medium tracking-[0.12em] uppercase text-cream/70">
-                    {event.date}
-                  </div>
                   <div className="text-[0.72rem] font-medium tracking-[0.08em] uppercase text-cream/75">
                     {event.location}
                   </div>
@@ -138,7 +127,6 @@ export function EventsSection({ withHeading = true }: { withHeading?: boolean })
           ))}
         </div>
       </div>
-
     </section>
   );
 }

@@ -1,9 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { EventsSection } from "@/components/site/EventsSection";
 
-const title = "Events — Simply Feminine Network";
+const title = "Support FOH — Footprints of Hope";
 const description =
-  "Upcoming events and gatherings hosted by Simply Feminine Network, including our signature charity balls and empowerment summits.";
+  "Support Footprints of Hope through education, sustainable agribusiness, partnerships and mentorship.";
 
 export const Route = createFileRoute("/events")({
   head: () => ({

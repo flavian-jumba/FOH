@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { Instagram, Linkedin, Music2 } from "lucide-react";
 import { useEffect, useState } from "react";
 
-import simplyfemininenetworkLogo from "@/assets/simplyfemininenetwork.png";
+import fohLogo from "@/assets/logo.png";
 import { ORG } from "./site-data";
 
 export function Footer() {
@@ -18,17 +18,17 @@ export function Footer() {
   const socialLinks = [
     {
       label: "Instagram",
-      href: "https://www.instagram.com/simplyfemininenetwork/",
+      href: "#",
       icon: Instagram,
     },
     {
       label: "TikTok",
-      href: "https://www.tiktok.com/@simplyfemininenetwork",
+      href: "#",
       icon: Music2,
     },
     {
       label: "LinkedIn",
-      href: "https://www.linkedin.com/in/agnes-vorreiter/",
+      href: "#",
       icon: Linkedin,
     },
   ];
@@ -39,22 +39,14 @@ export function Footer() {
         <div className="grid gap-12 lg:grid-cols-12">
           {/* Column 1: Logo + Brand + Description */}
           <div className="lg:col-span-5">
-            <Link to="/" className="flex items-center gap-3" onClick={() => setOpen(false)}>
+            <Link to="/" className="inline-flex" onClick={() => setOpen(false)}>
               <img
-                src={simplyfemininenetworkLogo}
-                alt="Simply Feminine Network"
-                width={56}
-                height={56}
-                className="h-12 w-12 rounded-full object-cover"
+                src={fohLogo}
+                alt="Footprints of Hope logo"
+                width={96}
+                height={96}
+                className="h-24 w-24 rounded-lg bg-white p-1 object-contain"
               />
-              <span>
-                <span className="block font-display text-sm font-semibold tracking-[0.18em] text-cream uppercase">
-                  Simply Feminine
-                </span>
-                <span className="mt-1 block text-[0.6rem] font-medium tracking-[0.42em] text-gold uppercase">
-                  Network
-                </span>
-              </span>
             </Link>
             <p className="mt-7 max-w-sm text-sm leading-relaxed text-cream/60">{ORG.tagline}</p>
           </div>
@@ -71,7 +63,7 @@ export function Footer() {
                   className="text-sm text-cream/70 transition-colors hover:text-cream"
                   onClick={() => setOpen(false)}
                 >
-                  Our Story
+                  About FOH
                 </Link>
               </li>
               <li>
@@ -80,7 +72,7 @@ export function Footer() {
                   className="text-sm text-cream/70 transition-colors hover:text-cream"
                   onClick={() => setOpen(false)}
                 >
-                  Pillars
+                  Our mission
                 </Link>
               </li>
               <li>
@@ -89,7 +81,16 @@ export function Footer() {
                   className="text-sm text-cream/70 transition-colors hover:text-cream"
                   onClick={() => setOpen(false)}
                 >
-                  Projects
+                  Our work
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/gallery"
+                  className="text-sm text-cream/70 transition-colors hover:text-cream"
+                  onClick={() => setOpen(false)}
+                >
+                  Gallery
                 </Link>
               </li>
             </ul>
@@ -107,7 +108,7 @@ export function Footer() {
                   className="text-sm text-cream/70 transition-colors hover:text-cream"
                   onClick={() => setOpen(false)}
                 >
-                  Events
+                  Support FOH
                 </Link>
               </li>
               <li>
@@ -116,7 +117,7 @@ export function Footer() {
                   className="text-sm text-cream/70 transition-colors hover:text-cream"
                   onClick={() => setOpen(false)}
                 >
-                  Partners
+                  Get involved
                 </Link>
               </li>
               <li>
@@ -139,7 +140,7 @@ export function Footer() {
             <p className="mt-6 text-sm leading-relaxed text-cream/60">
               {ORG.email}
               <br />
-              Nairobi, Kenya
+              {ORG.location}
             </p>
             <div className="mt-5 flex items-center gap-3">
               {socialLinks.map(({ label, href, icon: Icon }) => (
@@ -167,7 +168,7 @@ export function Footer() {
 
         <div className="hairline-light mt-16 flex flex-col gap-3 pt-8 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-[0.7rem] tracking-[0.14em] text-cream/45 uppercase">
-            &copy; {new Date().getFullYear()} Simply Feminine Network
+            &copy; {new Date().getFullYear()} Footprints of Hope
           </p>
           <div className="flex flex-wrap items-center gap-4 text-[0.7rem] tracking-[0.14em] text-cream/45 uppercase">
             <Link to="/privacy" className="transition-colors hover:text-cream">
@@ -176,7 +177,7 @@ export function Footer() {
             <Link to="/terms" className="transition-colors hover:text-cream">
               Terms
             </Link>
-            <p>Dignity · Leadership · Legacy</p>
+            <p>Dignity · Opportunity · Hope</p>
           </div>
         </div>
       </div>

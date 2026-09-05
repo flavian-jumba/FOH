@@ -1,33 +1,42 @@
 import { motion } from "framer-motion";
 import { Link } from "@tanstack/react-router";
-import dignity from "@/assets/program-dignity.jpg";
-import berlin from "@/assets/program-berlin.jpg";
-import mentorship from "@/assets/program-mentorship.jpg";
+import teenImage from "@/assets/teen.png";
+import agribusinessImage from "@/assets/agri.png";
+import menstrualHealthImage from "@/assets/menstral.png";
+import mentalHealthImage from "@/assets/mental.png";
 
 const projects = [
   {
     num: "01",
-    img: dignity,
-    alt: "Dignity kits with sanitary products prepared for distribution in rural Kenya",
-    tag: "Flagship Initiative",
-    title: "IMARA HER Project & Mobile Lab",
-    copy: "SFN's cornerstone community project. Vocational training, sanitary dignity products, and reproductive health services delivered to girls and women in rural Kenya — with a dedicated mobile clinic travelling to the most underserved interior communities.",
+    img: teenImage,
+    alt: "Teen mothers supported through Footprints of Hope",
+    tag: "Education & Opportunity",
+    title: "Teen Mothers' Reintegration Program",
+    copy: "Helping teenage mothers return to school, regain educational opportunities and access vocational or economic pathways toward independence.",
   },
   {
     num: "02",
-    img: berlin,
-    alt: "African diaspora women and European leaders in conversation at a summit",
-    tag: "International Relations",
-    title: "Empower HER Berlin Chapter",
-    copy: "SFN's international wing in Germany. Convening African diaspora women and European leaders under the theme 'Leadership, Empowerment, Healing and Global Collaboration' — a reciprocal flow of talent, capital, and mentorship.",
+    img: agribusinessImage,
+    alt: "Women and youth participating in agribusiness",
+    tag: "Skills & Income",
+    title: "Women & Youth in Agribusiness",
+    copy: "Training young women and youth in poultry farming, agribusiness, financial literacy and entrepreneurship to support sustainable income generation.",
   },
   {
     num: "03",
-    img: mentorship,
-    alt: "Young women in a leadership and mentorship workshop",
-    tag: "Professional Growth",
-    title: "SFN Leadership Academy",
-    copy: "A transformative programme equipping women with executive presence, strategic thinking, and the tools to lead — unapologetically and on their own terms.",
+    img: menstrualHealthImage,
+    alt: "Menstrual health and hygiene education",
+    tag: "Health & Dignity",
+    title: "Menstrual Health & Hygiene",
+    copy: "Improving access to menstrual products, reproductive health education and menstrual health awareness so girls can remain in school and participate with confidence.",
+  },
+  {
+    num: "04",
+    img: mentalHealthImage,
+    alt: "Mental health and wellbeing support session",
+    tag: "Safe Spaces & Support",
+    title: "Mental Health & Well-being",
+    copy: "Nhanga Sessions create safe spaces for young women to discuss challenges, receive mentorship and psychosocial support, and strengthen community and peer connection.",
   },
 ];
 
@@ -50,7 +59,7 @@ export function ProjectsProgrammes() {
                 className="mb-4"
               >
                 <div className="text-[color:#C9A76B] text-xs font-manrope uppercase tracking-wider">
-                  — ACTIVE INITIATIVES —
+                  — OUR WORK —
                 </div>
               </motion.div>
 
@@ -60,9 +69,10 @@ export function ProjectsProgrammes() {
                 transition={{ delay: 0.36, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
                 className="mt-2 font-display text-4xl leading-[1.08] font-semibold text-charcoal lg:text-[3.4rem]"
               >
-                Projects &<br />
+                Four focus areas.
+                <br />
                 <span className="italic font-light" style={{ color: "var(--burgundy)" }}>
-                  Programmes
+                  One shared purpose.
                 </span>
               </motion.h2>
 
@@ -73,8 +83,8 @@ export function ProjectsProgrammes() {
                 className="mt-7 text-base leading-relaxed"
                 style={{ color: "var(--muted-foreground)" }}
               >
-                Three flagship programmes carrying SFN's work from the interior of rural Kenya to
-                the diplomatic halls of Berlin — each one measurable, each one women-led.
+                FOH works with girls, young women and youth in Busia County through practical,
+                community-driven programmes that build education, dignity, skills and opportunity.
               </motion.p>
 
               <motion.div
@@ -84,7 +94,7 @@ export function ProjectsProgrammes() {
                 className="mt-10"
               >
                 <Link to="/programs" className="btn-base btn-outline-dark">
-                  Get Involved
+                  Explore Our Work
                 </Link>
               </motion.div>
             </motion.div>

@@ -2,43 +2,37 @@ import { Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { ArrowUpRight, GraduationCap, HeartHandshake, Scale } from "lucide-react";
 
-import dignityImage from "@/assets/program-dignity.jpg";
-import justiceImage from "@/assets/program-justice.jpg";
-import mentorshipImage from "@/assets/program-mentorship.jpg";
 import { Button } from "@/components/ui/button";
 import { Reveal } from "./Reveal";
 import { SectionHeading } from "./SectionHeading";
 
 export const PROGRAMS = [
   {
-    id: "justice",
-    title: "Justice System Outreach",
+    id: "reintegration",
+    title: "Teen Mothers' Reintegration",
     icon: Scale,
-    image: justiceImage,
-    alt: "A paralegal speaking with women during a justice outreach session",
+    alt: "Placeholder image for the Teen Mothers' Reintegration Program",
     summary:
-      "We walk into remand halls and prisons with dignity kits, counselling and reintegration support for women and the children who serve their sentences alongside them.",
-    points: ["Prison & remand visits", "Reintegration kits", "Legal literacy clinics"],
+      "Helping teenage mothers return to school and access vocational and economic opportunities that support a pathway toward independence.",
+    points: ["Return-to-school pathways", "Vocational opportunities", "Economic opportunity"],
   },
   {
     id: "dignity",
-    title: "Sanitary Towel Drives",
+    title: "Menstrual Health & Hygiene",
     icon: HeartHandshake,
-    image: dignityImage,
-    alt: "Dignity kits with sanitary products ready for distribution",
+    alt: "Placeholder image for menstrual health and hygiene",
     summary:
-      "Over 10,000 sanitary pads and undergarments delivered so that no woman or girl trades her dignity, her health or her school day for a period.",
-    points: ["School & community drives", "Menstrual health education", "Undergarment provision"],
+      "Supporting access to menstrual products, reproductive health education and menstrual health awareness so girls can participate with confidence.",
+    points: ["Menstrual products", "Reproductive health education", "Menstrual health awareness"],
   },
   {
     id: "mentorship",
-    title: "Mentorship & Leadership",
+    title: "Women & Youth in Agribusiness",
     icon: GraduationCap,
-    image: mentorshipImage,
-    alt: "Young women in a mentorship and leadership workshop",
+    alt: "Placeholder image for women and youth in agribusiness",
     summary:
-      "The IMARA HER mobile lab carries vocational training, mental-health awareness and enterprise mentorship to Nairobi, Kitui and Kisumu.",
-    points: ["IMARA HER mobile lab", "Vocational training", "Diaspora summit pipeline"],
+      "Training young women and youth in poultry farming, agribusiness, financial literacy and entrepreneurship for sustainable income generation.",
+    points: ["Poultry farming", "Financial literacy", "Entrepreneurship"],
   },
 ] as const;
 
@@ -48,8 +42,8 @@ export function ProgramsSection({ withHeading = true }: { withHeading?: boolean 
       {withHeading ? (
         <SectionHeading
           eyebrow="What we do"
-          title="Three commitments, carried to the last mile"
-          description="Every program begins with the same question: what would restore this woman's dignity today, and what would keep it restored for years?"
+          title="Building opportunity, together"
+          description="FOH's focus areas connect education, dignity, skills and sustainable opportunity for girls, young women and youth."
         />
       ) : null}
 
@@ -62,12 +56,15 @@ export function ProgramsSection({ withHeading = true }: { withHeading?: boolean 
                   index % 2 === 0 ? "w-full lg:w-1/2 lg:order-1" : "w-full lg:w-1/2 lg:order-2"
                 }
               >
-                <img
-                  src={program.image}
-                  alt={program.alt}
-                  loading="lazy"
-                  className="rounded-none"
-                />
+                <div
+                  role="img"
+                  aria-label={program.alt}
+                  className="flex min-h-64 items-end bg-[color:color-mix(in_oklab,var(--burgundy)_12%,var(--cream))] p-5"
+                >
+                  <span className="text-[0.65rem] font-semibold tracking-[0.2em] text-[color:var(--burgundy)] uppercase">
+                    Image placeholder
+                  </span>
+                </div>
               </div>
               <div
                 className={

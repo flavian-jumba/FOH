@@ -3,8 +3,8 @@ import { useEffect, useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import fohLogo from "@/assets/logo.png";
 import { NAV_LINKS, ORG } from "./site-data";
-import simplyfemininenetworkLogo from "@/assets/simplyfemininenetwork.png";
 
 export function Navbar() {
   const pathname = useRouterState({ select: (state) => state.location.pathname });
@@ -55,18 +55,18 @@ export function Navbar() {
       <nav className="shell flex h-14 items-center justify-between">
         <Link to="/" className="flex items-center gap-2" onClick={handleLogoClick}>
           <img
-            src={simplyfemininenetworkLogo}
-            alt="Simply Feminine Network"
-            width={42}
-            height={42}
-            className="h-9 w-9 rounded-full object-cover"
+            src={fohLogo}
+            alt="Footprints of Hope logo"
+            width={48}
+            height={48}
+            className="h-11 w-11 shrink-0 rounded-md bg-white p-0.5 object-contain shadow-sm"
           />
           <span className="hidden sm:block">
             <span className="block font-display text-[0.8rem] font-semibold leading-none tracking-[0.18em] text-cream uppercase">
-              Simply Feminine
+              Footprints of
             </span>
             <span className="mt-0.5 block text-[0.55rem] font-medium leading-none tracking-[0.42em] text-gold uppercase">
-              Network
+              Hope
             </span>
           </span>
         </Link>

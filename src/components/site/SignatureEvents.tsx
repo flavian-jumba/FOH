@@ -2,30 +2,30 @@ import { Link } from "@tanstack/react-router";
 
 import { Reveal } from "./Reveal";
 
-const EVENT_LIST = [
+const SUPPORT_LIST = [
   {
-    id: "grand-ball",
-    date: "TBC 2026 · Nairobi",
-    title: "SFN Grand",
-    titleItalic: "Ball",
-    body: "SFN's flagship charity ball at the Kenyatta International Convention Centre — a curated gathering of diplomats, corporate leaders, and changemakers. Attendance is by verified invitation only.",
-    cta: "Request invitation",
+    id: "education",
+    date: "Education",
+    title: "Support a young",
+    titleItalic: "mother",
+    body: "Help teenage mothers return to school, complete their education and build a pathway toward independence.",
+    cta: "Support FOH",
   },
   {
-    id: "serena-ball",
-    date: "TBC 2026 · Nairobi Serena",
-    title: "Nairobi Charity",
-    titleItalic: "Gala Night",
-    body: "An elegant evening of philanthropy and recognition supporting the IMARA HER Mobile Lab and girl-child empowerment initiatives across rural Kenya.",
-    cta: "Register interest",
+    id: "agribusiness",
+    date: "Agribusiness",
+    title: "Empower women",
+    titleItalic: "through skills",
+    body: "Support poultry and vegetable farming, financial literacy and entrepreneurship for sustainable income generation.",
+    cta: "Partner with FOH",
   },
   {
-    id: "berlin-dinner",
-    date: "TBC 2026 · Schlosshotel Berlin",
-    title: "Empower HER",
-    titleItalic: "Networking Dinner",
-    body: "A luxury women's networking and empowerment dinner in Berlin, convening African and European women leaders under H.E. Ambassador Stella Mokaya Orina.",
-    cta: "Request invitation",
+    id: "mentorship",
+    date: "Mentorship",
+    title: "Create room for",
+    titleItalic: "hope",
+    body: "Bring your experience, networks and encouragement to mentorship and safe spaces for young women.",
+    cta: "Get involved",
   },
 ] as const;
 
@@ -40,19 +40,19 @@ export function SignatureEvents() {
       <div className="relative py-24 lg:py-32">
         <Reveal className="mx-auto mb-20 max-w-7xl px-5 text-center sm:px-8">
           <span className="mb-4 block text-[0.7rem] font-bold tracking-[0.5em] text-[color:#C8A24D] uppercase">
-            Calendar of Impact
+            Sow Seeds of Hope
           </span>
           <h2 className="font-cormorant text-5xl font-light italic lg:text-6xl">
-            Signature Events
+            Create Opportunity
           </h2>
           <p className="mx-auto mt-6 max-w-xl text-sm leading-relaxed text-[color:#FBF1E8]/60">
-            SFN's flagship charity balls are invitation-only and not sold to the public. Attendance
-            is reserved for verified diplomats, corporate leaders, and strategic partners.
+            Every contribution helps build education, skills, dignity and sustainable opportunity
+            for girls, young women and youth.
           </p>
         </Reveal>
 
         <div className="mx-auto grid max-w-7xl border-t border-[color:#FBF1E8]/10 md:grid-cols-3">
-          {EVENT_LIST.map((event, index) => (
+          {SUPPORT_LIST.map((event, index) => (
             <Reveal
               key={event.id}
               delay={index * 0.06}

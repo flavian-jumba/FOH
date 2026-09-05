@@ -1,32 +1,24 @@
 export const ORG = {
-  name: "Simply Feminine Network",
-  short: "SFN",
-  tagline: "Women of Purpose — Giving Back with Grace.",
-  email: "simplyfemininenetwork@gmail.com",
-  phoneKe: "+254 769 054 165",
-  phoneDe: "+49 1511 565 3888",
-  founded: 2021,
-  founder: "Tabitha Mwelu John",
-  ceo: "Tabitha Mwelu John",
-  award: "NGO OF THE YEAR — PRIDE OF KENYA AWARDS 2025",
+  name: "Footprints of Hope",
+  short: "FOH",
+  tagline:
+    "A community-driven organization empowering adolescent girls, young women and youth in Busia County, Kenya.",
+  email: "info@foh-foundation.org",
+  website: "foh-foundation.org",
+  location: "Busia County, Kenya",
 };
 
 export const NAV_LINKS = [
   { label: "About", to: "/about" },
-  { label: "Mission", to: "/mission" },
-  { label: "Projects", to: "/programs" },
-  { label: "Events", to: "/events" },
-  { label: "Community", to: "/community" },
-  { label: "Partners", to: "/partners" },
+  { label: "Our Work", to: "/programs" },
+  { label: "Our Impact", to: "/community" },
+  { label: "Gallery", to: "/gallery" },
+  { label: "Get Involved", to: "/partners" },
   { label: "Contact", to: "/contact" },
 ] as const;
 
 export const STATS = [
-  { value: "NGO OF THE YEAR", suffix: " 2025", label: "" },
-  { value: 2, suffix: "+", label: "ACTIVE GLOBAL CHAPTERS" },
-  { value: 4, suffix: "+", label: "CORE ADVOCACY PILLARS" },
-  { value: "1K+", suffix: "", label: "PAEDIATRIC WARD SUPPORTED" },
+  { value: 50, suffix: "+", label: "TEENAGE MOTHERS REINTEGRATED" },
+  { value: 200, suffix: "+", label: "WOMEN-LED BUSINESSES SUPPORTED" },
+  { value: 5000, suffix: "+", label: "GIRLS & WOMEN REACHED" },
 ] as const;
-
-// Note: Mission and Community pages need to be created
-// Note: Kenya Partners / Venue Partners / Community & Sports tab content needs to be provided by client

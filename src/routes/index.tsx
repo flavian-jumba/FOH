@@ -9,9 +9,9 @@ import { PartnersCollaborators } from "@/components/site/PartnersCollaborators";
 import { SponsorshipTiers } from "@/components/site/SponsorshipTiers";
 import { ContactSection } from "@/components/site/ContactSection";
 
-const title = "Simply Feminine Network — Women of Purpose — Giving Back with Grace";
+const title = "Footprints of Hope — Obtaining Diamonds From The Rough";
 const description =
-  "Simply Feminine Network is an award-winning women-led NGO committed to women's health, ending gender-based violence, mentorship, and community empowerment — in Kenya and across the world.";
+  "Footprints of Hope empowers adolescent girls, young women and youth in Busia County, Kenya through economic empowerment, menstrual health education and psychosocial support.";
 
 export const Route = createFileRoute("/")({
   head: () => ({

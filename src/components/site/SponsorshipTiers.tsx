@@ -3,45 +3,37 @@ import { Eyebrow, Reveal } from "./Reveal";
 import { Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 
-const tiers = [
+const supportAreas = [
   {
-    name: "Title Partner",
+    name: "Education",
     dot: "var(--gold)",
     benefits: [
-      "Naming rights on the SFN Grand Ball",
-      "Keynote platform & stage recognition",
-      "Dedicated impact report",
-      "Head table for twelve guests",
+      "15 teenage mothers need school fees to complete their education.",
+      "Help sustain pathways back to school and vocational training.",
     ],
   },
   {
-    name: "Platinum Partner",
+    name: "Poultry Farming",
     dot: "var(--gold)",
     benefits: [
-      "Premium branding across all events",
-      "Panel or fireside participation",
-      "Quarterly impact briefings",
-      "Head table for eight guests",
+      "A poultry farm setup can create sustainable income and skills for young women.",
+      "Support practical agribusiness and entrepreneurship opportunities.",
     ],
   },
   {
-    name: "Gold Partner",
+    name: "Vegetable Farming",
     dot: "var(--rose)",
     benefits: [
-      "Branding across gala collateral",
-      "Programme-level recognition",
-      "Bi-annual impact summary",
-      "Table for six guests",
+      "A vegetable farm can generate income to sustain FOH programmes.",
+      "Help empower more women through sustainable opportunities.",
     ],
   },
   {
-    name: "Community Partner",
+    name: "Partnerships & Mentorship",
     dot: "var(--rose)",
     benefits: [
-      "Recognition on SFN platforms",
-      "Volunteer & field engagement",
-      "Annual impact newsletter",
-      "Two invitations per event",
+      "FOH needs funding, training, networks and mentorship to help scale its impact.",
+      "Bring your expertise, resources or connections to the work.",
     ],
   },
 ];
@@ -54,20 +46,20 @@ export function SponsorshipTiers() {
       <div className="relative z-20 mx-auto max-w-7xl px-5 sm:px-8 py-20">
         <div className="shell grid gap-14 lg:grid-cols-12 lg:gap-20">
           <Reveal className="lg:col-span-4">
-            <Eyebrow>Partnership Tiers</Eyebrow>
+            <Eyebrow>Why Support FOH</Eyebrow>
             <h2 className="mt-6 font-display text-4xl leading-[1.08] font-semibold text-charcoal lg:text-[3.2rem]">
-              Sponsorship
+              Create lasting
               <br />
               <span className="italic font-light" style={{ color: "var(--burgundy)" }}>
-                Tiers
+                opportunity
               </span>
             </h2>
             <p
               className="mt-7 text-base leading-relaxed"
               style={{ color: "var(--muted-foreground)" }}
             >
-              Every tier is structured around measurable outcomes — dignity kits delivered, clinics
-              reached, women mentored — and reported back to you in full.
+              Every contribution can help a young mother return to school, a woman build a business,
+              a girl access menstrual health support, and young people gain skills.
             </p>
             <motion.a
               href="/partners"
@@ -76,14 +68,14 @@ export function SponsorshipTiers() {
               transition={{ delay: 0.48, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
               className="btn-base btn-primary mt-10"
             >
-              Request Partnership Pack
+              Start a Conversation
             </motion.a>
           </Reveal>
 
           <div className="lg:col-span-8">
             <Reveal delay={80}>
-              <ul>
-                {tiers.map((t, i) => {
+              <ul className="mt-10">
+                {supportAreas.map((t, i) => {
                   const isActive = active === i;
                   return (
                     <Reveal as="li" key={t.name} delay={i * 70}>

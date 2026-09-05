@@ -3,9 +3,9 @@ import { createFileRoute } from "@tanstack/react-router";
 import { LegalPage } from "@/components/site/LegalPage";
 import { ORG } from "@/components/site/site-data";
 
-const title = "Privacy Policy — Simply Feminine Network";
+const title = "Privacy Policy — Footprints of Hope";
 const description =
-  "How Simply Feminine Network collects, uses, protects and retains the personal data of donors, partners and programme beneficiaries.";
+  "How Footprints of Hope collects, uses, protects and retains personal data shared through this website.";
 
 export const Route = createFileRoute("/privacy")({
   head: () => ({
@@ -58,7 +58,7 @@ function PrivacyPage() {
           heading: "Your rights",
           body: [
             "Under the Kenya Data Protection Act, 2019 you may request access to, correction of, or deletion of your personal data, and you may object to processing at any time.",
-            `To exercise any of these rights, contact us at ${ORG.email} or call ${ORG.phoneKe}.`,
+            `To exercise any of these rights, contact us at ${ORG.email}.`,
           ],
         },
         {

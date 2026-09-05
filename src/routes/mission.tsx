@@ -1,9 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { OurStory } from "@/components/site/OurStory";
 
-const title = "Our Mission — Simply Feminine Network";
+const title = "Our Mission — Footprints of Hope";
 const description =
-  "Our mission is to serve, uplift, and celebrate women at every stage of their journey through women's health advocacy, ending gender-based violence, mentorship, and community empowerment.";
+  "Footprints of Hope creates pathways to education, economic independence, menstrual health and psychosocial wellbeing in Busia County, Kenya.";
 
 export const Route = createFileRoute("/mission")({
   head: () => ({
@@ -29,19 +29,17 @@ function MissionPage() {
           </div>
           <h1 className="text-4xl font-display font-bold text-[color:#1F1B1D] mb-2">Our Mission</h1>
           <h2 className="text-[color:#4A0E24] text-3xl font-display italic mb-6">
-            To serve, uplift, and celebrate women
+            Obtaining diamonds from the rough
           </h2>
           <p className="text-[color:#6E6660] text-base leading-relaxed mb-6">
-            Simply Feminine Network is a women-led NGO founded by Tabitha Mwelu John with a
-            singular, unwavering purpose: to serve, uplift, and celebrate women at every stage of
-            their journey.
+            Footprints of Hope is a community-driven organization in Busia County, Kenya,
+            transforming the lives of adolescent girls, young women and youth through economic
+            empowerment, menstrual health education and psychosocial support.
           </p>
           <p className="text-[color:#6E6660] text-base leading-relaxed">
-            We pursue this mission through our four pillars of advocacy: Women's
-            Health/Endometriosis Awareness, Ending Gender-Based Violence, Mentorship/Leadership
-            Development, and Community Uplift/Social Empowerment. From rural Kenya to global
-            summits, we work to ensure every woman has access to healthcare, dignity, education, and
-            the opportunity to thrive.
+            We work through teen mothers' reintegration, women and youth in agribusiness, menstrual
+            health and hygiene, and mental health and well-being through Nhanga Sessions. Our aim is
+            not temporary assistance, but lasting education, dignity, skills and opportunity.
           </p>
         </div>
       </section>

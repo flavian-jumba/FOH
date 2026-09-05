@@ -1,4 +1,3 @@
-import { Award } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 import { CountUpNumber } from "./CountUpNumber";
@@ -34,12 +33,9 @@ export function ImpactBar() {
       </h2>
       <div className="mx-auto max-w-6xl">
         <div ref={ref}>
-          <div className="flex items-center justify-center gap-4 mb-6">
-            <Award className="size-4 text-accent" aria-hidden="true" />
-            <p className="text-xs font-semibold tracking-[0.18em] text-primary">
-              Winner · NGO of the Year — Pride of Kenya Awards
-            </p>
-          </div>
+          <p className="mb-6 text-center text-xs font-semibold tracking-[0.18em] text-primary">
+            Footprints of Hope in numbers
+          </p>
           <div className="grid gap-x-8 gap-y-6 sm:grid-cols-3">
             {STATS.map((stat, idx) => (
               <div

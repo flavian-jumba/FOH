@@ -12,6 +12,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
+import fohLogo from "@/assets/logo.png";
 import { MainLayout } from "@/components/layout/MainLayout";
 import { useLenis } from "@/components/site/useLenis";
 
@@ -78,15 +79,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Simply Feminine Network — Women of Purpose — Giving Back with Grace" },
+      { title: "Footprints of Hope — Obtaining Diamonds From The Rough" },
       {
         name: "description",
         content:
-          "Simply Feminine Network is an award-winning women-led NGO committed to women's health, ending gender-based violence, mentorship, and community empowerment — in Kenya and across the world.",
+          "Footprints of Hope empowers adolescent girls, young women and youth in Busia County, Kenya through economic empowerment, menstrual health education and psychosocial support.",
       },
-      { name: "author", content: "Simply Feminine Network" },
+      { name: "author", content: "Footprints of Hope" },
       { name: "theme-color", content: "#4A0E24" },
-      { property: "og:site_name", content: "Simply Feminine Network" },
+      { property: "og:site_name", content: "Footprints of Hope" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -98,8 +99,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600;700&display=swap",
       },
-      { rel: "icon", type: "image/png", href: "/simplyfemininenetwork.png" },
-      { rel: "apple-touch-icon", href: "/simplyfemininenetwork.png" },
+      { rel: "icon", type: "image/png", href: fohLogo },
+      { rel: "apple-touch-icon", href: fohLogo },
     ],
     scripts: [
       {
@@ -107,13 +108,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "NGO",
-          name: "Simply Feminine Network",
-          foundingDate: "2021",
-          email: "simplyfemininenetwork@gmail.com",
-          telephone: "+254769054165",
-          areaServed: ["Kenya", "Germany"],
+          name: "Footprints of Hope",
+          email: "info@foh-foundation.org",
+          url: "https://foh-foundation.org",
+          areaServed: "Busia County, Kenya",
           description:
-            "Award-winning women-led NGO committed to women's health, ending gender-based violence, mentorship, and community empowerment — in Kenya and across the world.",
+            "A community-driven organization empowering adolescent girls, young women and youth through economic empowerment, menstrual health education and psychosocial support.",
         }),
       },
     ],

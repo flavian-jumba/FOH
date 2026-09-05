@@ -5,7 +5,7 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * Simply Feminine Network — design system.
+ * Footprints of Hope — design system.
  * Migrated to Lovable design system with production compatibility.
  */
 
@@ -275,10 +275,10 @@
 @utility reveal {
   opacity: 0;
   transform: translateY(28px);
-  animation: sfn-reveal 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation: foh-reveal 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
-@keyframes sfn-reveal {
+@keyframes foh-reveal {
   to {
     opacity: 1;
     transform: none;

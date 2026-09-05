@@ -1,9 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { OurStory } from "@/components/site/OurStory";
 
-const title = "About Us — Simply Feminine Network";
+const title = "About Us — Footprints of Hope";
 const description =
-  "Simply Feminine Network is a women-led NGO founded by Tabitha Mwelu John with a singular, unwavering purpose: to serve, uplift, and celebrate women at every stage of their journey.";
+  "Footprints of Hope is a community-driven organization empowering adolescent girls, young women and youth in Busia County, Kenya.";
 
 export const Route = createFileRoute("/about")({
   head: () => ({

@@ -1,9 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Testimonials } from "@/components/site/Testimonials";
 
-const title = "Our Community — Simply Feminine Network";
+const title = "Our Impact — Footprints of Hope";
 const description =
-  "Hear from the women whose lives have been transformed by Simply Feminine Network's programs and partnerships.";
+  "See how Footprints of Hope creates pathways to education, economic empowerment, dignity and wellbeing in Busia County, Kenya.";
 
 export const Route = createFileRoute("/community")({
   head: () => ({

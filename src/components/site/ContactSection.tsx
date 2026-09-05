@@ -3,9 +3,9 @@ import { Eyebrow } from "./Eyebrow";
 import { Reveal } from "./Reveal";
 
 const details = [
-  { label: "Email", value: "simplyfemininenetwork@gmail.com" },
-  { label: "Phone", value: "+254 769 054 165" },
-  { label: "Office", value: "Nairobi, Kenya" },
+  { label: "Email", value: "info@foh-foundation.org" },
+  { label: "Website", value: "foh-foundation.org" },
+  { label: "Location", value: "Busia County, Kenya" },
 ];
 
 export function ContactSection() {
@@ -17,18 +17,18 @@ export function ContactSection() {
         <Reveal className="lg:col-span-5">
           <Eyebrow>Get In Touch</Eyebrow>
           <h2 className="mt-6 font-display text-4xl leading-[1.08] font-semibold text-charcoal lg:text-[3.2rem]">
-            Let&rsquo;s build
+            Join us in
             <br />
             <span className="font-light italic" style={{ color: "var(--burgundy)" }}>
-              something lasting
+              changing lives
             </span>
           </h2>
           <p
             className="mt-7 max-w-md text-base leading-relaxed"
             style={{ color: "var(--muted-foreground)" }}
           >
-            Whether you are a corporate partner, a donor, or a woman ready to join the network, we
-            would love to hear from you.
+            Whether you are a donor, partner, mentor or supporter, we would love to hear how you
+            would like to help create opportunity for girls, young women and youth.
           </p>
 
           <ul className="mt-12">
@@ -76,7 +76,7 @@ export function ContactSection() {
                   className="block text-[0.62rem] font-semibold tracking-[0.24em] uppercase"
                   style={{ color: "var(--muted-foreground)" }}
                 >
-                  Organisation
+                  Organisation / company
                 </span>
                 <input
                   type="text"
@@ -125,7 +125,7 @@ export function ContactSection() {
                 className="block text-[0.62rem] font-semibold tracking-[0.24em] uppercase"
                 style={{ color: "var(--muted-foreground)" }}
               >
-                How can we partner?
+                How would you like to get involved?
               </span>
               <textarea
                 name="message"

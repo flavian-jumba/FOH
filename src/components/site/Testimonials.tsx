@@ -1,27 +1,27 @@
 import { useState } from "react";
 import { Eyebrow, Reveal } from "./Reveal";
 
-const quotes = [
+const impactPathways = [
   {
     quote:
-      "Simply Feminine Network gave me the community and the courage I didn't know I needed. Within six months I had launched my business and found my people.",
-    name: "Adaeze Okafor",
-    role: "Founder, Haus of Adaeze",
-    initials: "AO",
+      "Education can keep a young mother connected to learning, skills and a future of her own choosing.",
+    name: "Education",
+    role: "Teen Mothers' Reintegration",
+    initials: "01",
   },
   {
     quote:
-      "The mentorship programme changed my career trajectory completely. My mentor became my greatest champion, and I became someone else's.",
-    name: "Priya Sharma",
-    role: "Director, Global Partnerships",
-    initials: "PS",
+      "Practical agribusiness and financial-literacy skills can strengthen income and economic independence.",
+    name: "Economic empowerment",
+    role: "Women & Youth in Agribusiness",
+    initials: "02",
   },
   {
     quote:
-      "I walked into the Leadership Academy as a manager. I walked out as a CEO in the making. The transformation was real, and it was lasting.",
-    name: "Sophia Mensah",
-    role: "CEO, Luminary Health",
-    initials: "SM",
+      "Menstrual health education and safe spaces help girls and young women participate with dignity and confidence.",
+    name: "Dignity & wellbeing",
+    role: "Menstrual Health & Nhanga Sessions",
+    initials: "03",
   },
 ];
 
@@ -33,18 +33,18 @@ export function Testimonials() {
       <div className="shell">
         <Reveal>
           <div className="max-w-2xl">
-            <Eyebrow>Voices of Our Community</Eyebrow>
+            <Eyebrow>Our Impact</Eyebrow>
             <h2 className="mt-6 font-display text-4xl leading-[1.08] font-semibold text-charcoal lg:text-[3.4rem]">
-              What Our{" "}
+              Pathways to{" "}
               <span className="italic font-light" style={{ color: "var(--burgundy)" }}>
-                Members Say
+                opportunity
               </span>
             </h2>
           </div>
         </Reveal>
 
         <ul className="mt-14 grid gap-6 lg:grid-cols-3">
-          {quotes.map((q, i) => {
+          {impactPathways.map((q, i) => {
             const isActive = active === i;
             return (
               <Reveal as="li" key={q.name} delay={i * 90}>

@@ -1,9 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PartnersSection } from "@/components/site/PartnersSection";
 
-const title = "Partners & Collaborators — Simply Feminine Network";
+const title = "Get Involved — Footprints of Hope";
 const description =
-  "From Nairobi to Berlin, SFN is backed by diplomats, media houses, luxury venues, and grassroots organisations who share our vision.";
+  "Partner with Footprints of Hope to create opportunity for girls, young women and youth in Busia County, Kenya.";
 
 export const Route = createFileRoute("/partners")({
   head: () => ({

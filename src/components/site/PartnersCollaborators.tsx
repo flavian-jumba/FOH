@@ -2,15 +2,9 @@ import { Eyebrow, Reveal } from "./Reveal";
 import { Link } from "@tanstack/react-router";
 
 const partnerLogos = [
-  { name: "Nairobi Serena Hotel", kind: "serena" },
-  { name: "Glee Hotel, Nairobi", kind: "glee" },
-  { name: "KICC", kind: "kicc" },
-  { name: "Sanitary Haven Foundation", kind: "sanitary" },
-  { name: "Shadow Children’s Home", kind: "shadow" },
-  { name: "Safari Edition Wines", kind: "safari" },
-  { name: "Afrossy Fashion Designs", kind: "afrossy" },
-  { name: "Pamoja School of Etiquette & Modelling Kenya", kind: "pamoja" },
-  { name: "Pride of Kenya Awards", kind: "poka" },
+  { name: "Partner logo", kind: "placeholder" },
+  { name: "Partner logo", kind: "placeholder" },
+  { name: "Partner logo", kind: "placeholder" },
 ] as const;
 
 function TextWordmark({
@@ -51,51 +45,12 @@ function TextWordmark({
 }
 
 function LogoTile({ name, kind }: { name: string; kind: string }) {
-  const renderLogo = () => {
-    if (kind === "glee") {
-      return (
-        <img
-          src="/assets/partners/glee-nairobi.svg"
-          alt={name}
-          className="h-auto max-h-[90px] w-full max-w-[220px] object-contain"
-        />
-      );
-    }
-
-    if (kind === "serena") {
-      return <TextWordmark title="Nairobi Serena" subtitle="Hotel" accent="var(--rose-light)" />;
-    }
-
-    if (kind === "kicc") {
-      return <TextWordmark title="KICC" subtitle="Kenyatta International Convention Centre" accent="var(--gold)" />;
-    }
-
-    if (kind === "sanitary") {
-      return <TextWordmark title="Sanitary Haven" subtitle="Foundation" accent="var(--rose-light)" />;
-    }
-
-    if (kind === "shadow") {
-      return <TextWordmark title="Shadow" subtitle="Children's Home" accent="var(--rose-light)" />;
-    }
-
-    if (kind === "safari") {
-      return <TextWordmark title="Safari Edition" subtitle="Wines" accent="var(--gold)" />;
-    }
-
-    if (kind === "afrossy") {
-      return <TextWordmark title="Afrossy" subtitle="Fashion Designs" accent="var(--gold)" uppercase={false} />;
-    }
-
-    if (kind === "pamoja") {
-      return <TextWordmark title="Pamoja" subtitle="Etiquette & Modelling Kenya" accent="var(--gold)" uppercase={false} />;
-    }
-
-    if (kind === "poka") {
-      return <TextWordmark title="Pride of Kenya" subtitle="Awards" accent="var(--gold)" uppercase={false} />;
-    }
-
-    return <TextWordmark title={name} />;
-  };
+  const renderLogo = () =>
+    kind === "placeholder" ? (
+      <TextWordmark title="Partner logo" subtitle="Placeholder" accent="var(--rose-light)" />
+    ) : (
+      <TextWordmark title={name} />
+    );
 
   return (
     <li className="h-full">
@@ -119,21 +74,20 @@ export function PartnersCollaborators() {
       <div className="shell">
         <Reveal>
           <div className="max-w-2xl">
-            <Eyebrow tone="rose">Our Global Network</Eyebrow>
+            <Eyebrow tone="rose">Work With Us</Eyebrow>
             <h2 className="mt-6 font-display text-4xl leading-[1.08] font-semibold text-cream lg:text-[3.4rem]">
               Partners & <span className="italic-accent">Collaborators</span>
             </h2>
             <p className="mt-6 text-sm leading-relaxed text-cream/65">
-              From Nairobi to Berlin, SFN is backed by hospitality leaders, community partners, and
-              mission-aligned collaborators who share our vision for dignity, leadership, and
-              impact.
+              FOH welcomes partners and mentors who can contribute funding, training, networks and
+              practical expertise to help scale opportunity in Busia County.
             </p>
           </div>
         </Reveal>
 
         <ul className="mt-12 grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
           {partnerLogos.map((partner, index) => (
-            <Reveal as="li" key={partner.name} delay={index * 60}>
+            <Reveal as="li" key={`${partner.kind}-${index}`} delay={index * 60}>
               <LogoTile name={partner.name} kind={partner.kind} />
             </Reveal>
           ))}
@@ -145,8 +99,8 @@ export function PartnersCollaborators() {
             style={{ borderTop: "1px solid color-mix(in oklab, var(--cream) 14%, transparent)" }}
           >
             <p className="max-w-lg text-sm leading-relaxed text-cream/65">
-              Interested in a partnership that puts women's health, dignity, and leadership at the
-              centre of your impact strategy?
+              Partner logos will appear here once confirmed. In the meantime, start a conversation
+              about how your support can help create long-term opportunity.
             </p>
             <Link to="/partners" className="btn-base btn-outline self-start">
               Become a Partner

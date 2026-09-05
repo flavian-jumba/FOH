@@ -39,7 +39,7 @@ export function FourPillars() {
               transition={{ delay: 0.36, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
               className="mt-6 max-w-xl font-display text-4xl leading-[1.08] font-semibold text-cream lg:text-[3.4rem]"
             >
-              Advocacy <span className="italic-accent">Pillars</span>
+              Our <span className="italic-accent">Focus Areas</span>
             </motion.h2>
 
             <motion.p
@@ -48,8 +48,8 @@ export function FourPillars() {
               transition={{ delay: 0.48, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
               className="max-w-md text-sm leading-relaxed text-cream/65"
             >
-              Four commitments that shape every programme, partnership, and pound we deploy — from
-              rural clinics in Kenya to policy rooms in Europe.
+              Four connected areas of work that help girls, young women and youth build a future
+              with dignity, skills and opportunity.
             </motion.p>
           </div>
         </motion.div>
@@ -62,24 +62,24 @@ export function FourPillars() {
         >
           {[
             {
-              title: "Women's Health",
-              sub: "Endometriosis Awareness",
-              copy: "Education, advocacy, and amplifying voices around Endometriosis — a condition affecting 1 in 10 women globally that remains critically under-discussed across Africa.",
+              title: "Teen Mothers' Reintegration",
+              sub: "Education & Opportunity",
+              copy: "Helping teenage mothers return to school, access vocational and economic opportunities, and build a pathway toward independence.",
             },
             {
-              title: "Ending GBV",
-              sub: "Awareness, Support & Policy",
-              copy: "Fighting Gender-Based Violence through awareness campaigns, survivor support, and policy-level advocacy that demands accountability and lasting systemic change.",
+              title: "Women & Youth in Agribusiness",
+              sub: "Skills & Sustainable Income",
+              copy: "Training young women and youth in poultry farming, agribusiness, financial literacy and entrepreneurship for sustainable income generation.",
             },
             {
-              title: "Mentorship",
-              sub: "Leadership Development",
-              copy: "Structured mentorship programmes and capacity-building initiatives that equip girls and women entrepreneurs with the skills, confidence, and networks to lead.",
+              title: "Menstrual Health & Hygiene",
+              sub: "Dignity & Participation",
+              copy: "Supporting access to menstrual products, reproductive health education and awareness so girls can remain in school and participate confidently in daily life.",
             },
             {
-              title: "Community",
-              sub: "Social Empowerment",
-              copy: "Restoring the dignity of the girl-child through targeted social support, sanitary dignity programmes, and community-led grassroots interventions.",
+              title: "Mental Health & Well-being",
+              sub: "Nhanga Sessions",
+              copy: "Creating safe spaces for young women to discuss challenges, receive mentorship, access psychosocial support and build peer connection.",
             },
           ].map((p, i) => (
             <motion.li

@@ -2,10 +2,17 @@ import { Link } from "@tanstack/react-router";
 import { motion, useInView, useMotionValue, useTransform, animate } from "framer-motion";
 import heroBg from "@/assets/hero-bg.jpg";
 import { useEffect, useRef, type ReactElement } from "react";
-import { STATS } from "./site-data";
 
 // Smooth counter component for animated numbers
-function SmoothCounter({ target, suffix = "", duration = 2 }: { target: number; suffix?: string; duration?: number }): ReactElement {
+function SmoothCounter({
+  target,
+  suffix = "",
+  duration = 2,
+}: {
+  target: number;
+  suffix?: string;
+  duration?: number;
+}): ReactElement {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.5 });
   const motionValue = useMotionValue(0);
@@ -35,12 +42,11 @@ function SmoothCounter({ target, suffix = "", duration = 2 }: { target: number; 
 }
 
 export function Hero() {
-
   return (
     <section id="top" className="relative isolate flex min-h-[100svh] items-end overflow-hidden">
       <img
         src={heroBg}
-        alt="Women seated together at a café table, warm brick interior wall"
+        alt="Placeholder image for Footprints of Hope"
         width={1920}
         height={1280}
         className="absolute inset-0 -z-20 h-full w-full object-cover"
@@ -68,9 +74,9 @@ export function Hero() {
             transition={{ delay: 0.12, duration: 1, ease: [0.16, 1, 0.3, 1] }}
             className="mt-5 font-display text-[2.5rem] leading-[1.03] font-semibold text-cream sm:text-5xl lg:text-[4.2rem]"
           >
-            Women of Purpose.
+            Obtaining Diamonds
             <br />
-            <span className="italic-accent">Giving Back</span> with Grace.
+            <span className="italic-accent">From the Rough.</span>
           </motion.h1>
 
           <motion.p
@@ -79,9 +85,8 @@ export function Hero() {
             transition={{ delay: 0.3, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
             className="mt-6 max-w-2xl text-base leading-relaxed text-cream/80 lg:text-lg"
           >
-            Simply Feminine Network is an award-winning women-led NGO committed to women's health,
-            ending gender-based violence, mentorship, and community empowerment — in Kenya and
-            across the world.
+            Footprints of Hope works alongside adolescent girls, young women and youth in Busia
+            County, Kenya to build opportunity, economic independence and hope.
           </motion.p>
 
           <motion.div
@@ -94,7 +99,7 @@ export function Hero() {
               Explore Our Work
             </Link>
             <Link to="/partners" className="btn-base btn-outline px-6 py-3 text-sm">
-              Partner With SFN
+              Sow Seeds of Hope
             </Link>
           </motion.div>
         </div>
@@ -106,9 +111,9 @@ export function Hero() {
           transition={{ delay: 0.56, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
           className="hairline-light mt-14 flex flex-col items-start gap-6 sm:flex-row sm:items-center sm:justify-between"
         >
-          {/* NGO / OF THE YEAR 2025 */}
+          {/* Verified FOH impact figures */}
           <motion.div
-            key="ngo-year"
+            key="teen-mothers"
             initial={{ opacity: 0, y: 22 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
@@ -120,7 +125,7 @@ export function Hero() {
               transition={{ delay: 0.62, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
               className="block font-display text-[3.5rem] font-semibold text-rose-light lg:text-4xl"
             >
-              NGO
+              <SmoothCounter target={50} suffix="+" duration={1.5} />
             </motion.dt>
             <motion.dd
               initial={{ opacity: 0, y: 22 }}
@@ -128,13 +133,12 @@ export function Hero() {
               transition={{ delay: 0.64, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
               className="mt-1 text-[0.8rem] font-semibold tracking-[0.26em] text-cream/60 uppercase"
             >
-              OF THE YEAR 2025
+              TEENAGE MOTHERS REINTEGRATED
             </motion.dd>
           </motion.div>
 
-          {/* 2+ / ACTIVE GLOBAL CHAPTERS */}
           <motion.div
-            key="chapters"
+            key="businesses"
             initial={{ opacity: 0, y: 22 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.66, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
@@ -146,7 +150,7 @@ export function Hero() {
               transition={{ delay: 0.68, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
               className="block font-display text-[3.5rem] font-semibold text-rose-light lg:text-4xl"
             >
-              <SmoothCounter target={2} suffix="+" duration={1.5} />
+              <SmoothCounter target={200} suffix="+" duration={1.5} />
             </motion.dt>
             <motion.dd
               initial={{ opacity: 0, y: 22 }}
@@ -154,13 +158,12 @@ export function Hero() {
               transition={{ delay: 0.7, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
               className="mt-1 text-[0.8rem] font-semibold tracking-[0.26em] text-cream/60 uppercase"
             >
-              ACTIVE GLOBAL CHAPTERS
+              WOMEN-LED BUSINESSES SUPPORTED
             </motion.dd>
           </motion.div>
 
-          {/* 4+ / CORE ADVOCACY PILLARS */}
           <motion.div
-            key="pillars"
+            key="reached"
             initial={{ opacity: 0, y: 22 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.72, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
@@ -172,7 +175,7 @@ export function Hero() {
               transition={{ delay: 0.74, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
               className="block font-display text-[3.5rem] font-semibold text-rose-light lg:text-4xl"
             >
-              <SmoothCounter target={4} suffix="+" duration={1.5} />
+              <SmoothCounter target={5000} suffix="+" duration={1.5} />
             </motion.dt>
             <motion.dd
               initial={{ opacity: 0, y: 22 }}
@@ -180,33 +183,7 @@ export function Hero() {
               transition={{ delay: 0.76, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
               className="mt-1 text-[0.8rem] font-semibold tracking-[0.26em] text-cream/60 uppercase"
             >
-              CORE ADVOCACY PILLARS
-            </motion.dd>
-          </motion.div>
-
-          {/* 1K+ / PAEDIATRIC WARD SUPPORTED */}
-          <motion.div
-            key="wards"
-            initial={{ opacity: 0, y: 22 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.78, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-            className="text-center sm:text-left"
-          >
-            <motion.dt
-              initial={{ opacity: 0, y: 22 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.8, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-              className="block font-display text-[3.5rem] font-semibold text-rose-light lg:text-4xl"
-            >
-              <SmoothCounter target={1000} suffix="+" duration={1.5} />
-            </motion.dt>
-            <motion.dd
-              initial={{ opacity: 0, y: 22 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.82, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-              className="mt-1 text-[0.8rem] font-semibold tracking-[0.26em] text-cream/60 uppercase"
-            >
-              PAEDIATRIC WARD SUPPORTED
+              GIRLS & WOMEN REACHED
             </motion.dd>
           </motion.div>
         </motion.div>

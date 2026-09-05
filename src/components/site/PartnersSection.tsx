@@ -4,46 +4,30 @@ import { Reveal } from "./Reveal";
 // Partners data grouped by partnership type
 const PARTNERS_BY_TYPE = [
   {
-    id: "empower-her-berlin",
-    type: "Empower Her Berlin",
-    categoryBadge: "DIPLOMATIC",
+    id: "funding",
+    type: "Funding",
+    categoryBadge: "PLACEHOLDER",
     partners: [
-      { name: "Embassy of Kenya, Berlin", abbreviation: "EK", url: "https://kenya.go.ke" },
-      { name: "Schloss Hotel Berlin", abbreviation: "SB", url: "https://schloss-hotel-berlin.de" },
-      { name: "African Diaspora Council", abbreviation: "AD", url: "#" },
-      { name: "Empower HER e.V.", abbreviation: "EH", url: "#" },
+      { name: "Partner placeholder", abbreviation: "FOH", url: "#" },
+      { name: "Partner placeholder", abbreviation: "FOH", url: "#" },
     ],
   },
   {
-    id: "kenya-partners",
-    type: "Kenya Partners",
-    categoryBadge: "VENUE",
+    id: "training",
+    type: "Training",
+    categoryBadge: "PLACEHOLDER",
     partners: [
-      { name: "Nairobi Serena Hotel", abbreviation: "NS", url: "https://serena.co.ke" },
-      { name: "Glee Hotel Nairobi", abbreviation: "GH", url: "https://gleoholels.com" },
-      { name: "KICC", abbreviation: "KC", url: "https://kicc.co.ke" },
-      { name: "Pride of Kenya Awards", abbreviation: "POK", url: "https://prideofkenya.co.ke" },
+      { name: "Partner placeholder", abbreviation: "FOH", url: "#" },
+      { name: "Partner placeholder", abbreviation: "FOH", url: "#" },
     ],
   },
   {
-    id: "venue-partners",
-    type: "Venue Partners",
-    categoryBadge: "VENUE",
+    id: "mentorship",
+    type: "Mentorship & Networks",
+    categoryBadge: "PLACEHOLDER",
     partners: [
-      { name: "Safari Edition Wines", abbreviation: "SEW", url: "#" },
-      { name: "Sanitary Haven Foundation", abbreviation: "SHF", url: "#" },
-      { name: "Shadow Children's Home", abbreviation: "SCH", url: "#" },
-      { name: "Afrossy Fashion Designs", abbreviation: "AFD", url: "#" },
-    ],
-  },
-  {
-    id: "community-sports",
-    type: "Community & Sports",
-    categoryBadge: "CHAPTER",
-    partners: [
-      { name: "Pamoja School of Etiquette & Modelling Kenya", abbreviation: "PSE", url: "#" },
-      { name: "Diaspora Leaders Forum", abbreviation: "DLF", url: "#" },
-      { name: "UN Women Kenya", abbreviation: "UNW", url: "#" },
+      { name: "Partner placeholder", abbreviation: "FOH", url: "#" },
+      { name: "Partner placeholder", abbreviation: "FOH", url: "#" },
     ],
   },
 ] as const;
@@ -60,13 +44,14 @@ export function PartnersSection({ withHeading = true }: { withHeading?: boolean 
         {withHeading && (
           <div className="mb-16 lg:mb-20">
             <p className="text-xs font-manrope text-gold/70 uppercase tracking-widest mb-6">
-              Our Global Network
+              Work With FOH
             </p>
             <h1 className="text-5xl lg:text-6xl font-display text-white mb-6">
               Partners & <span className="text-rose italic">Collaborators</span>
             </h1>
             <p className="text-base text-white/60 max-w-2xl leading-relaxed">
-              From Nairobi to Berlin, SFN is backed by diplomats, media houses, luxury venues, and grassroots organisations who share our vision.
+              Confirmed FOH partners will appear here. We welcome collaborators who can contribute
+              funding, training, networks and mentorship to help create opportunity.
             </p>
           </div>
         )}
@@ -93,7 +78,12 @@ export function PartnersSection({ withHeading = true }: { withHeading?: boolean 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
             {activeSection.partners.map((partner, index) => (
               <Reveal key={partner.name} delay={index * 0.05}>
-                <a href={partner.url} target="_blank" rel="noopener noreferrer" className="h-full block">
+                <a
+                  href={partner.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="h-full block"
+                >
                   <div className="h-full flex flex-col items-start gap-6 border border-white/10 p-8 rounded bg-white/[0.02] hover:bg-white/5 hover:border-white/20 transition-all duration-300 group">
                     {/* Abbreviation Badge */}
                     <div className="w-14 h-14 rounded bg-gold/20 border border-gold/40 flex items-center justify-center group-hover:bg-gold/30 group-hover:border-gold/60 transition-all duration-300">
@@ -122,7 +112,8 @@ export function PartnersSection({ withHeading = true }: { withHeading?: boolean 
         <div className="border-t border-white/10 pt-12">
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
             <p className="text-sm text-white/60 max-w-lg leading-relaxed">
-              Interested in a partnership that puts women's health, dignity, and leadership at the centre of your impact strategy?
+              Interested in a partnership that supports education, economic independence, dignity
+              and sustainable opportunity?
             </p>
             <a href="#contact" className="inline-block">
               <button className="px-8 py-3 border border-white/20 text-white text-sm font-medium uppercase tracking-wider hover:bg-white/5 hover:border-white/40 transition-all duration-300 rounded">

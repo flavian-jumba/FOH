@@ -1,9 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ProjectsProgrammes } from "@/components/site/ProjectsProgrammes";
 
-const title = "Projects & Programmes — Simply Feminine Network";
+const title = "Our Work — Footprints of Hope";
 const description =
-  "From a mobile health lab in rural Kenya to a luxury empowerment summit in Berlin — SFN's work is as diverse as the women it serves.";
+  "Explore Footprints of Hope's four focus areas: teen mothers' reintegration, agribusiness, menstrual health and wellbeing support.";
 
 export const Route = createFileRoute("/programs")({
   head: () => ({

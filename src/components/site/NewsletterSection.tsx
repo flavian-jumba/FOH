@@ -17,11 +17,11 @@ export function NewsletterSection() {
           <div className="relative">
             <p className="eyebrow text-white/70">Newsletter</p>
             <h2 className="mx-auto mt-4 max-w-2xl text-3xl leading-tight font-semibold text-white sm:text-4xl">
-              Stay with the women you just met
+              Stay connected to FOH
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-white/80">
-              Monthly field notes, invitations to the gala and summit, and the impact report — no
-              noise, ever.
+              Receive updates about our work, opportunities to get involved and the stories behind
+              the change we are building together.
             </p>
             <div className="mt-8 flex justify-center">
               <NewsletterForm />

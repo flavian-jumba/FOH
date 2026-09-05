@@ -3,9 +3,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import { LegalPage } from "@/components/site/LegalPage";
 import { ORG } from "@/components/site/site-data";
 
-const title = "Terms of Use — Simply Feminine Network";
-const description =
-  "The terms governing use of the Simply Feminine Network website, donations, event participation and content.";
+const title = "Terms of Use — Footprints of Hope";
+const description = "The terms governing use of the Footprints of Hope website and its content.";
 
 export const Route = createFileRoute("/terms")({
   head: () => ({
@@ -31,20 +30,20 @@ function TermsPage() {
         {
           heading: "Acceptance",
           body: [
-            `By accessing this website you agree to these terms. If you do not agree, please discontinue use. ${ORG.name} is a non-governmental organization registered in Kenya.`,
+            `By accessing this website you agree to these terms. If you do not agree, please discontinue use.`,
           ],
         },
         {
           heading: "Donations",
           body: [
-            "The checkout on this site is a demonstration interface and does not process live payments. Confirmed giving channels are shared directly by our finance team.",
-            "Donations are applied to programme delivery and operations at the organization's discretion, in line with any restriction agreed in writing with the donor. Donations are generally non-refundable once processed.",
+            "Giving channels and payment instructions will be published once confirmed by Footprints of Hope.",
+            "Please contact the organization before making a contribution to confirm the current giving channel.",
           ],
         },
         {
           heading: "Volunteering and events",
           body: [
-            "Volunteer applications are subject to screening, safeguarding checks and placement availability. Attendance at our events may be subject to invitation, vetting and a code of conduct.",
+            "Opportunities to volunteer, mentor or partner are subject to availability and direct coordination with the organization.",
           ],
         },
         {
