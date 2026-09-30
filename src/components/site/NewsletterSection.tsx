@@ -4,7 +4,7 @@ import { Reveal } from "./Reveal";
 export function NewsletterSection() {
   return (
     <section className="mx-auto max-w-7xl px-5 py-24 sm:px-8">
-      <Reveal>
+      <div>
         <div className="gradient-primary relative overflow-hidden rounded-[2.5rem] px-7 py-14 text-center shadow-lift sm:px-14">
           <div
             className="float-slow pointer-events-none absolute -top-20 -left-16 size-72 rounded-full bg-white/15 blur-3xl"
@@ -28,7 +28,7 @@ export function NewsletterSection() {
             </div>
           </div>
         </div>
-      </Reveal>
+      </div>
     </section>
   );
 }

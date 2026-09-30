@@ -85,11 +85,11 @@ export function Navbar() {
         </ul>
 
         <Link
-          to="/partners"
+          to="/donate"
           className="btn-base btn-primary hidden lg:inline-flex px-5 py-2.5 text-sm"
           onClick={() => setOpen(false)}
         >
-          Partner With Us
+          Donate
         </Link>
 
         <button
@@ -132,11 +132,11 @@ export function Navbar() {
           ))}
           <li className="pt-4">
             <Link
-              to="/partners"
+              to="/donate"
               onClick={() => setOpen(false)}
               className="btn-base btn-primary px-5 py-2.5 text-sm"
             >
-              Partner With Us
+              Donate
             </Link>
           </li>
         </ul>

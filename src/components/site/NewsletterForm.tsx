@@ -31,7 +31,11 @@ export function NewsletterForm({ className }: { className?: string }) {
   }
 
   return (
-    <form onSubmit={submit} className={cn("flex w-full max-w-md gap-2", className)}>
+    <form
+      onSubmit={submit}
+      onPointerDownCapture={(event) => event.stopPropagation()}
+      className={cn("flex w-full max-w-md gap-2", className)}
+    >
       <label htmlFor="newsletter" className="sr-only">
         Email address
       </label>

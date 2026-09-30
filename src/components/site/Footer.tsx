@@ -104,11 +104,11 @@ export function Footer() {
             <ul className="mt-6 space-y-3">
               <li>
                 <Link
-                  to="/events"
+                  to="/donate"
                   className="text-sm text-cream/70 transition-colors hover:text-cream"
                   onClick={() => setOpen(false)}
                 >
-                  Support FOH
+                  Donate
                 </Link>
               </li>
               <li>
@@ -132,10 +132,10 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Column 4: Partner With Us + Social Media */}
+          {/* Column 4: Support FOH + Social Media */}
           <div className="lg:col-span-3">
             <h3 className="text-[0.62rem] font-semibold tracking-[0.28em] text-gold uppercase">
-              Partner With Us
+              Support FOH
             </h3>
             <p className="mt-6 text-sm leading-relaxed text-cream/60">
               {ORG.email}
@@ -156,12 +156,8 @@ export function Footer() {
                 </a>
               ))}
             </div>
-            <Link
-              to="/partners"
-              className="btn-base btn-outline mt-7"
-              onClick={() => setOpen(false)}
-            >
-              Start a Conversation
+            <Link to="/donate" className="btn-base btn-outline mt-7" onClick={() => setOpen(false)}>
+              Donate Today
             </Link>
           </div>
         </div>

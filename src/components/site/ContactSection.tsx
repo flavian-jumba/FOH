@@ -46,12 +46,13 @@ export function ContactSection() {
           </ul>
         </Reveal>
 
-        <Reveal className="lg:col-span-7" delay={120}>
+        <div className="lg:col-span-7">
           <form
             onSubmit={(e) => {
               e.preventDefault();
               setSent(true);
             }}
+            onPointerDownCapture={(event) => event.stopPropagation()}
             className="p-8 lg:p-12"
             style={{ backgroundColor: "var(--warm-white)", boxShadow: "var(--shadow-soft)" }}
           >
@@ -140,7 +141,7 @@ export function ContactSection() {
               {sent ? "Message received — thank you" : "Send Message"}
             </button>
           </form>
-        </Reveal>
+        </div>
       </div>
     </section>
   );
