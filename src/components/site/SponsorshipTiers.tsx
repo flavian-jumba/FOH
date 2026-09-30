@@ -61,15 +61,16 @@ export function SponsorshipTiers() {
               Every contribution can help a young mother return to school, a woman build a business,
               a girl access menstrual health support, and young people gain skills.
             </p>
-            <motion.a
-              href="/partners"
+            <motion.div
               initial={{ opacity: 0, y: 22 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.48, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
               className="btn-base btn-primary mt-10"
             >
-              Start a Conversation
-            </motion.a>
+              <Link to="/donate" className="btn-base btn-primary">
+                Donate Today
+              </Link>
+            </motion.div>
           </Reveal>
 
           <div className="lg:col-span-8">

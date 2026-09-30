@@ -1,9 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ProjectsProgrammes } from "@/components/site/ProjectsProgrammes";
+import { CurrentPrograms } from "@/components/site/CurrentPrograms";
 
 const title = "Our Work — Footprints of Hope";
 const description =
-  "Explore Footprints of Hope's four focus areas: teen mothers' reintegration, agribusiness, menstrual health and wellbeing support.";
+  "Explore Footprints of Hope's five focus areas: education and skills, health and wellbeing, economic empowerment, youth leadership, and peacebuilding.";
 
 export const Route = createFileRoute("/programs")({
   head: () => ({
@@ -23,6 +24,7 @@ function ProgramsPage() {
   return (
     <>
       <ProjectsProgrammes />
+      <CurrentPrograms />
     </>
   );
 }

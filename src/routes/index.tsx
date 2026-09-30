@@ -4,8 +4,10 @@ import { Hero } from "@/components/site/Hero";
 import { OurStory } from "@/components/site/OurStory";
 import { FourPillars } from "@/components/site/FourPillars";
 import { ProjectsProgrammes } from "@/components/site/ProjectsProgrammes";
+import { CurrentPrograms } from "@/components/site/CurrentPrograms";
 import { EventsSection } from "@/components/site/EventsSection";
 import { PartnersCollaborators } from "@/components/site/PartnersCollaborators";
+import { OurTeam } from "@/components/site/OurTeam";
 import { SponsorshipTiers } from "@/components/site/SponsorshipTiers";
 import { ContactSection } from "@/components/site/ContactSection";
 
@@ -34,8 +36,10 @@ function Index() {
       <OurStory />
       <FourPillars />
       <ProjectsProgrammes />
+      <CurrentPrograms />
       <EventsSection />
       <PartnersCollaborators />
+      <OurTeam />
       <SponsorshipTiers />
       <ContactSection />
     </>

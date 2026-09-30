@@ -11,8 +11,8 @@ function normalizeKenyanPhoneNumber(value: string) {
   return null;
 }
 
-export function DonationForm() {
-  const [isOpen, setIsOpen] = useState(false);
+export function DonationForm({ defaultOpen = false }: { defaultOpen?: boolean }) {
+  const [isOpen, setIsOpen] = useState(defaultOpen);
   const [amount, setAmount] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
@@ -80,6 +80,7 @@ export function DonationForm() {
         <form
           id="mpesa-donation-form"
           onSubmit={handleSubmit}
+          onPointerDownCapture={(event) => event.stopPropagation()}
           className="border-t border-[color:var(--border)] p-6 sm:p-8"
         >
           <p className="text-[0.62rem] font-semibold tracking-[0.28em] text-gold uppercase">

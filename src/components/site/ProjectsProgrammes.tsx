@@ -1,44 +1,54 @@
 import { motion } from "framer-motion";
 import { Link } from "@tanstack/react-router";
-import teenImage from "@/assets/teen.png";
-import agribusinessImage from "@/assets/agri.png";
-import menstrualHealthImage from "@/assets/menstral.png";
-import mentalHealthImage from "@/assets/mental.png";
+import impactOne from "@/assets/ourimpact/01.png";
+import impactTwo from "@/assets/ourimpact/02.png";
+import impactThree from "@/assets/ourimpact/03.png";
+import impactFour from "@/assets/ourimpact/04.png";
+import impactFive from "@/assets/ourimpact/05.png";
 
 const projects = [
   {
     num: "01",
-    img: teenImage,
-    alt: "Teen mothers supported through Footprints of Hope",
-    tag: "Education & Opportunity",
-    title: "Teen Mothers' Reintegration Program",
-    copy: "Helping teenage mothers return to school, regain educational opportunities and access vocational or economic pathways toward independence.",
+    image: impactOne,
+    tag: "Learning & Opportunity",
+    title: "Education & Vocational Skills Development",
+    copy: "Creating opportunities for learning, mentorship and practical skills development so young people can build confident, independent futures.",
   },
   {
     num: "02",
-    img: agribusinessImage,
-    alt: "Women and youth participating in agribusiness",
-    tag: "Skills & Income",
-    title: "Women & Youth in Agribusiness",
-    copy: "Training young women and youth in poultry farming, agribusiness, financial literacy and entrepreneurship to support sustainable income generation.",
+    image: impactTwo,
+    tag: "Health & Dignity",
+    title: "Health & Social Wellbeing",
+    copy: "Promoting menstrual health, sexual and reproductive health and rights (SRHR), psychosocial wellbeing, and access to trusted community health information.",
   },
   {
     num: "03",
-    img: menstrualHealthImage,
-    alt: "Menstrual health and hygiene education",
-    tag: "Health & Dignity",
-    title: "Menstrual Health & Hygiene",
-    copy: "Improving access to menstrual products, reproductive health education and menstrual health awareness so girls can remain in school and participate with confidence.",
+    image: impactThree,
+    tag: "Livelihoods & Enterprise",
+    title: "Women & Economic Empowerment",
+    copy: "Supporting women and young people with entrepreneurship, financial literacy and livelihood opportunities. Through our collaboration with KNCCI, women are strengthening their businesses and access to loans and grants.",
   },
   {
     num: "04",
-    img: mentalHealthImage,
-    alt: "Mental health and wellbeing support session",
-    tag: "Safe Spaces & Support",
-    title: "Mental Health & Well-being",
-    copy: "Nhanga Sessions create safe spaces for young women to discuss challenges, receive mentorship and psychosocial support, and strengthen community and peer connection.",
+    image: impactFour,
+    tag: "Voice & Participation",
+    title: "Youth Leadership & Governance",
+    copy: "Creating spaces for young people to participate, lead and contribute to decisions that affect their communities, including through the ORPP programme for youth involvement in political action.",
   },
-];
+  {
+    num: "05",
+    image: impactFive,
+    tag: "Peace & Resilience",
+    title: "Peacebuilding & Community Resilience",
+    copy: "Strengthening peaceful, resilient communities, particularly in underserved and border communities, through RANA and our partnership with the National Counterterrorism Center on preventing and countering violent extremism (PCVE).",
+  },
+] as const satisfies readonly {
+  num: string;
+  image: string;
+  tag: string;
+  title: string;
+  copy: string;
+}[];
 
 export function ProjectsProgrammes() {
   return (
@@ -59,7 +69,7 @@ export function ProjectsProgrammes() {
                 className="mb-4"
               >
                 <div className="text-[color:#C9A76B] text-xs font-manrope uppercase tracking-wider">
-                  — OUR WORK —
+                  — OUR IMPACT —
                 </div>
               </motion.div>
 
@@ -69,7 +79,7 @@ export function ProjectsProgrammes() {
                 transition={{ delay: 0.36, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
                 className="mt-2 font-display text-4xl leading-[1.08] font-semibold text-charcoal lg:text-[3.4rem]"
               >
-                Four focus areas.
+                Five focus areas.
                 <br />
                 <span className="italic font-light" style={{ color: "var(--burgundy)" }}>
                   One shared purpose.
@@ -83,8 +93,8 @@ export function ProjectsProgrammes() {
                 className="mt-7 text-base leading-relaxed"
                 style={{ color: "var(--muted-foreground)" }}
               >
-                FOH works with girls, young women and youth in Busia County through practical,
-                community-driven programmes that build education, dignity, skills and opportunity.
+                FOH works with young people, women and underserved communities to create locally
+                driven solutions that improve lives and strengthen communities.
               </motion.p>
 
               <motion.div
@@ -120,17 +130,11 @@ export function ProjectsProgrammes() {
                     as="li"
                   >
                     <article className="hairline group grid gap-6 py-8 sm:grid-cols-[10rem_1fr] sm:gap-8">
-                      <div className="overflow-hidden">
-                        <img
-                          src={p.img}
-                          alt={p.alt}
-                          width={1200}
-                          height={1504}
-                          loading="lazy"
-                          className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                          style={{ aspectRatio: "4 / 5" }}
-                        />
-                      </div>
+                      <img
+                        src={p.image}
+                        alt={p.title}
+                        className="aspect-[4/5] w-full object-cover border border-[color:color-mix(in_oklab,var(--burgundy)_20%,transparent)]"
+                      />
                       <div>
                         <div className="flex items-center gap-4">
                           <span className="font-display text-sm font-semibold tracking-[0.2em] text-gold/60">
