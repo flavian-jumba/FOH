@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
-import currentProgramOne from "@/assets/CurrentPrograms/01.png";
-import currentProgramTwo from "@/assets/CurrentPrograms/02.png";
+import currentProgramOne from "@/assets/CurrentPrograms/01.webp";
+import currentProgramTwo from "@/assets/CurrentPrograms/02.webp";
 
 import { Eyebrow, Reveal } from "./Reveal";
 
@@ -32,7 +32,13 @@ const CURRENT_PROGRAMS = [
 function ProgramPhoto({ image, title }: { image: string; title: string }) {
   return (
     <div className="relative aspect-[4/3] overflow-hidden border border-[color:color-mix(in_oklab,var(--cream)_20%,transparent)] sm:aspect-[16/11]">
-      <img src={image} alt={title} className="h-full w-full object-cover" />
+      <img
+        src={image}
+        alt={title}
+        loading="lazy"
+        decoding="async"
+        className="h-full w-full object-cover"
+      />
     </div>
   );
 }

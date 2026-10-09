@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 
-import ajuangShammah from "@/assets/board/ajuang-shammah.jpg.png";
-import joanWanyama from "@/assets/board/joan-wanyama.jpg.png";
-import roselynBarasa from "@/assets/board/roselyn-barasa.jpg.png";
-import tessyMwasiagi from "@/assets/board/tessy-mwasiagi.jpg.png";
+import ajuangShammah from "@/assets/board/ajuang-shammah.webp";
+import joanWanyama from "@/assets/board/joan-wanyama.webp";
+import roselynBarasa from "@/assets/board/roselyn-barasa.webp";
+import tessyMwasiagi from "@/assets/board/tessy-mwasiagi.webp";
 import { cn } from "@/lib/utils";
 import { Eyebrow, Reveal } from "./Reveal";
 
@@ -79,6 +79,8 @@ function Portrait({
       <img
         src={member.image}
         alt={member.name}
+        loading="lazy"
+        decoding="async"
         className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
         style={{ objectPosition: member.imagePosition }}
       />

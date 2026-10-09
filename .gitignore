@@ -30,3 +30,9 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+foh-website.zip
+
+# Environment variables
+.env
+.env.*
+!.env.example
