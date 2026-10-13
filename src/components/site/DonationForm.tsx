@@ -1,37 +1,112 @@
-import { useState, type FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
+import { CreditCard, Heart, Lock, Mail, Smartphone, type LucideIcon } from "lucide-react";
 
-import { requestStkPush } from "@/lib/payments";
+import {
+  fetchDonationCurrencies,
+  startPaystackDonation,
+  type DonationCurrency,
+} from "@/lib/payments";
+import { cn } from "@/lib/utils";
+import { ORG } from "./site-data";
 
-function normalizeKenyanPhoneNumber(value: string) {
-  const digits = value.replace(/\D/g, "");
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-  if (digits.startsWith("0") && digits.length === 10) return `254${digits.slice(1)}`;
-  if (digits.startsWith("254") && digits.length === 12) return digits;
+type CurrencyOption = {
+  /** Shown on the currency switch. */
+  name: string;
+  /** Goes in front of an amount: "$50", "KES 1,000". */
+  prefix: string;
+  presets: number[];
+  defaultAmount: number;
+  /** What donors can choose inside the Paystack checkout window for this currency. */
+  waysToPay: { icon: LucideIcon; label: string; detail: string }[];
+  summary: string;
+  hint: string;
+};
 
-  return null;
-}
+const CURRENCIES: Record<DonationCurrency, CurrencyOption> = {
+  USD: {
+    name: "US dollars",
+    prefix: "$",
+    presets: [25, 50, 100, 250],
+    defaultAmount: 50,
+    waysToPay: [{ icon: CreditCard, label: "Card", detail: "Visa · Mastercard" }],
+    summary: "One secure card checkout, charged in US dollars.",
+    hint: "You will pay by card, in US dollars, in the Paystack window.",
+  },
+  KES: {
+    name: "Kenyan shillings",
+    prefix: "KES ",
+    presets: [500, 1000, 2500, 5000],
+    defaultAmount: 1000,
+    waysToPay: [
+      { icon: Smartphone, label: "M-Pesa", detail: "STK prompt or Till" },
+      { icon: Smartphone, label: "Airtel Money", detail: "Mobile money" },
+      { icon: CreditCard, label: "Card", detail: "Visa · Mastercard" },
+    ],
+    summary: "One secure checkout. Pick how you pay in the next step.",
+    hint: "You will choose M-Pesa, Airtel Money or card in the Paystack window.",
+  },
+};
 
-export function DonationForm({ defaultOpen = false }: { defaultOpen?: boolean }) {
-  const [isOpen, setIsOpen] = useState(defaultOpen);
-  const [amount, setAmount] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
+const labelClass =
+  "block text-[0.62rem] font-semibold tracking-[0.22em] text-[color:var(--muted-foreground)] uppercase";
+
+export function DonationForm() {
+  // Shillings until the server says otherwise, so the form is usable the moment it renders.
+  const [currencies, setCurrencies] = useState<DonationCurrency[]>(["KES"]);
+  const [currency, setCurrency] = useState<DonationCurrency>("KES");
+  const [preset, setPreset] = useState<number | null>(CURRENCIES.KES.defaultAmount);
+  const [customAmount, setCustomAmount] = useState("");
+  const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
 
+  const option = CURRENCIES[currency];
+  const amount = preset ?? Number(customAmount);
+  const hasAmount = Number.isInteger(amount) && amount >= 1;
+  const formattedAmount = hasAmount
+    ? `${option.prefix}${amount.toLocaleString("en-US")}`
+    : `${option.prefix}—`;
+
+  function chooseCurrency(next: DonationCurrency) {
+    setCurrency(next);
+    // 1,000 means something very different in dollars, so never carry an amount across.
+    setPreset(CURRENCIES[next].defaultAmount);
+    setCustomAmount("");
+    setMessage("");
+    setStatus((current) => (current === "error" ? "idle" : current));
+  }
+
+  useEffect(() => {
+    let cancelled = false;
+    fetchDonationCurrencies().then((offered) => {
+      if (cancelled) return;
+      setCurrencies(offered);
+      // The server lists its preferred currency first.
+      const preferred = offered[0];
+      if (preferred && preferred !== "KES") {
+        setCurrency(preferred);
+        setPreset(CURRENCIES[preferred].defaultAmount);
+      }
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const numericAmount = Number(amount);
-    const normalizedPhoneNumber = normalizeKenyanPhoneNumber(phoneNumber);
+    const trimmedEmail = email.trim();
 
-    if (!Number.isFinite(numericAmount) || numericAmount < 1) {
+    if (!hasAmount) {
       setStatus("error");
-      setMessage("Enter a donation amount of at least KES 1.");
+      setMessage(`Choose an amount, or enter a whole number of at least ${option.prefix}1.`);
       return;
     }
-
-    if (!normalizedPhoneNumber) {
+    if (!EMAIL_PATTERN.test(trimmedEmail)) {
       setStatus("error");
-      setMessage("Enter a valid Kenyan M-Pesa number, for example 0712 345 678.");
+      setMessage("Enter a valid email address so we can send your receipt.");
       return;
     }
 
@@ -39,12 +114,18 @@ export function DonationForm({ defaultOpen = false }: { defaultOpen?: boolean })
     setMessage("");
 
     try {
-      const response = await requestStkPush({
-        amount: numericAmount,
-        phoneNumber: normalizedPhoneNumber,
-      });
+      const result = await startPaystackDonation({ amount, email: trimmedEmail, currency });
+      if (result === "cancelled") {
+        setStatus("idle");
+        setMessage("Checkout was closed before payment. You have not been charged.");
+        return;
+      }
       setStatus("success");
-      setMessage(response.message || "Check your phone to complete the M-Pesa payment.");
+      setMessage(
+        result === "success"
+          ? `Your gift of ${formattedAmount} was received. A receipt is on its way to ${trimmedEmail}.`
+          : `Your payment is still being confirmed. We will email a receipt to ${trimmedEmail} once it completes.`,
+      );
     } catch (error) {
       setStatus("error");
       setMessage(
@@ -53,85 +134,191 @@ export function DonationForm({ defaultOpen = false }: { defaultOpen?: boolean })
     }
   }
 
+  function reset() {
+    setStatus("idle");
+    setMessage("");
+    setPreset(option.defaultAmount);
+    setCustomAmount("");
+  }
+
   return (
-    <section className="mt-8 border border-[color:var(--border)] bg-[color:var(--warm-white)] shadow-[var(--shadow-soft)]">
-      <div className="flex flex-col gap-5 p-6 sm:flex-row sm:items-center sm:justify-between sm:p-8">
-        <div>
-          <p className="text-[0.62rem] font-semibold tracking-[0.28em] text-gold uppercase">
-            Sow Seeds of Hope
+    <section className="mt-10 grid overflow-hidden border border-[color:var(--border)] bg-white shadow-[var(--shadow-soft)] lg:grid-cols-[2fr_3fr]">
+      <aside className="relative flex flex-col overflow-hidden bg-burgundy p-7 text-cream sm:p-9">
+        <div
+          className="pointer-events-none absolute -right-20 -bottom-24 h-64 w-64 rounded-full bg-gold/20 blur-3xl"
+          aria-hidden="true"
+        />
+        <p className="text-[0.62rem] font-semibold tracking-[0.28em] text-gold uppercase">
+          Your gift
+        </p>
+        <p
+          className="mt-3 font-display text-4xl font-semibold tabular-nums sm:text-5xl"
+          aria-live="polite"
+        >
+          {formattedAmount}
+        </p>
+        <p className="mt-3 text-sm leading-relaxed text-cream/70">{option.summary}</p>
+
+        <ul className="relative mt-8 space-y-3">
+          {option.waysToPay.map(({ icon: Icon, label, detail }) => (
+            <li key={label} className="flex items-center gap-3">
+              <span className="flex h-9 w-9 shrink-0 items-center justify-center border border-white/15 bg-white/5">
+                <Icon className="h-4 w-4 text-gold" aria-hidden="true" />
+              </span>
+              <span>
+                <span className="block text-sm font-semibold">{label}</span>
+                <span className="block text-xs text-cream/60">{detail}</span>
+              </span>
+            </li>
+          ))}
+        </ul>
+
+        <div className="relative mt-auto pt-10 text-xs leading-relaxed text-cream/60">
+          <p className="flex items-center gap-2">
+            <Lock className="h-3.5 w-3.5" aria-hidden="true" />
+            Secured by Paystack. Card details never touch this site.
           </p>
-          <h3 className="mt-2 font-display text-2xl font-semibold text-charcoal">Support FOH</h3>
-          <p className="mt-2 max-w-xl text-sm leading-relaxed text-[color:var(--muted-foreground)]">
-            Make a secure donation with M-Pesa.
+          <p className="mt-3">
+            Giving from abroad or by bank transfer?{" "}
+            <a href={`mailto:${ORG.email}`} className="text-cream underline underline-offset-2">
+              Email us
+            </a>
+            .
           </p>
         </div>
-        <button
-          type="button"
-          className="btn-base btn-primary shrink-0"
-          aria-expanded={isOpen}
-          aria-controls="mpesa-donation-form"
-          onClick={() => setIsOpen((open) => !open)}
-        >
-          {isOpen ? "Close donation form" : "Donate with M-Pesa"}
-        </button>
-      </div>
+      </aside>
 
-      {isOpen ? (
-        <form
-          id="mpesa-donation-form"
-          onSubmit={handleSubmit}
-          onPointerDownCapture={(event) => event.stopPropagation()}
-          className="border-t border-[color:var(--border)] p-6 sm:p-8"
-        >
-          <p className="text-[0.62rem] font-semibold tracking-[0.28em] text-gold uppercase">
-            Sow Seeds of Hope
+      {status === "success" ? (
+        <div className="flex flex-col items-center justify-center p-8 text-center sm:p-12">
+          <span className="flex h-14 w-14 items-center justify-center rounded-full bg-[color:color-mix(in_oklab,var(--burgundy)_10%,white)]">
+            <Heart className="h-6 w-6 fill-burgundy text-burgundy" aria-hidden="true" />
+          </span>
+          <h3 className="mt-6 font-display text-3xl font-semibold text-charcoal">Thank you</h3>
+          <p
+            className="mt-3 max-w-sm text-sm leading-relaxed text-[color:var(--muted-foreground)]"
+            role="status"
+          >
+            {message}
           </p>
-          <h3 className="mt-3 font-display text-2xl font-semibold text-charcoal">
-            Donate with M-Pesa
-          </h3>
-          <p className="mt-3 text-sm leading-relaxed text-[color:var(--muted-foreground)]">
-            Enter your amount and M-Pesa number. We will send an STK prompt to your phone to approve
-            the payment.
-          </p>
+          <button type="button" className="btn-base btn-primary mt-8" onClick={reset}>
+            Give again
+          </button>
+        </div>
+      ) : (
+        <form onSubmit={handleSubmit} className="p-7 sm:p-9" noValidate>
+          {currencies.length > 1 ? (
+            <fieldset className="mb-8">
+              <legend className={labelClass}>Give in</legend>
+              <div className="mt-4 grid grid-cols-2 border border-[color:var(--border)]">
+                {currencies.map((code) => {
+                  const active = currency === code;
+                  return (
+                    <button
+                      key={code}
+                      type="button"
+                      onClick={() => chooseCurrency(code)}
+                      aria-pressed={active}
+                      className={cn(
+                        "px-4 py-3 text-sm font-semibold transition-colors duration-200",
+                        active
+                          ? "bg-burgundy text-cream"
+                          : "bg-white text-charcoal hover:text-burgundy",
+                      )}
+                    >
+                      {CURRENCIES[code].name}
+                    </button>
+                  );
+                })}
+              </div>
+            </fieldset>
+          ) : null}
 
-          <div className="mt-6 grid gap-5 sm:grid-cols-2">
-            <label className="block">
-              <span className="block text-[0.62rem] font-semibold tracking-[0.22em] text-[color:var(--muted-foreground)] uppercase">
-                Amount (KES)
+          <fieldset>
+            <legend className={labelClass}>Choose an amount, or enter your own</legend>
+            <div className="mt-4 grid grid-cols-2 gap-3">
+              {option.presets.map((value) => {
+                const active = preset === value;
+                return (
+                  <button
+                    key={value}
+                    type="button"
+                    onClick={() => {
+                      setPreset(value);
+                      setCustomAmount("");
+                    }}
+                    aria-pressed={active}
+                    className={cn(
+                      "border px-4 py-4 text-left transition-all duration-200",
+                      active
+                        ? "border-burgundy bg-burgundy text-cream shadow-[var(--shadow-soft)]"
+                        : "border-[color:var(--border)] bg-white text-charcoal hover:border-burgundy",
+                    )}
+                  >
+                    <span
+                      className={cn(
+                        "block text-[0.6rem] font-semibold tracking-[0.2em] uppercase",
+                        active ? "text-gold" : "text-[color:var(--muted-foreground)]",
+                      )}
+                    >
+                      {currency}
+                    </span>
+                    <span className="mt-1 block font-display text-2xl font-semibold tabular-nums">
+                      {value.toLocaleString("en-US")}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+
+            <label
+              className={cn(
+                "mt-3 flex items-center gap-3 border px-4 py-4 transition-colors focus-within:border-burgundy",
+                preset === null ? "border-burgundy" : "border-[color:var(--border)]",
+              )}
+            >
+              <span className="text-sm font-semibold text-[color:var(--muted-foreground)]">
+                {currency}
               </span>
               <input
-                required
+                type="number"
                 min="1"
                 step="1"
                 inputMode="numeric"
-                type="number"
-                value={amount}
-                onChange={(event) => setAmount(event.target.value)}
-                className="mt-3 w-full border-b bg-transparent pb-2 text-base text-charcoal outline-none transition-colors focus:border-b-2"
-                style={{ borderColor: "var(--border)" }}
+                placeholder="Any other amount"
+                aria-label={`Any other amount in ${option.name}`}
+                value={customAmount}
+                onFocus={() => setPreset(null)}
+                onChange={(event) => {
+                  setPreset(null);
+                  setCustomAmount(event.target.value);
+                }}
+                className="w-full bg-transparent text-base text-charcoal outline-none placeholder:text-[color:var(--muted-foreground)]/70"
               />
             </label>
-            <label className="block">
-              <span className="block text-[0.62rem] font-semibold tracking-[0.22em] text-[color:var(--muted-foreground)] uppercase">
-                M-Pesa number
-              </span>
+          </fieldset>
+
+          <label className="mt-8 block">
+            <span className={labelClass}>Email for your receipt</span>
+            <span className="mt-3 flex items-center gap-3 border-b border-[color:var(--border)] pb-2 transition-colors focus-within:border-burgundy">
+              <Mail
+                className="h-4 w-4 shrink-0 text-[color:var(--muted-foreground)]"
+                aria-hidden="true"
+              />
               <input
                 required
-                autoComplete="tel"
-                inputMode="tel"
-                type="tel"
-                placeholder="0712 345 678"
-                value={phoneNumber}
-                onChange={(event) => setPhoneNumber(event.target.value)}
-                className="mt-3 w-full border-b bg-transparent pb-2 text-base text-charcoal outline-none transition-colors placeholder:text-[color:var(--muted-foreground)]/60 focus:border-b-2"
-                style={{ borderColor: "var(--border)" }}
+                type="email"
+                autoComplete="email"
+                placeholder="you@example.com"
+                value={email}
+                onChange={(event) => setEmail(event.target.value)}
+                className="w-full bg-transparent text-base text-charcoal outline-none placeholder:text-[color:var(--muted-foreground)]/60"
               />
-            </label>
-          </div>
+            </span>
+          </label>
 
           {message ? (
             <p
-              className="mt-5 text-sm leading-relaxed"
+              className="mt-6 text-sm leading-relaxed"
               role={status === "error" ? "alert" : "status"}
               style={{ color: status === "error" ? "#9F1239" : "var(--burgundy)" }}
             >
@@ -141,13 +328,16 @@ export function DonationForm({ defaultOpen = false }: { defaultOpen?: boolean })
 
           <button
             type="submit"
-            className="btn-base btn-primary mt-6"
+            className="btn-base btn-primary mt-8 w-full justify-center"
             disabled={status === "submitting"}
           >
-            {status === "submitting" ? "Sending prompt…" : "Send M-Pesa prompt"}
+            {status === "submitting" ? "Opening secure checkout…" : `Donate ${formattedAmount}`}
           </button>
+          <p className="mt-4 text-center text-xs text-[color:var(--muted-foreground)]">
+            {option.hint}
+          </p>
         </form>
-      ) : null}
+      )}
     </section>
   );
 }

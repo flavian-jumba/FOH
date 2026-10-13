@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { LeftBorderBlock } from "@/components/ui/left-border-block";
-import ceoImage from "@/assets/ceo.png";
+import ceoImage from "@/assets/ceo.webp";
 
 export function OurStory() {
   return (

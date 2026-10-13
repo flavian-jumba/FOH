@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { motion, useInView, useMotionValue, useTransform, animate } from "framer-motion";
-import heroBg from "@/assets/menstral.png";
+import heroBg from "@/assets/menstral.webp";
 import { useEffect, useRef, type ReactElement } from "react";
 
 // Smooth counter component for animated numbers
@@ -47,8 +47,9 @@ export function Hero() {
       <img
         src={heroBg}
         alt="Footprints of Hope menstrual health programme"
-        width={1920}
-        height={1280}
+        width={1280}
+        height={854}
+        fetchPriority="high"
         className="absolute inset-0 -z-20 h-full w-full object-cover"
       />
       <div

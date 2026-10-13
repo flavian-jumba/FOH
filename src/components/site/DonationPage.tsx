@@ -53,11 +53,11 @@ export function DonationPage() {
                 Direct, meaningful support
               </p>
               <p className="mt-3 font-display text-2xl leading-snug text-cream">
-                Give by M-Pesa in just a few moments.
+                Give in under a minute.
               </p>
               <p className="mt-3 text-sm leading-relaxed text-cream/65">
-                Enter an amount, confirm the prompt on your phone, and help move opportunity
-                forward.
+                Donate securely by M-Pesa, Airtel Money or card. Every gift receives an email
+                receipt.
               </p>
             </div>
           </Reveal>
@@ -107,10 +107,10 @@ export function DonationPage() {
                 id="donate-form-title"
                 className="mt-5 font-display text-4xl font-semibold text-charcoal"
               >
-                Give with <span className="font-light italic text-burgundy">M-Pesa</span>
+                Sow a <span className="font-light italic text-burgundy">seed of hope</span>
               </h2>
             </div>
-            <DonationForm defaultOpen />
+            <DonationForm />
           </div>
         </div>
       </section>

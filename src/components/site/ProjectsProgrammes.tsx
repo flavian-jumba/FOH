@@ -1,10 +1,10 @@
 import { motion } from "framer-motion";
 import { Link } from "@tanstack/react-router";
-import impactOne from "@/assets/ourimpact/01.png";
-import impactTwo from "@/assets/ourimpact/02.png";
-import impactThree from "@/assets/ourimpact/03.png";
-import impactFour from "@/assets/ourimpact/04.png";
-import impactFive from "@/assets/ourimpact/05.png";
+import impactOne from "@/assets/ourimpact/01.webp";
+import impactTwo from "@/assets/ourimpact/02.webp";
+import impactThree from "@/assets/ourimpact/03.webp";
+import impactFour from "@/assets/ourimpact/04.webp";
+import impactFive from "@/assets/ourimpact/05.webp";
 
 const projects = [
   {
@@ -133,6 +133,8 @@ export function ProjectsProgrammes() {
                       <img
                         src={p.image}
                         alt={p.title}
+                        loading="lazy"
+                        decoding="async"
                         className="aspect-[4/5] w-full object-cover border border-[color:color-mix(in_oklab,var(--burgundy)_20%,transparent)]"
                       />
                       <div>

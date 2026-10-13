@@ -1,70 +1,44 @@
-import { Eyebrow, Reveal } from "./Reveal";
 import { Link } from "@tanstack/react-router";
 
-const partnerLogos = [
-  { name: "Partner logo", kind: "placeholder" },
-  { name: "Partner logo", kind: "placeholder" },
-  { name: "Partner logo", kind: "placeholder" },
-] as const;
+import { cn } from "@/lib/utils";
+import { PARTNERS, type Partner } from "./partners-data";
+import { Eyebrow, Reveal } from "./Reveal";
 
-function TextWordmark({
-  title,
-  subtitle,
-  accent = "var(--gold)",
-  uppercase = true,
-}: {
-  title: string;
-  subtitle?: string;
-  accent?: string;
-  uppercase?: boolean;
-}) {
-  return (
-    <div className="flex w-full items-center justify-center text-center">
-      <div>
-        <div
-          className="font-display text-[1.35rem] font-semibold tracking-[0.14em]"
-          style={{
-            color: "var(--cream)",
-            letterSpacing: uppercase ? "0.18em" : "0.04em",
-            textTransform: uppercase ? "uppercase" : "none",
-          }}
-        >
-          {title}
-        </div>
-        {subtitle ? (
-          <div
-            className="mt-2 text-[0.62rem] font-medium tracking-[0.28em] uppercase"
-            style={{ color: accent }}
-          >
-            {subtitle}
-          </div>
-        ) : null}
-      </div>
-    </div>
+export function PartnerLogoCard({ partner }: { partner: Partner }) {
+  const content = (
+    <>
+      <img
+        src={partner.logo}
+        alt={`${partner.name} logo`}
+        loading="lazy"
+        decoding="async"
+        className={cn(
+          "max-h-[56px] w-auto sm:max-h-[88px] max-w-full object-contain transition-transform duration-500 group-hover:scale-[1.04]",
+          partner.invert && "brightness-0",
+          partner.logoClass,
+        )}
+      />
+      <span className="sr-only">{partner.name}</span>
+    </>
   );
-}
+  const className =
+    "group flex h-[130px] items-center justify-center bg-[color:var(--cream)] px-4 py-5 sm:h-[150px] sm:px-8 shadow-[0_18px_40px_-28px_rgba(0,0,0,0.6)] transition-transform duration-500 hover:-translate-y-1 md:h-[170px]";
 
-function LogoTile({ name, kind }: { name: string; kind: string }) {
-  const renderLogo = () =>
-    kind === "placeholder" ? (
-      <TextWordmark title="Partner logo" subtitle="Placeholder" accent="var(--rose-light)" />
-    ) : (
-      <TextWordmark title={name} />
-    );
-
-  return (
-    <li className="h-full">
-      <Reveal>
-        <div
-          className="flex min-h-[190px] items-center justify-center border border-white/10 p-6 transition-colors duration-500 md:min-h-[220px]"
-          style={{
-            backgroundColor: "color-mix(in oklab, var(--cream) 3%, transparent)",
-          }}
-        >
-          <div className="w-full max-w-[260px]">{renderLogo()}</div>
-        </div>
-      </Reveal>
-    </li>
+  return partner.url ? (
+    <a
+      href={partner.url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={cn(
+        className,
+        "focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold",
+      )}
+      aria-label={`${partner.name} (opens in a new tab)`}
+    >
+      {content}
+    </a>
+  ) : (
+    <div className={className}>{content}</div>
   );
 }
 
@@ -85,10 +59,10 @@ export function PartnersCollaborators() {
           </div>
         </Reveal>
 
-        <ul className="mt-12 grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
-          {partnerLogos.map((partner, index) => (
-            <Reveal as="li" key={`${partner.kind}-${index}`} delay={index * 60}>
-              <LogoTile name={partner.name} kind={partner.kind} />
+        <ul className="mt-12 grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-3">
+          {PARTNERS.map((partner, index) => (
+            <Reveal as="li" key={partner.name} delay={index * 0.06}>
+              <PartnerLogoCard partner={partner} />
             </Reveal>
           ))}
         </ul>
@@ -99,8 +73,8 @@ export function PartnersCollaborators() {
             style={{ borderTop: "1px solid color-mix(in oklab, var(--cream) 14%, transparent)" }}
           >
             <p className="max-w-lg text-sm leading-relaxed text-cream/65">
-              Partner logos will appear here once confirmed. In the meantime, start a conversation
-              about how your support can help create long-term opportunity.
+              We are grateful to the organisations who stand with us. Start a conversation about how
+              your support can help create long-term opportunity.
             </p>
             <Link to="/partners" className="btn-base btn-outline self-start">
               Become a Partner

@@ -2,3 +2,6 @@ project_id = "qmnmhhuribaejgxpbgbu"
 
 [functions.mpesa]
 verify_jwt = false
+
+[functions.paystack]
+verify_jwt = false

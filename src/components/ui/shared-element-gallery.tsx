@@ -85,6 +85,8 @@ export function GalleryImage({ src, alt, id, className }: ImageData & { classNam
         layoutId={`gallery-image-${id}`}
         src={src}
         alt={alt}
+        loading="lazy"
+        decoding="async"
         className="h-auto w-full object-cover"
         variants={{ hover: { scale: 0.98 }, tap: { scale: 0.95 } }}
         transition={spring}

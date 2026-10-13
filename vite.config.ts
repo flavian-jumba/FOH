@@ -5,7 +5,7 @@ import { TanStackRouterVite } from "@tanstack/router-plugin/vite";
 
 export default defineConfig({
   envPrefix: ["VITE_", "NEXT_PUBLIC_"],
-  plugins: [react(), tailwindcss(), TanStackRouterVite()],
+  plugins: [TanStackRouterVite({ autoCodeSplitting: true }), react(), tailwindcss()],
   resolve: {
     alias: {
       "@": "/src",
