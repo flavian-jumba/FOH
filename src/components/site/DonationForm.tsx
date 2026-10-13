@@ -2,9 +2,10 @@ import { useEffect, useState, type FormEvent } from "react";
 import { CreditCard, Heart, Lock, Mail, Smartphone, type LucideIcon } from "lucide-react";
 
 import {
-  fetchDonationCurrencies,
+  fetchDonationSettings,
   startPaystackDonation,
   type DonationCurrency,
+  type DonationSettings,
 } from "@/lib/payments";
 import { cn } from "@/lib/utils";
 import { ORG } from "./site-data";
@@ -49,12 +50,25 @@ const CURRENCIES: Record<DonationCurrency, CurrencyOption> = {
   },
 };
 
+// Donors in Kenya think in shillings and mostly pay by M-Pesa; everyone else is shown the first
+// currency on offer.
+function isVisitingFromKenya() {
+  try {
+    return Intl.DateTimeFormat().resolvedOptions().timeZone === "Africa/Nairobi";
+  } catch {
+    return false;
+  }
+}
+
 const labelClass =
   "block text-[0.62rem] font-semibold tracking-[0.22em] text-[color:var(--muted-foreground)] uppercase";
 
 export function DonationForm() {
   // Shillings until the server says otherwise, so the form is usable the moment it renders.
-  const [currencies, setCurrencies] = useState<DonationCurrency[]>(["KES"]);
+  const [settings, setSettings] = useState<DonationSettings>({
+    currencies: ["KES"],
+    usdRate: null,
+  });
   const [currency, setCurrency] = useState<DonationCurrency>("KES");
   const [preset, setPreset] = useState<number | null>(CURRENCIES.KES.defaultAmount);
   const [customAmount, setCustomAmount] = useState("");
@@ -69,6 +83,23 @@ export function DonationForm() {
     ? `${option.prefix}${amount.toLocaleString("en-US")}`
     : `${option.prefix}—`;
 
+  // Until Paystack charges this account in dollars, a dollar gift is shown in dollars and
+  // charged as the same value in shillings.
+  const { currencies, usdRate } = settings;
+  const canConvert = usdRate !== null && !currencies.includes("USD");
+  const offered: DonationCurrency[] = canConvert ? ["USD", ...currencies] : currencies;
+  const converted = canConvert && currency === "USD";
+  const chargedKes = converted && hasAmount ? Math.round(amount * usdRate) : null;
+  const chargedLabel = chargedKes ? `KES ${chargedKes.toLocaleString("en-US")}` : null;
+  const summary = converted
+    ? "Shown in US dollars. Your card is charged the same value in Kenyan shillings."
+    : option.summary;
+  const hint = !converted
+    ? option.hint
+    : chargedLabel
+      ? `Your card is charged ${chargedLabel}, about ${formattedAmount}. Your bank converts it, so your statement may differ slightly.`
+      : "Your card is charged the same value in Kenyan shillings.";
+
   function chooseCurrency(next: DonationCurrency) {
     setCurrency(next);
     // 1,000 means something very different in dollars, so never carry an amount across.
@@ -80,14 +111,16 @@ export function DonationForm() {
 
   useEffect(() => {
     let cancelled = false;
-    fetchDonationCurrencies().then((offered) => {
+    fetchDonationSettings().then((loaded) => {
       if (cancelled) return;
-      setCurrencies(offered);
-      // The server lists its preferred currency first.
-      const preferred = offered[0];
+      setSettings(loaded);
+      const showsDollars = loaded.currencies.includes("USD") || loaded.usdRate !== null;
+      // Otherwise the server lists its preferred currency first.
+      const preferred = showsDollars && !isVisitingFromKenya() ? "USD" : loaded.currencies[0];
       if (preferred && preferred !== "KES") {
         setCurrency(preferred);
         setPreset(CURRENCIES[preferred].defaultAmount);
+        setCustomAmount("");
       }
     });
     return () => {
@@ -114,7 +147,11 @@ export function DonationForm() {
     setMessage("");
 
     try {
-      const result = await startPaystackDonation({ amount, email: trimmedEmail, currency });
+      const result = await startPaystackDonation(
+        chargedKes
+          ? { amount: chargedKes, email: trimmedEmail, currency: "KES", shownUsd: amount }
+          : { amount, email: trimmedEmail, currency },
+      );
       if (result === "cancelled") {
         setStatus("idle");
         setMessage("Checkout was closed before payment. You have not been charged.");
@@ -123,7 +160,7 @@ export function DonationForm() {
       setStatus("success");
       setMessage(
         result === "success"
-          ? `Your gift of ${formattedAmount} was received. A receipt is on its way to ${trimmedEmail}.`
+          ? `Your gift of ${chargedLabel ? `${formattedAmount} (charged as ${chargedLabel})` : formattedAmount} was received. A receipt is on its way to ${trimmedEmail}.`
           : `Your payment is still being confirmed. We will email a receipt to ${trimmedEmail} once it completes.`,
       );
     } catch (error) {
@@ -157,7 +194,12 @@ export function DonationForm() {
         >
           {formattedAmount}
         </p>
-        <p className="mt-3 text-sm leading-relaxed text-cream/70">{option.summary}</p>
+        {chargedLabel ? (
+          <p className="mt-2 text-sm font-semibold tabular-nums text-gold">
+            Charged as {chargedLabel}
+          </p>
+        ) : null}
+        <p className="mt-3 text-sm leading-relaxed text-cream/70">{summary}</p>
 
         <ul className="relative mt-8 space-y-3">
           {option.waysToPay.map(({ icon: Icon, label, detail }) => (
@@ -206,11 +248,11 @@ export function DonationForm() {
         </div>
       ) : (
         <form onSubmit={handleSubmit} className="p-7 sm:p-9" noValidate>
-          {currencies.length > 1 ? (
+          {offered.length > 1 ? (
             <fieldset className="mb-8">
               <legend className={labelClass}>Give in</legend>
               <div className="mt-4 grid grid-cols-2 border border-[color:var(--border)]">
-                {currencies.map((code) => {
+                {offered.map((code) => {
                   const active = currency === code;
                   return (
                     <button
@@ -333,9 +375,7 @@ export function DonationForm() {
           >
             {status === "submitting" ? "Opening secure checkout…" : `Donate ${formattedAmount}`}
           </button>
-          <p className="mt-4 text-center text-xs text-[color:var(--muted-foreground)]">
-            {option.hint}
-          </p>
+          <p className="mt-4 text-center text-xs text-[color:var(--muted-foreground)]">{hint}</p>
         </form>
       )}
     </section>
