@@ -49,9 +49,12 @@ export async function requestStkPush(input: StkPushRequest): Promise<StkPushResp
   }
 }
 
+export type DonationCurrency = "KES" | "USD";
+
 export type PaystackDonationRequest = {
   amount: number;
   email: string;
+  currency: DonationCurrency;
 };
 
 export type PaystackDonationResult = "success" | "pending" | "cancelled";
@@ -70,6 +73,21 @@ async function invokePaystack<T>(path: string, body: Record<string, unknown>): P
   }
 
   return data as T;
+}
+
+// Which currencies the form should offer, first one being the default. The server decides, so
+// dollars can be switched on once Paystack enables them without releasing the site again.
+// Any failure (including an older server that has no such endpoint) means shillings only.
+export async function fetchDonationCurrencies(): Promise<DonationCurrency[]> {
+  try {
+    const { currencies } = await invokePaystack<{ currencies?: unknown }>("paystack/config", {});
+    const offered = Array.isArray(currencies)
+      ? currencies.filter((value): value is DonationCurrency => value === "KES" || value === "USD")
+      : [];
+    return offered.length > 0 ? offered : ["KES"];
+  } catch {
+    return ["KES"];
+  }
 }
 
 // The amount is fixed server-side when the transaction is initialized, then the Paystack

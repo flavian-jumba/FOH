@@ -47,3 +47,25 @@ layer to prevent unwanted STK requests.
 The frontend reads `VITE_SUPABASE_URL` / `VITE_SUPABASE_PUBLISHABLE_KEY`; it also accepts the
 existing `NEXT_PUBLIC_*` names for compatibility. These are public values and belong in `.env` or
 `.env.local`. Never expose Daraja secrets or a Supabase service-role key to the browser.
+
+## 5. Card donations in US dollars
+
+Card donations go through the `paystack` function. It can take gifts in Kenyan shillings, US
+dollars, or both; which ones the donation form offers is decided by one secret, so nothing on the
+website has to be released to change it:
+
+```bash
+supabase secrets set DONATION_CURRENCIES=USD,KES   # dollars first (the default choice), then shillings
+supabase secrets set DONATION_CURRENCIES=KES       # shillings only (also what you get if it is unset)
+```
+
+Before switching dollars on:
+
+1. Ask Paystack to enable USD for the business. Until they do, Paystack answers a dollar charge
+   with "Currency not supported by merchant" and the form tells the donor dollars are not
+   available yet.
+2. Apply the currency migration (`supabase db push`). It adds `currency` and `amount_usd` to
+   `donations`; shilling donations keep using `amount_kes`.
+3. Deploy the function: `supabase functions deploy paystack --no-verify-jwt`.
+
+M-Pesa STK donations are always in shillings and are not affected.

@@ -6,10 +6,30 @@ const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
 };
 
-const PAYSTACK_BASE_URL = "https://api.paystack.co";
+const PAYSTACK_BASE_URL = Deno.env.get("PAYSTACK_API_BASE") ?? "https://api.paystack.co";
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-type InitializeRequest = { amount?: unknown; email?: unknown };
+const SUPPORTED_CURRENCIES = ["KES", "USD"] as const;
+type Currency = (typeof SUPPORTED_CURRENCIES)[number];
+const CURRENCY_PREFIX: Record<Currency, string> = { KES: "KES ", USD: "$" };
+
+const isCurrency = (value: string): value is Currency =>
+  (SUPPORTED_CURRENCIES as readonly string[]).includes(value);
+
+// Which currencies donors may give in, in the order the form offers them (the first is the
+// default). Set with `supabase secrets set DONATION_CURRENCIES=USD,KES`.
+// Paystack refuses a currency it has not enabled for the business, so until USD is switched on
+// there this stays at its default of shillings only.
+function allowedCurrencies(): Currency[] {
+  const requested = (Deno.env.get("DONATION_CURRENCIES") ?? "")
+    .split(",")
+    .map((value) => value.trim().toUpperCase())
+    .filter(isCurrency);
+  const unique = [...new Set(requested)];
+  return unique.length > 0 ? unique : ["KES"];
+}
+
+type InitializeRequest = { amount?: unknown; email?: unknown; currency?: unknown };
 type VerifyRequest = { reference?: unknown };
 type PaystackTransaction = {
   status: string;
@@ -63,9 +83,11 @@ async function fetchTransaction(secretKey: string, reference: string) {
 // Records the outcome of a transaction, but only after checking it against the amount we
 // asked Paystack to charge. Used by both the browser-triggered verify and the webhook.
 async function settleDonation(supabase: SupabaseClient, transaction: PaystackTransaction) {
+  // select("*") rather than naming currency/amount_usd, so shilling donations keep settling
+  // even if this function is deployed before the currency migration has been applied.
   const { data: donation, error } = await supabase
     .from("donations")
-    .select("id, amount_kes, status")
+    .select("*")
     .eq("paystack_reference", transaction.reference)
     .single();
 
@@ -75,11 +97,13 @@ async function settleDonation(supabase: SupabaseClient, transaction: PaystackTra
   }
   if (donation.status === "success") return "success";
 
-  const expectedAmount = Math.round(Number(donation.amount_kes) * 100);
+  const currency: Currency = donation.currency === "USD" ? "USD" : "KES";
+  const quoted = currency === "USD" ? donation.amount_usd : donation.amount_kes;
+  const expectedAmount = Math.round(Number(quoted) * 100);
   const paid =
     transaction.status === "success" &&
     transaction.amount === expectedAmount &&
-    transaction.currency === "KES";
+    transaction.currency === currency;
 
   // Abandoned or still-processing transactions stay pending so a later webhook can settle them.
   if (!paid && transaction.status !== "failed" && transaction.status !== "success") {
@@ -110,9 +134,29 @@ async function handleInitialize(request: Request) {
   const body = (await request.json()) as InitializeRequest;
   const amount = Number(body.amount);
   const email = typeof body.email === "string" ? body.email.trim().toLowerCase() : "";
+  // Older copies of the site send no currency; they are always giving in shillings.
+  const requestedCurrency =
+    typeof body.currency === "string" ? body.currency.trim().toUpperCase() : "KES";
+
+  if (!isCurrency(requestedCurrency) || !allowedCurrencies().includes(requestedCurrency)) {
+    return json(
+      {
+        ok: false,
+        message: "Donations in that currency are not available. Please choose another.",
+      },
+      400,
+    );
+  }
+  const currency = requestedCurrency;
 
   if (!Number.isInteger(amount) || amount < 1) {
-    return json({ ok: false, message: "Enter a donation amount of at least KES 1." }, 400);
+    return json(
+      {
+        ok: false,
+        message: `Enter a donation amount of at least ${CURRENCY_PREFIX[currency]}1.`,
+      },
+      400,
+    );
   }
   if (!EMAIL_PATTERN.test(email)) {
     return json({ ok: false, message: "Enter a valid email address for your receipt." }, 400);
@@ -125,7 +169,13 @@ async function handleInitialize(request: Request) {
   const reference = `FOH-${crypto.randomUUID()}`;
   const { data: donation, error: donationError } = await supabase
     .from("donations")
-    .insert({ provider: "paystack", amount_kes: amount, email, paystack_reference: reference })
+    .insert({
+      provider: "paystack",
+      email,
+      paystack_reference: reference,
+      // A shilling donation is written exactly as before the currency columns existed.
+      ...(currency === "USD" ? { currency, amount_usd: amount } : { amount_kes: amount }),
+    })
     .select("id")
     .single();
 
@@ -140,7 +190,7 @@ async function handleInitialize(request: Request) {
     body: JSON.stringify({
       email,
       amount: amount * 100,
-      currency: "KES",
+      currency,
       reference,
       metadata: { donation_id: donation.id, source: "footprints-of-hope-website" },
     }),
@@ -153,13 +203,26 @@ async function handleInitialize(request: Request) {
       .from("donations")
       .update({ status: "failed", result_description: initData.message ?? null })
       .eq("id", donation.id);
+    // Paystack's answer when a currency has not been enabled for the business.
+    const currencyRefused = /currency not supported/i.test(String(initData.message ?? ""));
     return json(
-      { ok: false, message: "We could not contact the payment provider. Please try again." },
+      {
+        ok: false,
+        message: currencyRefused
+          ? `Gifts in ${currency} are not available yet. Please choose another currency.`
+          : "We could not contact the payment provider. Please try again.",
+      },
       502,
     );
   }
 
   return json({ ok: true, accessCode: initData.data.access_code, reference });
+}
+
+// Tells the donation form which currencies to offer, so a currency can be switched on or off
+// with a secret instead of a new release of the website.
+function handleConfig() {
+  return json({ ok: true, currencies: allowedCurrencies() });
 }
 
 async function handleVerify(request: Request) {
@@ -230,6 +293,7 @@ Deno.serve(async (request) => {
   try {
     const path = new URL(request.url).pathname;
     if (path.endsWith("/webhook")) return await handleWebhook(request);
+    if (path.endsWith("/config")) return handleConfig();
     if (path.endsWith("/verify")) return await handleVerify(request);
     return await handleInitialize(request);
   } catch (error) {

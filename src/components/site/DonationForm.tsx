@@ -1,34 +1,99 @@
-import { useState, type FormEvent } from "react";
-import { CreditCard, Heart, Lock, Mail, Smartphone } from "lucide-react";
+import { useEffect, useState, type FormEvent } from "react";
+import { CreditCard, Heart, Lock, Mail, Smartphone, type LucideIcon } from "lucide-react";
 
-import { startPaystackDonation } from "@/lib/payments";
+import {
+  fetchDonationCurrencies,
+  startPaystackDonation,
+  type DonationCurrency,
+} from "@/lib/payments";
 import { cn } from "@/lib/utils";
 import { ORG } from "./site-data";
 
-const PRESET_AMOUNTS = [500, 1000, 2500, 5000];
-const DEFAULT_AMOUNT = 1000;
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-// What donors can choose inside the Paystack checkout window.
-const WAYS_TO_PAY = [
-  { icon: Smartphone, label: "M-Pesa", detail: "STK prompt or Till" },
-  { icon: Smartphone, label: "Airtel Money", detail: "Mobile money" },
-  { icon: CreditCard, label: "Card", detail: "Visa · Mastercard" },
-] as const;
+type CurrencyOption = {
+  /** Shown on the currency switch. */
+  name: string;
+  /** Goes in front of an amount: "$50", "KES 1,000". */
+  prefix: string;
+  presets: number[];
+  defaultAmount: number;
+  /** What donors can choose inside the Paystack checkout window for this currency. */
+  waysToPay: { icon: LucideIcon; label: string; detail: string }[];
+  summary: string;
+  hint: string;
+};
+
+const CURRENCIES: Record<DonationCurrency, CurrencyOption> = {
+  USD: {
+    name: "US dollars",
+    prefix: "$",
+    presets: [25, 50, 100, 250],
+    defaultAmount: 50,
+    waysToPay: [{ icon: CreditCard, label: "Card", detail: "Visa · Mastercard" }],
+    summary: "One secure card checkout, charged in US dollars.",
+    hint: "You will pay by card, in US dollars, in the Paystack window.",
+  },
+  KES: {
+    name: "Kenyan shillings",
+    prefix: "KES ",
+    presets: [500, 1000, 2500, 5000],
+    defaultAmount: 1000,
+    waysToPay: [
+      { icon: Smartphone, label: "M-Pesa", detail: "STK prompt or Till" },
+      { icon: Smartphone, label: "Airtel Money", detail: "Mobile money" },
+      { icon: CreditCard, label: "Card", detail: "Visa · Mastercard" },
+    ],
+    summary: "One secure checkout. Pick how you pay in the next step.",
+    hint: "You will choose M-Pesa, Airtel Money or card in the Paystack window.",
+  },
+};
 
 const labelClass =
   "block text-[0.62rem] font-semibold tracking-[0.22em] text-[color:var(--muted-foreground)] uppercase";
 
 export function DonationForm() {
-  const [preset, setPreset] = useState<number | null>(DEFAULT_AMOUNT);
+  // Shillings until the server says otherwise, so the form is usable the moment it renders.
+  const [currencies, setCurrencies] = useState<DonationCurrency[]>(["KES"]);
+  const [currency, setCurrency] = useState<DonationCurrency>("KES");
+  const [preset, setPreset] = useState<number | null>(CURRENCIES.KES.defaultAmount);
   const [customAmount, setCustomAmount] = useState("");
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
 
+  const option = CURRENCIES[currency];
   const amount = preset ?? Number(customAmount);
   const hasAmount = Number.isInteger(amount) && amount >= 1;
-  const formattedAmount = hasAmount ? `KES ${amount.toLocaleString()}` : "KES —";
+  const formattedAmount = hasAmount
+    ? `${option.prefix}${amount.toLocaleString("en-US")}`
+    : `${option.prefix}—`;
+
+  function chooseCurrency(next: DonationCurrency) {
+    setCurrency(next);
+    // 1,000 means something very different in dollars, so never carry an amount across.
+    setPreset(CURRENCIES[next].defaultAmount);
+    setCustomAmount("");
+    setMessage("");
+    setStatus((current) => (current === "error" ? "idle" : current));
+  }
+
+  useEffect(() => {
+    let cancelled = false;
+    fetchDonationCurrencies().then((offered) => {
+      if (cancelled) return;
+      setCurrencies(offered);
+      // The server lists its preferred currency first.
+      const preferred = offered[0];
+      if (preferred && preferred !== "KES") {
+        setCurrency(preferred);
+        setPreset(CURRENCIES[preferred].defaultAmount);
+      }
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -36,7 +101,7 @@ export function DonationForm() {
 
     if (!hasAmount) {
       setStatus("error");
-      setMessage("Choose an amount, or enter a whole number of at least KES 1.");
+      setMessage(`Choose an amount, or enter a whole number of at least ${option.prefix}1.`);
       return;
     }
     if (!EMAIL_PATTERN.test(trimmedEmail)) {
@@ -49,7 +114,7 @@ export function DonationForm() {
     setMessage("");
 
     try {
-      const result = await startPaystackDonation({ amount, email: trimmedEmail });
+      const result = await startPaystackDonation({ amount, email: trimmedEmail, currency });
       if (result === "cancelled") {
         setStatus("idle");
         setMessage("Checkout was closed before payment. You have not been charged.");
@@ -72,7 +137,7 @@ export function DonationForm() {
   function reset() {
     setStatus("idle");
     setMessage("");
-    setPreset(DEFAULT_AMOUNT);
+    setPreset(option.defaultAmount);
     setCustomAmount("");
   }
 
@@ -92,12 +157,10 @@ export function DonationForm() {
         >
           {formattedAmount}
         </p>
-        <p className="mt-3 text-sm leading-relaxed text-cream/70">
-          One secure checkout. Pick how you pay in the next step.
-        </p>
+        <p className="mt-3 text-sm leading-relaxed text-cream/70">{option.summary}</p>
 
         <ul className="relative mt-8 space-y-3">
-          {WAYS_TO_PAY.map(({ icon: Icon, label, detail }) => (
+          {option.waysToPay.map(({ icon: Icon, label, detail }) => (
             <li key={label} className="flex items-center gap-3">
               <span className="flex h-9 w-9 shrink-0 items-center justify-center border border-white/15 bg-white/5">
                 <Icon className="h-4 w-4 text-gold" aria-hidden="true" />
@@ -143,10 +206,37 @@ export function DonationForm() {
         </div>
       ) : (
         <form onSubmit={handleSubmit} className="p-7 sm:p-9" noValidate>
+          {currencies.length > 1 ? (
+            <fieldset className="mb-8">
+              <legend className={labelClass}>Give in</legend>
+              <div className="mt-4 grid grid-cols-2 border border-[color:var(--border)]">
+                {currencies.map((code) => {
+                  const active = currency === code;
+                  return (
+                    <button
+                      key={code}
+                      type="button"
+                      onClick={() => chooseCurrency(code)}
+                      aria-pressed={active}
+                      className={cn(
+                        "px-4 py-3 text-sm font-semibold transition-colors duration-200",
+                        active
+                          ? "bg-burgundy text-cream"
+                          : "bg-white text-charcoal hover:text-burgundy",
+                      )}
+                    >
+                      {CURRENCIES[code].name}
+                    </button>
+                  );
+                })}
+              </div>
+            </fieldset>
+          ) : null}
+
           <fieldset>
-            <legend className={labelClass}>Choose an amount</legend>
+            <legend className={labelClass}>Choose an amount, or enter your own</legend>
             <div className="mt-4 grid grid-cols-2 gap-3">
-              {PRESET_AMOUNTS.map((value) => {
+              {option.presets.map((value) => {
                 const active = preset === value;
                 return (
                   <button
@@ -170,10 +260,10 @@ export function DonationForm() {
                         active ? "text-gold" : "text-[color:var(--muted-foreground)]",
                       )}
                     >
-                      KES
+                      {currency}
                     </span>
                     <span className="mt-1 block font-display text-2xl font-semibold tabular-nums">
-                      {value.toLocaleString()}
+                      {value.toLocaleString("en-US")}
                     </span>
                   </button>
                 );
@@ -182,20 +272,20 @@ export function DonationForm() {
 
             <label
               className={cn(
-                "mt-3 flex items-center gap-3 border px-4 py-3 transition-colors focus-within:border-burgundy",
+                "mt-3 flex items-center gap-3 border px-4 py-4 transition-colors focus-within:border-burgundy",
                 preset === null ? "border-burgundy" : "border-[color:var(--border)]",
               )}
             >
               <span className="text-sm font-semibold text-[color:var(--muted-foreground)]">
-                KES
+                {currency}
               </span>
               <input
                 type="number"
                 min="1"
                 step="1"
                 inputMode="numeric"
-                placeholder="Other amount"
-                aria-label="Other amount in KES"
+                placeholder="Any other amount"
+                aria-label={`Any other amount in ${option.name}`}
                 value={customAmount}
                 onFocus={() => setPreset(null)}
                 onChange={(event) => {
@@ -244,7 +334,7 @@ export function DonationForm() {
             {status === "submitting" ? "Opening secure checkout…" : `Donate ${formattedAmount}`}
           </button>
           <p className="mt-4 text-center text-xs text-[color:var(--muted-foreground)]">
-            You will choose M-Pesa, Airtel Money or card in the Paystack window.
+            {option.hint}
           </p>
         </form>
       )}
