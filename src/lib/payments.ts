@@ -55,6 +55,8 @@ export type PaystackDonationRequest = {
   amount: number;
   email: string;
   currency: DonationCurrency;
+  /** The dollar amount the donor chose, when it was shown in dollars but is charged in shillings. */
+  shownUsd?: number;
 };
 
 export type PaystackDonationResult = "success" | "pending" | "cancelled";
@@ -75,18 +77,31 @@ async function invokePaystack<T>(path: string, body: Record<string, unknown>): P
   return data as T;
 }
 
-// Which currencies the form should offer, first one being the default. The server decides, so
-// dollars can be switched on once Paystack enables them without releasing the site again.
-// Any failure (including an older server that has no such endpoint) means shillings only.
-export async function fetchDonationCurrencies(): Promise<DonationCurrency[]> {
+export type DonationSettings = {
+  /** Currencies Paystack will charge in, the server's preferred one first. */
+  currencies: DonationCurrency[];
+  /** Shillings per dollar, when dollar amounts can be shown and charged in shillings. */
+  usdRate: number | null;
+};
+
+// What the form should offer. The server decides, so dollars can be switched on or off without
+// releasing the site again. Any failure (including an older server that has no such endpoint)
+// means shillings only.
+export async function fetchDonationSettings(): Promise<DonationSettings> {
   try {
-    const { currencies } = await invokePaystack<{ currencies?: unknown }>("paystack/config", {});
+    const { currencies, usdRate } = await invokePaystack<{
+      currencies?: unknown;
+      usdRate?: unknown;
+    }>("paystack/config", {});
     const offered = Array.isArray(currencies)
       ? currencies.filter((value): value is DonationCurrency => value === "KES" || value === "USD")
       : [];
-    return offered.length > 0 ? offered : ["KES"];
+    return {
+      currencies: offered.length > 0 ? offered : ["KES"],
+      usdRate: typeof usdRate === "number" && usdRate > 0 ? usdRate : null,
+    };
   } catch {
-    return ["KES"];
+    return { currencies: ["KES"], usdRate: null };
   }
 }
 

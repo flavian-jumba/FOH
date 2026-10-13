@@ -29,7 +29,52 @@ function allowedCurrencies(): Currency[] {
   return unique.length > 0 ? unique : ["KES"];
 }
 
-type InitializeRequest = { amount?: unknown; email?: unknown; currency?: unknown };
+// Donors abroad think in dollars, but Paystack only charges this business in shillings until it
+// enables USD. So the form can show dollar amounts and charge the same value in shillings, using
+// this rate (shillings per dollar). USD_KES_RATE pins it to a number, or "off" hides dollars;
+// left unset, the day's market rate is looked up.
+const RATE_SOURCES = [
+  "https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/usd.min.json",
+  "https://latest.currency-api.pages.dev/v1/currencies/usd.min.json",
+];
+const RATE_TTL_MS = 6 * 60 * 60 * 1000;
+// A rate outside this range is a broken feed, not a real exchange rate.
+const isPlausibleRate = (rate: number) => Number.isFinite(rate) && rate >= 50 && rate <= 500;
+let cachedRate: { value: number; fetchedAt: number } | null = null;
+
+async function usdToKesRate(): Promise<number | null> {
+  const pinned = (Deno.env.get("USD_KES_RATE") ?? "").trim().toLowerCase();
+  if (pinned === "off") return null;
+  if (pinned) {
+    const rate = Number(pinned);
+    if (isPlausibleRate(rate)) return rate;
+    console.error("Ignoring USD_KES_RATE: expected shillings per dollar, e.g. 129.5");
+  }
+
+  if (cachedRate && Date.now() - cachedRate.fetchedAt < RATE_TTL_MS) return cachedRate.value;
+
+  for (const source of RATE_SOURCES) {
+    try {
+      const response = await fetch(source, { signal: AbortSignal.timeout(4000) });
+      const rate = Number((await response.json())?.usd?.kes);
+      if (response.ok && isPlausibleRate(rate)) {
+        cachedRate = { value: Math.round(rate * 100) / 100, fetchedAt: Date.now() };
+        return cachedRate.value;
+      }
+    } catch (error) {
+      console.error("Exchange rate lookup failed", source, error);
+    }
+  }
+  // Better a slightly old rate than no dollar amounts at all.
+  return cachedRate?.value ?? null;
+}
+
+type InitializeRequest = {
+  amount?: unknown;
+  email?: unknown;
+  currency?: unknown;
+  shownUsd?: unknown;
+};
 type VerifyRequest = { reference?: unknown };
 type PaystackTransaction = {
   status: string;
@@ -162,6 +207,11 @@ async function handleInitialize(request: Request) {
     return json({ ok: false, message: "Enter a valid email address for your receipt." }, 400);
   }
 
+  // The dollar figure the donor chose, when the form showed dollars and charged in shillings.
+  // Kept on the Paystack transaction for the record; the charge itself is `amount`.
+  const shownUsd = Number(body.shownUsd);
+  const quotedInUsd = currency === "KES" && Number.isFinite(shownUsd) && shownUsd > 0;
+
   const config = getConfig();
   if (!config) return notConfigured();
   const { supabase, secretKey } = config;
@@ -192,7 +242,11 @@ async function handleInitialize(request: Request) {
       amount: amount * 100,
       currency,
       reference,
-      metadata: { donation_id: donation.id, source: "footprints-of-hope-website" },
+      metadata: {
+        donation_id: donation.id,
+        source: "footprints-of-hope-website",
+        ...(quotedInUsd ? { shown_usd: shownUsd } : {}),
+      },
     }),
   });
   const initData = await initResponse.json();
@@ -220,9 +274,12 @@ async function handleInitialize(request: Request) {
 }
 
 // Tells the donation form which currencies to offer, so a currency can be switched on or off
-// with a secret instead of a new release of the website.
-function handleConfig() {
-  return json({ ok: true, currencies: allowedCurrencies() });
+// with a secret instead of a new release of the website. usdRate is only sent when dollars
+// would have to be charged as shillings.
+async function handleConfig() {
+  const currencies = allowedCurrencies();
+  const needsRate = currencies.includes("KES") && !currencies.includes("USD");
+  return json({ ok: true, currencies, usdRate: needsRate ? await usdToKesRate() : null });
 }
 
 async function handleVerify(request: Request) {
@@ -293,7 +350,7 @@ Deno.serve(async (request) => {
   try {
     const path = new URL(request.url).pathname;
     if (path.endsWith("/webhook")) return await handleWebhook(request);
-    if (path.endsWith("/config")) return handleConfig();
+    if (path.endsWith("/config")) return await handleConfig();
     if (path.endsWith("/verify")) return await handleVerify(request);
     return await handleInitialize(request);
   } catch (error) {

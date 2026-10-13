@@ -69,3 +69,23 @@ Before switching dollars on:
 3. Deploy the function: `supabase functions deploy paystack --no-verify-jwt`.
 
 M-Pesa STK donations are always in shillings and are not affected.
+
+### Dollar amounts, charged in shillings
+
+While Paystack only charges the business in shillings, the form still shows dollar amounts to
+visitors outside Kenya: the donor picks `$50`, sees "Charged as KES 6,500", and the card is
+charged that shilling amount. Visitors whose device is on Kenyan time get shillings first. The
+gift is stored as an ordinary shilling donation; the dollar figure the donor chose is kept on the
+Paystack transaction as `shown_usd`.
+
+The rate (shillings per dollar) is looked up once every few hours. To control it:
+
+```bash
+supabase secrets set USD_KES_RATE=129.5   # pin the rate
+supabase secrets set USD_KES_RATE=off     # show shillings only
+supabase secrets unset USD_KES_RATE       # back to the looked-up rate
+```
+
+The donor's bank does the final conversion and may add a foreign-transaction fee, so the form
+says the statement can differ slightly. Once Paystack enables USD and `DONATION_CURRENCIES`
+lists it, dollars are charged as dollars and this conversion is no longer used.
