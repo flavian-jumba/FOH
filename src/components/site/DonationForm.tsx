@@ -29,7 +29,7 @@ const CURRENCIES: Record<DonationCurrency, CurrencyOption> = {
   USD: {
     name: "US dollars",
     prefix: "$",
-    presets: [25, 50, 100, 250],
+    presets: [20, 50, 100, 500],
     defaultAmount: 50,
     waysToPay: [{ icon: CreditCard, label: "Card", detail: "Visa · Mastercard" }],
     summary: "One secure card checkout, charged in US dollars.",
@@ -49,16 +49,6 @@ const CURRENCIES: Record<DonationCurrency, CurrencyOption> = {
     hint: "You will choose M-Pesa, Airtel Money or card in the Paystack window.",
   },
 };
-
-// Donors in Kenya think in shillings and mostly pay by M-Pesa; everyone else is shown the first
-// currency on offer.
-function isVisitingFromKenya() {
-  try {
-    return Intl.DateTimeFormat().resolvedOptions().timeZone === "Africa/Nairobi";
-  } catch {
-    return false;
-  }
-}
 
 const labelClass =
   "block text-[0.62rem] font-semibold tracking-[0.22em] text-[color:var(--muted-foreground)] uppercase";
@@ -115,8 +105,9 @@ export function DonationForm() {
       if (cancelled) return;
       setSettings(loaded);
       const showsDollars = loaded.currencies.includes("USD") || loaded.usdRate !== null;
-      // Otherwise the server lists its preferred currency first.
-      const preferred = showsDollars && !isVisitingFromKenya() ? "USD" : loaded.currencies[0];
+      // Most donors give from abroad, so dollars come first whenever they are on offer; donors in
+      // Kenya switch to shillings for M-Pesa. Otherwise the server lists its preferred currency first.
+      const preferred = showsDollars ? "USD" : loaded.currencies[0];
       if (preferred && preferred !== "KES") {
         setCurrency(preferred);
         setPreset(CURRENCIES[preferred].defaultAmount);
