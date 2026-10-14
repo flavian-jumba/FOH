@@ -29,7 +29,7 @@ const CURRENCIES: Record<DonationCurrency, CurrencyOption> = {
   USD: {
     name: "US dollars",
     prefix: "$",
-    presets: [25, 50, 100, 250],
+    presets: [20, 50, 100, 500],
     defaultAmount: 50,
     waysToPay: [{ icon: CreditCard, label: "Card", detail: "Visa · Mastercard" }],
     summary: "One secure card checkout, charged in US dollars.",
